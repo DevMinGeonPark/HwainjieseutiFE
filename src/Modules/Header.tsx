@@ -4,7 +4,6 @@ import AdCopy from '@Atomic/AdCopy';
 import LogoHeader from '@Atomic/LogoHeader';
 import SideBarButton from '@src/Atomic/SideBarButton';
 import NavigationBar from '@src/Modules/NavigationBar';
-import {SafeAreaView} from 'react-native-safe-area-context';
 
 export default function Header() {
   return (
