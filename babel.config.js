@@ -4,17 +4,16 @@ module.exports = {
     [
       'module-resolver',
       {
-        root: ['./'],
         alias: {
           '@src': './src',
-          // '@assets': './assets',
-          // '@Components': './src/Components',
-          // '@Atomic': './src/Components/Atomic',
-          // '@Modules': './src/Components/Modules',
-          '@Templates': './src/Components/Templates',
-          '@Navigations': './src/Navigations',
-          // '@Utils': './src/Utils',
-          // '@recoils': './src/recoils'
+          '@assets': './assets',
+          '@Atomic': './src/Atomic',
+          '@Modules': './src/Modules',
+          '@Templates': './src/Templates',
+          '@Navigators': './src/Navigators',
+          '@hooks': './src/hooks',
+          '@Utils': './src/Utils',
+          '@Types': './src/types',
         },
         extensions: [
           '.ios.ts',
@@ -29,5 +28,6 @@ module.exports = {
         ],
       },
     ],
+    ['react-native-reanimated/plugin'],
   ],
 };

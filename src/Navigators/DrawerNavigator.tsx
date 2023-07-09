@@ -1,18 +1,22 @@
-import {View, Text} from 'react-native';
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
-import StackNavigator from './StackNavigator';
+import {StackNavigator} from './StackNavigator';
 
-const Drawer = createDrawerNavigator();
+import {DrawerScreenProps} from '@Types/NavigationTypes';
+
+const Drawer = createDrawerNavigator<DrawerScreenProps>();
 
 export default function DrawerNavigator() {
   return (
-    <Drawer.Navigator initialRouteName="Home">
+    // swipre, header 제거
+    <Drawer.Navigator
+      initialRouteName="DrawerMain"
+      screenOptions={{swipeEnabled: false, headerShown: false}}>
       <Drawer.Screen
-        name="Home"
+        name="DrawerMain"
         component={StackNavigator}
-        options={{drawerLabel: 'HOME'}}
+        options={{drawerLabel: 'Main'}}
       />
     </Drawer.Navigator>
   );

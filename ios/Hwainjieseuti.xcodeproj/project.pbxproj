@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* HwainjieseutiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* HwainjieseutiTests.m */; };
-		0C80B921A6F3F58F76C31292 /* libPods-Hwainjieseuti.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-Hwainjieseuti.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		7699B88040F8A987B510C191 /* libPods-Hwainjieseuti-HwainjieseutiTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-Hwainjieseuti-HwainjieseutiTests.a */; };
+		2AB80CF9C2BE55BA889966B6 /* libPods-Hwainjieseuti.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17329BE1AF08DA42B80968FB /* libPods-Hwainjieseuti.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		DA1736331931309A0AA48A9B /* libPods-Hwainjieseuti-HwainjieseutiTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5330A8C51720F8794927E784 /* libPods-Hwainjieseuti-HwainjieseutiTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,19 +30,35 @@
 		00E356EE1AD99517003FC87E /* HwainjieseutiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HwainjieseutiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* HwainjieseutiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HwainjieseutiTests.m; sourceTree = "<group>"; };
+		02481BB3C9048D0215C0A1B2 /* Pods-Hwainjieseuti.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hwainjieseuti.debug.xcconfig"; path = "Target Support Files/Pods-Hwainjieseuti/Pods-Hwainjieseuti.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Hwainjieseuti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hwainjieseuti.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Hwainjieseuti/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = Hwainjieseuti/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Hwainjieseuti/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Hwainjieseuti/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Hwainjieseuti/main.m; sourceTree = "<group>"; };
-		19F6CBCC0A4E27FBF8BF4A61 /* libPods-Hwainjieseuti-HwainjieseutiTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hwainjieseuti-HwainjieseutiTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B4392A12AC88292D35C810B /* Pods-Hwainjieseuti.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hwainjieseuti.debug.xcconfig"; path = "Target Support Files/Pods-Hwainjieseuti/Pods-Hwainjieseuti.debug.xcconfig"; sourceTree = "<group>"; };
-		5709B34CF0A7D63546082F79 /* Pods-Hwainjieseuti.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hwainjieseuti.release.xcconfig"; path = "Target Support Files/Pods-Hwainjieseuti/Pods-Hwainjieseuti.release.xcconfig"; sourceTree = "<group>"; };
-		5B7EB9410499542E8C5724F5 /* Pods-Hwainjieseuti-HwainjieseutiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hwainjieseuti-HwainjieseutiTests.debug.xcconfig"; path = "Target Support Files/Pods-Hwainjieseuti-HwainjieseutiTests/Pods-Hwainjieseuti-HwainjieseutiTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5DCACB8F33CDC322A6C60F78 /* libPods-Hwainjieseuti.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hwainjieseuti.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		17329BE1AF08DA42B80968FB /* libPods-Hwainjieseuti.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hwainjieseuti.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3946798E2A57F78900056570 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Octicons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		3946798F2A57F78900056570 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SimpleLineIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		394679902A57F78900056570 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Fontisto.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
+		394679912A57F78A00056570 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		394679922A57F78A00056570 /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AntDesign.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
+		394679932A57F78A00056570 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialCommunityIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
+		394679942A57F78A00056570 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Brands.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
+		394679952A57F78A00056570 /* Foundation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Foundation.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		394679962A57F78A00056570 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		394679972A57F78B00056570 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Solid.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
+		394679982A57F78B00056570 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = EvilIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		394679992A57F78B00056570 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Entypo.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		3946799A2A57F78B00056570 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Regular.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
+		3946799B2A57F78B00056570 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		3946799C2A57F78B00056570 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		3946799D2A57F78C00056570 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Zocial.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		496C9BA8AD74C98DB8FA0F91 /* Pods-Hwainjieseuti.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hwainjieseuti.release.xcconfig"; path = "Target Support Files/Pods-Hwainjieseuti/Pods-Hwainjieseuti.release.xcconfig"; sourceTree = "<group>"; };
+		5330A8C51720F8794927E784 /* libPods-Hwainjieseuti-HwainjieseutiTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hwainjieseuti-HwainjieseutiTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		672D50BB79D7EA0A3ACC379D /* Pods-Hwainjieseuti-HwainjieseutiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hwainjieseuti-HwainjieseutiTests.debug.xcconfig"; path = "Target Support Files/Pods-Hwainjieseuti-HwainjieseutiTests/Pods-Hwainjieseuti-HwainjieseutiTests.debug.xcconfig"; sourceTree = "<group>"; };
+		811D759AD9056D6417A14C9C /* Pods-Hwainjieseuti-HwainjieseutiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hwainjieseuti-HwainjieseutiTests.release.xcconfig"; path = "Target Support Files/Pods-Hwainjieseuti-HwainjieseutiTests/Pods-Hwainjieseuti-HwainjieseutiTests.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Hwainjieseuti/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		89C6BE57DB24E9ADA2F236DE /* Pods-Hwainjieseuti-HwainjieseutiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hwainjieseuti-HwainjieseutiTests.release.xcconfig"; path = "Target Support Files/Pods-Hwainjieseuti-HwainjieseutiTests/Pods-Hwainjieseuti-HwainjieseutiTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -51,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7699B88040F8A987B510C191 /* libPods-Hwainjieseuti-HwainjieseutiTests.a in Frameworks */,
+				DA1736331931309A0AA48A9B /* libPods-Hwainjieseuti-HwainjieseutiTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C80B921A6F3F58F76C31292 /* libPods-Hwainjieseuti.a in Frameworks */,
+				2AB80CF9C2BE55BA889966B6 /* libPods-Hwainjieseuti.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,10 +116,33 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5DCACB8F33CDC322A6C60F78 /* libPods-Hwainjieseuti.a */,
-				19F6CBCC0A4E27FBF8BF4A61 /* libPods-Hwainjieseuti-HwainjieseutiTests.a */,
+				17329BE1AF08DA42B80968FB /* libPods-Hwainjieseuti.a */,
+				5330A8C51720F8794927E784 /* libPods-Hwainjieseuti-HwainjieseutiTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		395158AD2A57EEE800FDFE18 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				394679922A57F78A00056570 /* AntDesign.ttf */,
+				394679992A57F78B00056570 /* Entypo.ttf */,
+				394679982A57F78B00056570 /* EvilIcons.ttf */,
+				3946799B2A57F78B00056570 /* Feather.ttf */,
+				394679912A57F78A00056570 /* FontAwesome.ttf */,
+				394679942A57F78A00056570 /* FontAwesome5_Brands.ttf */,
+				3946799A2A57F78B00056570 /* FontAwesome5_Regular.ttf */,
+				394679972A57F78B00056570 /* FontAwesome5_Solid.ttf */,
+				394679902A57F78900056570 /* Fontisto.ttf */,
+				394679952A57F78A00056570 /* Foundation.ttf */,
+				394679962A57F78A00056570 /* Ionicons.ttf */,
+				394679932A57F78A00056570 /* MaterialCommunityIcons.ttf */,
+				3946799C2A57F78B00056570 /* MaterialIcons.ttf */,
+				3946798E2A57F78900056570 /* Octicons.ttf */,
+				3946798F2A57F78900056570 /* SimpleLineIcons.ttf */,
+				3946799D2A57F78C00056570 /* Zocial.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -116,12 +155,14 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				395158AD2A57EEE800FDFE18 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* Hwainjieseuti */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* HwainjieseutiTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				AAF965FFDFF94E95AF56B31F /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -137,13 +178,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		AAF965FFDFF94E95AF56B31F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3B4392A12AC88292D35C810B /* Pods-Hwainjieseuti.debug.xcconfig */,
-				5709B34CF0A7D63546082F79 /* Pods-Hwainjieseuti.release.xcconfig */,
-				5B7EB9410499542E8C5724F5 /* Pods-Hwainjieseuti-HwainjieseutiTests.debug.xcconfig */,
-				89C6BE57DB24E9ADA2F236DE /* Pods-Hwainjieseuti-HwainjieseutiTests.release.xcconfig */,
+				02481BB3C9048D0215C0A1B2 /* Pods-Hwainjieseuti.debug.xcconfig */,
+				496C9BA8AD74C98DB8FA0F91 /* Pods-Hwainjieseuti.release.xcconfig */,
+				672D50BB79D7EA0A3ACC379D /* Pods-Hwainjieseuti-HwainjieseutiTests.debug.xcconfig */,
+				811D759AD9056D6417A14C9C /* Pods-Hwainjieseuti-HwainjieseutiTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -155,12 +203,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "HwainjieseutiTests" */;
 			buildPhases = (
-				A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */,
+				24BEBAB5D875B4E6147DC4BB /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */,
-				F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */,
+				78275154F97A415D5317ECDD /* [CP] Embed Pods Frameworks */,
+				5B91480D90C51B5001218F8A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -176,14 +224,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Hwainjieseuti" */;
 			buildPhases = (
-				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
+				77E70EF984337D084C439BCE /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
-				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
+				EAE30A5E39FCEBF302090906 /* [CP] Embed Pods Frameworks */,
+				A5C69EBF024477E1A26363F8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -266,24 +314,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti/Pods-Hwainjieseuti-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti/Pods-Hwainjieseuti-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti/Pods-Hwainjieseuti-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
+		24BEBAB5D875B4E6147DC4BB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -305,7 +336,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */ = {
+		5B91480D90C51B5001218F8A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti-HwainjieseutiTests/Pods-Hwainjieseuti-HwainjieseutiTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti-HwainjieseutiTests/Pods-Hwainjieseuti-HwainjieseutiTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti-HwainjieseutiTests/Pods-Hwainjieseuti-HwainjieseutiTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		77E70EF984337D084C439BCE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -327,7 +375,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */ = {
+		78275154F97A415D5317ECDD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -344,7 +392,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti-HwainjieseutiTests/Pods-Hwainjieseuti-HwainjieseutiTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
+		A5C69EBF024477E1A26363F8 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -361,21 +409,21 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti/Pods-Hwainjieseuti-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */ = {
+		EAE30A5E39FCEBF302090906 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti-HwainjieseutiTests/Pods-Hwainjieseuti-HwainjieseutiTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti/Pods-Hwainjieseuti-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti-HwainjieseutiTests/Pods-Hwainjieseuti-HwainjieseutiTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti/Pods-Hwainjieseuti-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti-HwainjieseutiTests/Pods-Hwainjieseuti-HwainjieseutiTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti/Pods-Hwainjieseuti-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -430,7 +478,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-Hwainjieseuti-HwainjieseutiTests.debug.xcconfig */;
+			baseConfigurationReference = 672D50BB79D7EA0A3ACC379D /* Pods-Hwainjieseuti-HwainjieseutiTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -457,7 +505,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-Hwainjieseuti-HwainjieseutiTests.release.xcconfig */;
+			baseConfigurationReference = 811D759AD9056D6417A14C9C /* Pods-Hwainjieseuti-HwainjieseutiTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -481,7 +529,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-Hwainjieseuti.debug.xcconfig */;
+			baseConfigurationReference = 02481BB3C9048D0215C0A1B2 /* Pods-Hwainjieseuti.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -508,7 +556,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-Hwainjieseuti.release.xcconfig */;
+			baseConfigurationReference = 496C9BA8AD74C98DB8FA0F91 /* Pods-Hwainjieseuti.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
