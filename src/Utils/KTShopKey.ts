@@ -15,3 +15,7 @@ export const getTime = (): string => {
 export const getKTShopKey = (): string => {
   return encrypt(getTime());
 };
+
+export const encryptKTShopKey = (text: string): string => {
+  return encrypt(text);
+};

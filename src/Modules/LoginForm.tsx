@@ -15,10 +15,38 @@ import {
   Checkbox,
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import axios from 'axios';
+import {BASE_URL} from '@env';
+import {encrypt} from '@Utils/Encrypt';
+import {getKTShopKey} from '@src/Utils/KTShopKey';
 
 export default function LoginForm() {
   const [ID, setID] = useState<string>('');
   const [PW, setPW] = useState<string>('');
+
+  const login = async () => {
+    console.log(getKTShopKey());
+    console.log(encrypt(PW));
+
+    // axios post header 설정
+    const data = {
+      KTShopID: ID,
+      KTShopPW: encrypt(PW),
+    };
+    const headers = {
+      'Content-Type': 'application/json',
+      KTShopKey: getKTShopKey(),
+    };
+
+    try {
+      const res = await axios.post(BASE_URL + 'login.php', data, {
+        headers: headers,
+      });
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Box bg="gray.200" margin={6} borderRadius={20}>
@@ -32,6 +60,7 @@ export default function LoginForm() {
               <Input
                 placeholder="아이디를 입력해주세요."
                 backgroundColor="white"
+                // value="gksrudgh3795"
                 InputRightElement={
                   <Icon style={{marginRight: 10}} name="user" size={18} />
                 }
@@ -43,6 +72,7 @@ export default function LoginForm() {
               <Input
                 placeholder="비밀번호를 입력해주세요."
                 backgroundColor="white"
+                // value="ghkdls2012."
                 type="password"
                 InputRightElement={
                   <Icon style={{marginRight: 10}} name="lock" size={18} />
@@ -51,10 +81,7 @@ export default function LoginForm() {
                 onChangeText={newStr => setPW(newStr)}
               />
             </FormControl>
-            <Button
-              onPress={() => console.log(`id:${ID} pw:${PW}`)}
-              mt="2"
-              backgroundColor={'dark.100'}>
+            <Button onPress={() => login()} mt="2" backgroundColor={'dark.100'}>
               로그인
             </Button>
             <Checkbox value={'test'}>

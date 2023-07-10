@@ -5,4 +5,5 @@ export type DrawerScreenProps = {
 export type StackScreenProps = {
   Main: undefined;
   Login: undefined;
+  Product: undefined;
 };
