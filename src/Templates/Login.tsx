@@ -5,19 +5,18 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {useNavigation} from '@react-navigation/native';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {StackNavigationProp} from '@react-navigation/stack';
-
 import LoginForm from '@src/Modules/LoginForm';
-import {getUserName} from '@src/contexts/UserContext';
-// import {useToast} from 'native-base';
+import {useUserState} from '@src/contexts/UserContext';
 import {useToast} from 'native-base';
 
 function Login() {
-  const user = getUserName();
+  // const user = getUserName();
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
   const toast = useToast();
+  const [user] = useUserState();
 
   useEffect(() => {
-    if (user) {
+    if (!!user) {
       navigation.pop();
       toast.show({title: '이미 로그인 되어있습니다.'});
     }

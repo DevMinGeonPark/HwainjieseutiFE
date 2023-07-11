@@ -26,12 +26,9 @@ export default function LogoHeader() {
 
 const styles = StyleSheet.create({
   container: {
-    // borderBottomWidth: 1,
-    // borderBlockColor: '#CCC',
     flex: 1,
     margin: 'auto',
     padding: 10,
-    // margin: 10,
   },
   logo: {
     height: '100%',
@@ -45,12 +42,4 @@ const styles = StyleSheet.create({
     right: 0,
     padding: 10,
   },
-
-  // {
-  //   // alignSelf: 'stretch',
-  //   alignContent: 'center',
-  //   padding: 10,
-  //   margin: 30,
-  //   justifyContent: 'center',
-  // },
 });

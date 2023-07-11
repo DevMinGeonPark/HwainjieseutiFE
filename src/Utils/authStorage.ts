@@ -11,7 +11,7 @@ const authStorage = {
 
     try {
       const data: User = JSON.parse(rawData);
-      return data;
+      return await data;
     } catch (e) {
       return null;
     }

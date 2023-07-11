@@ -20,6 +20,7 @@ export function useUserState() {
   return userState;
 }
 
-export function getUserName() {
-  return useUserState().toString().substring(0, 3);
-}
+// export function getUserName() {
+//   console.log(useState().toString());
+//   // return useUserState().toString().substring(0, 3);
+// }

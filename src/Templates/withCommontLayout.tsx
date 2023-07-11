@@ -1,6 +1,7 @@
 import {StyleSheet, Text, View, SafeAreaView} from 'react-native';
 import React from 'react';
 import Header from '@src/Modules/Header';
+import UserInfo from '@src/Modules/UserInfo';
 
 const withCommontLayout = (
   WrappedComponent: React.ComponentType<any>,
@@ -9,6 +10,7 @@ const withCommontLayout = (
     return (
       <SafeAreaView style={{flex: 1}}>
         <Header />
+        <UserInfo />
         <View style={styles.container}>
           <WrappedComponent {...props} />
         </View>
@@ -23,6 +25,6 @@ export default withCommontLayout;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 5,
+    flex: 4.5,
   },
 });

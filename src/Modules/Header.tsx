@@ -4,6 +4,7 @@ import AdCopy from '@Atomic/AdCopy';
 import LogoHeader from '@Atomic/LogoHeader';
 import SideBarButton from '@src/Atomic/SideBarButton';
 import NavigationBar from '@src/Modules/NavigationBar';
+import UserInfo from './UserInfo';
 
 export default function Header() {
   return (
