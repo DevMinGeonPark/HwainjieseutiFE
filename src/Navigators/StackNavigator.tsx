@@ -5,10 +5,12 @@ import Main from '../Templates/Main';
 import Login from '@src/Templates/Login';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import Product from '@src/Templates/Product';
+import useAuthLoadEffect from '@src/hooks/useAuthLoadEffect';
 
 const Stack = createStackNavigator<StackScreenProps>();
 // export default
 function StackNavigator() {
+  useAuthLoadEffect();
   return (
     <Stack.Navigator>
       <Stack.Screen

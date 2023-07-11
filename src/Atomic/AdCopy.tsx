@@ -1,9 +1,12 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
+import {StackScreenProps} from '@Types/NavigationTypes';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 export default function AdCopy() {
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
+
   return (
     <View style={styles.container}>
       <View style={{flex: 1}}>

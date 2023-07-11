@@ -1,13 +1,27 @@
 import {StyleSheet, View, Text} from 'react-native';
-import React from 'react';
-import Header from '@src/Modules/Header';
-import CommonLayout from './withCommontLayout';
+import React, {useEffect} from 'react';
 import withCommontLayout from './withCommontLayout';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {useNavigation} from '@react-navigation/native';
+import {StackScreenProps} from '@Types/NavigationTypes';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 import LoginForm from '@src/Modules/LoginForm';
+import {getUserName} from '@src/contexts/UserContext';
+// import {useToast} from 'native-base';
+import {useToast} from 'native-base';
 
 function Login() {
+  const user = getUserName();
+  const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
+  const toast = useToast();
+
+  useEffect(() => {
+    if (user) {
+      navigation.pop();
+      toast.show({title: '이미 로그인 되어있습니다.'});
+    }
+  }, []);
   return (
     <>
       <View style={styles.contrainer}>

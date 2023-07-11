@@ -1,8 +1,8 @@
 import {useCallback} from 'react';
 import {Alert, Platform, ToastAndroid} from 'react-native';
 
-export default function useInform() {
-  const inform = useCallback(({title, message}: InformParams) => {
+export default function useAlert() {
+  const AlertInfo = useCallback(({title, message}: InformParams) => {
     if (Platform.OS === 'ios') {
       Alert.alert(title ?? '알림', message);
     } else {
@@ -10,7 +10,7 @@ export default function useInform() {
     }
   }, []);
 
-  return inform;
+  return AlertInfo;
 }
 
 interface InformParams {

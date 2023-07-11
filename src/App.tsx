@@ -3,17 +3,20 @@ import {NavigationContainer} from '@react-navigation/native';
 import {NativeBaseProvider} from 'native-base';
 import DrawerNavigator from '@Navigators/DrawerNavigator';
 import {QueryClientProvider, QueryClient} from 'react-query';
+import {UserContextProvider} from './contexts/UserContext';
 
 const queryClient = new QueryClient();
 
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <NavigationContainer>
-        <NativeBaseProvider>
-          <DrawerNavigator />
-        </NativeBaseProvider>
-      </NavigationContainer>
-    </QueryClientProvider>
+    <UserContextProvider>
+      <QueryClientProvider client={queryClient}>
+        <NavigationContainer>
+          <NativeBaseProvider>
+            <DrawerNavigator />
+          </NativeBaseProvider>
+        </NavigationContainer>
+      </QueryClientProvider>
+    </UserContextProvider>
   );
 }

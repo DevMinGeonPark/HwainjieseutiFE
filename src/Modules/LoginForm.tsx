@@ -11,30 +11,20 @@ import {
   Button,
   HStack,
   Center,
-  NativeBaseProvider,
-  Checkbox,
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import axios from 'axios';
-import {BASE_URL} from '@env';
-import {encrypt} from '@Utils/Encrypt';
-import {getKTShopKey} from '@src/Utils/KTShopKey';
 import useLogin from '@src/hooks/useLogin';
 
 export default function LoginForm() {
   const [id, setID] = useState<string>('gksrudgh3795');
-  // const [password, setPassword] = useState<string>('ghkdls2012.');
-  // const [password, setPassword] = useState<string>('');
-  const [password, setPassword] = useState<string>('ghkdls201223423.');
+  const [password, setPassword] = useState<string>('ghkdls2012.');
 
   const {mutate: login, isLoading: loginLoading} = useLogin();
 
-  const onpress = () => {
-    console.log('Onpress!');
-    // if (loginLoading) {
-    //   return;
-    // }
-
+  const onPressLogin = () => {
+    if (loginLoading) {
+      return;
+    }
     login({id, password});
   };
 
@@ -50,7 +40,6 @@ export default function LoginForm() {
               <Input
                 placeholder="아이디를 입력해주세요."
                 backgroundColor="white"
-                // value="gksrudgh3795"
                 InputRightElement={
                   <Icon style={{marginRight: 10}} name="user" size={18} />
                 }
@@ -62,7 +51,6 @@ export default function LoginForm() {
               <Input
                 placeholder="비밀번호를 입력해주세요."
                 backgroundColor="white"
-                // value="ghkdls2012."
                 type="password"
                 InputRightElement={
                   <Icon style={{marginRight: 10}} name="lock" size={18} />
@@ -72,14 +60,11 @@ export default function LoginForm() {
               />
             </FormControl>
             <Button
-              onPress={() => onpress()}
+              onPress={() => onPressLogin()}
               mt="2"
               backgroundColor={'dark.100'}>
               로그인
             </Button>
-            <Checkbox value={'test'}>
-              <Text>자동로그인</Text>
-            </Checkbox>
             <HStack justifyContent="flex-end">
               <Icon name="search" size={15} />
               <Text> 정보찾기 </Text>
