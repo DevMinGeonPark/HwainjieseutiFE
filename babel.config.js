@@ -14,6 +14,7 @@ module.exports = {
           '@hooks': './src/hooks',
           '@Utils': './src/Utils',
           '@Types': './src/types',
+          "@API": './src/API',
         },
         extensions: [
           '.ios.ts',

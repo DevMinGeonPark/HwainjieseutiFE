@@ -21,7 +21,8 @@
       "@Navigators/*": ["./src/Navigators/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@Utils/*": ["./src/Utils/*"],
-      "@Types/*": ["src/Types/*"]
+      "@Types/*": ["src/Types/*"],
+      "@API/*": ["./src/API/*"]
     }
   },
   "exclude": [

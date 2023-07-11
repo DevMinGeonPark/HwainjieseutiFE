@@ -19,33 +19,23 @@ import axios from 'axios';
 import {BASE_URL} from '@env';
 import {encrypt} from '@Utils/Encrypt';
 import {getKTShopKey} from '@src/Utils/KTShopKey';
+import useLogin from '@src/hooks/useLogin';
 
 export default function LoginForm() {
-  const [ID, setID] = useState<string>('');
-  const [PW, setPW] = useState<string>('');
+  const [id, setID] = useState<string>('gksrudgh3795');
+  // const [password, setPassword] = useState<string>('ghkdls2012.');
+  // const [password, setPassword] = useState<string>('');
+  const [password, setPassword] = useState<string>('ghkdls201223423.');
 
-  const login = async () => {
-    console.log(getKTShopKey());
-    console.log(encrypt(PW));
+  const {mutate: login, isLoading: loginLoading} = useLogin();
 
-    // axios post header 설정
-    const data = {
-      KTShopID: ID,
-      KTShopPW: encrypt(PW),
-    };
-    const headers = {
-      'Content-Type': 'application/json',
-      KTShopKey: getKTShopKey(),
-    };
+  const onpress = () => {
+    console.log('Onpress!');
+    // if (loginLoading) {
+    //   return;
+    // }
 
-    try {
-      const res = await axios.post(BASE_URL + 'login.php', data, {
-        headers: headers,
-      });
-      console.log(res.data);
-    } catch (err) {
-      console.log(err);
-    }
+    login({id, password});
   };
 
   return (
@@ -78,10 +68,13 @@ export default function LoginForm() {
                   <Icon style={{marginRight: 10}} name="lock" size={18} />
                 }
                 autoCapitalize="none"
-                onChangeText={newStr => setPW(newStr)}
+                onChangeText={newStr => setPassword(newStr)}
               />
             </FormControl>
-            <Button onPress={() => login()} mt="2" backgroundColor={'dark.100'}>
+            <Button
+              onPress={() => onpress()}
+              mt="2"
+              backgroundColor={'dark.100'}>
               로그인
             </Button>
             <Checkbox value={'test'}>
