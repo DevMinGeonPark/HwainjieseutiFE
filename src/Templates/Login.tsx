@@ -25,7 +25,7 @@ function Login() {
     <>
       <View style={styles.contrainer}>
         <View style={styles.LabelContrainer}>
-          <Icon name="user" size={25} />
+          <Icon name="user" size={25} color="black" />
           <View style={styles.Label}>
             <Text style={styles.LabeText}>Login</Text>
           </View>
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
   LabeText: {
     alignItems: 'center',
     fontSize: 20,
+    color: 'black',
     fontWeight: 'bold',
   },
 });

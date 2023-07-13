@@ -29,10 +29,10 @@ export default function LoginForm() {
   };
 
   return (
-    <Box bg="gray.200" margin={6} borderRadius={20}>
+    <Box bg="gray.200" padding={6} margin={6} borderRadius={20}>
       <Center w="100%">
         <Box safeArea w="90%" maxW="290">
-          <Text style={{fontSize: 15, fontWeight: 'bold', marginLeft: 10}}>
+          <Text style={{fontSize: 14, fontWeight: 'bold'}}>
             가입하신 아이디와 비밀번호를 입력해주세요.
           </Text>
           <VStack space={3} mt="5">

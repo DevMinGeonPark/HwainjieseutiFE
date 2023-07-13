@@ -11,10 +11,16 @@ export default function LogoHeader() {
 
   return (
     <View style={styles.container}>
-      <Pressable style={{flex: 1}} onPress={() => navigation.navigate('Main')}>
+      <Pressable
+        style={{
+          flex: 1,
+          width: 150,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        onPress={() => navigation.navigate('Main')}>
         <Image style={styles.logo} source={Images.Logo} />
       </Pressable>
-
       <Pressable
         style={styles.searchButton}
         onPress={() => navigation.navigate('Main')}>
@@ -27,18 +33,17 @@ export default function LogoHeader() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 'auto',
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: 10,
   },
   logo: {
-    height: '100%',
     width: '100%',
     resizeMode: 'contain',
-    flex: 1,
   },
   searchButton: {
     position: 'absolute',
-    top: 0,
+    top: 7,
     right: 0,
     padding: 10,
   },

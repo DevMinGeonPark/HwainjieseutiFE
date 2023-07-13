@@ -20,10 +20,10 @@ export default function useLogin() {
   const mutation = useMutation(login, {
     onSuccess: data => {
       if (data.Status === 'A10') {
+        navigation.pop();
         log.info('로그인 성공');
         toast.show({title: '로그인 성공'});
         setUser(data.UserNm);
-        navigation.pop();
         authStorage.set(data.UserNm);
       } else {
         throw new Error(data.ErrMsg); //onError로 헨들링

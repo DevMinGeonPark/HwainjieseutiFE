@@ -33,16 +33,16 @@ const styles = StyleSheet.create({
   adContainer: {
     borderBottomWidth: 1,
     borderBottomColor: '#CCC',
-    flex: 1,
+    flex: 0.4,
   },
   logoContainer: {
     borderBottomWidth: 1,
     borderBottomColor: '#CCC',
-    flex: 1,
+    flex: 0.5,
   },
   navBarContainer: {
     flexDirection: 'row',
-    flex: 1,
+    flex: 0.4,
     borderBottomWidth: 1,
     borderBottomColor: '#CCC',
   },

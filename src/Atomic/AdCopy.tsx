@@ -46,18 +46,17 @@ export default function AdCopy() {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
-    flex: 1,
     flexDirection: 'row',
   },
   copyText: {
     fontSize: 14,
   },
   authContainer: {
-    flex: 1,
+    // flex: 1,
     alignItems: 'flex-end',
   },
   authButtons: {
-    flex: 1,
+    // flex: 1,
     flexDirection: 'row',
   },
 });
