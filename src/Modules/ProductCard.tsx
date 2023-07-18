@@ -16,7 +16,6 @@ export default function ProductCard(data: ItemList) {
   useEffect(() => {
     user ? setHeightControl(130) : setHeightControl(80);
     setColor(data.ItemColor.match(/#[a-f0-9]{6}/g) || []);
-    console.log(JSON.stringify(data, null, 2));
   }, []);
 
   return (

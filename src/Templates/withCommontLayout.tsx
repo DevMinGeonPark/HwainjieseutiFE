@@ -20,6 +20,7 @@ const withCommontLayout = (
         <View style={{flex: 8}}>
           <ScrollView>
             <WrappedComponent {...props} />
+            <View style={{width: 100, height: 100}}></View>
             <Footer />
           </ScrollView>
         </View>

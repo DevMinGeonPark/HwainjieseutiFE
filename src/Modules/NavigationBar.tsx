@@ -1,15 +1,20 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {VStack, HStack, Center} from 'native-base';
+import {VStack, HStack, Center, Spinner, Heading} from 'native-base';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {useNavigation} from '@react-navigation/native';
 import useMenuData from '@src/hooks/useMenuData';
 
+import {useRoute} from '@react-navigation/native';
+
 export default function NavigationBar() {
   const contents: string[] = [];
 
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
+  const route = useRoute();
+
+  console.log(route.name);
 
   const {data, isLoading} = useMenuData();
 
