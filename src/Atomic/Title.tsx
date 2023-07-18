@@ -12,7 +12,7 @@ export default function Title(params: Title) {
   return (
     <View
       style={{
-        marginBottom: 50,
+        marginBottom: 10,
       }}>
       <View
         style={{

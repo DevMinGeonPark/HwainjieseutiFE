@@ -1,12 +1,7 @@
 import {Dimensions, Image, View, StyleSheet, Pressable} from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 import React, {useState} from 'react';
-import {
-  ImgMainRoll,
-  ImgMainSub,
-  ItemBestList,
-  ItemNewList,
-} from '@src/Types/MainDataTypes';
+import {ImgMainRoll} from '@src/Types/MainDataTypes';
 
 interface Props {
   props: ImgMainRoll[] | undefined;
@@ -26,13 +21,11 @@ export default function CarouselView(props: Props) {
         width={width}
         height={377}
         autoPlay={true}
-        // data={[...new Array(6).keys()]}
         data={data ? data : []}
         scrollAnimationDuration={1000}
         panGestureHandlerProps={{
           activeOffsetX: [-10, 10],
         }}
-        // onSnapToItem={index => console.log('current index:', index)}
         renderItem={({item, index}) => (
           <Pressable onPress={() => console.log(item.imgsrc)}>
             <Image

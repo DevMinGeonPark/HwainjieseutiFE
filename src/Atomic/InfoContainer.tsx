@@ -69,6 +69,7 @@ export default function InfoContainer() {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     justifyContent: 'center',
     margin: 3,
   },

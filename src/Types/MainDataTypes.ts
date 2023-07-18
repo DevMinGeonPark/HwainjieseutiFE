@@ -1,8 +1,9 @@
 export interface MainData {
   ImgMainRoll: ImgMainRoll[];
   ImgMainSub: ImgMainSub[];
-  ItemNewList: ItemNewList[];
-  ItemBestList: ItemBestList[];
+  SubBanner: SubBanner;
+  ItemNewList: ItemList[];
+  ItemBestList: ItemList[];
 }
 export interface ImgMainRoll {
   imgurl: string;
@@ -14,7 +15,7 @@ export interface ImgMainSub {
   imgsrc: string;
 }
 
-export interface ItemBestList {
+export interface ItemList {
   itemCode: string;
   itemImgUrl: string;
   itemName: string;
@@ -24,12 +25,33 @@ export interface ItemBestList {
   ItemDCRate: number;
 }
 
-export interface ItemNewList {
-  itemCode: string;
-  itemImgUrl: string;
-  itemName: string;
-  ItemColor: string;
+export interface PriceType {
   ItemChargeNormal: number;
   ItemChargeSales: number;
   ItemDCRate: number;
 }
+
+export interface SubBanner {
+  BannerUrl: string;
+  BannerImg: string;
+}
+
+// export interface ItemBestList {
+//   itemCode: string;
+//   itemImgUrl: string;
+//   itemName: string;
+//   ItemColor: string;
+//   ItemChargeNormal: number;
+//   ItemChargeSales: number;
+//   ItemDCRate: number;
+// }
+
+// export interface ItemNewList {
+//   itemCode: string;
+//   itemImgUrl: string;
+//   itemName: string;
+//   ItemColor: string;
+//   ItemChargeNormal: number;
+//   ItemChargeSales: number;
+//   ItemDCRate: number;
+// }

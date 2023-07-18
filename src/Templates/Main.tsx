@@ -17,7 +17,7 @@ const Main = () => {
   const {data, isLoading} = useMainData();
   const width = Dimensions.get('window').width;
 
-  console.log(JSON.stringify(data, null, 2));
+  // console.log(JSON.stringify(data, null, 2));
 
   return (
     <ScrollView style={{backgroundColor: 'white'}}>
@@ -29,8 +29,42 @@ const Main = () => {
         />
       </View>
       <Title title="NEW" desc="얼리어답터를 위한 신제품!" />
-      <ProductCard />
+      <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
+        {data?.ItemNewList?.map(item => (
+          <ProductCard
+            key={item.itemCode}
+            itemCode={item.itemCode || 'defulat'}
+            itemImgUrl={item.itemImgUrl || 'defulat'}
+            itemName={item.itemName || 'defulat'}
+            ItemColor={item.ItemColor || 'defulat'}
+            ItemChargeNormal={item.ItemChargeNormal || 0}
+            ItemChargeSales={item.ItemChargeSales || 0}
+            ItemDCRate={item.ItemDCRate || 0}
+          />
+        ))}
+      </View>
+      <View style={{width: width, maxHeight: 200, marginTop: 50}}>
+        <Image
+          style={{width: '100%', height: '100%', resizeMode: 'cover'}}
+          source={{uri: data?.SubBanner.BannerImg}}
+        />
+      </View>
       <Title title="BEST" desc="주문폭주! 이달의 BEST 상품!" />
+      <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
+        {data?.ItemBestList?.map(item => (
+          <ProductCard
+            key={item.itemCode}
+            itemCode={item.itemCode || 'defulat'}
+            itemImgUrl={item.itemImgUrl || 'defulat'}
+            itemName={item.itemName || 'defulat'}
+            ItemColor={item.ItemColor || 'defulat'}
+            ItemChargeNormal={item.ItemChargeNormal || 0}
+            ItemChargeSales={item.ItemChargeSales || 0}
+            ItemDCRate={item.ItemDCRate || 0}
+          />
+        ))}
+      </View>
+      <View style={{width: 20, height: 20}}></View>
     </ScrollView>
   );
 };

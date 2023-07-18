@@ -5,5 +5,6 @@ export type DrawerScreenProps = {
 export type StackScreenProps = {
   Main: undefined;
   Login: undefined;
-  Product: undefined;
+  Product: {MenuType: string; MenuVar: string};
+  ImageProduct: {MenuType: string; MenuVar: string};
 };

@@ -6,6 +6,7 @@ import Login from '@src/Templates/Login';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import Product from '@src/Templates/Product';
 import useAuthLoadEffect from '@src/hooks/useAuthLoadEffect';
+import ImageProcut from '@src/Templates/ImageProduct';
 
 const Stack = createStackNavigator<StackScreenProps>();
 // export default
@@ -26,6 +27,11 @@ function StackNavigator() {
       <Stack.Screen
         name="Product"
         component={Product}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ImageProduct"
+        component={ImageProcut}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
