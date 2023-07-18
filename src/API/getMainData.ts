@@ -9,6 +9,6 @@ export async function getMainData() {
     KTShopKey: getKTShopKey(),
   };
   const res = await client.post('main.php', data, {headers: headers});
-  console.log(getKTShopKey());
+
   return res.data;
 }

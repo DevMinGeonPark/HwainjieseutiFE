@@ -27,7 +27,8 @@ export default function CarouselView(props: Props) {
           activeOffsetX: [-10, 10],
         }}
         renderItem={({item, index}) => (
-          <Pressable onPress={() => console.log(item.imgsrc)}>
+          // TODO
+          <Pressable onPress={() => console.log(item.imgurl)}>
             <Image
               style={{width: '100%', height: '100%', resizeMode: 'cover'}}
               source={{uri: item.imgsrc}}

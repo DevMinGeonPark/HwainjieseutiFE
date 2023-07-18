@@ -1,8 +1,9 @@
-import {StyleSheet, View, Text, ScrollView} from 'react-native';
+import {StyleSheet, View, Pressable, ScrollView} from 'react-native';
 import React, {useContext, useEffect, useState} from 'react';
 import Headers from '@Modules/Header';
 import withCommontLayout from '@Templates/withCommontLayout';
 import CarouselView from '@Modules/CarouselView';
+import {Linking} from 'react-native';
 
 //TEST
 import {getMainData} from '@src/API/getMainData';
@@ -43,12 +44,20 @@ const Main = () => {
           />
         ))}
       </View>
-      <View style={{width: width, maxHeight: 200, marginTop: 50}}>
+      <Pressable
+        style={{width: width, maxHeight: 200, marginTop: 50}}
+        onPress={() =>
+          Linking.openURL(
+            data?.SubBanner.BannerUrl
+              ? data?.SubBanner.BannerUrl.toString()
+              : '',
+          )
+        }>
         <Image
           style={{width: '100%', height: '100%', resizeMode: 'cover'}}
           source={{uri: data?.SubBanner.BannerImg}}
         />
-      </View>
+      </Pressable>
       <Title title="BEST" desc="주문폭주! 이달의 BEST 상품!" />
       <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
         {data?.ItemBestList?.map(item => (

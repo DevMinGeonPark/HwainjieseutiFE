@@ -19,8 +19,3 @@ export function useUserState() {
   }
   return userState;
 }
-
-// export function getUserName() {
-//   console.log(useState().toString());
-//   // return useUserState().toString().substring(0, 3);
-// }

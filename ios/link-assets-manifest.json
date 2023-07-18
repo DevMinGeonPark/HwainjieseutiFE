@@ -2,8 +2,40 @@
   "migIndex": 1,
   "data": [
     {
-      "path": "assets/imgs/logo-imsi.jpeg",
-      "sha1": "73bdb71d10372686f33f2676f94c67e2203b68f4"
+      "path": "assets/fonts/ONE Mobile Bold.ttf",
+      "sha1": "ce0b2c55b312fc526f02bf9efedd848b51b7f267"
+    },
+    {
+      "path": "assets/fonts/ONE Mobile Light.ttf",
+      "sha1": "56caaabe5b593e40bf33fbdb048837316d1ef266"
+    },
+    {
+      "path": "assets/fonts/ONE Mobile OTF Regular.otf",
+      "sha1": "6121e41dd1dc86f5efceb25b6fc8cebb5b88e66c"
+    },
+    {
+      "path": "assets/fonts/ONE Mobile Regular.ttf",
+      "sha1": "e0f9157212224699e91bd05dc755ec6b1b15352f"
+    },
+    {
+      "path": "assets/fonts/SpoqaHanSansNeo-Bold.ttf",
+      "sha1": "9cfbbf3f67f2b28e377471d89c001f5dc30d0357"
+    },
+    {
+      "path": "assets/fonts/SpoqaHanSansNeo-Light.ttf",
+      "sha1": "a70d1d295158c5f49f7fb51a49d2194a18a4cd0b"
+    },
+    {
+      "path": "assets/fonts/SpoqaHanSansNeo-Medium.ttf",
+      "sha1": "c9a869ea6906893406d3bc2dacf226cf65d91da0"
+    },
+    {
+      "path": "assets/fonts/SpoqaHanSansNeo-Regular.ttf",
+      "sha1": "41b5b663e396b62a1acd40ec1a1e0e7b7692572c"
+    },
+    {
+      "path": "assets/fonts/SpoqaHanSansNeo-Thin.ttf",
+      "sha1": "c1a80b8bebbab9e9e1ee4395d667f811d84db01e"
     }
   ]
 }

@@ -12,9 +12,6 @@ export default function NavigationBar() {
   const contents: string[] = [];
 
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
-  const route = useRoute();
-
-  console.log(route.name);
 
   const {data, isLoading} = useMenuData();
 

@@ -9,6 +9,5 @@ export async function getMenuData() {
     KTShopKey: getKTShopKey(),
   };
   const res = await client.post('menu.php', data, {headers: headers});
-  console.log(getKTShopKey());
   return res.data;
 }
