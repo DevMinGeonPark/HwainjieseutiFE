@@ -13,12 +13,18 @@ import {Image, Dimensions} from 'react-native';
 import Footer from '@Modules/Footer';
 import Title from '@src/Atomic/Title';
 import ProductCard from '@src/Modules/ProductCard';
+import SplashScreen from 'react-native-splash-screen';
 
 const Main = () => {
   const {data, isLoading} = useMainData();
   const width = Dimensions.get('window').width;
 
   // console.log(JSON.stringify(data, null, 2));
+
+  // 버그로 인한 임시코드
+  useEffect(() => {
+    SplashScreen.hide();
+  });
 
   return (
     <ScrollView style={{backgroundColor: 'white'}}>
@@ -31,18 +37,20 @@ const Main = () => {
       </View>
       <Title title="NEW" desc="얼리어답터를 위한 신제품!" />
       <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
-        {data?.ItemNewList?.map(item => (
+        {/* {data?.ItemNewList?.map((index, item) => (
+          // 상황 파악용 : 에러 발생 이유는 저쪽에서 규칙을 안지킴. 대답 오는거보고 수정
           <ProductCard
-            key={item.itemCode}
-            itemCode={item.itemCode || 'defulat'}
-            itemImgUrl={item.itemImgUrl || 'defulat'}
-            itemName={item.itemName || 'defulat'}
+            key={index}
+            CategorieCode={item.CategorieCode || 'defulat'}
+            ItemCode={item.ItemCode || 'defulat'}
+            ItemImgUrl={item.ItemImgUrl || 'defulat'}
+            ItemName={item.ItemName || 'defulat'}
             ItemColor={item.ItemColor || 'defulat'}
             ItemChargeNormal={item.ItemChargeNormal || 0}
             ItemChargeSales={item.ItemChargeSales || 0}
             ItemDCRate={item.ItemDCRate || 0}
           />
-        ))}
+        ))} */}
       </View>
       <Pressable
         style={{width: width, maxHeight: 200, marginTop: 50}}
@@ -60,7 +68,7 @@ const Main = () => {
       </Pressable>
       <Title title="BEST" desc="주문폭주! 이달의 BEST 상품!" />
       <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
-        {data?.ItemBestList?.map(item => (
+        {/* {data?.ItemBestList?.map(item => (
           <ProductCard
             key={item.itemCode}
             itemCode={item.itemCode || 'defulat'}
@@ -71,7 +79,7 @@ const Main = () => {
             ItemChargeSales={item.ItemChargeSales || 0}
             ItemDCRate={item.ItemDCRate || 0}
           />
-        ))}
+        ))} */}
       </View>
       <View style={{width: 20, height: 20}}></View>
     </ScrollView>

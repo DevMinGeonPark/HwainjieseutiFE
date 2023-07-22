@@ -16,9 +16,10 @@ export interface ImgMainSub {
 }
 
 export interface ItemList {
-  itemCode: string;
-  itemImgUrl: string;
-  itemName: string;
+  CategorieCode: string;
+  ItemCode: string;
+  ItemImgUrl: string;
+  ItemName: string;
   ItemColor: string;
   ItemChargeNormal: number;
   ItemChargeSales: number;

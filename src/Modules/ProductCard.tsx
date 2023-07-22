@@ -5,6 +5,11 @@ import {ItemList} from '@Types/MainDataTypes';
 import Price from '@src/Atomic/CardItem/Price';
 import {useUserState} from '@src/contexts/UserContext';
 
+import SplashScreen from 'react-native-splash-screen';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {StackScreenProps} from '@Types/NavigationTypes';
+
 export default function ProductCard(data: ItemList) {
   const [color, setColor] = useState<string[]>();
   const width = Dimensions.get('window').width;
@@ -12,6 +17,8 @@ export default function ProductCard(data: ItemList) {
   // var heightControl = 130;
   const [heightControl, setHeightControl] = useState<number>(130);
   const [user, setUser] = useUserState();
+
+  const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
 
   useEffect(() => {
     user ? setHeightControl(130) : setHeightControl(80);
@@ -40,15 +47,14 @@ export default function ProductCard(data: ItemList) {
                 marginLeft: 30,
               }}
               source={{
-                uri: data.itemImgUrl,
+                uri: data.ItemImgUrl,
               }}
             />
           </Center>
-          {/* </View> */}
           <View style={{paddingVertical: 10}}>
             <Center>
               <Text style={{fontWeight: 'bold', fontSize: 13}}>
-                {data.itemName}
+                {data.ItemName}
               </Text>
             </Center>
             <Center marginY={3}>
@@ -71,6 +77,13 @@ export default function ProductCard(data: ItemList) {
             )}
             <View style={{marginHorizontal: 15}}>
               <Button
+                onPress={() =>
+                  navigation.navigate('Detail', {
+                    it_id: data.ItemCode,
+                    ca_id: data.CategorieCode,
+                    num: Math.random(),
+                  })
+                }
                 _text={{color: '#777', fontWeight: 'bold'}}
                 _pressed={{
                   _text: {

@@ -9,6 +9,7 @@ export default function useProductData(params: ProductProps) {
   const log = useLog('dev');
 
   const query = useQuery('getProductData', () => getProductData(params), {
+    notifyOnChangeProps: ['data'],
     onSuccess: (data: ProductData) => {
       log.info(`Product Data 불러오기 성공`);
       return data;

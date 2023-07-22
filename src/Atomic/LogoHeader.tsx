@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {StackActions} from '@react-navigation/native';
 
 export default function LogoHeader() {
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
@@ -18,7 +19,7 @@ export default function LogoHeader() {
           alignItems: 'center',
           justifyContent: 'center',
         }}
-        onPress={() => navigation.navigate('Main')}>
+        onPress={() => navigation.dispatch(StackActions.popToTop())}>
         <Image style={styles.logo} source={Images.Logo} />
       </Pressable>
       <Pressable

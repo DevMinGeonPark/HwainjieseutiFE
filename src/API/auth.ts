@@ -13,11 +13,7 @@ export async function login(params: LoginParams) {
     KTShopID: params.id,
     KTShopPW: encrypt(params.password),
   };
-  const headers = {
-    'Content-Type': 'application/json',
-    KTShopKey: getKTShopKey(),
-  };
-  const res = await client.post('login.php', data, {headers: headers});
+  const res = await client.post('login.php', data);
 
   return res.data;
 }
