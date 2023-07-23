@@ -1,9 +1,17 @@
 import {Dimensions, StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {HStack, Button} from 'native-base';
 
-export default function AddSaleButton() {
-  const [selection, setSelection] = useState<number>(1);
+interface AddSaleButtonProps {
+  KTDiscount: string[];
+  setAddSale: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export default function AddSaleButton({
+  KTDiscount,
+  setAddSale,
+}: AddSaleButtonProps) {
+  const [selection, setSelection] = useState<number>(0);
   const width = Dimensions.get('window').width;
   const margins = 18;
   const subText = [
@@ -11,31 +19,28 @@ export default function AddSaleButton() {
     '매월 기본요금에서 25%할인 (선택약정)',
   ];
 
+  useEffect(() => {
+    setAddSale(selection === 0 ? 'Y' : 'N');
+  }, [selection]);
+
   return (
     <View>
       <HStack space={2} ml={2} mt={3}>
-        <Button
-          // ml={3}
-          width={width / 3 - margins}
-          onPress={() => setSelection(1)}
-          variant="outline"
-          size="sm"
-          borderWidth={selection === 1 ? 3 : 1}
-          borderColor={selection === 1 ? 'primary.400' : 'muted.300'}
-          _text={{fontSize: 'xl', fontWeight: 'bold', color: 'black'}}>
-          적용
-        </Button>
-        <Button
-          // ml={3}
-          width={width / 3 - margins}
-          onPress={() => setSelection(2)}
-          variant="outline"
-          size="sm"
-          borderWidth={selection === 2 ? 3 : 1}
-          borderColor={selection === 2 ? 'primary.400' : 'muted.300'}
-          _text={{fontSize: 'xl', fontWeight: 'bold', color: 'black'}}>
-          미적용
-        </Button>
+        {KTDiscount &&
+          KTDiscount.map((KTDiscount, index) => (
+            <Button
+              // ml={3}
+              key={index}
+              width={width / 3 - margins}
+              onPress={() => setSelection(index)}
+              variant="outline"
+              size="sm"
+              borderWidth={selection === index ? 3 : 1}
+              borderColor={selection === index ? 'primary.400' : 'muted.300'}
+              _text={{fontSize: 'xl', fontWeight: 'bold', color: 'black'}}>
+              {KTDiscount}
+            </Button>
+          ))}
       </HStack>
     </View>
   );

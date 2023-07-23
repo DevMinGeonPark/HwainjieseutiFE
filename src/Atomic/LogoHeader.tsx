@@ -19,7 +19,7 @@ export default function LogoHeader() {
           alignItems: 'center',
           justifyContent: 'center',
         }}
-        onPress={() => navigation.dispatch(StackActions.popToTop())}>
+        onPress={() => navigation.navigate('Main')}>
         <Image style={styles.logo} source={Images.Logo} />
       </Pressable>
       <Pressable

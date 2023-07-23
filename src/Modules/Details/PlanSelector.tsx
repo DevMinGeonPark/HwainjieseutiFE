@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Select, CheckIcon, Box} from 'native-base';
 import {RatePlan, SubList} from '@Types/DetailTypes';
 
@@ -14,7 +14,6 @@ export default function PlanSelector({
   plan,
   setPlan,
 }: PlanSelectorProps) {
-  // console.log(RatePlan);
   const data = RatePlans.flat(); //쓸데없는 배열 1차원 삭제
 
   const render = () => {
@@ -49,6 +48,7 @@ export default function PlanSelector({
           bg: 'teal.600',
           endIcon: <CheckIcon size="5" />,
         }}
+        // defaultValue="212122"
         mt={1}
         borderRadius="2xl"
         borderWidth="2"

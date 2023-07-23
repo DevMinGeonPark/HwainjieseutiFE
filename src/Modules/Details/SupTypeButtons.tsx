@@ -1,17 +1,25 @@
 import {Dimensions, StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {HStack, Button} from 'native-base';
 import {SupportType} from '@Types/DetailTypes';
 
 type SupTypeButtonsProps = {
   SupportType: SupportType[];
+  setSupType: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export default function SupTypeButtons({SupportType}: SupTypeButtonsProps) {
+export default function SupTypeButtons({
+  SupportType,
+  setSupType,
+}: SupTypeButtonsProps) {
   const [selection, setSelection] = useState<number>(0);
   const width = Dimensions.get('window').width;
   const margins = 18;
   const subText = SupportType.map(supportType => supportType.ClickComment);
+
+  useEffect(() => {
+    setSupType(selection === 0 ? 'Machine' : 'Charge');
+  }, [selection]);
 
   return (
     <View>
@@ -21,7 +29,9 @@ export default function SupTypeButtons({SupportType}: SupTypeButtonsProps) {
             // ml={3}
             key={index}
             width={width / 3 - margins}
-            onPress={() => setSelection(index)}
+            onPress={() => {
+              setSelection(index);
+            }}
             variant="outline"
             size="sm"
             borderWidth={selection === index ? 3 : 1}

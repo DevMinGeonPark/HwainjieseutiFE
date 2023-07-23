@@ -39,37 +39,67 @@ const NavigationBar = () => {
           navigation={navigation}
           screenName="Samsung"
           menuText="삼성"
-          params={{MenuType: 'ca_id', MenuVar: '10'}}
+          params={{
+            MenuType: 'ca_id',
+            MenuVar: '10',
+            num: Math.random(),
+            name: '삼성',
+          }}
         />
         <MenuButton
           navigation={navigation}
           screenName="Apple"
           menuText="애플"
-          params={{MenuType: 'ca_id', MenuVar: '20'}}
+          params={{
+            MenuType: 'ca_id',
+            MenuVar: '20',
+            num: Math.random(),
+            name: '애플',
+          }}
         />
         <MenuButton
           navigation={navigation}
           screenName="Etc"
           menuText="기타"
-          params={{MenuType: 'ca_id', MenuVar: '50'}}
+          params={{
+            MenuType: 'ca_id',
+            MenuVar: '50',
+            num: Math.random(),
+            name: '기타',
+          }}
         />
         <MenuButton
           navigation={navigation}
           screenName="ImageProduct"
           menuText="인터넷+TV"
-          params={{MenuType: 'co_id', MenuVar: 'internet'}}
+          params={{
+            MenuType: 'co_id',
+            MenuVar: 'internet',
+            num: Math.random(),
+            name: '인터넷+TV',
+          }}
         />
         <MenuButton
           navigation={navigation}
           screenName="ImageProduct"
           menuText="듀얼번호"
-          params={{MenuType: 'co_id', MenuVar: 'kt_dualnumber'}}
+          params={{
+            MenuType: 'co_id',
+            MenuVar: 'kt_dualnumber',
+            num: Math.random(),
+            name: '듀얼번호',
+          }}
         />
         <MenuButton
           navigation={navigation}
           screenName="ImageProduct"
           menuText="이벤트"
-          params={{MenuType: 'bo_table', MenuVar: 'free'}}
+          params={{
+            MenuType: 'bo_table',
+            MenuVar: 'free',
+            num: Math.random(),
+            name: '이벤트',
+          }}
         />
       </HStack>
     </ScrollView>

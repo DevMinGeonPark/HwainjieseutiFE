@@ -1,34 +1,31 @@
 import {StyleSheet, View, Text, ScrollView, Pressable} from 'react-native';
 import React, {useEffect} from 'react';
-import withCommontLayout from '../withCommontLayout';
 import {useRoute} from '@react-navigation/native';
-import useProductData from '@src/hooks/useProductData';
 import {ProductProps, RouteParamsProps} from '@src/Types/ProductTypes';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
-import {useToast} from 'native-base';
 import ProductCard from '@src/Modules/ProductCard';
 
-import {useFocusEffect} from '@react-navigation/native';
-import {useQueryClient} from 'react-query';
-
 import client from '@src/API/client';
-import {getKTShopKey} from '@src/Utils/KTShopKey';
 import {ItemList} from '@src/Types/MainDataTypes';
 
 import LodingIndicator from '@src/Modules/LodingIndicator';
 
-const Products = () => {
-  const route = useRoute();
-  const routeParams = route.params as RouteParamsProps;
+interface ProductPieceProps {
+  MenuType: string;
+  MenuVar: string;
+  ItemCode: string;
+}
+
+const ProductPiece = ({MenuType, MenuVar, ItemCode}: ProductPieceProps) => {
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
   // const toast = useToast();
   // const queryClient = useQueryClient();
 
   const [params, setParams] = React.useState<ProductProps>({
-    MenuType: routeParams.MenuType,
-    MenuVar: routeParams.MenuVar,
+    MenuType: MenuType,
+    MenuVar: MenuVar,
     sort: 'it_update_time',
     sortodr: 'aec',
   });
@@ -95,26 +92,28 @@ const Products = () => {
         <LodingIndicator count={data?.length || 4} />
       ) : (
         <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-          {data?.map(item => (
-            <ProductCard
-              key={item.ItemCode}
-              CategorieCode={item.CategorieCode}
-              ItemCode={item.ItemCode}
-              ItemImgUrl={item.ItemImgUrl}
-              ItemName={item.ItemName}
-              ItemColor={item.ItemColor}
-              ItemChargeNormal={item.ItemChargeNormal}
-              ItemChargeSales={item.ItemChargeSales}
-              ItemDCRate={item.ItemDCRate}
-            />
-          ))}
+          {data
+            ?.filter(item => item.ItemCode !== ItemCode)
+            .map(item => (
+              <ProductCard
+                key={item.ItemCode}
+                CategorieCode={item.CategorieCode}
+                ItemCode={item.ItemCode}
+                ItemImgUrl={item.ItemImgUrl}
+                ItemName={item.ItemName}
+                ItemColor={item.ItemColor}
+                ItemChargeNormal={item.ItemChargeNormal}
+                ItemChargeSales={item.ItemChargeSales}
+                ItemDCRate={item.ItemDCRate}
+              />
+            ))}
         </View>
       )}
     </ScrollView>
   );
 };
 
-export default React.memo(withCommontLayout(Products));
+export default React.memo(ProductPiece);
 
 const styles = StyleSheet.create({
   sortText: {

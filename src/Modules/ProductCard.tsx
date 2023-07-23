@@ -9,16 +9,19 @@ import SplashScreen from 'react-native-splash-screen';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
+import {useRoute} from '@react-navigation/native';
 
 export default function ProductCard(data: ItemList) {
   const [color, setColor] = useState<string[]>();
   const width = Dimensions.get('window').width;
   const cardMargin = 3;
-  // var heightControl = 130;
+
   const [heightControl, setHeightControl] = useState<number>(130);
   const [user, setUser] = useUserState();
 
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
+
+  const routeParams = useRoute().params as any;
 
   useEffect(() => {
     user ? setHeightControl(130) : setHeightControl(80);
@@ -79,6 +82,9 @@ export default function ProductCard(data: ItemList) {
               <Button
                 onPress={() =>
                   navigation.navigate('Detail', {
+                    name: routeParams.name,
+                    MenuType: routeParams.MenuType,
+                    MenuVar: routeParams.MenuVar,
                     it_id: data.ItemCode,
                     ca_id: data.CategorieCode,
                     num: Math.random(),

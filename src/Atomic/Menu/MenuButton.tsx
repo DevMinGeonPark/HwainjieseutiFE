@@ -10,6 +10,8 @@ interface MenuButtonProps {
   params: {
     MenuType: string;
     MenuVar: string;
+    num: number;
+    name: string;
   };
 }
 
@@ -20,7 +22,7 @@ const MenuButton: React.FC<MenuButtonProps> = ({
   params,
 }) => {
   return (
-    <Pressable onPress={() => navigation.push(screenName, params)}>
+    <Pressable onPress={() => navigation.navigate(screenName, params)}>
       <Center
         p={3}
         _text={{

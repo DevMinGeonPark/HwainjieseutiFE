@@ -6,6 +6,8 @@ import {useUserState} from '@src/contexts/UserContext';
 import Footer from '@src/Modules/Footer';
 import {ScrollView} from 'native-base';
 
+import OrderScreen from '@src/Modules/Details/OrderScreen';
+
 const withCommontLayout = (
   WrappedComponent: React.ComponentType<any>,
 ): React.FC => {

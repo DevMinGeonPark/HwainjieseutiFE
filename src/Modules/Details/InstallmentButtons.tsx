@@ -1,13 +1,15 @@
 import {Dimensions, StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {HStack, Button} from 'native-base';
 
 type InstallmentButtonsProps = {
   ForMonth: string[];
+  setInstallment: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export default function InstallmentButtons({
   ForMonth,
+  setInstallment,
 }: InstallmentButtonsProps) {
   const [selection, setSelection] = useState<number>(0);
   const width = Dimensions.get('window').width;
@@ -20,7 +22,10 @@ export default function InstallmentButtons({
           <Button
             key={index}
             width={width / 4 - margins}
-            onPress={() => setSelection(index)}
+            onPress={() => {
+              setSelection(index);
+              setInstallment(month);
+            }}
             variant="outline"
             size="sm"
             borderWidth={selection === index ? 3 : 1}
