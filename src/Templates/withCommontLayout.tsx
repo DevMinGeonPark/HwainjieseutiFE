@@ -1,30 +1,25 @@
-import {StyleSheet, Text, View, SafeAreaView} from 'react-native';
 import React from 'react';
 import Header from '@src/Modules/Header';
-import UserInfo from '@src/Modules/UserInfo';
-import {useUserState} from '@src/contexts/UserContext';
 import Footer from '@src/Modules/Footer';
-import {ScrollView} from 'native-base';
+import {Flex, ScrollView, Box} from 'native-base';
 
 const withCommontLayout = (
-  WrappedComponent: React.ComponentType<any>,
+  WrappedComponent: React.ComponentType<unknown>,
 ): React.FC => {
   const HOC: React.FC = props => {
-    const [user] = useUserState();
-
     return (
-      <SafeAreaView style={styles.common}>
-        <View style={{flex: 2}}>
+      <Box flex={1} bg={'white'} safeArea>
+        <Flex flex={2}>
           <Header />
-        </View>
-        <View style={{flex: 8}}>
+        </Flex>
+        <Flex flex={8}>
           <ScrollView>
             <WrappedComponent {...props} />
-            <View style={{width: 100, height: 100}}></View>
+            <Box width={100} height={100} />
             <Footer />
           </ScrollView>
-        </View>
-      </SafeAreaView>
+        </Flex>
+      </Box>
     );
   };
 
@@ -32,10 +27,3 @@ const withCommontLayout = (
 };
 
 export default withCommontLayout;
-
-const styles = StyleSheet.create({
-  common: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-});

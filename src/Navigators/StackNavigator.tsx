@@ -6,15 +6,13 @@ import Login from '@src/Templates/Login';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import useAuthLoadEffect from '@src/hooks/useAuthLoadEffect';
 import ImageProduct from '@src/Templates/ImageProduct';
-import useMenuData from '@src/hooks/useMenuData';
-import Apple from '@src/Templates/Products/_Apple';
-import Samsung from '@src/Templates/Products/_Samsung';
 import Products from '@src/Templates/Products/Products';
 import Detail from '@src/Templates/Detail';
 
 const Stack = createStackNavigator<StackScreenProps>();
 // export default
 function StackNavigator() {
+  // Login Check
   useAuthLoadEffect();
   return (
     <Stack.Navigator>
@@ -23,6 +21,7 @@ function StackNavigator() {
         component={Main}
         options={{headerShown: false}}
       />
+      {/* AuthPages */}
       <Stack.Screen
         name="Login"
         component={Login}

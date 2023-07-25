@@ -11,5 +11,5 @@ export async function getRateData(
 ): Promise<MachineCalResType | ChargeCalResType | undefined> {
   console.log(body);
   const res = await client.post('calcharge.php', body);
-  return res.data;
+  return res.data as MachineCalResType | ChargeCalResType | undefined;
 }

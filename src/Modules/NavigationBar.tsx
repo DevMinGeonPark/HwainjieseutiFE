@@ -1,20 +1,9 @@
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import React, {useState} from 'react';
-import {
-  VStack,
-  HStack,
-  Center,
-  Spinner,
-  Heading,
-  ScrollView,
-} from 'native-base';
+import {HStack, ScrollView} from 'native-base';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {useNavigation} from '@react-navigation/native';
-import useMenuData from '@src/hooks/useMenuData';
-
-import {useRoute} from '@react-navigation/native';
-import {getMenuData} from '@src/API/getMenuData';
 import MenuButton from '@src/Atomic/Menu/MenuButton';
 
 type onNavigationTypes = {
@@ -24,13 +13,7 @@ type onNavigationTypes = {
 };
 
 const NavigationBar = () => {
-  const contents: string[] = [];
-
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
-
-  const {data, isLoading} = useMenuData();
-
-  const parmas = useRoute();
 
   return (
     <ScrollView horizontal={true} style={styles.contriner}>

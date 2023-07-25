@@ -12,6 +12,7 @@ import {
   Container,
   Box,
 } from 'native-base';
+import {htmlPreprocesser} from '@Utils/htmlPreprocesser';
 import {useRoute} from '@react-navigation/native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import SignTypeButtons from '../Modules/Details/SignTypeButtons';
@@ -26,7 +27,7 @@ import ColorModule from '@src/Modules/Details/ColorModule';
 
 import getItemInfo from '@src/API/Detail/getItemInfo';
 import getPlanDesc from '@src/API/Detail/getPlanDesc';
-import RateCalculator from '@src/Modules/Details/RateCalculator';
+import MachineRateCalculator from '@src/Modules/Details/MachineRateCalculator';
 import {useUserState} from '@src/contexts/UserContext';
 import RenderHTML from 'react-native-render-html';
 import Products from './Products/Products';
@@ -36,6 +37,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useScrollToTop} from '@react-navigation/native';
 
 import {ItemDetail} from '@src/Types/DetailTypes';
+import ChargeRateCalculator from '@src/Modules/Details/ChargeRateCalculator';
 
 const Detail = () => {
   const route = useRoute();
@@ -73,11 +75,13 @@ const Detail = () => {
         <Heading>{routeParams.name}</Heading>
         <Divider mt="2" bg="muted.800" width={35} />
       </Center>
-      <Image
-        source={{uri: itemInfo?.ItemImgUrl}}
-        alt="product Image"
-        size={width - 20}
-      />
+      {itemInfo?.ItemImgUrl && (
+        <Image
+          source={{uri: itemInfo?.ItemImgUrl}}
+          alt="product Image"
+          size={width - 20}
+        />
+      )}
       <Center my={3}>
         <Heading size="md">{itemInfo?.ItemName}</Heading>
         <Divider my="3" bg="muted.800" width={260} />
@@ -151,14 +155,25 @@ const Detail = () => {
       </Button>
       <Box borderTopWidth={2} borderTopColor={'primary.400'}>
         <Box mt={3}>
-          <RateCalculator
-            ItemCode={itemInfo?.ItemCode || routeParams.it_id}
-            Vol={plan}
-            SupportTypeVol={supType}
-            KTDiscount={addSale}
-            ForMonth={installment}
-            UserID={user?.toString() || ''}
-          />
+          {supType === 'Machine' ? (
+            <MachineRateCalculator
+              ItemCode={itemInfo?.ItemCode || routeParams.it_id}
+              Vol={plan}
+              SupportTypeVol={supType}
+              KTDiscount={addSale}
+              ForMonth={installment}
+              UserID={user?.toString() || ''}
+            />
+          ) : (
+            <ChargeRateCalculator
+              ItemCode={itemInfo?.ItemCode || routeParams.it_id}
+              Vol={plan}
+              SupportTypeVol={supType}
+              KTDiscount={addSale}
+              ForMonth={installment}
+              UserID={user?.toString() || ''}
+            />
+          )}
         </Box>
       </Box>
       <Box borderTopWidth={2} borderTopColor={'primary.400'}>
@@ -169,8 +184,11 @@ const Detail = () => {
         </Center>
         <RenderHTML
           contentWidth={width}
-          source={{html: itemInfo?.BuyBenefit[0].Common || '<div></div>'}}
+          source={{
+            html: htmlPreprocesser(itemInfo?.BuyBenefit[0].Common || ''),
+          }}
         />
+
         <ProductPiece
           MenuType={routeParams.MenuType}
           MenuVar={routeParams.MenuVar}

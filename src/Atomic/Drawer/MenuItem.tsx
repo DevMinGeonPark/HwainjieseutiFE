@@ -1,7 +1,7 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {Icon, ChevronRightIcon} from 'native-base';
-// import {FontAwesome} from 'react-native-vector-icons/FontAwesome';
+import {ChevronRightIcon, HStack} from 'native-base';
+import {FontText} from '../FontText';
+import {Box} from 'native-base';
 
 interface props {
   text: string;
@@ -9,23 +9,19 @@ interface props {
 }
 export default function MenuItem(params: props) {
   return (
-    <View style={{marginVertical: 5}}>
-      <View
-        style={{
-          borderBottomColor: '#eee',
-          borderBottomWidth: 1,
-          flexDirection: 'row',
-          paddingBottom: 6,
-        }}>
-        <Text style={{flex: 1, textAlign: 'left'}}>{params.text}</Text>
+    <Box my={1}>
+      <HStack
+        borderBottomColor={'#eee'}
+        borderBottomWidth={1}
+        pb={1}
+        justifyContent="space-between">
+        <FontText>{params.text}</FontText>
         {params.point === undefined ? (
           <ChevronRightIcon size={3} />
         ) : (
-          <Text style={{flex: 1, textAlign: 'right'}}>{params.point}점</Text>
+          <FontText>{params.point}점</FontText>
         )}
-      </View>
-    </View>
+      </HStack>
+    </Box>
   );
 }
-
-const styles = StyleSheet.create({});

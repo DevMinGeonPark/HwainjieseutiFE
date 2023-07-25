@@ -1,44 +1,39 @@
-import {StyleSheet, View, Pressable, ScrollView} from 'react-native';
-import React, {useContext, useEffect, useState} from 'react';
-import Headers from '@Modules/Header';
+import {StyleSheet, useWindowDimensions} from 'react-native';
+import React from 'react';
 import withCommontLayout from '@Templates/withCommontLayout';
 import CarouselView from '@Modules/CarouselView';
 import {Linking} from 'react-native';
-
-//TEST
-import {getMainData} from '@src/API/getMainData';
 import useMainData from '@src/hooks/useMainData';
-import client from '@src/API/client';
-import {Image, Dimensions} from 'react-native';
-import Footer from '@Modules/Footer';
+import {Image, ScrollView, Box, HStack, Pressable} from 'native-base';
 import Title from '@src/Atomic/Title';
-import ProductCard from '@src/Modules/ProductCard';
 import SplashScreen from 'react-native-splash-screen';
+import ProductCard from '@src/Modules/ProductCard';
 
 const Main = () => {
-  const {data, isLoading} = useMainData();
-  const width = Dimensions.get('window').width;
+  const {data} = useMainData();
+  const width = useWindowDimensions().width;
 
   // console.log(JSON.stringify(data, null, 2));
 
-  // 버그로 인한 임시코드
-  useEffect(() => {
-    SplashScreen.hide();
-  });
+  // TODO :: ProductCard와 Product Navigator 리팩토링 하기 + _file들 삭제하기
+
+  // console.log(JSON.stringify(data, null, 2));
 
   return (
-    <ScrollView style={{backgroundColor: 'white'}}>
+    <ScrollView>
       <CarouselView props={data?.ImgMainRoll} />
-      <View style={{width: width, maxHeight: 357}}>
-        <Image
-          style={{width: '100%', height: '100%', resizeMode: 'cover'}}
-          source={{uri: data?.ImgMainSub[0].imgsrc}}
-        />
-      </View>
+      <Box width={width} maxHeight={357}>
+        {data?.ImgMainSub[0].imgsrc && (
+          <Image
+            style={{width: '100%', height: '100%', resizeMode: 'cover'}}
+            alt="MainImage"
+            source={{uri: data?.ImgMainSub[0].imgsrc}}
+          />
+        )}
+      </Box>
       <Title title="NEW" desc="얼리어답터를 위한 신제품!" />
-      <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
-        {/* {data?.ItemNewList?.map((index, item) => (
-          // 상황 파악용 : 에러 발생 이유는 저쪽에서 규칙을 안지킴. 대답 오는거보고 수정
+      <HStack flexWrap="wrap" flex="1" flexDirection="row">
+        {data?.ItemNewList?.map((item, index) => (
           <ProductCard
             key={index}
             CategorieCode={item.CategorieCode || 'defulat'}
@@ -50,10 +45,12 @@ const Main = () => {
             ItemChargeSales={item.ItemChargeSales || 0}
             ItemDCRate={item.ItemDCRate || 0}
           />
-        ))} */}
-      </View>
+        ))}
+      </HStack>
       <Pressable
-        style={{width: width, maxHeight: 200, marginTop: 50}}
+        width={width}
+        maxHeight={200}
+        marginTop={50}
         onPress={() =>
           Linking.openURL(
             data?.SubBanner.BannerUrl
@@ -61,27 +58,32 @@ const Main = () => {
               : '',
           )
         }>
-        <Image
-          style={{width: '100%', height: '100%', resizeMode: 'cover'}}
-          source={{uri: data?.SubBanner.BannerImg}}
-        />
+        {data?.SubBanner.BannerImg && (
+          <Image
+            width={width}
+            height={'100%'}
+            resizeMode="cover"
+            alt="SubBanner"
+            source={{uri: data?.SubBanner.BannerImg}}
+          />
+        )}
       </Pressable>
       <Title title="BEST" desc="주문폭주! 이달의 BEST 상품!" />
-      <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
-        {/* {data?.ItemBestList?.map(item => (
+      <HStack flexWrap="wrap" flex="1" flexDirection="row">
+        {data?.ItemBestList?.map((item, index) => (
           <ProductCard
-            key={item.itemCode}
-            itemCode={item.itemCode || 'defulat'}
-            itemImgUrl={item.itemImgUrl || 'defulat'}
-            itemName={item.itemName || 'defulat'}
+            key={index}
+            CategorieCode={item.CategorieCode || 'defulat'}
+            ItemCode={item.ItemCode || 'defulat'}
+            ItemImgUrl={item.ItemImgUrl || 'defulat'}
+            ItemName={item.ItemName || 'defulat'}
             ItemColor={item.ItemColor || 'defulat'}
             ItemChargeNormal={item.ItemChargeNormal || 0}
             ItemChargeSales={item.ItemChargeSales || 0}
             ItemDCRate={item.ItemDCRate || 0}
           />
-        ))} */}
-      </View>
-      <View style={{width: 20, height: 20}}></View>
+        ))}
+      </HStack>
     </ScrollView>
   );
 };

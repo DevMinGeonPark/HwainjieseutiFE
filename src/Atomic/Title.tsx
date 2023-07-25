@@ -1,55 +1,44 @@
-import {StyleSheet, Text, View, Dimensions} from 'react-native';
+import {StyleSheet, Text, View, useWindowDimensions} from 'react-native';
 import React from 'react';
+import {Box, Center} from 'native-base';
+import {FontHeading} from './FontHeading';
 
 type Title = {
   title: string;
   desc: string;
 };
 
-export default function Title(params: Title) {
-  const width = Dimensions.get('window').width;
+export default function Title({title, desc}: Title) {
+  const width = useWindowDimensions().width;
 
   return (
-    <View
+    <Box
       style={{
         marginBottom: 10,
       }}>
-      <View
+      <Center
         style={{
           alignItems: 'center',
           justifyContent: 'center',
           marginTop: 50,
         }}>
-        <Text style={styles.H2}>{params.title}</Text>
-        <View
-          style={{
-            backgroundColor: '#ffcd00',
-            position: 'absolute',
-            bottom: 0,
-            width: width - width / 3,
-            height: 20,
-            zIndex: 1,
-          }}></View>
-      </View>
-      <Text
-        style={{
-          fontSize: 18,
-          alignSelf: 'center',
-          marginVertical: 10,
-          fontWeight: 'bold',
-          color: 'black',
-        }}>
-        {params.desc}
-      </Text>
-    </View>
+        <FontHeading fontSize={30} zIndex={2}>
+          {title}
+        </FontHeading>
+        <Box
+          bg="#ffcd00"
+          position="absolute"
+          bottom={0}
+          width={width - width / 2.5}
+          height={4}
+          zIndex={1}
+        />
+      </Center>
+      <Center>
+        <FontHeading fontSize={20} p={3}>
+          {desc}
+        </FontHeading>
+      </Center>
+    </Box>
   );
 }
-
-const styles = StyleSheet.create({
-  H2: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    zIndex: 2,
-    color: 'black',
-  },
-});

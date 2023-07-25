@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* HwainjieseutiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* HwainjieseutiTests.m */; };
-		035173581BBB433194050199 /* ONE Mobile Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8593348DC4B048C486557985 /* ONE Mobile Regular.ttf */; };
 		08B6AB0952194E1B85274500 /* SpoqaHanSansNeo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 374C7F1AD6F04759A0398492 /* SpoqaHanSansNeo-Bold.ttf */; };
 		0DCA83BF650C4F2AA3ACB4F0 /* SpoqaHanSansNeo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E058E48FFA5424DA89D68D5 /* SpoqaHanSansNeo-Medium.ttf */; };
 		0E3893A4BCC342349D09F6A2 /* SpoqaHanSansNeo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F99A4C293BD44329B965428E /* SpoqaHanSansNeo-Regular.ttf */; };
@@ -16,12 +15,9 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2AB80CF9C2BE55BA889966B6 /* libPods-Hwainjieseuti.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17329BE1AF08DA42B80968FB /* libPods-Hwainjieseuti.a */; };
-		5808CA982F8F4DE198541188 /* ONE Mobile Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2D833EF388847A4BAED8ECE /* ONE Mobile Light.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		946D1C06F1B1425CA5561C19 /* ONE Mobile Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 70FD5372FCF34A529A83A387 /* ONE Mobile Bold.ttf */; };
 		B4F639514B2040C2AF22E766 /* SpoqaHanSansNeo-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A83A83421B8949EC9DC463F0 /* SpoqaHanSansNeo-Thin.ttf */; };
 		DA1736331931309A0AA48A9B /* libPods-Hwainjieseuti-HwainjieseutiTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5330A8C51720F8794927E784 /* libPods-Hwainjieseuti-HwainjieseutiTests.a */; };
-		E05AEBCA87594F9AB16A9784 /* ONE Mobile OTF Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 82F83EA500584A31B8599C41 /* ONE Mobile OTF Regular.otf */; };
 		E441B6BA240047479514A67D /* SpoqaHanSansNeo-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34B7646C3CC24CDC869DAB82 /* SpoqaHanSansNeo-Light.ttf */; };
 /* End PBXBuildFile section */
 
@@ -69,13 +65,9 @@
 		4E058E48FFA5424DA89D68D5 /* SpoqaHanSansNeo-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SpoqaHanSansNeo-Medium.ttf"; path = "../assets/fonts/SpoqaHanSansNeo-Medium.ttf"; sourceTree = "<group>"; };
 		5330A8C51720F8794927E784 /* libPods-Hwainjieseuti-HwainjieseutiTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hwainjieseuti-HwainjieseutiTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		672D50BB79D7EA0A3ACC379D /* Pods-Hwainjieseuti-HwainjieseutiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hwainjieseuti-HwainjieseutiTests.debug.xcconfig"; path = "Target Support Files/Pods-Hwainjieseuti-HwainjieseutiTests/Pods-Hwainjieseuti-HwainjieseutiTests.debug.xcconfig"; sourceTree = "<group>"; };
-		70FD5372FCF34A529A83A387 /* ONE Mobile Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "ONE Mobile Bold.ttf"; path = "../assets/fonts/ONE Mobile Bold.ttf"; sourceTree = "<group>"; };
 		811D759AD9056D6417A14C9C /* Pods-Hwainjieseuti-HwainjieseutiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hwainjieseuti-HwainjieseutiTests.release.xcconfig"; path = "Target Support Files/Pods-Hwainjieseuti-HwainjieseutiTests/Pods-Hwainjieseuti-HwainjieseutiTests.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Hwainjieseuti/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		82F83EA500584A31B8599C41 /* ONE Mobile OTF Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "ONE Mobile OTF Regular.otf"; path = "../assets/fonts/ONE Mobile OTF Regular.otf"; sourceTree = "<group>"; };
-		8593348DC4B048C486557985 /* ONE Mobile Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "ONE Mobile Regular.ttf"; path = "../assets/fonts/ONE Mobile Regular.ttf"; sourceTree = "<group>"; };
 		A83A83421B8949EC9DC463F0 /* SpoqaHanSansNeo-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SpoqaHanSansNeo-Thin.ttf"; path = "../assets/fonts/SpoqaHanSansNeo-Thin.ttf"; sourceTree = "<group>"; };
-		D2D833EF388847A4BAED8ECE /* ONE Mobile Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "ONE Mobile Light.ttf"; path = "../assets/fonts/ONE Mobile Light.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F99A4C293BD44329B965428E /* SpoqaHanSansNeo-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SpoqaHanSansNeo-Regular.ttf"; path = "../assets/fonts/SpoqaHanSansNeo-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -199,10 +191,6 @@
 		AAF965FFDFF94E95AF56B31F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				82F83EA500584A31B8599C41 /* ONE Mobile OTF Regular.otf */,
-				70FD5372FCF34A529A83A387 /* ONE Mobile Bold.ttf */,
-				D2D833EF388847A4BAED8ECE /* ONE Mobile Light.ttf */,
-				8593348DC4B048C486557985 /* ONE Mobile Regular.ttf */,
 				374C7F1AD6F04759A0398492 /* SpoqaHanSansNeo-Bold.ttf */,
 				34B7646C3CC24CDC869DAB82 /* SpoqaHanSansNeo-Light.ttf */,
 				4E058E48FFA5424DA89D68D5 /* SpoqaHanSansNeo-Medium.ttf */,
@@ -319,10 +307,6 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				E05AEBCA87594F9AB16A9784 /* ONE Mobile OTF Regular.otf in Resources */,
-				946D1C06F1B1425CA5561C19 /* ONE Mobile Bold.ttf in Resources */,
-				5808CA982F8F4DE198541188 /* ONE Mobile Light.ttf in Resources */,
-				035173581BBB433194050199 /* ONE Mobile Regular.ttf in Resources */,
 				08B6AB0952194E1B85274500 /* SpoqaHanSansNeo-Bold.ttf in Resources */,
 				E441B6BA240047479514A67D /* SpoqaHanSansNeo-Light.ttf in Resources */,
 				0DCA83BF650C4F2AA3ACB4F0 /* SpoqaHanSansNeo-Medium.ttf in Resources */,

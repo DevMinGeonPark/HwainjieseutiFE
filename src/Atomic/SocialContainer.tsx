@@ -1,12 +1,7 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Pressable,
-  ImageSourcePropType,
-} from 'react-native';
+import {ImageSourcePropType} from 'react-native';
 import React, {FC} from 'react';
+import {HStack, Image, Box, Pressable, Center} from 'native-base';
+import {FontHeading} from './FontHeading';
 
 interface Props {
   image: ImageSourcePropType;
@@ -17,39 +12,36 @@ interface Props {
 
 const SocialContainer: FC<Props> = ({image, title, desc, onPress}) => {
   return (
-    <Pressable style={styles.pressBox} onPress={onPress}>
-      <Image style={{width: 60, resizeMode: 'contain'}} source={image} />
-      <View style={styles.textContainer}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.desc}>{desc}</Text>
-      </View>
-    </Pressable>
+    <Center>
+      <Pressable
+        borderBottomColor="#555"
+        borderBottomWidth={1}
+        width={260}
+        justifyContent="center"
+        onPress={onPress}
+        p={3}>
+        <HStack>
+          {image && (
+            <Image
+              alt="Social Logo"
+              resizeMode="contain"
+              width={60}
+              height={60}
+              source={image}
+            />
+          )}
+          <Box mx={2}>
+            <FontHeading color="white" fontSize={25}>
+              {title}
+            </FontHeading>
+            <FontHeading color="white" fontSize={14}>
+              {desc}
+            </FontHeading>
+          </Box>
+        </HStack>
+      </Pressable>
+    </Center>
   );
 };
-
-const styles = StyleSheet.create({
-  pressBox: {
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderBottomColor: '#555',
-    width: 260,
-    justifyContent: 'center',
-    marginHorizontal: 60,
-  },
-  textContainer: {
-    margin: 10,
-  },
-  title: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 25,
-    marginVertical: 6,
-  },
-  desc: {
-    color: 'white',
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
-});
 
 export default SocialContainer;
