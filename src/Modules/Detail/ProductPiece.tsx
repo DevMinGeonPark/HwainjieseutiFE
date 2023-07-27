@@ -36,7 +36,9 @@ const ProductPiece = ({MenuType, MenuVar, ItemCode}: ProductPieceProps) => {
 
   async function getProductData(data: ProductProps) {
     setIsLoading(true);
+    console.log(data);
     const res = await client.post('subpage.php', data);
+    console.log(JSON.stringify(res.data, null, 2));
     setData(res.data.ItemList);
     setIsLoading(false);
   }
@@ -96,6 +98,8 @@ const ProductPiece = ({MenuType, MenuVar, ItemCode}: ProductPieceProps) => {
             ?.filter(item => item.ItemCode !== ItemCode)
             .map(item => (
               <ProductCard
+                MenuType={item.MenuType}
+                MenuVar={item.MenuVar}
                 key={item.ItemCode}
                 CategorieCode={item.CategorieCode}
                 ItemCode={item.ItemCode}

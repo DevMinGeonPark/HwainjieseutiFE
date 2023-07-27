@@ -8,21 +8,21 @@ export default function Logos() {
     <Center overflow="hidden">
       <HStack space={2}>
         <Image
-          source={Images.FTC}
+          source={Images.Footer.FTC}
           alt="FTC"
           width={70}
           height={100}
           resizeMode="contain"
         />
         <Image
-          source={Images.KAIP}
+          source={Images.Footer.KAIP}
           alt="KAIP"
           width={100}
           height={100}
           resizeMode="contain"
         />
         <Image
-          source={Images.CICTM}
+          source={Images.Footer.CICTM}
           alt="CICTM"
           width={100}
           height={100}

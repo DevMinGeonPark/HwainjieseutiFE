@@ -4,7 +4,7 @@ import {Box, HStack, Text} from 'native-base';
 
 interface NonLineLabelProps {
   label: string;
-  Rate: string;
+  Rate: number;
 }
 
 export default function NonLineLabel({label, Rate}: NonLineLabelProps) {

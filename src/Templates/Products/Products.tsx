@@ -29,8 +29,8 @@ const Products = () => {
   const [params, setParams] = React.useState<ProductProps>({
     MenuType: routeParams.MenuType,
     MenuVar: routeParams.MenuVar,
-    sort: 'it_update_time',
-    sortodr: 'aec',
+    sort: 'it_update_tme',
+    sortodr: 'desc',
   });
 
   const [data, setData] = React.useState<ItemList[]>(); // queryKey를 useProductData로부터 가져옴
@@ -40,6 +40,7 @@ const Products = () => {
   async function getProductData(data: ProductProps) {
     setIsLoading(true);
     const res = await client.post('subpage.php', data);
+    // console.log(JSON.stringify(res, null, 2));
     setData(res.data.ItemList);
     setIsLoading(false);
   }
@@ -97,6 +98,8 @@ const Products = () => {
         <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
           {data?.map(item => (
             <ProductCard
+              MenuType={params.MenuType}
+              MenuVar={params.MenuVar}
               key={item.ItemCode}
               CategorieCode={item.CategorieCode}
               ItemCode={item.ItemCode}

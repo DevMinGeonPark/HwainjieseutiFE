@@ -16,8 +16,8 @@ const NavigationBar = () => {
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
 
   return (
-    <ScrollView horizontal={true} style={styles.contriner}>
-      <HStack space={2} style={styles.contriner}>
+    <ScrollView horizontal={true}>
+      <HStack space={7} flexDirection="row" alignItems="center" px={5}>
         <MenuButton
           navigation={navigation}
           screenName="Samsung"
@@ -65,17 +65,6 @@ const NavigationBar = () => {
         <MenuButton
           navigation={navigation}
           screenName="ImageProduct"
-          menuText="듀얼번호"
-          params={{
-            MenuType: 'co_id',
-            MenuVar: 'kt_dualnumber',
-            num: Math.random(),
-            name: '듀얼번호',
-          }}
-        />
-        <MenuButton
-          navigation={navigation}
-          screenName="ImageProduct"
           menuText="이벤트"
           params={{
             MenuType: 'bo_table',
@@ -90,9 +79,3 @@ const NavigationBar = () => {
 };
 
 export default React.memo(NavigationBar);
-
-const styles = StyleSheet.create({
-  contriner: {
-    flexDirection: 'row',
-  },
-});

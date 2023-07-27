@@ -1,13 +1,11 @@
 import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {Images} from '@assets/imgs/Images';
 import Logos from './Footer/Logos';
 import Copyrigth from './Footer/Copyrigth';
 import {Box, Center, Container, HStack} from 'native-base';
 import {FontText} from './FontText';
 
 export default function InfoContainer() {
-  const width = Dimensions.get('window').width;
   return (
     // <View style={{backgroundColor: 'white', padding: 20}}>
     <Center p={6}>
@@ -37,12 +35,3 @@ export default function InfoContainer() {
     // </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    margin: 3,
-  },
-});

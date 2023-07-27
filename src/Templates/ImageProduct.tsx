@@ -23,8 +23,9 @@ const ImageProduct = () => {
 
   async function getImageProductData(data: ProductProps) {
     const res = await client.post('subpage.php', data);
-    console.log(JSON.stringify(res.data, null, 2));
-    setSource({html: htmlPreprocesser(res.data.Content)});
+    // console.log(JSON.stringify(res.data, null, 2));
+    // console.log(JSON.stringify(res.data.Content, null, 2));
+    setSource({html: htmlPreprocesser(res.data.Content.replace(/\r\n/g, ''))});
   }
 
   React.useEffect(() => {
@@ -33,7 +34,6 @@ const ImageProduct = () => {
 
   return (
     <View>
-      {/* <Text>d</Text> */}
       <RenderHtml contentWidth={width} source={source} />
     </View>
   );

@@ -1,55 +1,32 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import AdCopy from '@Atomic/AdCopy';
 import LogoHeader from '@Atomic/LogoHeader';
 import SideBarButton from '@src/Atomic/SideBarButton';
 import NavigationBar from '@src/Modules/NavigationBar';
 import UserInfo from './UserInfo';
+import {HStack} from 'native-base';
+import {useUserState} from '@src/contexts/UserContext';
 
-export default function Header() {
+interface HeaderProps {
+  showLogo: boolean;
+}
+
+export default function Header({showLogo}: HeaderProps) {
+  const [user] = useUserState();
+
   return (
     <>
-      <View style={{flex: 1}}>
-        <View style={styles.adContainer}>
+      {showLogo && (
+        <>
           <AdCopy />
-        </View>
-        <View style={styles.logoContainer}>
           <LogoHeader />
-        </View>
-        <View style={styles.navBarContainer}>
-          <View style={styles.sidebarContainer}>
-            <SideBarButton />
-          </View>
-          <View style={{flex: 9, paddingLeft: 7, justifyContent: 'center'}}>
-            <NavigationBar />
-          </View>
-        </View>
-      </View>
+        </>
+      )}
+      <HStack borderBottomWidth={1} borderTopWidth={1} borderColor="#CCC">
+        <SideBarButton />
+        <NavigationBar />
+      </HStack>
+      {user && showLogo && <UserInfo />}
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  adContainer: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#CCC',
-    flex: 0.4,
-  },
-  logoContainer: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#CCC',
-    flex: 0.5,
-  },
-  navBarContainer: {
-    flexDirection: 'row',
-    flex: 0.4,
-    borderBottomWidth: 1,
-    borderBottomColor: '#CCC',
-  },
-  sidebarContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    borderRightWidth: 2,
-    borderRightColor: '#eee',
-  },
-});

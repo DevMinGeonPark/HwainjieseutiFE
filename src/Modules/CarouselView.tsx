@@ -1,4 +1,4 @@
-import {useWindowDimensions, View, StyleSheet} from 'react-native';
+import {useWindowDimensions} from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 import React, {useState} from 'react';
 import {ImgMainRoll} from '@src/Types/MainDataTypes';
@@ -10,6 +10,8 @@ interface Props {
 
 export default function CarouselView(props: Props) {
   const width = useWindowDimensions().width;
+
+  console.log(props.props);
 
   // ################# 삭제 예정 ###############
   // const data = props.props?.map((item: ImgMainRoll) => {
@@ -30,7 +32,11 @@ export default function CarouselView(props: Props) {
           activeOffsetX: [-10, 10],
         }}
         renderItem={({item, index}) => (
-          <Pressable key={index} onPress={() => console.log(item.imgurl)}>
+          <Pressable
+            key={index}
+            onPress={() => {
+              console.log(item.imgurl);
+            }}>
             {item.imgsrc && (
               <Image
                 width={width}
@@ -46,5 +52,3 @@ export default function CarouselView(props: Props) {
     </>
   );
 }
-
-const styles = StyleSheet.create({});

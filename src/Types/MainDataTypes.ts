@@ -16,6 +16,8 @@ export interface ImgMainSub {
 }
 
 export interface ItemList {
+  MenuType: string;
+  MenuVar: string;
   CategorieCode: string;
   ItemCode: string;
   ItemImgUrl: string;

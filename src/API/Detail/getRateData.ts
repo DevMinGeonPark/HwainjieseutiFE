@@ -9,7 +9,7 @@ import {
 export async function getRateData(
   body: BodyType,
 ): Promise<MachineCalResType | ChargeCalResType | undefined> {
-  console.log(body);
+  // console.log(body);
   const res = await client.post('calcharge.php', body);
   return res.data as MachineCalResType | ChargeCalResType | undefined;
 }

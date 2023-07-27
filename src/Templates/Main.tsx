@@ -1,5 +1,5 @@
 import {StyleSheet, useWindowDimensions} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import withCommontLayout from '@Templates/withCommontLayout';
 import CarouselView from '@Modules/CarouselView';
 import {Linking} from 'react-native';
@@ -13,16 +13,22 @@ const Main = () => {
   const {data} = useMainData();
   const width = useWindowDimensions().width;
 
+  function openURL(imgurl: string | undefined): void {
+    throw new Error('Function not implemented.');
+  }
+
   // console.log(JSON.stringify(data, null, 2));
 
   // TODO :: ProductCard와 Product Navigator 리팩토링 하기 + _file들 삭제하기
 
-  // console.log(JSON.stringify(data, null, 2));
+  // useEffect(() => {
+  //   SplashScreen.hide();
+  // }, []);
 
   return (
     <ScrollView>
       <CarouselView props={data?.ImgMainRoll} />
-      <Box width={width} maxHeight={357}>
+      <Pressable width={width} maxHeight={357}>
         {data?.ImgMainSub[0].imgsrc && (
           <Image
             style={{width: '100%', height: '100%', resizeMode: 'cover'}}
@@ -30,12 +36,14 @@ const Main = () => {
             source={{uri: data?.ImgMainSub[0].imgsrc}}
           />
         )}
-      </Box>
+      </Pressable>
       <Title title="NEW" desc="얼리어답터를 위한 신제품!" />
       <HStack flexWrap="wrap" flex="1" flexDirection="row">
         {data?.ItemNewList?.map((item, index) => (
           <ProductCard
             key={index}
+            MenuType={item.MenuType || 'defulat'}
+            MenuVar={item.MenuVar || 'defulat'}
             CategorieCode={item.CategorieCode || 'defulat'}
             ItemCode={item.ItemCode || 'defulat'}
             ItemImgUrl={item.ItemImgUrl || 'defulat'}
@@ -73,6 +81,8 @@ const Main = () => {
         {data?.ItemBestList?.map((item, index) => (
           <ProductCard
             key={index}
+            MenuType={item.MenuType || 'defulat'}
+            MenuVar={item.MenuVar || 'defulat'}
             CategorieCode={item.CategorieCode || 'defulat'}
             ItemCode={item.ItemCode || 'defulat'}
             ItemImgUrl={item.ItemImgUrl || 'defulat'}

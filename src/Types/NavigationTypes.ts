@@ -13,7 +13,7 @@ export type StackScreenProps = {
     MenuType: string;
     MenuVar: string;
     it_id: string;
-    ca_id: string;
+    // ca_id: string;
     num: number;
   };
   ImageProduct: {MenuType: string; MenuVar: string};

@@ -4,7 +4,7 @@ import {Box, Heading, Text, HStack} from 'native-base';
 
 interface BoxLabelProps {
   label: string;
-  Rate: string;
+  Rate: number;
   fontColor: string;
 }
 

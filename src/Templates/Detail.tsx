@@ -1,43 +1,41 @@
 import {StyleSheet, Text, View, ScrollView, Dimensions} from 'react-native';
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import withCommontLayout from './withCommontLayout';
 import {
   Center,
   Heading,
   Divider,
-  Circle,
   Button,
-  HStack,
   Image,
   Container,
   Box,
+  Pressable,
+  Modal,
+  FormControl,
 } from 'native-base';
 import {htmlPreprocesser} from '@Utils/htmlPreprocesser';
 import {useRoute} from '@react-navigation/native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import SignTypeButtons from '../Modules/Details/SignTypeButtons';
-import SupTypeButtons from '../Modules/Details/SupTypeButtons';
-import InstallmentButtons from '../Modules/Details/InstallmentButtons';
-import PlanSelector from '@src/Modules/Details/PlanSelector';
-import AddSaleButton from '@src/Modules/Details/AddSaleButton';
-import {getKTShopKey} from '@src/Utils/KTShopKey';
-
-import client from '@src/API/client';
-import ColorModule from '@src/Modules/Details/ColorModule';
-
+import SignTypeButtons from '../Modules/Detail/SignTypeButtons';
+import SupTypeButtons from '../Modules/Detail/SupTypeButtons';
+import InstallmentButtons from '../Modules/Detail/InstallmentButtons';
+import PlanSelector from '@src/Modules/Detail/PlanSelector';
+import AddSaleButton from '@src/Modules/Detail/AddSaleButton';
+import ColorModule from '@src/Modules/Detail/ColorModule';
 import getItemInfo from '@src/API/Detail/getItemInfo';
 import getPlanDesc from '@src/API/Detail/getPlanDesc';
-import MachineRateCalculator from '@src/Modules/Details/MachineRateCalculator';
+import MachineRateCalculator from '@src/Modules/Detail/MachineRateCalculator';
 import {useUserState} from '@src/contexts/UserContext';
 import RenderHTML from 'react-native-render-html';
-import Products from './Products/Products';
-import ProductPiece from '@src/Modules/Details/ProductPiece';
+import ProductPiece from '@src/Modules/Detail/ProductPiece';
 import {useNavigation} from '@react-navigation/native';
 
-import {useScrollToTop} from '@react-navigation/native';
-
 import {ItemDetail} from '@src/Types/DetailTypes';
-import ChargeRateCalculator from '@src/Modules/Details/ChargeRateCalculator';
+import ChargeRateCalculator from '@src/Modules/Detail/ChargeRateCalculator';
+import ShareModal from '@src/Modules/Detail/ShareModal';
+import {FontText} from '@src/Atomic/FontText';
+import InfoTab from '@src/Modules/Detail/InfoTab';
+import {ScrollViewContext} from '@src/contexts/ScrollViewContext';
 
 const Detail = () => {
   const route = useRoute();
@@ -55,10 +53,17 @@ const Detail = () => {
   const [addSale, setAddSale] = useState<string>('Y');
   const [user] = useUserState();
 
+  const [showModal, setShowModal] = useState(false);
+
+  const [infoTabSetter, setInfoTabSetter] = useState(true);
+
+  const {scrollViewRef} = useContext(ScrollViewContext);
+
   useEffect(() => {
-    getItemInfo(routeParams.it_id, routeParams.ca_id).then(data =>
+    getItemInfo(routeParams.it_id, routeParams.MenuVar).then(data =>
       setItemInfo(data),
     );
+    scrollViewRef?.current?.scrollTo({x: 0, y: 0, animated: true});
   }, [routeParams.num]);
 
   useEffect(() => {
@@ -68,9 +73,17 @@ const Detail = () => {
   }, [plan, itemInfo]);
 
   // console.log(JSON.stringify(itemInfo, null, 2));
+  // console.log(routeParams);
 
   return (
     <ScrollView>
+      {showModal && (
+        <ShareModal
+          productId={itemInfo?.ItemCode || ''}
+          showModal={showModal}
+          setShowModal={setShowModal}
+        />
+      )}
       <Center m={10} mx={140}>
         <Heading>{routeParams.name}</Heading>
         <Divider mt="2" bg="muted.800" width={35} />
@@ -87,10 +100,12 @@ const Detail = () => {
         <Divider my="3" bg="muted.800" width={260} />
         <ColorModule props={itemInfo?.ItemColor} />
       </Center>
-      <Center m={3}>
-        <FontAwesome name="share-square-o" size={50} color="black" />
-        <Heading size="xs">공유하기</Heading>
-      </Center>
+      <Pressable onPress={() => setShowModal(true)}>
+        <Center m={3}>
+          <FontAwesome name="share-square-o" size={50} color="black" />
+          <Heading size="xs">공유하기</Heading>
+        </Center>
+      </Pressable>
       <View>
         <Heading ml={3}>가입형태</Heading>
         <SignTypeButtons regiTypes={itemInfo?.RegiType || []} />
@@ -122,8 +137,11 @@ const Detail = () => {
           <Text>{planDesc}</Text>
         </Container>
       </View>
+
       <View>
-        <Heading ml={3}>수령방법</Heading>
+        <Heading ml={3} mb={2}>
+          수령방법
+        </Heading>
         <Button
           ml={2}
           width={width / 4}
@@ -133,9 +151,11 @@ const Detail = () => {
           borderWidth={3}
           borderColor={'primary.400'}
           _text={{fontSize: 'md', fontWeight: 'bold', color: 'black'}}>
-          {itemInfo?.RevMethod[0].Title || ''}
+          {itemInfo?.RevMethod?.[0]?.Title || 'Title unavailable'}
         </Button>
-        <Text>{itemInfo?.RevMethod[0].ClickComment}</Text>
+        <FontText m={2}>
+          {itemInfo?.RevMethod?.[0]?.ClickComment || 'ClickComment unavailable'}
+        </FontText>
       </View>
       <View>
         <Heading ml={3}>KT공식몰 추가할인</Heading>
@@ -177,28 +197,24 @@ const Detail = () => {
         </Box>
       </Box>
       <Box borderTopWidth={2} borderTopColor={'primary.400'}>
-        <Center mt={3}>
-          <Heading pb={3} size="lg">
-            구매해택
-          </Heading>
-        </Center>
-        <RenderHTML
-          contentWidth={width}
-          source={{
-            html: htmlPreprocesser(itemInfo?.BuyBenefit[0].Common || ''),
-          }}
-        />
-
-        <ProductPiece
-          MenuType={routeParams.MenuType}
-          MenuVar={routeParams.MenuVar}
-          ItemCode={routeParams.it_id}
+        <InfoTab
+          html={htmlPreprocesser(
+            (infoTabSetter
+              ? itemInfo?.BuyBenefit[0].Common
+              : itemInfo?.CommAttn) || '',
+          )}
+          infoTabSetter={infoTabSetter}
+          setInfoTabSetter={setInfoTabSetter}
         />
       </Box>
+      <ProductPiece
+        MenuType={routeParams.MenuType}
+        MenuVar={routeParams.MenuVar}
+        ItemCode={routeParams.it_id}
+      />
     </ScrollView>
   );
 };
 
-export default withCommontLayout(Detail);
-
-const styles = StyleSheet.create({});
+// export default React.memo(withCommontLayout(Detail));
+export default React.memo(withCommontLayout(Detail, {showFixBar: true}));

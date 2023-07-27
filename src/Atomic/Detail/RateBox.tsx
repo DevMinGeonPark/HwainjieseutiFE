@@ -3,7 +3,7 @@ import React from 'react';
 import {Box, Heading, Text, HStack, Center} from 'native-base';
 
 interface RateBoxProps {
-  Rate: string;
+  Rate: number;
 }
 
 export default function RateBox({Rate}: RateBoxProps) {
@@ -12,7 +12,9 @@ export default function RateBox({Rate}: RateBoxProps) {
       <Center>
         <HStack alignItems="baseline" m={2}>
           <Text>(월)</Text>
-          <Heading>{Rate.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</Heading>
+          <Heading>
+            {Rate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+          </Heading>
           <Text>원</Text>
         </HStack>
         <Text mb={3} fontSize={'md'}>

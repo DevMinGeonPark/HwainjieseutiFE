@@ -11,6 +11,7 @@ import {StackScreenProps} from '@Types/NavigationTypes';
 import {useRoute} from '@react-navigation/native';
 import Circles from '@src/Atomic/ProductCard/Circles';
 import {FontHeading} from '@src/Atomic/FontHeading';
+import {NameSelector} from '@src/Utils/NameSelector';
 
 export default function ProductCard(data: ItemList) {
   const [color, setColor] = useState<string[]>();
@@ -26,6 +27,8 @@ export default function ProductCard(data: ItemList) {
 
   const routeParams = useRoute().params as any;
 
+  const test = [];
+
   useEffect(() => {
     user ? setHeightControl(130) : setHeightControl(80);
     setColor(data.ItemColor.match(/#[a-f0-9]{6}/g) || []);
@@ -35,7 +38,7 @@ export default function ProductCard(data: ItemList) {
   return (
     <Box
       bg="white"
-      maxHeight={width / 2 + heightControl}
+      // maxHeight={width / 2 + heightControl}
       // width를 2로 나누고 거기서 margin에 해당하는 부분을 빼면 된다.
       width={width / 2 - cardMargin * 2}
       borderColor="rgb(231, 231, 231)"
@@ -61,7 +64,7 @@ export default function ProductCard(data: ItemList) {
           <Center>
             <FontHeading fontSize={14}>{data.ItemName}</FontHeading>
           </Center>
-          <Circles color={color || []} />
+          <Circles color={color || []} size={15} onCirclePress={() => {}} />
           {user && (
             <Price
               ItemChargeNormal={data?.ItemChargeNormal}
@@ -74,11 +77,10 @@ export default function ProductCard(data: ItemList) {
             my={3}
             onPress={() =>
               navigation.navigate('Detail', {
-                name: routeParams.name,
-                MenuType: routeParams.MenuType,
-                MenuVar: routeParams.MenuVar,
+                name: NameSelector(data.MenuVar),
+                MenuType: data.MenuType,
+                MenuVar: data.MenuVar,
                 it_id: data.ItemCode,
-                ca_id: data.CategorieCode,
                 num: Math.random(),
               })
             }

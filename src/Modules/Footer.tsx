@@ -11,19 +11,19 @@ export default function Footer() {
     <Box>
       <Center bg="black" py={10}>
         <SocialContainer
-          image={Images.Tel}
+          image={Images.Footer.Tel}
           title="1577-3795"
           desc="월-토 09:00 - 18:00 상담가능!"
           onPress={() => Linking.openURL(`tel:1577-3795`)}
         />
         <SocialContainer
-          image={Images.kakao}
+          image={Images.Footer.kakao}
           title="카카오톡채널"
           desc="클릭하면 바로 1:1 상담가능!"
           onPress={() => Linking.openURL('https://pf.kakao.com/_ULWxfd')}
         />
         <SocialContainer
-          image={Images.naver}
+          image={Images.Footer.naver}
           title="네이버 톡톡"
           desc="클릭하면 바로 1:1 상담가능!"
           onPress={() => Linking.openURL('https://talk.naver.com/ct/wc981y')}

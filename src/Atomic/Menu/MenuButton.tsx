@@ -24,7 +24,7 @@ const MenuButton: React.FC<MenuButtonProps> = ({
   return (
     <Pressable onPress={() => navigation.navigate(screenName, params)}>
       <Center
-        p={3}
+        // p={3}
         _text={{
           fontSize: '14',
         }}>
