@@ -14,15 +14,7 @@ export default function MachineRateCalculator(Params: BodyType) {
   const [rateInfo, setRateInfo] = useState<MachineCalResType>();
   // gksrudgh3795
   useEffect(() => {
-    const Params2 = {
-      ForMonth: Params.ForMonth,
-      ItemCode: Params.ItemCode,
-      KTDiscount: Params.KTDiscount,
-      SupportTypeVol: Params.SupportTypeVol,
-      UserID: 'gksrudgh3795',
-      Vol: Params.Vol,
-    } as BodyType;
-    getRateData(Params2).then(data => setRateInfo(data as MachineCalResType));
+    getRateData(Params).then(data => setRateInfo(data as MachineCalResType));
   }, [Params]);
 
   // console.log(JSON.stringify(rateInfo, null, 2));

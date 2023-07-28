@@ -19,7 +19,7 @@ export default function LoginForm() {
   const [id, setID] = useState<string>('gksrudgh3795');
   const [password, setPassword] = useState<string>('ghkdls2012.');
 
-  const {mutate: login, isLoading: loginLoading} = useLogin();
+  const {mutate: login, isLoading: loginLoading} = useLogin(id);
 
   const onPressLogin = () => {
     if (loginLoading) {

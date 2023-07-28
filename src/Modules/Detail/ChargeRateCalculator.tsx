@@ -14,15 +14,7 @@ export default function ChargeRateCalculator(Params: BodyType) {
   const [rateInfo, setRateInfo] = useState<ChargeCalResType>();
 
   useEffect(() => {
-    const Params2 = {
-      ForMonth: Params.ForMonth,
-      ItemCode: Params.ItemCode,
-      KTDiscount: Params.KTDiscount,
-      SupportTypeVol: Params.SupportTypeVol,
-      UserID: 'gksrudgh3795',
-      Vol: Params.Vol,
-    } as BodyType;
-    getRateData(Params2).then(data => setRateInfo(data as ChargeCalResType));
+    getRateData(Params).then(data => setRateInfo(data as ChargeCalResType));
   }, [Params]);
 
   // console.log(JSON.stringify(rateInfo, null, 2));

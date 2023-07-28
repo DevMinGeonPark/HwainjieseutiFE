@@ -36,9 +36,8 @@ const ProductPiece = ({MenuType, MenuVar, ItemCode}: ProductPieceProps) => {
 
   async function getProductData(data: ProductProps) {
     setIsLoading(true);
-    console.log(data);
     const res = await client.post('subpage.php', data);
-    console.log(JSON.stringify(res.data, null, 2));
+    // console.log(JSON.stringify(res.data, null, 2));
     setData(res.data.ItemList);
     setIsLoading(false);
   }

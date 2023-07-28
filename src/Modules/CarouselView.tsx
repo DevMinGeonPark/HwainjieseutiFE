@@ -11,8 +11,6 @@ interface Props {
 export default function CarouselView(props: Props) {
   const width = useWindowDimensions().width;
 
-  console.log(props.props);
-
   // ################# 삭제 예정 ###############
   // const data = props.props?.map((item: ImgMainRoll) => {
   //   return item;

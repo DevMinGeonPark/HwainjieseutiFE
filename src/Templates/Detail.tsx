@@ -182,7 +182,7 @@ const Detail = () => {
               SupportTypeVol={supType}
               KTDiscount={addSale}
               ForMonth={installment}
-              UserID={user?.toString() || ''}
+              UserID={user?.UserId || ''}
             />
           ) : (
             <ChargeRateCalculator
@@ -191,7 +191,7 @@ const Detail = () => {
               SupportTypeVol={supType}
               KTDiscount={addSale}
               ForMonth={installment}
-              UserID={user?.toString() || ''}
+              UserID={user?.UserId || ''}
             />
           )}
         </Box>

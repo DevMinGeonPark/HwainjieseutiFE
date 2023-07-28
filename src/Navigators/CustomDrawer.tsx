@@ -25,7 +25,7 @@ export default function CustomDrawer(props: any) {
     <DrawerContentScrollView>
       <Box m={5}>
         <Box>
-          <FontHeading size="md">{user ? user.toString() : null}</FontHeading>
+          <FontHeading size="md">{user ? user.UserNm : null}</FontHeading>
           <FontText fontSize={12} color="#777" my={2}>
             실버
           </FontText>

@@ -10,7 +10,7 @@ export default function UserInfo() {
   return (
     <Center p={3} borderBottomColor="#333" borderBottomWidth={2}>
       <FontText fontSize={14} color="#666">
-        {`${user}님이 보유하신 포인트: **Point 입니다.`}
+        {`${user?.UserNm}님이 보유하신 포인트: **Point 입니다.`}
       </FontText>
     </Center>
   );

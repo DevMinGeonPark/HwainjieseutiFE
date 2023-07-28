@@ -9,7 +9,7 @@ import {useNavigation} from '@react-navigation/native';
 import authStorage from '@src/Utils/authStorage';
 import {useToast} from 'native-base';
 
-export default function useLogin() {
+export default function useLogin(id: string) {
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
 
   const alert = useAlert();
@@ -23,8 +23,8 @@ export default function useLogin() {
         navigation.pop();
         log.info('로그인 성공');
         toast.show({title: '로그인 성공'});
-        setUser(data.UserNm);
-        authStorage.set(data.UserNm);
+        setUser({UserId: id, UserNm: data.UserNm});
+        authStorage.set({UserId: id, UserNm: data.UserNm});
       } else {
         throw new Error(data.ErrMsg); //onError로 헨들링
       }
