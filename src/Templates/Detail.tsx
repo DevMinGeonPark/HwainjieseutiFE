@@ -20,7 +20,7 @@ import SignTypeButtons from '../Modules/Detail/SignTypeButtons';
 import SupTypeButtons from '../Modules/Detail/SupTypeButtons';
 import InstallmentButtons from '../Modules/Detail/InstallmentButtons';
 import PlanSelector from '@src/Modules/Detail/PlanSelector';
-import AddSaleButton from '@src/Modules/Detail/AddSaleButton';
+import KTDiscountButtons from '@src/Modules/Detail/KTDiscountButtons';
 import ColorModule from '@src/Modules/Detail/ColorModule';
 import getItemInfo from '@src/API/Detail/getItemInfo';
 import getPlanDesc from '@src/API/Detail/getPlanDesc';
@@ -36,13 +36,12 @@ import ShareModal from '@src/Modules/Detail/ShareModal';
 import {FontText} from '@src/Atomic/FontText';
 import InfoTab from '@src/Modules/Detail/InfoTab';
 import {ScrollViewContext} from '@src/contexts/ScrollViewContext';
+import {FontHeading} from '@src/Atomic/FontHeading';
 
 const Detail = () => {
   const route = useRoute();
   const routeParams = route.params as any;
   const width = Dimensions.get('window').width;
-
-  const navigation = useNavigation();
 
   const [itemInfo, setItemInfo] = useState<ItemDetail>();
   const [plan, setPlan] = useState<string>('212121');
@@ -50,7 +49,7 @@ const Detail = () => {
 
   const [supType, setSupType] = useState<string>('Machine');
   const [installment, setInstallment] = useState<string>('24');
-  const [addSale, setAddSale] = useState<string>('Y');
+  const [ktDiscount, setKtDiscount] = useState<string>('Y');
   const [user] = useUserState();
 
   const [showModal, setShowModal] = useState(false);
@@ -76,7 +75,7 @@ const Detail = () => {
   // console.log(routeParams);
 
   return (
-    <ScrollView>
+    <Box>
       {showModal && (
         <ShareModal
           productId={itemInfo?.ItemCode || ''}
@@ -85,7 +84,7 @@ const Detail = () => {
         />
       )}
       <Center m={10} mx={140}>
-        <Heading>{routeParams.name}</Heading>
+        <FontHeading>{routeParams.name}</FontHeading>
         <Divider mt="2" bg="muted.800" width={35} />
       </Center>
       {itemInfo?.ItemImgUrl && (
@@ -96,55 +95,55 @@ const Detail = () => {
         />
       )}
       <Center my={3}>
-        <Heading size="md">{itemInfo?.ItemName}</Heading>
+        <FontHeading size="md">{itemInfo?.ItemName}</FontHeading>
         <Divider my="3" bg="muted.800" width={260} />
         <ColorModule props={itemInfo?.ItemColor} />
       </Center>
       <Pressable onPress={() => setShowModal(true)}>
         <Center m={3}>
           <FontAwesome name="share-square-o" size={50} color="black" />
-          <Heading size="xs">공유하기</Heading>
+          <FontHeading size="xs">공유하기</FontHeading>
         </Center>
       </Pressable>
-      <View>
-        <Heading ml={3}>가입형태</Heading>
+
+      {/* 리팩토링 구간 */}
+      <Box m={3}>
+        <FontHeading>가입형태</FontHeading>
         <SignTypeButtons regiTypes={itemInfo?.RegiType || []} />
-      </View>
-      <View>
-        <Heading ml={3}>지원형태</Heading>
+      </Box>
+
+      <Box m={3}>
+        <Heading>지원형태</Heading>
         <SupTypeButtons
           SupportType={itemInfo?.SupportType || []}
           setSupType={setSupType}
         />
-      </View>
-      <View>
-        <Heading ml={3}>할부개월</Heading>
+      </Box>
+
+      <Box m={3}>
+        <Heading>할부개월</Heading>
         <InstallmentButtons
           ForMonth={itemInfo?.ForMonth || []}
           setInstallment={setInstallment}
         />
-      </View>
-      <View style={{marginTop: 10}}>
-        <Heading ml={3} my={3}>
-          요금제선택
-        </Heading>
+      </Box>
+
+      <Box m={3}>
+        <FontHeading>요금제선택</FontHeading>
         <PlanSelector
           RatePlans={itemInfo?.RatePlan || []}
           plan={plan}
           setPlan={setPlan}
         />
-        <Container m={5} mt={3}>
-          <Text>{planDesc}</Text>
-        </Container>
-      </View>
+        <Box ml={1} mt={3}>
+          <FontText>{planDesc}</FontText>
+        </Box>
+      </Box>
 
-      <View>
-        <Heading ml={3} mb={2}>
-          수령방법
-        </Heading>
+      <Box m={3}>
+        <FontHeading>수령방법</FontHeading>
         <Button
-          ml={2}
-          width={width / 4}
+          mt={2}
           onPress={() => {}}
           variant="outline"
           size="sm"
@@ -153,17 +152,18 @@ const Detail = () => {
           _text={{fontSize: 'md', fontWeight: 'bold', color: 'black'}}>
           {itemInfo?.RevMethod?.[0]?.Title || 'Title unavailable'}
         </Button>
-        <FontText m={2}>
+        <FontText mt={1}>
           {itemInfo?.RevMethod?.[0]?.ClickComment || 'ClickComment unavailable'}
         </FontText>
-      </View>
-      <View>
-        <Heading ml={3}>KT공식몰 추가할인</Heading>
-        <AddSaleButton
+      </Box>
+
+      <Box m={3}>
+        <FontHeading>KT공식몰 추가할인</FontHeading>
+        <KTDiscountButtons
           KTDiscount={itemInfo?.KTDiscount || []}
-          setAddSale={setAddSale}
+          setKtDiscount={setKtDiscount}
         />
-      </View>
+      </Box>
       <Button
         m={2}
         my={5}
@@ -180,7 +180,7 @@ const Detail = () => {
               ItemCode={itemInfo?.ItemCode || routeParams.it_id}
               Vol={plan}
               SupportTypeVol={supType}
-              KTDiscount={addSale}
+              KTDiscount={ktDiscount}
               ForMonth={installment}
               UserID={user?.UserId || ''}
             />
@@ -189,7 +189,7 @@ const Detail = () => {
               ItemCode={itemInfo?.ItemCode || routeParams.it_id}
               Vol={plan}
               SupportTypeVol={supType}
-              KTDiscount={addSale}
+              KTDiscount={ktDiscount}
               ForMonth={installment}
               UserID={user?.UserId || ''}
             />
@@ -212,9 +212,7 @@ const Detail = () => {
         MenuVar={routeParams.MenuVar}
         ItemCode={routeParams.it_id}
       />
-    </ScrollView>
+    </Box>
   );
 };
-
-// export default React.memo(withCommontLayout(Detail));
 export default React.memo(withCommontLayout(Detail, {showFixBar: true}));

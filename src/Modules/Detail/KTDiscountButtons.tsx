@@ -2,36 +2,30 @@ import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {HStack, Button} from 'native-base';
 
-interface AddSaleButtonProps {
+interface KTDiscountButtonProps {
   KTDiscount: string[];
-  setAddSale: React.Dispatch<React.SetStateAction<string>>;
+  setKtDiscount: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function AddSaleButton({
+export default function KTDiscountButtons({
   KTDiscount,
-  setAddSale,
-}: AddSaleButtonProps) {
+  setKtDiscount,
+}: KTDiscountButtonProps) {
   const [selection, setSelection] = useState<number>(0);
-  const width = Dimensions.get('window').width;
-  const margins = 18;
-  const subText = [
-    '출고가에서 공시지원금+대리점 추가지원금 15% 할인',
-    '매월 기본요금에서 25%할인 (선택약정)',
-  ];
 
   useEffect(() => {
-    setAddSale(selection === 0 ? 'Y' : 'N');
+    setKtDiscount(selection === 0 ? 'Y' : 'N');
   }, [selection]);
 
   return (
-    <View>
-      <HStack space={2} ml={2} mt={3}>
+    <>
+      <HStack space={2}>
         {KTDiscount &&
           KTDiscount.map((KTDiscount, index) => (
             <Button
-              // ml={3}
+              mt={2}
               key={index}
-              width={width / 3 - margins}
+              flex={1}
               onPress={() => setSelection(index)}
               variant="outline"
               size="sm"
@@ -42,7 +36,7 @@ export default function AddSaleButton({
             </Button>
           ))}
       </HStack>
-    </View>
+    </>
   );
 }
 

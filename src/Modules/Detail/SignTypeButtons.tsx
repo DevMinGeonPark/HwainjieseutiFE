@@ -1,7 +1,8 @@
 import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {HStack, Button} from 'native-base';
+import {HStack, Button, Box} from 'native-base';
 import {RegiType} from '@Types/DetailTypes';
+import {FontText} from '@src/Atomic/FontText';
 
 type SignTypeButtonsProps = {
   regiTypes: RegiType[];
@@ -14,13 +15,12 @@ export default function SignTypeButtons({regiTypes}: SignTypeButtonsProps) {
   const subText = regiTypes.map(regiType => regiType.ClickComment);
 
   return (
-    <View>
-      <HStack space={2} ml={2} mt={3}>
+    <>
+      <HStack space={2} my={3}>
         {regiTypes.map((regiType, index) => (
           <Button
-            // ml={3}
             key={index}
-            width={width / 3 - margins}
+            flex={1}
             onPress={() => setSelection(index)}
             variant="outline"
             size="sm"
@@ -31,10 +31,10 @@ export default function SignTypeButtons({regiTypes}: SignTypeButtonsProps) {
           </Button>
         ))}
       </HStack>
-      <View style={{margin: 10}}>
-        <Text>{subText[selection]}</Text>
-      </View>
-    </View>
+      <Box>
+        <FontText>{subText[selection]}</FontText>
+      </Box>
+    </>
   );
 }
 

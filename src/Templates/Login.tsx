@@ -8,6 +8,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import LoginForm from '@src/Modules/LoginForm';
 import {useUserState} from '@src/contexts/UserContext';
 import {useToast} from 'native-base';
+import PanelItem from '@src/Atomic/PanelItem';
 
 function Login() {
   // const user = getUserName();
@@ -22,15 +23,14 @@ function Login() {
     }
   }, []);
   return (
+    // 수정필요
     <>
-      <View style={styles.contrainer}>
-        <View style={styles.LabelContrainer}>
-          <Icon name="user" size={25} color="black" />
-          <View style={styles.Label}>
-            <Text style={styles.LabeText}>Login</Text>
-          </View>
-        </View>
-      </View>
+      <PanelItem
+        title="Login"
+        icon="user"
+        titleSize={undefined}
+        iconSize={undefined}
+      />
       <LoginForm />
     </>
   );
@@ -41,7 +41,7 @@ export default withCommontLayout(Login);
 const styles = StyleSheet.create({
   contrainer: {
     borderBottomWidth: 1,
-    borderBlockColor: '#CCC',
+    borderBottomColor: '#CCC',
   },
   LabelContrainer: {
     flexDirection: 'row',

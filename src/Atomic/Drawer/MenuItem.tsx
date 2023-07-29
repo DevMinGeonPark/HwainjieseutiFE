@@ -1,15 +1,16 @@
 import React from 'react';
-import {ChevronRightIcon, HStack} from 'native-base';
+import {ChevronRightIcon, HStack, Pressable} from 'native-base';
 import {FontText} from '../FontText';
 import {Box} from 'native-base';
 
 interface props {
   text: string;
   point: string | undefined;
+  onPress: () => void;
 }
 export default function MenuItem(params: props) {
   return (
-    <Box my={1}>
+    <Pressable my={1} onPress={params.onPress}>
       <HStack
         borderBottomColor={'#eee'}
         borderBottomWidth={1}
@@ -22,6 +23,6 @@ export default function MenuItem(params: props) {
           <FontText>{params.point}점</FontText>
         )}
       </HStack>
-    </Box>
+    </Pressable>
   );
 }

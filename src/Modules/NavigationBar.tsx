@@ -51,9 +51,10 @@ const NavigationBar = () => {
             name: '기타',
           }}
         />
+        {/* 수정필요 */}
         <MenuButton
           navigation={navigation}
-          screenName="ImageProduct"
+          screenName="InternetPlusTV"
           menuText="인터넷+TV"
           params={{
             MenuType: 'co_id',
@@ -64,7 +65,7 @@ const NavigationBar = () => {
         />
         <MenuButton
           navigation={navigation}
-          screenName="ImageProduct"
+          screenName="Event"
           menuText="이벤트"
           params={{
             MenuType: 'bo_table',

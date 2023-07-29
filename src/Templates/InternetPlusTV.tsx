@@ -3,7 +3,7 @@ import React, {useEffect} from 'react';
 import withCommontLayout from './withCommontLayout';
 import RenderHtml from 'react-native-render-html';
 import {useRoute} from '@react-navigation/native';
-import {ProductProps, RouteParamsProps} from '@src/Types/ProductTypes';
+import {ProductProps, SubPageBaseProps} from '@src/Types/ProductTypes';
 import {getKTShopKey} from '@src/Utils/KTShopKey';
 import client from '@src/API/client';
 import {htmlPreprocesser} from '@src/Utils/htmlPreprocesser';
@@ -12,7 +12,7 @@ const ImageProduct = () => {
   const width = Dimensions.get('window').width;
 
   const [source, setSource] = React.useState({html: ''});
-  const routeParams = useRoute().params as RouteParamsProps;
+  const routeParams = useRoute().params as SubPageBaseProps;
 
   const [params, setParams] = React.useState<ProductProps>({
     MenuType: routeParams.MenuType,
@@ -25,7 +25,7 @@ const ImageProduct = () => {
     const res = await client.post('subpage.php', data);
     // console.log(JSON.stringify(res.data, null, 2));
     // console.log(JSON.stringify(res.data.Content, null, 2));
-    setSource({html: htmlPreprocesser(res.data.Content.replace(/\r\n/g, ''))});
+    // setSource({html: htmlPreprocesser(res.data.Content.replace(/\r\n/g, ''))});
   }
 
   React.useEffect(() => {
@@ -33,9 +33,7 @@ const ImageProduct = () => {
   });
 
   return (
-    <View>
-      <RenderHtml contentWidth={width} source={source} />
-    </View>
+    <View>{/* <RenderHtml contentWidth={width} source={source} /> */}</View>
   );
 };
 

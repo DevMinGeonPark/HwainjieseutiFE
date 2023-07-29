@@ -1,9 +1,7 @@
 import client from './client';
-import {getKTShopKey} from '@src/Utils/KTShopKey';
-import {ProductProps} from '@src/Types/ProductTypes';
+import {SubPageBaseProps} from '@src/Types/ProductTypes';
 
-export async function getProductData(data: ProductProps) {
+export async function getProductData(data: SubPageBaseProps) {
   const res = await client.post('subpage.php', data);
-
   return res.data;
 }

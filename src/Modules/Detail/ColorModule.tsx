@@ -27,9 +27,6 @@ export default function ColorModule(props: ColorModuleProps) {
     setText(names[index]);
   };
 
-  // console.log(names);
-  console.log(props.props);
-
   return (
     <Center>
       <FontHeading mb={7} size="md">

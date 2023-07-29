@@ -1,16 +1,14 @@
 import {getProductData} from '@src/API/getProductData';
 import {useMutation, useQuery} from 'react-query';
-import useLog from './useLog';
-// import {MainData} from '@Types/MainDataTypes';
-import {ProductProps} from '@src/Types/ProductTypes';
-import {ProductData} from '@Types/ProductTypes';
+import useLog from '../useLog';
+import {getSubData} from '@src/API/getSubData';
 
-export default function useProductData(params: ProductProps) {
+export default function useSubData(params: any) {
   const log = useLog('dev');
 
-  const query = useQuery('getProductData', () => getProductData(params), {
+  const query = useQuery('getProductData', () => getSubData(params), {
     notifyOnChangeProps: ['data'],
-    onSuccess: (data: ProductData) => {
+    onSuccess: (data: any) => {
       log.info(`Product Data 불러오기 성공`);
       return data;
     },

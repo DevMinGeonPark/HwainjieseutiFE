@@ -1,6 +1,7 @@
 import {getMenuData} from '@src/API/getMenuData';
 import {useMutation, useQuery} from 'react-query';
-import useLog from './useLog';
+import useLog from '../useLog';
+
 import {MenuType} from '@src/Types/MenuType';
 
 export default function useMenuData() {

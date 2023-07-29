@@ -3,7 +3,7 @@ import React, {useEffect} from 'react';
 import withCommontLayout from '@Templates/withCommontLayout';
 import CarouselView from '@Modules/CarouselView';
 import {Linking} from 'react-native';
-import useMainData from '@src/hooks/useMainData';
+import useMainData from '@src/hooks/queryHooks/useMainData';
 import {Image, ScrollView, Box, HStack, Pressable} from 'native-base';
 import Title from '@src/Atomic/Title';
 import SplashScreen from 'react-native-splash-screen';
@@ -12,10 +12,6 @@ import ProductCard from '@src/Modules/ProductCard';
 const Main = () => {
   const {data} = useMainData();
   const width = useWindowDimensions().width;
-
-  function openURL(imgurl: string | undefined): void {
-    throw new Error('Function not implemented.');
-  }
 
   // console.log(JSON.stringify(data, null, 2));
 

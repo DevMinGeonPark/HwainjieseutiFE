@@ -1,6 +1,6 @@
 import {getMainData} from '@src/API/getMainData';
 import {useMutation, useQuery} from 'react-query';
-import useLog from './useLog';
+import useLog from '../useLog';
 import {MainData} from '@Types/MainDataTypes';
 
 export default function useMainData() {
@@ -15,6 +15,5 @@ export default function useMainData() {
       log.info(`메인 데이터 불러오기 실패`);
     },
   });
-  // return mutation;
   return query;
 }

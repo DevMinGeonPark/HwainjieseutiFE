@@ -5,16 +5,23 @@ import {StackNavigator} from './StackNavigator';
 
 import {DrawerScreenProps} from '@Types/NavigationTypes';
 import CustomDrawer from './CustomDrawer';
+import {useDrawerState} from '@src/contexts/DrawerStateContext';
+import MenuDrawer from './MenuDrawer';
+import SearchDrawer from './SearchDrawer';
 
 const Drawer = createDrawerNavigator<DrawerScreenProps>();
 
 export default function DrawerNavigator() {
+  const [drawerType] = useDrawerState();
+
   return (
     // swipre, header 제거
     <Drawer.Navigator
       initialRouteName="DrawerMain"
       screenOptions={{swipeEnabled: false, headerShown: false}}
-      drawerContent={props => <CustomDrawer {...props} />}>
+      drawerContent={props =>
+        drawerType ? <MenuDrawer {...props} /> : <SearchDrawer {...props} />
+      }>
       <Drawer.Screen
         name="DrawerMain"
         component={StackNavigator}

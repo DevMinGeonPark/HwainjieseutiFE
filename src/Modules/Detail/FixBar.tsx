@@ -27,7 +27,7 @@ export default function FixBar() {
           </HStack>
         </VStack>
       </HStack>
-      <HStack space={2} alignItems="center" maxWidth={width - 30} mt={6}>
+      <HStack space={2} alignItems="center" maxWidth={width - 30} mt={4}>
         <Button
           bg="#5ddfde"
           _text={{fontSize: 18, color: 'black', fontWeight: 'bold'}}

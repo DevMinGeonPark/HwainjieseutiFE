@@ -1,7 +1,6 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Select, CheckIcon, Box} from 'native-base';
-import {RatePlan, SubList} from '@Types/DetailTypes';
+import {RatePlan} from '@Types/DetailTypes';
 
 interface PlanSelectorProps {
   RatePlans: RatePlan[];
@@ -37,19 +36,14 @@ export default function PlanSelector({
   };
 
   return (
-    <Box borderRadius="md">
+    <Box borderRadius="md" my={2}>
       <Select
         placeholder="요금제를 선택해주세요."
         selectedValue={plan}
-        minWidth="200"
         _actionSheet={{useRNModal: true}}
-        marginX={3}
         _selectedItem={{
-          bg: 'teal.600',
           endIcon: <CheckIcon size="5" />,
         }}
-        // defaultValue="212122"
-        mt={1}
         borderRadius="2xl"
         borderWidth="2"
         borderColor="primary.400"
@@ -59,5 +53,3 @@ export default function PlanSelector({
     </Box>
   );
 }
-
-const styles = StyleSheet.create({});

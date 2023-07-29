@@ -16,5 +16,10 @@ export type StackScreenProps = {
     // ca_id: string;
     num: number;
   };
-  ImageProduct: {MenuType: string; MenuVar: string};
+  Event: {MenuType: string; MenuVar: string};
+  EventBorad: {Uid: number};
+  InternetPlusTV: {MenuType: string; MenuVar: string};
+  MyPage: undefined;
+  Confirm: undefined;
+  RegisterForm: undefined;
 };

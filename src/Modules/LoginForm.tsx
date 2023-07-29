@@ -13,7 +13,7 @@ import {
   Center,
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import useLogin from '@src/hooks/useLogin';
+import useLogin from '@src/hooks/queryHooks/useLogin';
 
 export default function LoginForm() {
   const [id, setID] = useState<string>('gksrudgh3795');

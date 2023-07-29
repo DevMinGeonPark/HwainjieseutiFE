@@ -18,4 +18,8 @@ export const Images = {
     Line: require('@assets/imgs/share/Line.png'),
     Band: require('@assets/imgs/share/Band.png'),
   },
+  Event: {
+    Notice: require('@assets/imgs/event/notice.gif'),
+    Secret: require('@assets/imgs/event/secret.gif'),
+  },
 };

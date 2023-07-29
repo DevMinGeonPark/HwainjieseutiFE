@@ -1,7 +1,7 @@
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {HStack, Button} from 'native-base';
+import {HStack, Button, Box} from 'native-base';
 import {SupportType} from '@Types/DetailTypes';
+import {FontText} from '@src/Atomic/FontText';
 
 type SupTypeButtonsProps = {
   SupportType: SupportType[];
@@ -13,8 +13,6 @@ export default function SupTypeButtons({
   setSupType,
 }: SupTypeButtonsProps) {
   const [selection, setSelection] = useState<number>(0);
-  const width = Dimensions.get('window').width;
-  const margins = 18;
   const subText = SupportType.map(supportType => supportType.ClickComment);
 
   useEffect(() => {
@@ -22,13 +20,12 @@ export default function SupTypeButtons({
   }, [selection]);
 
   return (
-    <View>
-      <HStack space={2} ml={2} mt={3}>
+    <>
+      <HStack space={2} my={3}>
         {SupportType.map((supportType, index) => (
           <Button
-            // ml={3}
             key={index}
-            width={width / 3 - margins}
+            flex={1}
             onPress={() => {
               setSelection(index);
             }}
@@ -41,11 +38,9 @@ export default function SupTypeButtons({
           </Button>
         ))}
       </HStack>
-      <View style={{margin: 10}}>
-        <Text>{subText[selection]}</Text>
-      </View>
-    </View>
+      <Box>
+        <FontText>{subText[selection]}</FontText>
+      </Box>
+    </>
   );
 }
-
-const styles = StyleSheet.create({});

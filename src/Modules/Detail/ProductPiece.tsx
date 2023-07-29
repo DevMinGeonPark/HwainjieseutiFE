@@ -1,7 +1,7 @@
 import {StyleSheet, View, Text, ScrollView, Pressable} from 'react-native';
 import React, {useEffect} from 'react';
 import {useRoute} from '@react-navigation/native';
-import {ProductProps, RouteParamsProps} from '@src/Types/ProductTypes';
+import {ProductProps} from '@src/Types/ProductTypes';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';

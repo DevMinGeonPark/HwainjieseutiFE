@@ -6,12 +6,17 @@ import {useNavigation} from '@react-navigation/native';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
 
 import {DrawerScreenProps} from '@Types/NavigationTypes';
+import {useDrawerState} from '@src/contexts/DrawerStateContext';
 
 export default function SideBarButton() {
   const navigation = useNavigation<DrawerNavigationProp<DrawerScreenProps>>();
+  const [, setDrawerType] = useDrawerState();
   return (
     <Pressable
-      onPress={() => navigation.openDrawer()}
+      onPress={() => {
+        setDrawerType(true);
+        navigation.openDrawer();
+      }}
       borderRightWidth={1}
       p={3}
       borderColor="#CCC">
