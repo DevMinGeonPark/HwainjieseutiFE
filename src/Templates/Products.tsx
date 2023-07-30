@@ -1,4 +1,3 @@
-import {StyleSheet, View, Text, ScrollView, Pressable} from 'react-native';
 import React, {useEffect} from 'react';
 import withCommontLayout from './withCommontLayout';
 import {useRoute} from '@react-navigation/native';
@@ -8,16 +7,15 @@ import {
   ProductProps,
   SubPageBaseProps,
 } from '@src/Types/ProductTypes';
-import {useNavigation} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {StackScreenProps} from '@Types/NavigationTypes';
 import ProductCard from '@src/Modules/ProductCard';
 import client from '@src/API/client';
 import {ItemList} from '@src/Types/MainDataTypes';
 import LodingIndicator from '@src/Modules/LodingIndicator';
 
 import useProductData from '@src/hooks/queryHooks/useProductData';
-import {HStack} from 'native-base';
+import {HStack, Box} from 'native-base';
+import SortItem from '@src/Atomic/Products/SortItem';
+import SortBar from '@src/Modules/Products/SortBar';
 
 function isProductData(
   data: EventData | ProductData | undefined,
@@ -28,9 +26,6 @@ function isProductData(
 const Products = () => {
   const route = useRoute();
   const routeParams = route.params as SubPageBaseProps;
-  const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
-  // const toast = useToast();
-  // const queryClient = useQueryClient();
 
   const [params, setParams] = React.useState<ProductProps>({
     MenuType: routeParams.MenuType,
@@ -64,49 +59,15 @@ const Products = () => {
 
   // console.log(JSON.stringify(data, null, 2));
 
+  if (isLoading) return <LodingIndicator count={data?.length || 4} />;
+
   return (
-    <ScrollView>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'flex-end',
-          margin: 10,
-          // marginRight: 10,
-        }}>
-        <Pressable
-          onPress={() =>
-            setParams({
-              MenuType: params.MenuType,
-              MenuVar: params.MenuVar,
-              sort: 'it_Price',
-              sortodr: 'aec',
-            })
-          }>
-          <Text style={styles.sortText}>낮은가격</Text>
-        </Pressable>
-        <Pressable
-          onPress={() =>
-            setParams({
-              MenuType: params.MenuType,
-              MenuVar: params.MenuVar,
-              sort: 'it_Price',
-              sortodr: 'desc',
-            })
-          }>
-          <Text style={styles.sortText}>높은가격</Text>
-        </Pressable>
-        <Pressable
-          onPress={() =>
-            setParams({
-              MenuType: params.MenuType,
-              MenuVar: params.MenuVar,
-              sort: 'it_update_time',
-              sortodr: 'aec',
-            })
-          }>
-          <Text style={styles.sortText}>신상품</Text>
-        </Pressable>
-      </View>
+    <Box>
+      <SortBar
+        setParams={setParams}
+        MenuType={routeParams.MenuType}
+        MenuVar={routeParams.MenuVar}
+      />
       {/* <HStack flexWrap="wrap">
         {isProductData(data) &&
           data.ItemList.map(item => (
@@ -125,36 +86,25 @@ const Products = () => {
             />
           ))}
       </HStack> */}
-      {isLoading ? (
-        <LodingIndicator count={data?.length || 4} />
-      ) : (
-        <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-          {data?.map(item => (
-            <ProductCard
-              MenuType={params.MenuType}
-              MenuVar={params.MenuVar}
-              key={item.ItemCode}
-              CategorieCode={item.CategorieCode}
-              ItemCode={item.ItemCode}
-              ItemImgUrl={item.ItemImgUrl}
-              ItemName={item.ItemName}
-              ItemColor={item.ItemColor}
-              ItemChargeNormal={item.ItemChargeNormal}
-              ItemChargeSales={item.ItemChargeSales}
-              ItemDCRate={item.ItemDCRate}
-            />
-          ))}
-        </View>
-      )}
-    </ScrollView>
+      <HStack flexWrap="wrap">
+        {data?.map(item => (
+          <ProductCard
+            MenuType={params.MenuType}
+            MenuVar={params.MenuVar}
+            key={item.ItemCode}
+            CategorieCode={item.CategorieCode}
+            ItemCode={item.ItemCode}
+            ItemImgUrl={item.ItemImgUrl}
+            ItemName={item.ItemName}
+            ItemColor={item.ItemColor}
+            ItemChargeNormal={item.ItemChargeNormal}
+            ItemChargeSales={item.ItemChargeSales}
+            ItemDCRate={item.ItemDCRate}
+          />
+        ))}
+      </HStack>
+    </Box>
   );
 };
 
 export default React.memo(withCommontLayout(Products));
-
-const styles = StyleSheet.create({
-  sortText: {
-    margin: 10,
-    color: '#777',
-  },
-});

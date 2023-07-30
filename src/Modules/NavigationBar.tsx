@@ -5,6 +5,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {useNavigation} from '@react-navigation/native';
 import MenuButton from '@src/Atomic/Menu/MenuButton';
+import {useRoute} from '@react-navigation/native';
 
 type onNavigationTypes = {
   label: string;
@@ -14,6 +15,7 @@ type onNavigationTypes = {
 
 const NavigationBar = () => {
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
+  const currentName = useRoute().name;
 
   return (
     <ScrollView horizontal={true}>
@@ -28,6 +30,7 @@ const NavigationBar = () => {
             num: Math.random(),
             name: '삼성',
           }}
+          currentName={currentName}
         />
         <MenuButton
           navigation={navigation}
@@ -39,6 +42,7 @@ const NavigationBar = () => {
             num: Math.random(),
             name: '애플',
           }}
+          currentName={currentName}
         />
         <MenuButton
           navigation={navigation}
@@ -50,6 +54,7 @@ const NavigationBar = () => {
             num: Math.random(),
             name: '기타',
           }}
+          currentName={currentName}
         />
         {/* 수정필요 */}
         <MenuButton
@@ -62,6 +67,7 @@ const NavigationBar = () => {
             num: Math.random(),
             name: '인터넷+TV',
           }}
+          currentName={currentName}
         />
         <MenuButton
           navigation={navigation}
@@ -73,6 +79,7 @@ const NavigationBar = () => {
             num: Math.random(),
             name: '이벤트',
           }}
+          currentName={currentName}
         />
       </HStack>
     </ScrollView>

@@ -24,8 +24,8 @@ export default function SignTypeButtons({regiTypes}: SignTypeButtonsProps) {
             onPress={() => setSelection(index)}
             variant="outline"
             size="sm"
-            borderWidth={selection === index ? 3 : 1}
-            borderColor={selection === index ? 'primary.400' : 'muted.300'}
+            borderWidth={selection === index ? 2 : 1}
+            borderColor={selection === index ? '#5fdedd' : 'muted.300'}
             _text={{fontSize: 'xl', fontWeight: 'bold', color: 'black'}}>
             {regiType.Title}
           </Button>

@@ -8,9 +8,20 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {useNavigation} from '@react-navigation/native';
 import authStorage from '@src/Utils/authStorage';
 import {useToast} from 'native-base';
+import {DrawerScreenProps} from '@Types/NavigationTypes';
+import {DrawerNavigationProp} from '@react-navigation/drawer';
 
-export default function useLogin(id: string) {
-  const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
+interface LoginData {
+  id: string;
+  loginType: string;
+}
+
+export default function useLogin({id, loginType}: LoginData) {
+  console.log(loginType);
+  const stackNavigation =
+    useNavigation<StackNavigationProp<StackScreenProps>>();
+  const drawerNavigation =
+    useNavigation<DrawerNavigationProp<DrawerScreenProps>>();
 
   const alert = useAlert();
   const log = useLog('dev');
@@ -20,7 +31,10 @@ export default function useLogin(id: string) {
   const mutation = useMutation(login, {
     onSuccess: data => {
       if (data.Status === 'A10') {
-        navigation.pop();
+        loginType === 'drawer'
+          ? drawerNavigation.goBack()
+          : stackNavigation.pop();
+        // navigation.pop();
         log.info('로그인 성공');
         toast.show({title: '로그인 성공'});
         setUser({UserId: id, UserNm: data.UserNm});

@@ -13,6 +13,7 @@ import EventBorad from '@src/Templates/EventBorad';
 import MyPage from '@src/Templates/MyPage';
 import Confirm from '@src/Templates/Confirm';
 import RegisterForm from '@src/Templates/RegisterForm';
+import CustomerInquiry from '@src/Templates/CustomerInquiry';
 
 const Stack = createStackNavigator<StackScreenProps>();
 // export default
@@ -91,6 +92,12 @@ function StackNavigator() {
       <Stack.Screen
         name="RegisterForm"
         component={RegisterForm}
+        options={{headerShown: false}}
+      />
+
+      <Stack.Screen
+        name="CustomerInquiry"
+        component={CustomerInquiry}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

@@ -22,4 +22,5 @@ export type StackScreenProps = {
   MyPage: undefined;
   Confirm: undefined;
   RegisterForm: undefined;
+  CustomerInquiry: undefined;
 };

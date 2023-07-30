@@ -2,6 +2,7 @@ import React from 'react';
 import {Pressable} from 'react-native';
 import {Center} from 'native-base';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {FontText} from '../FontText';
 
 interface MenuButtonProps {
   navigation: StackNavigationProp<any>;
@@ -13,6 +14,7 @@ interface MenuButtonProps {
     num: number;
     name: string;
   };
+  currentName: string;
 }
 
 const MenuButton: React.FC<MenuButtonProps> = ({
@@ -20,15 +22,17 @@ const MenuButton: React.FC<MenuButtonProps> = ({
   screenName,
   menuText,
   params,
+  currentName,
 }) => {
   return (
     <Pressable onPress={() => navigation.navigate(screenName, params)}>
-      <Center
-        // p={3}
-        _text={{
-          fontSize: '14',
-        }}>
-        {menuText}
+      <Center>
+        <FontText
+          color={currentName === screenName ? '#37a09f' : '#000'}
+          fontWeight={currentName === screenName ? 'bold' : 'normal'}
+          fontSize={14}>
+          {menuText}
+        </FontText>
       </Center>
     </Pressable>
   );
