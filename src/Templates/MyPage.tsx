@@ -20,4 +20,4 @@ const MyPage = () => {
   );
 };
 
-export default withCommontLayout(MyPage);
+export default React.memo(withCommontLayout(MyPage));

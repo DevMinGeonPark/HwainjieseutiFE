@@ -14,16 +14,20 @@ export default function useProductData(
 ) {
   const log = useLog('dev');
 
-  const query = useQuery('getProductData', () => getProductData(params), {
-    notifyOnChangeProps: ['data'],
-    onSuccess: (data: EventData | ProductData) => {
-      log.info(`event 불러오기 성공`);
-      return data;
+  const query = useQuery(
+    ['getProductData', params],
+    () => getProductData(params),
+    {
+      notifyOnChangeProps: ['data'],
+      onSuccess: (data: EventData | ProductData) => {
+        log.info(`event 불러오기 성공`);
+        return data;
+      },
+      onError: error => {
+        log.info(`event 불러오기 실패`);
+      },
     },
-    onError: error => {
-      log.info(`event 불러오기 실패`);
-    },
-  });
+  );
   // return mutation;
   return query;
 }

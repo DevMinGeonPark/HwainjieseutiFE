@@ -13,8 +13,6 @@ const EventBorad = () => {
 
   const {data} = useEventData({Uid: routeParams.Uid});
 
-  console.log(JSON.stringify(data, null, 2));
-
   return (
     <Box>
       <FontHeading p={2} py={3} fontSize={16}>

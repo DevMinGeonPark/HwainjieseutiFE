@@ -38,23 +38,3 @@ export interface SubBanner {
   BannerUrl: string;
   BannerImg: string;
 }
-
-// export interface ItemBestList {
-//   itemCode: string;
-//   itemImgUrl: string;
-//   itemName: string;
-//   ItemColor: string;
-//   ItemChargeNormal: number;
-//   ItemChargeSales: number;
-//   ItemDCRate: number;
-// }
-
-// export interface ItemNewList {
-//   itemCode: string;
-//   itemImgUrl: string;
-//   itemName: string;
-//   ItemColor: string;
-//   ItemChargeNormal: number;
-//   ItemChargeSales: number;
-//   ItemDCRate: number;
-// }

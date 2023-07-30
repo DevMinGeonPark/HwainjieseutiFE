@@ -7,20 +7,6 @@ export interface BodyType {
   UserID: string;
 }
 
-// "ChgFactory": 1155000,
-// "ChgMonthlyPlan": 767603,
-// "ChgMyPoint": 37397,
-// "ChgNm": "초이스 스페셜",
-// "ChgNmRate": 110000,
-// "ChgDiscountContract": 0,
-// "ChgDiscountAdd": 27500,
-// "ChgNmRateDiscount": 82500,
-// "ChgContractMonthChg": 30212,
-// "ChgContractMonthInterest": 3774,
-// "ChgContractMonthRate": 82500,
-// "ChgContractMonthTotal": 112712,
-// "ChgKTmalldiscount": 350000
-
 export interface MachineCalResType {
   /** 출고가 */
   ChgFactory: number;

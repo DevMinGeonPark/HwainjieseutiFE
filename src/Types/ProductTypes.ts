@@ -40,3 +40,9 @@ export interface TopNotice extends NoticeBase {
 export interface ListNotice extends NoticeBase {
   ImgSrc: string;
 }
+
+export function isProductData(
+  data: EventData | ProductData | undefined,
+): data is ProductData {
+  return data !== undefined && 'ItemList' in data;
+}

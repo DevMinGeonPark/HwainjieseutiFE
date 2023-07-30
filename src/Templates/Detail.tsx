@@ -1,34 +1,19 @@
-import {StyleSheet, Text, View, ScrollView, Dimensions} from 'react-native';
+import {useWindowDimensions} from 'react-native';
 import React, {useContext, useEffect, useState} from 'react';
 import withCommontLayout from './withCommontLayout';
-import {
-  Center,
-  Heading,
-  Divider,
-  Button,
-  Image,
-  Container,
-  Box,
-  Pressable,
-  Modal,
-  FormControl,
-} from 'native-base';
+import {Button, Image, Box} from 'native-base';
 import {htmlPreprocesser} from '@Utils/htmlPreprocesser';
 import {useRoute} from '@react-navigation/native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import SignTypeButtons from '../Modules/Detail/SignTypeButtons';
 import SupTypeButtons from '../Modules/Detail/SupTypeButtons';
 import InstallmentButtons from '../Modules/Detail/InstallmentButtons';
 import PlanSelector from '@src/Modules/Detail/PlanSelector';
 import KTDiscountButtons from '@src/Modules/Detail/KTDiscountButtons';
-import ColorModule from '@src/Modules/Detail/ColorModule';
 import getItemInfo from '@src/API/Detail/getItemInfo';
 import getPlanDesc from '@src/API/Detail/getPlanDesc';
 import MachineRateCalculator from '@src/Modules/Detail/MachineRateCalculator';
 import {useUserState} from '@src/contexts/UserContext';
-import RenderHTML from 'react-native-render-html';
 import ProductPiece from '@src/Modules/Detail/ProductPiece';
-import {useNavigation} from '@react-navigation/native';
 
 import {ItemDetail} from '@src/Types/DetailTypes';
 import ChargeRateCalculator from '@src/Modules/Detail/ChargeRateCalculator';
@@ -36,12 +21,14 @@ import ShareModal from '@src/Modules/Detail/ShareModal';
 import {FontText} from '@src/Atomic/FontText';
 import InfoTab from '@src/Modules/Detail/InfoTab';
 import {ScrollViewContext} from '@src/contexts/ScrollViewContext';
-import {FontHeading} from '@src/Atomic/FontHeading';
+import DetailTitle from '@src/Modules/Detail/DetailTitle';
+import DetailInfo from '@src/Modules/Detail/DetailInfo';
+import ShareModalButtonModule from '@src/Modules/Detail/ShareModalButtonModule';
+import RateTypeUI from '@src/Modules/Detail/RateTypeUI';
 
 const Detail = () => {
   const route = useRoute();
   const routeParams = route.params as any;
-  const width = Dimensions.get('window').width;
 
   const [itemInfo, setItemInfo] = useState<ItemDetail>();
   const [plan, setPlan] = useState<string>('212121');
@@ -71,65 +58,37 @@ const Detail = () => {
     }
   }, [plan, itemInfo]);
 
-  // console.log(JSON.stringify(itemInfo, null, 2));
-  // console.log(routeParams);
-
   return (
     <Box>
-      {showModal && (
-        <ShareModal
-          productId={itemInfo?.ItemCode || ''}
-          showModal={showModal}
-          setShowModal={setShowModal}
-        />
-      )}
-      <Center m={10} mx={140}>
-        <FontHeading>{routeParams.name}</FontHeading>
-        <Divider mt="2" bg="muted.800" width={35} />
-      </Center>
+      <DetailTitle name={routeParams.name || ''} />
       {itemInfo?.ItemImgUrl && (
         <Image
           source={{uri: itemInfo?.ItemImgUrl}}
           alt="product Image"
-          size={width - 20}
+          size={useWindowDimensions().width - 20}
         />
       )}
-      <Center my={3}>
-        <FontHeading size="md">{itemInfo?.ItemName}</FontHeading>
-        <Divider my="3" bg="muted.800" width={260} />
-        <ColorModule props={itemInfo?.ItemColor} />
-      </Center>
-      <Pressable onPress={() => setShowModal(true)}>
-        <Center m={3}>
-          <FontAwesome name="share-square-o" size={50} color="black" />
-          <FontHeading size="xs">공유하기</FontHeading>
-        </Center>
-      </Pressable>
-
-      {/* 리팩토링 구간 */}
-      <Box m={3}>
-        <FontHeading>가입형태</FontHeading>
+      <DetailInfo
+        productTitle={itemInfo?.ItemName || ''}
+        productColors={itemInfo?.ItemColor || ''}
+      />
+      <ShareModalButtonModule setShowModal={setShowModal} />
+      <RateTypeUI heading="가입형태">
         <SignTypeButtons regiTypes={itemInfo?.RegiType || []} />
-      </Box>
-
-      <Box m={3}>
-        <Heading>지원형태</Heading>
+      </RateTypeUI>
+      <RateTypeUI heading="지원형태">
         <SupTypeButtons
           SupportType={itemInfo?.SupportType || []}
           setSupType={setSupType}
         />
-      </Box>
-
-      <Box m={3}>
-        <Heading>할부개월</Heading>
+      </RateTypeUI>
+      <RateTypeUI heading="할부개월">
         <InstallmentButtons
           ForMonth={itemInfo?.ForMonth || []}
           setInstallment={setInstallment}
         />
-      </Box>
-
-      <Box m={3}>
-        <FontHeading>요금제선택</FontHeading>
+      </RateTypeUI>
+      <RateTypeUI heading="요금제 선택">
         <PlanSelector
           RatePlans={itemInfo?.RatePlan || []}
           plan={plan}
@@ -138,10 +97,9 @@ const Detail = () => {
         <Box ml={1} mt={3}>
           <FontText>{planDesc}</FontText>
         </Box>
-      </Box>
+      </RateTypeUI>
 
-      <Box m={3}>
-        <FontHeading>수령방법</FontHeading>
+      <RateTypeUI heading="수령방법">
         <Button
           mt={2}
           onPress={() => {}}
@@ -155,15 +113,15 @@ const Detail = () => {
         <FontText mt={1}>
           {itemInfo?.RevMethod?.[0]?.ClickComment || 'ClickComment unavailable'}
         </FontText>
-      </Box>
+      </RateTypeUI>
 
-      <Box m={3}>
-        <FontHeading>KT공식몰 추가할인</FontHeading>
+      <RateTypeUI heading="KT공식몰 추가할인">
         <KTDiscountButtons
           KTDiscount={itemInfo?.KTDiscount || []}
           setKtDiscount={setKtDiscount}
         />
-      </Box>
+      </RateTypeUI>
+
       <Button
         m={2}
         my={5}
@@ -173,29 +131,29 @@ const Detail = () => {
         onPress={() => {}}>
         주문하기
       </Button>
-      <Box borderTopWidth={2} borderTopColor={'primary.400'}>
-        <Box mt={3}>
-          {supType === 'Machine' ? (
-            <MachineRateCalculator
-              ItemCode={itemInfo?.ItemCode || routeParams.it_id}
-              Vol={plan}
-              SupportTypeVol={supType}
-              KTDiscount={ktDiscount}
-              ForMonth={installment}
-              UserID={user?.UserId || ''}
-            />
-          ) : (
-            <ChargeRateCalculator
-              ItemCode={itemInfo?.ItemCode || routeParams.it_id}
-              Vol={plan}
-              SupportTypeVol={supType}
-              KTDiscount={ktDiscount}
-              ForMonth={installment}
-              UserID={user?.UserId || ''}
-            />
-          )}
-        </Box>
+
+      <Box borderTopWidth={2} borderTopColor={'primary.400'} pt={3}>
+        {supType === 'Machine' ? (
+          <MachineRateCalculator
+            ItemCode={itemInfo?.ItemCode || routeParams.it_id}
+            Vol={plan}
+            SupportTypeVol={supType}
+            KTDiscount={ktDiscount}
+            ForMonth={installment}
+            UserID={user?.UserId || ''}
+          />
+        ) : (
+          <ChargeRateCalculator
+            ItemCode={itemInfo?.ItemCode || routeParams.it_id}
+            Vol={plan}
+            SupportTypeVol={supType}
+            KTDiscount={ktDiscount}
+            ForMonth={installment}
+            UserID={user?.UserId || ''}
+          />
+        )}
       </Box>
+
       <Box borderTopWidth={2} borderTopColor={'primary.400'}>
         <InfoTab
           html={htmlPreprocesser(
@@ -210,9 +168,15 @@ const Detail = () => {
       <ProductPiece
         MenuType={routeParams.MenuType}
         MenuVar={routeParams.MenuVar}
-        ItemCode={routeParams.it_id}
       />
+      {showModal && (
+        <ShareModal
+          productId={itemInfo?.ItemCode || ''}
+          showModal={showModal}
+          setShowModal={setShowModal}
+        />
+      )}
     </Box>
   );
 };
-export default React.memo(withCommontLayout(Detail, {showFixBar: true}));
+export default withCommontLayout(Detail, {showFixBar: true});

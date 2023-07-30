@@ -37,6 +37,4 @@ const ImageProduct = () => {
   );
 };
 
-export default withCommontLayout(ImageProduct);
-
-const styles = StyleSheet.create({});
+export default React.memo(withCommontLayout(ImageProduct));
