@@ -8,6 +8,9 @@ import {
   ScrollViewInstance,
 } from '@src/contexts/ScrollViewContext';
 import {NativeScrollEvent, NativeSyntheticEvent} from 'react-native';
+import {FixBarContextProvider} from '@src/contexts/FixBarStateContext';
+
+import {Text} from 'native-base';
 
 type Options = {showFixBar?: boolean};
 
@@ -39,17 +42,19 @@ const withCommontLayout = (
     return (
       <Box flex={1} bg={'white'} safeArea>
         <Header showLogo={showLogo} />
-        <ScrollViewContext.Provider value={{scrollViewRef}}>
-          <ScrollView
-            ref={scrollViewRef}
-            onScroll={onScrollHandler}
-            scrollEventThrottle={16}>
-            <WrappedComponent {...props} />
-            <Box width={30} height={30} />
-            <Footer />
-          </ScrollView>
-        </ScrollViewContext.Provider>
-        {showFixBar && <FixBar />}
+        <FixBarContextProvider>
+          <ScrollViewContext.Provider value={{scrollViewRef}}>
+            <ScrollView
+              ref={scrollViewRef}
+              onScroll={onScrollHandler}
+              scrollEventThrottle={16}>
+              <WrappedComponent {...props} />
+              <Box width={30} height={30} />
+              <Footer />
+            </ScrollView>
+          </ScrollViewContext.Provider>
+          {showFixBar && <FixBar />}
+        </FixBarContextProvider>
       </Box>
     );
   };

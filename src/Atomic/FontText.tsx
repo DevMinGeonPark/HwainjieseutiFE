@@ -13,7 +13,8 @@ export const FontText = (
     } & React.RefAttributes<unknown>,
 ) => {
   return (
-    <Text fontFamily="SpoqaHanSansNeo-Regular" {...props}>
+    <Text fontFamily="SpoqaHanSansNeo" {...props}>
+      {/* <Text style={{fontFamily: 'SpoqaHanSansNeo'}} {...props}> */}
       {props.children}
     </Text>
   );

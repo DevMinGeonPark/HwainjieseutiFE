@@ -1,3 +1,4 @@
+import {FontText} from '@src/Atomic/FontText';
 import React, {useState} from 'react';
 import {
   SafeAreaView,
@@ -19,10 +20,10 @@ const BtnGroup = () => {
             selection === 1 ? {backgroundColor: '#6B7280'} : null,
           ]}
           onPress={() => setSelection(1)}>
-          <Text
+          <FontText
             style={[styles.btnText, selection === 1 ? {color: 'white'} : null]}>
             Button 1
-          </Text>
+          </FontText>
         </TouchableOpacity>
         <TouchableOpacity
           style={[
@@ -30,10 +31,10 @@ const BtnGroup = () => {
             selection === 2 ? {backgroundColor: '#6B7280'} : null,
           ]}
           onPress={() => setSelection(2)}>
-          <Text
+          <FontText
             style={[styles.btnText, selection === 2 ? {color: 'white'} : null]}>
             Button 2
-          </Text>
+          </FontText>
         </TouchableOpacity>
         <TouchableOpacity
           style={[
@@ -41,10 +42,10 @@ const BtnGroup = () => {
             selection === 3 ? {backgroundColor: '#6B7280'} : null,
           ]}
           onPress={() => setSelection(3)}>
-          <Text
+          <FontText
             style={[styles.btnText, selection === 3 ? {color: 'white'} : null]}>
             Button 3
-          </Text>
+          </FontText>
         </TouchableOpacity>
         <TouchableOpacity
           style={[
@@ -52,10 +53,10 @@ const BtnGroup = () => {
             selection === 4 ? {backgroundColor: '#6B7280'} : null,
           ]}
           onPress={() => setSelection(4)}>
-          <Text
+          <FontText
             style={[styles.btnText, selection === 4 ? {color: 'white'} : null]}>
             Button 4
-          </Text>
+          </FontText>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

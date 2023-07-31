@@ -16,7 +16,8 @@ export const FontHeading = (
     } & React.RefAttributes<unknown>,
 ) => {
   return (
-    <Heading style={{fontFamily: 'SpoqaHanSansNeo'}} {...props}>
+    <Heading fontFamily="SpoqaHanSansNeo" {...props}>
+      {/* // <Heading style={{fontFamily: 'SpoqaHanSansNeo-Regular'}} {...props}> */}
       {props.children}
     </Heading>
   );

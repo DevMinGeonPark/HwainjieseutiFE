@@ -13,12 +13,13 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import DrawerInfo from '@src/Modules/MenuDrawer/DrawerInfo';
 import DrawerLoginFrom from '@src/Modules/MenuDrawer/DrawerLoginFrom';
+import {useLoginCheck} from '@src/hooks/useLoginCheck';
 
 export default function MenuDrawer(props: any) {
   const [user, setUser] = useUserState();
   const Toast = useToast();
-
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
+  const isLoggedIn = useLoginCheck();
 
   const handleAuth = () => {
     if (user) {
@@ -29,16 +30,25 @@ export default function MenuDrawer(props: any) {
       Toast.show({title: '로그인이 되어있지 않습니다.'});
     }
   };
+
+  if (!isLoggedIn)
+    return (
+      <Box safeArea m={5}>
+        <DrawerLoginFrom />
+        <DividerTitle title="MY MENU" fontSize={14} />
+        <MenuItem text="회원가입" point={undefined} onPress={() => {}} />
+        <MenuItem
+          text="아이디/비밀번호 찾기"
+          point={undefined}
+          onPress={() => {}}
+        />
+      </Box>
+    );
+
   return (
     <Box safeArea m={5}>
-      {user ? (
-        <DrawerInfo UserNm={user?.UserNm || ''} handleAuth={handleAuth} />
-      ) : (
-        <DrawerLoginFrom />
-      )}
-      <Box>
-        <DividerTitle title="MY MENU" fontSize={14} />
-      </Box>
+      <DrawerInfo UserNm={user?.UserNm || ''} handleAuth={handleAuth} />
+      <DividerTitle title="MY MENU" fontSize={14} />
       <Box mx={3}>
         <MenuItem text="나의포인트" point="36497" onPress={() => {}} />
         <MenuItem

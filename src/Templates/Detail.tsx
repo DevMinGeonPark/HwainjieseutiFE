@@ -27,9 +27,6 @@ import ShareModalButtonModule from '@src/Modules/Detail/ShareModalButtonModule';
 import RateTypeUI from '@src/Modules/Detail/RateTypeUI';
 
 const Detail = () => {
-  const route = useRoute();
-  const routeParams = route.params as any;
-
   const [itemInfo, setItemInfo] = useState<ItemDetail>();
   const [plan, setPlan] = useState<string>('212121');
   const [planDesc, setPlanDesc] = useState<string>('');
@@ -45,12 +42,17 @@ const Detail = () => {
 
   const {scrollViewRef} = useContext(ScrollViewContext);
 
+  const width = useWindowDimensions().width - 20;
+
+  const routeParams = useRoute().params as any;
+
   useEffect(() => {
     getItemInfo(routeParams.it_id, routeParams.MenuVar).then(data =>
       setItemInfo(data),
     );
+    setPlan('212121');
     scrollViewRef?.current?.scrollTo({x: 0, y: 0, animated: true});
-  }, [routeParams.num]);
+  }, [routeParams.num, routeParams.it_id, routeParams.MenuVar, scrollViewRef]);
 
   useEffect(() => {
     if (plan.length !== 0 && itemInfo?.RateCode) {
@@ -65,7 +67,7 @@ const Detail = () => {
         <Image
           source={{uri: itemInfo?.ItemImgUrl}}
           alt="product Image"
-          size={useWindowDimensions().width - 20}
+          size={width}
         />
       )}
       <DetailInfo
@@ -74,18 +76,23 @@ const Detail = () => {
       />
       <ShareModalButtonModule setShowModal={setShowModal} />
       <RateTypeUI heading="가입형태">
-        <SignTypeButtons regiTypes={itemInfo?.RegiType || []} />
+        <SignTypeButtons
+          regiTypes={itemInfo?.RegiType || []}
+          route={routeParams}
+        />
       </RateTypeUI>
       <RateTypeUI heading="지원형태">
         <SupTypeButtons
           SupportType={itemInfo?.SupportType || []}
           setSupType={setSupType}
+          route={routeParams}
         />
       </RateTypeUI>
       <RateTypeUI heading="할부개월">
         <InstallmentButtons
           ForMonth={itemInfo?.ForMonth || []}
           setInstallment={setInstallment}
+          route={routeParams}
         />
       </RateTypeUI>
       <RateTypeUI heading="요금제 선택">
@@ -119,6 +126,7 @@ const Detail = () => {
         <KTDiscountButtons
           KTDiscount={itemInfo?.KTDiscount || []}
           setKtDiscount={setKtDiscount}
+          route={routeParams}
         />
       </RateTypeUI>
 

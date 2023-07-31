@@ -2,18 +2,25 @@ import React, {useEffect, useState} from 'react';
 import {HStack, Button, Box} from 'native-base';
 import {SupportType} from '@Types/DetailTypes';
 import {FontText} from '@src/Atomic/FontText';
+import {useRoute} from '@react-navigation/native';
 
 type SupTypeButtonsProps = {
   SupportType: SupportType[];
   setSupType: React.Dispatch<React.SetStateAction<string>>;
+  route: Readonly<object | undefined>;
 };
 
 export default function SupTypeButtons({
   SupportType,
   setSupType,
+  route,
 }: SupTypeButtonsProps) {
   const [selection, setSelection] = useState<number>(0);
   const subText = SupportType.map(supportType => supportType.ClickComment);
+
+  useEffect(() => {
+    setSelection(0);
+  }, [route]);
 
   useEffect(() => {
     setSupType(selection === 0 ? 'Machine' : 'Charge');

@@ -13,6 +13,8 @@ import Circles from '@src/Atomic/ProductCard/Circles';
 import {FontHeading} from '@src/Atomic/FontHeading';
 import ToDetailButton from '@src/Atomic/ProductCard/ToDetailButton';
 import {NameSelector} from '@src/Utils/NameSelector';
+import {useLoginCheck} from '@src/hooks/useLoginCheck';
+import {Alert} from 'react-native';
 
 export default function ProductCard(data: ItemList) {
   const [color, setColor] = useState<string[]>();
@@ -25,6 +27,8 @@ export default function ProductCard(data: ItemList) {
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
 
   const routeName = useRoute().name;
+
+  const isLoggedIn = useLoginCheck();
 
   useEffect(() => {
     setColor(data.ItemColor.match(/#[a-f0-9]{6}/g) || []);
@@ -44,13 +48,15 @@ export default function ProductCard(data: ItemList) {
         setIsPressed(false);
       }}
       onPress={() => {
-        navigation.navigate('Detail', {
-          name: NameSelector(data.MenuVar),
-          MenuType: data.MenuType,
-          MenuVar: data.MenuVar,
-          it_id: data.ItemCode,
-          num: Math.random(),
-        });
+        isLoggedIn
+          ? navigation.navigate('Detail', {
+              name: NameSelector(data.MenuVar),
+              MenuType: data.MenuType,
+              MenuVar: data.MenuVar,
+              it_id: data.ItemCode,
+              num: Math.random(),
+            })
+          : Alert.alert('로그인이 필요합니다.');
       }}
       p={2}
       bg="white"
@@ -77,7 +83,7 @@ export default function ProductCard(data: ItemList) {
             />
           )}
         </Center>
-        <Box>
+        <Box pt={3}>
           <Center>
             <FontHeading fontSize={14}>{data.ItemName}</FontHeading>
           </Center>

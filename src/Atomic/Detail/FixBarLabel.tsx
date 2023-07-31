@@ -4,7 +4,7 @@ import {FontText} from '@src/Atomic/FontText';
 
 interface FixBarLabelProps {
   Title: string;
-  Rate: string;
+  Rate: number;
 }
 
 export default function FixBarLabel({Title, Rate}: FixBarLabelProps) {

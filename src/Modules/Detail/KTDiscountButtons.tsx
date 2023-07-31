@@ -5,13 +5,19 @@ import {HStack, Button} from 'native-base';
 interface KTDiscountButtonProps {
   KTDiscount: string[];
   setKtDiscount: React.Dispatch<React.SetStateAction<string>>;
+  route: Readonly<object | undefined>;
 }
 
 export default function KTDiscountButtons({
   KTDiscount,
   setKtDiscount,
+  route,
 }: KTDiscountButtonProps) {
   const [selection, setSelection] = useState<number>(0);
+
+  useEffect(() => {
+    setSelection(0);
+  }, [route]);
 
   useEffect(() => {
     setKtDiscount(selection === 0 ? 'Y' : 'N');

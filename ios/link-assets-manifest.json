@@ -6,20 +6,12 @@
       "sha1": "9cfbbf3f67f2b28e377471d89c001f5dc30d0357"
     },
     {
-      "path": "assets/fonts/SpoqaHanSansNeo-Light.ttf",
-      "sha1": "a70d1d295158c5f49f7fb51a49d2194a18a4cd0b"
-    },
-    {
       "path": "assets/fonts/SpoqaHanSansNeo-Medium.ttf",
       "sha1": "c9a869ea6906893406d3bc2dacf226cf65d91da0"
     },
     {
       "path": "assets/fonts/SpoqaHanSansNeo-Regular.ttf",
       "sha1": "41b5b663e396b62a1acd40ec1a1e0e7b7692572c"
-    },
-    {
-      "path": "assets/fonts/SpoqaHanSansNeo-Thin.ttf",
-      "sha1": "c1a80b8bebbab9e9e1ee4395d667f811d84db01e"
     }
   ]
 }

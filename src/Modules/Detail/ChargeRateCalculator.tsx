@@ -9,12 +9,22 @@ import NonLineLabel from '@src/Atomic/Detail/NonLineLabel';
 import RateBox from '@src/Atomic/Detail/RateBox';
 import {MachineCalResType, ChargeCalResType} from '@Types/RateCalculatorTypes';
 import {FontHeading} from '@src/Atomic/FontHeading';
+import {useFixBarState} from '@src/contexts/FixBarStateContext';
 
 export default function ChargeRateCalculator(Params: BodyType) {
   const [rateInfo, setRateInfo] = useState<ChargeCalResType>();
 
+  const [, setFixbarProps] = useFixBarState();
+
   useEffect(() => {
-    getRateData(Params).then(data => setRateInfo(data as ChargeCalResType));
+    getRateData(Params).then(data => {
+      setRateInfo(data as ChargeCalResType);
+      setFixbarProps({
+        ChgContractMonthChg: data?.ChgContractMonthChg,
+        ChgContractMonthRate: data?.ChgContractMonthRate,
+        ChgContractMonthTotal: data?.ChgContractMonthTotal,
+      });
+    });
   }, [Params]);
 
   // console.log(JSON.stringify(rateInfo, null, 2));

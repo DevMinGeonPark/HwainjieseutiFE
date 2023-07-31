@@ -73,16 +73,16 @@ export interface ChargeCalResType {
   /** 할인후 금액 */
   ChgNmRateDiscount: number;
 
-  /** 월할부원금 */
+  /** 월할부원금 */ //state
   ChgContractMonthChg: number;
 
   /** 할부이자 */
   ChgContractMonthInterest: number;
 
-  /** 요금제 월납부금 */
+  /** 요금제 월납부금 */ //state
   ChgContractMonthRate: number;
 
-  /** 요금제 월납부금 */
+  /** 요금제 월납부금 */ //state
   ChgContractMonthTotal: number;
 
   /** KT공식몰 추가할인 */

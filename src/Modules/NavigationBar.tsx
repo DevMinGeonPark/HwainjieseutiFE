@@ -1,4 +1,3 @@
-import {StyleSheet} from 'react-native';
 import React, {useState} from 'react';
 import {HStack, ScrollView} from 'native-base';
 import {StackNavigationProp} from '@react-navigation/stack';

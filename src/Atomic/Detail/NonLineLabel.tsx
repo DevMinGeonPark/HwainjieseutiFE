@@ -1,6 +1,6 @@
-import {StyleSheet, View} from 'react-native';
 import React from 'react';
-import {Box, HStack, Text} from 'native-base';
+import {Box, HStack} from 'native-base';
+import {FontText} from '../FontText';
 
 interface NonLineLabelProps {
   label: string;
@@ -11,15 +11,13 @@ export default function NonLineLabel({label, Rate}: NonLineLabelProps) {
   return (
     <Box px={3} py={2}>
       <HStack justifyContent="space-between">
-        <Text fontSize="md" color={'#AAA'}>
+        <FontText fontSize="md" color={'#AAA'}>
           {label}
-        </Text>
-        <Text fontSize="md" color={'#AAA'}>
+        </FontText>
+        <FontText fontSize="md" color={'#AAA'}>
           {Rate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' 원'}
-        </Text>
+        </FontText>
       </HStack>
     </Box>
   );
 }
-
-const styles = StyleSheet.create({});

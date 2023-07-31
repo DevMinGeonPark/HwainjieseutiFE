@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Select, CheckIcon, Box} from 'native-base';
 import {RatePlan} from '@Types/DetailTypes';
 

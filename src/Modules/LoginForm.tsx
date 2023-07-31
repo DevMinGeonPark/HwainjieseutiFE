@@ -14,6 +14,7 @@ import {
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import useLogin from '@src/hooks/queryHooks/useLogin';
+import {FontText} from '@src/Atomic/FontText';
 
 export default function LoginForm() {
   const [id, setID] = useState<string>('gksrudgh3795');
@@ -35,9 +36,9 @@ export default function LoginForm() {
     <Box bg="gray.200" padding={6} margin={6} borderRadius={20}>
       <Center w="100%">
         <Box safeArea w="90%" maxW="290">
-          <Text style={{fontSize: 14, fontWeight: 'bold'}}>
+          <FontText style={{fontSize: 14, fontWeight: 'bold'}}>
             가입하신 아이디와 비밀번호를 입력해주세요.
-          </Text>
+          </FontText>
           <VStack space={3} mt="5">
             <FormControl>
               <Input
@@ -70,7 +71,7 @@ export default function LoginForm() {
             </Button>
             <HStack justifyContent="flex-end">
               <Icon name="search" size={15} />
-              <Text> 정보찾기 </Text>
+              <FontText> 정보찾기 </FontText>
             </HStack>
           </VStack>
         </Box>

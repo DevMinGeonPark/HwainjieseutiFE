@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {NativeBaseProvider} from 'native-base';
+import {NativeBaseProvider, extendTheme} from 'native-base';
 import DrawerNavigator from '@Navigators/DrawerNavigator';
 import {QueryClientProvider, QueryClient} from 'react-query';
 import {UserContextProvider} from './contexts/UserContext';
@@ -14,13 +14,44 @@ const queryClient = new QueryClient({
   },
 });
 
+const theme = extendTheme({
+  fontConfig: {
+    Roboto: {
+      400: {
+        normal: 'SpoqaHanSansNeo-Regular',
+      },
+      500: {
+        normal: 'SpoqaHanSansNeo-Medium',
+      },
+      600: {
+        normal: 'SpoqaHanSansNeo-Medium',
+      },
+      700: {
+        normal: 'SpoqaHanSansNeo-Bold',
+      },
+      800: {
+        normal: 'SpoqaHanSansNeo-Bold',
+      },
+      900: {
+        normal: 'SpoqaHanSansNeo-Bold',
+      },
+    },
+  },
+  // Make sure values below matches any of the keys in `fontConfig`
+  fonts: {
+    heading: 'SpoqaHanSansNeo',
+    body: 'SpoqaHanSansNeo',
+    mono: 'SpoqaHanSansNeo',
+  },
+});
+
 export default function App() {
   return (
     <UserContextProvider>
       <QueryClientProvider client={queryClient}>
         <DrawerContextProvider>
           <NavigationContainer>
-            <NativeBaseProvider>
+            <NativeBaseProvider theme={theme}>
               <DrawerNavigator />
             </NativeBaseProvider>
           </NavigationContainer>

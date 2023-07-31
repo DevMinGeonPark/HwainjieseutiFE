@@ -1,6 +1,7 @@
-import {StyleSheet, View} from 'react-native';
 import React from 'react';
-import {Box, Heading, Text, HStack, Center} from 'native-base';
+import {Box, HStack, Center} from 'native-base';
+import {FontText} from '../FontText';
+import {FontHeading} from '../FontHeading';
 
 interface RateBoxProps {
   Rate: number;
@@ -11,18 +12,16 @@ export default function RateBox({Rate}: RateBoxProps) {
     <Box m={3} bg={'#5ddfde'} mb={20}>
       <Center>
         <HStack alignItems="baseline" m={2}>
-          <Text>(월)</Text>
-          <Heading>
+          <FontText>(월)</FontText>
+          <FontHeading>
             {Rate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-          </Heading>
-          <Text>원</Text>
+          </FontHeading>
+          <FontText>원</FontText>
         </HStack>
-        <Text mb={3} fontSize={'md'}>
+        <FontText mb={3} fontSize={'md'}>
           부가세포함, 할부이자 별도
-        </Text>
+        </FontText>
       </Center>
     </Box>
   );
 }
-
-const styles = StyleSheet.create({});

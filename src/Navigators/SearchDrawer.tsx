@@ -14,7 +14,7 @@ import DrawerButton from '@src/Atomic/Navigator/DrawerButton';
 import {useDrawerState} from '@src/contexts/DrawerStateContext';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
 import {DrawerScreenProps} from '@Types/NavigationTypes';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, DrawerActions} from '@react-navigation/native';
 import SearchTypeSelector from '@src/Atomic/Navigator/SearchTypeSelector';
 import SearchLogicSelector from '@src/Atomic/Navigator/SearchLogicSelector';
 
@@ -33,7 +33,10 @@ export default function SearchDrawer(props: any) {
             setDrawerType(true);
           }}
         />
-        <DrawerButton title="나가기" onPress={() => navigation.goBack()} />
+        <DrawerButton
+          title="나가기"
+          onPress={() => navigation.dispatch(DrawerActions.closeDrawer())}
+        />
       </HStack>
       <DividerTitle title="SEARCH" fontSize={14} />
       <Box bg="#fafafa" p={2}>

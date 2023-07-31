@@ -4,13 +4,19 @@ import {HStack, Button} from 'native-base';
 type InstallmentButtonsProps = {
   ForMonth: string[];
   setInstallment: React.Dispatch<React.SetStateAction<string>>;
+  route: Readonly<object | undefined>;
 };
 
 export default function InstallmentButtons({
   ForMonth,
   setInstallment,
+  route,
 }: InstallmentButtonsProps) {
   const [selection, setSelection] = useState<number>(0);
+
+  useEffect(() => {
+    setSelection(0);
+  }, [route]);
 
   return (
     <HStack space={2} my={3}>

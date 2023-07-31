@@ -3,6 +3,8 @@ import {Pressable} from 'react-native';
 import {Center} from 'native-base';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {FontText} from '../FontText';
+import {useLoginCheck} from '@src/hooks/useLoginCheck';
+import {Alert} from 'react-native';
 
 interface MenuButtonProps {
   navigation: StackNavigationProp<any>;
@@ -24,8 +26,15 @@ const MenuButton: React.FC<MenuButtonProps> = ({
   params,
   currentName,
 }) => {
+  const isLoggedIn = useLoginCheck();
+
   return (
-    <Pressable onPress={() => navigation.navigate(screenName, params)}>
+    <Pressable
+      onPress={() => {
+        isLoggedIn
+          ? navigation.navigate(screenName, params)
+          : Alert.alert('로그인이 필요합니다.');
+      }}>
       <Center>
         <FontText
           color={currentName === screenName ? '#37a09f' : '#000'}

@@ -6,13 +6,21 @@ import {FontText} from '@src/Atomic/FontText';
 
 type SignTypeButtonsProps = {
   regiTypes: RegiType[];
+  route: Readonly<object | undefined>;
 };
 
-export default function SignTypeButtons({regiTypes}: SignTypeButtonsProps) {
+export default function SignTypeButtons({
+  regiTypes,
+  route,
+}: SignTypeButtonsProps) {
   const [selection, setSelection] = useState<number>(0);
   const width = Dimensions.get('window').width;
   const margins = 18;
   const subText = regiTypes.map(regiType => regiType.ClickComment);
+
+  useEffect(() => {
+    setSelection(0);
+  }, [route]);
 
   return (
     <>
@@ -37,5 +45,3 @@ export default function SignTypeButtons({regiTypes}: SignTypeButtonsProps) {
     </>
   );
 }
-
-const styles = StyleSheet.create({});

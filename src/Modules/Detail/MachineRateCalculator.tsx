@@ -9,12 +9,23 @@ import NonLineLabel from '@src/Atomic/Detail/NonLineLabel';
 import RateBox from '@src/Atomic/Detail/RateBox';
 import {MachineCalResType, ChargeCalResType} from '@Types/RateCalculatorTypes';
 import {FontHeading} from '@src/Atomic/FontHeading';
+import {useFixBarState} from '@src/contexts/FixBarStateContext';
 
 export default function MachineRateCalculator(Params: BodyType) {
   const [rateInfo, setRateInfo] = useState<MachineCalResType>();
+
+  const [, setFixbarProps] = useFixBarState();
+
   // gksrudgh3795
   useEffect(() => {
-    getRateData(Params).then(data => setRateInfo(data as MachineCalResType));
+    getRateData(Params).then(data => {
+      setRateInfo(data as MachineCalResType);
+      setFixbarProps({
+        ChgContractMonthChg: data?.ChgContractMonthChg,
+        ChgContractMonthRate: data?.ChgContractMonthRate,
+        ChgContractMonthTotal: data?.ChgContractMonthTotal,
+      });
+    });
   }, [Params]);
 
   // console.log(JSON.stringify(rateInfo, null, 2));
