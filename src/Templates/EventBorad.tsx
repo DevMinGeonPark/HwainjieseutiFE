@@ -12,6 +12,7 @@ const EventBorad = () => {
   const routeParams = useRoute().params as {Uid: string};
 
   const {data} = useEventData({Uid: routeParams.Uid});
+  // console.log(JSON.stringify(data, null, 2));
 
   return (
     <Box>

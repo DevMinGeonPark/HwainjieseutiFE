@@ -13,7 +13,6 @@ interface CommentBoxProps {
 }
 
 export default function CommentBox({Comment}: CommentBoxProps) {
-  console.log(JSON.stringify(Comment, null, 2));
   return (
     <HStack
       p={2}

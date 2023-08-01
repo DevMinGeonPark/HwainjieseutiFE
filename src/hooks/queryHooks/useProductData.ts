@@ -7,6 +7,7 @@ import {
   ProductData,
   ProductProps,
   SubPageBaseProps,
+  InternetPlusTVData,
 } from '@src/Types/ProductTypes';
 
 export default function useProductData(
@@ -19,12 +20,12 @@ export default function useProductData(
     () => getProductData(params),
     {
       notifyOnChangeProps: ['data'],
-      onSuccess: (data: EventData | ProductData) => {
-        log.info(`event 불러오기 성공`);
+      onSuccess: (data: EventData | ProductData | InternetPlusTVData) => {
+        log.info(`productDatas 불러오기 성공`);
         return data;
       },
       onError: error => {
-        log.info(`event 불러오기 실패`);
+        log.info(`productDatas 불러오기 실패`);
       },
     },
   );

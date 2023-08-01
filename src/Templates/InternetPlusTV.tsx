@@ -1,39 +1,36 @@
-import {StyleSheet, Text, View, Dimensions} from 'react-native';
-import React, {useEffect} from 'react';
+import {useWindowDimensions} from 'react-native';
+import React from 'react';
 import withCommontLayout from './withCommontLayout';
-import RenderHtml from 'react-native-render-html';
 import {useRoute} from '@react-navigation/native';
-import {ProductProps, SubPageBaseProps} from '@src/Types/ProductTypes';
-import {getKTShopKey} from '@src/Utils/KTShopKey';
-import client from '@src/API/client';
-import {htmlPreprocesser} from '@src/Utils/htmlPreprocesser';
+import {SubPageBaseProps} from '@src/Types/ProductTypes';
+import {Box} from 'native-base';
+import FastImage from 'react-native-fast-image';
+import useProductData from '@src/hooks/queryHooks/useProductData';
+import {isInternetPlusTvData} from '@src/Types/ProductTypes';
+import LodingIndicator from '@src/Modules/LodingIndicator';
 
 const ImageProduct = () => {
-  const width = Dimensions.get('window').width;
+  const width = useWindowDimensions().width;
 
-  const [source, setSource] = React.useState({html: ''});
   const routeParams = useRoute().params as SubPageBaseProps;
 
-  const [params, setParams] = React.useState<ProductProps>({
+  const {data, isLoading} = useProductData({
     MenuType: routeParams.MenuType,
     MenuVar: routeParams.MenuVar,
-    sort: 'it_update_time',
-    sortodr: 'aec',
-  });
+  } as SubPageBaseProps);
 
-  async function getImageProductData(data: ProductProps) {
-    const res = await client.post('subpage.php', data);
-    // console.log(JSON.stringify(res.data, null, 2));
-    // console.log(JSON.stringify(res.data.Content, null, 2));
-    // setSource({html: htmlPreprocesser(res.data.Content.replace(/\r\n/g, ''))});
-  }
-
-  React.useEffect(() => {
-    getImageProductData(params);
-  });
+  if (isLoading) return <LodingIndicator count={4} />;
 
   return (
-    <View>{/* <RenderHtml contentWidth={width} source={source} /> */}</View>
+    <Box>
+      {isInternetPlusTvData(data) && (
+        <FastImage
+          style={{aspectRatio: 0.09, width: width}}
+          source={{uri: data.Content}}
+          resizeMode={FastImage.resizeMode.stretch}
+        />
+      )}
+    </Box>
   );
 };
 

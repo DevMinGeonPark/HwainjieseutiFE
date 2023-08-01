@@ -4,7 +4,7 @@ import withCommontLayout from '@Templates/withCommontLayout';
 import CarouselView from '@Modules/CarouselView';
 import {Linking} from 'react-native';
 import useMainData from '@src/hooks/queryHooks/useMainData';
-import {Image, Box, Pressable} from 'native-base';
+import {Box, Pressable} from 'native-base';
 import Title from '@src/Atomic/Title';
 import ProductList from '@src/Modules/Main/ProductList';
 import Banner from '@src/Modules/Main/Banner';

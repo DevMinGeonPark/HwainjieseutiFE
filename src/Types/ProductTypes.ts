@@ -29,6 +29,10 @@ export interface SubPageReBaseProps {
   PageViewType: string;
 }
 
+export interface InternetPlusTVData extends SubPageReBaseProps {
+  Content: string;
+}
+
 export interface EventData extends SubPageReBaseProps {
   TopNotice: TopNotice[];
   ListNotice: ListNotice[];
@@ -42,7 +46,19 @@ export interface ListNotice extends NoticeBase {
 }
 
 export function isProductData(
-  data: EventData | ProductData | undefined,
+  data: EventData | ProductData | InternetPlusTVData | undefined,
 ): data is ProductData {
   return data !== undefined && 'ItemList' in data;
+}
+
+export function isEventData(
+  data: EventData | ProductData | InternetPlusTVData | undefined,
+): data is EventData {
+  return data !== undefined && 'TopNotice' in data;
+}
+
+export function isInternetPlusTvData(
+  data: EventData | ProductData | InternetPlusTVData | undefined,
+): data is InternetPlusTVData {
+  return data !== undefined && 'Content' in data;
 }

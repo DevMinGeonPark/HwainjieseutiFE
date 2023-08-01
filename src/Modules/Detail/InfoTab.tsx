@@ -16,6 +16,7 @@ export default function InfoTab({
   setInfoTabSetter,
 }: InfoTabProps) {
   const width = useWindowDimensions().width;
+  console.log(html);
   return (
     <>
       <Pressable onPress={() => setInfoTabSetter(true)}>
