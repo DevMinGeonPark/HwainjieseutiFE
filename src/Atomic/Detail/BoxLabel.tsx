@@ -18,6 +18,7 @@ export default function BoxLabel({label, Rate, fontColor}: BoxLabelProps) {
           fontSize="md"
           color={fontColor}
           fontWeight={fontColor === '#d71826' ? 'bold' : 'light'}>
+          {fontColor === '#d71826' && Rate != 0 ? '-' : ''}
           {Rate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' 원'}
         </FontText>
       </HStack>

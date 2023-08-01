@@ -19,8 +19,6 @@ export default function EventPanel({data}: EventPanelProps) {
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
   const toast = useToast();
 
-  //   console.log(JSON.stringify(data, null, 2));
-
   return (
     <Pressable
       onPress={() => {

@@ -8,7 +8,7 @@ export type StackScreenProps = {
   Apple: _ProductScreenProps;
   Samsung: _ProductScreenProps;
   Etc: _ProductScreenProps;
-  Detail: _DetailScreenProps;
+  Detail: DetailScreenProps;
   Event: CommonScreenProps;
   EventBorad: {Uid: number};
   InternetPlusTV: CommonScreenProps;
@@ -30,6 +30,8 @@ interface _ProductScreenProps extends CommonScreenProps {
   name: string;
 }
 
-interface _DetailScreenProps extends _ProductScreenProps, CommonScreenProps {
+export interface DetailScreenProps
+  extends _ProductScreenProps,
+    CommonScreenProps {
   it_id: string;
 }

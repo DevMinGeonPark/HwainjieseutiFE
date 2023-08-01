@@ -24,6 +24,11 @@ export interface ItemDetail {
   RateCode: string;
 }
 
+export interface ParamProps {
+  ItemCode: string;
+  CategorieCode: string;
+}
+
 export interface RegiType {
   Title: string;
   ClickComment: string;

@@ -17,7 +17,6 @@ interface LoginData {
 }
 
 export default function useLogin({id, loginType}: LoginData) {
-  console.log(loginType);
   const stackNavigation =
     useNavigation<StackNavigationProp<StackScreenProps>>();
   const drawerNavigation =
@@ -34,7 +33,7 @@ export default function useLogin({id, loginType}: LoginData) {
         loginType === 'drawer'
           ? drawerNavigation.goBack()
           : stackNavigation.pop();
-        // navigation.pop();
+
         log.info('로그인 성공');
         toast.show({title: '로그인 성공'});
         setUser({UserId: id, UserNm: data.UserNm});

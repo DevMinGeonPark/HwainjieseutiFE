@@ -10,7 +10,7 @@ import ProductCard from '@src/Modules/ProductCard';
 import LodingIndicator from '@src/Modules/LodingIndicator';
 
 import useProductData from '@src/hooks/queryHooks/useProductData';
-import {HStack, Box} from 'native-base';
+import {Box} from 'native-base';
 import SortBar from '@src/Modules/Products/SortBar';
 import ProductList from '@src/Modules/Main/ProductList';
 

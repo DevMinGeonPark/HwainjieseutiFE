@@ -9,14 +9,9 @@ import SupTypeButtons from '../Modules/Detail/SupTypeButtons';
 import InstallmentButtons from '../Modules/Detail/InstallmentButtons';
 import PlanSelector from '@src/Modules/Detail/PlanSelector';
 import KTDiscountButtons from '@src/Modules/Detail/KTDiscountButtons';
-import getItemInfo from '@src/API/Detail/getItemInfo';
 import getPlanDesc from '@src/API/Detail/getPlanDesc';
-import MachineRateCalculator from '@src/Modules/Detail/MachineRateCalculator';
 import {useUserState} from '@src/contexts/UserContext';
 import ProductPiece from '@src/Modules/Detail/ProductPiece';
-
-import {ItemDetail} from '@src/Types/DetailTypes';
-import ChargeRateCalculator from '@src/Modules/Detail/ChargeRateCalculator';
 import ShareModal from '@src/Modules/Detail/ShareModal';
 import {FontText} from '@src/Atomic/FontText';
 import InfoTab from '@src/Modules/Detail/InfoTab';
@@ -25,79 +20,74 @@ import DetailTitle from '@src/Modules/Detail/DetailTitle';
 import DetailInfo from '@src/Modules/Detail/DetailInfo';
 import ShareModalButtonModule from '@src/Modules/Detail/ShareModalButtonModule';
 import RateTypeUI from '@src/Modules/Detail/RateTypeUI';
+import useItemInfoData from '@src/hooks/queryHooks/useItemInfoData';
+import {DetailScreenProps} from '@src/Types/NavigationTypes';
+import RateCalculator from '@src/Modules/Detail/RateCalculator';
 
 const Detail = () => {
-  const [itemInfo, setItemInfo] = useState<ItemDetail>();
   const [plan, setPlan] = useState<string>('212121');
   const [planDesc, setPlanDesc] = useState<string>('');
-
   const [supType, setSupType] = useState<string>('Machine');
   const [installment, setInstallment] = useState<string>('24');
   const [ktDiscount, setKtDiscount] = useState<string>('Y');
   const [user] = useUserState();
-
-  const [showModal, setShowModal] = useState(false);
-
-  const [infoTabSetter, setInfoTabSetter] = useState(true);
-
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [infoTabSetter, setInfoTabSetter] = useState<boolean>(true);
   const {scrollViewRef} = useContext(ScrollViewContext);
-
   const width = useWindowDimensions().width - 20;
+  const routeParams = useRoute().params as DetailScreenProps;
 
-  const routeParams = useRoute().params as any;
+  const {data} = useItemInfoData({
+    ItemCode: routeParams.it_id,
+    CategorieCode: routeParams.MenuVar,
+  });
 
   useEffect(() => {
-    getItemInfo(routeParams.it_id, routeParams.MenuVar).then(data =>
-      setItemInfo(data),
-    );
     setPlan('212121');
     scrollViewRef?.current?.scrollTo({x: 0, y: 0, animated: true});
-  }, [routeParams.num, routeParams.it_id, routeParams.MenuVar, scrollViewRef]);
+  }, [data]);
 
   useEffect(() => {
-    if (plan.length !== 0 && itemInfo?.RateCode) {
-      getPlanDesc(itemInfo.RateCode, plan).then(desc => setPlanDesc(desc));
+    if (plan.length !== 0 && data?.RateCode) {
+      getPlanDesc(data.RateCode, plan).then(desc => setPlanDesc(desc));
     }
-  }, [plan, itemInfo]);
+  }, [plan, data]);
 
   return (
     <Box>
       <DetailTitle name={routeParams.name || ''} />
-      {itemInfo?.ItemImgUrl && (
+      {data?.ItemImgUrl && (
         <Image
-          source={{uri: itemInfo?.ItemImgUrl}}
+          source={{uri: data?.ItemImgUrl}}
           alt="product Image"
           size={width}
         />
       )}
       <DetailInfo
-        productTitle={itemInfo?.ItemName || ''}
-        productColors={itemInfo?.ItemColor || ''}
+        productTitle={data?.ItemName || ''}
+        productColors={data?.ItemColor || ''}
       />
       <ShareModalButtonModule setShowModal={setShowModal} />
       <RateTypeUI heading="가입형태">
-        <SignTypeButtons
-          regiTypes={itemInfo?.RegiType || []}
-          route={routeParams}
-        />
+        <SignTypeButtons regiTypes={data?.RegiType || []} route={routeParams} />
       </RateTypeUI>
       <RateTypeUI heading="지원형태">
         <SupTypeButtons
-          SupportType={itemInfo?.SupportType || []}
+          SupportType={data?.SupportType || []}
           setSupType={setSupType}
           route={routeParams}
         />
       </RateTypeUI>
       <RateTypeUI heading="할부개월">
         <InstallmentButtons
-          ForMonth={itemInfo?.ForMonth || []}
+          ForMonth={data?.ForMonth || []}
           setInstallment={setInstallment}
           route={routeParams}
         />
       </RateTypeUI>
       <RateTypeUI heading="요금제 선택">
         <PlanSelector
-          RatePlans={itemInfo?.RatePlan || []}
+          RatePlans={data?.RatePlan || []}
           plan={plan}
           setPlan={setPlan}
         />
@@ -115,16 +105,16 @@ const Detail = () => {
           borderWidth={3}
           borderColor={'primary.400'}
           _text={{fontSize: 'md', fontWeight: 'bold', color: 'black'}}>
-          {itemInfo?.RevMethod?.[0]?.Title || 'Title unavailable'}
+          {data?.RevMethod?.[0]?.Title || 'Title unavailable'}
         </Button>
         <FontText mt={1}>
-          {itemInfo?.RevMethod?.[0]?.ClickComment || 'ClickComment unavailable'}
+          {data?.RevMethod?.[0]?.ClickComment || 'ClickComment unavailable'}
         </FontText>
       </RateTypeUI>
 
       <RateTypeUI heading="KT공식몰 추가할인">
         <KTDiscountButtons
-          KTDiscount={itemInfo?.KTDiscount || []}
+          KTDiscount={data?.KTDiscount || []}
           setKtDiscount={setKtDiscount}
           route={routeParams}
         />
@@ -141,33 +131,20 @@ const Detail = () => {
       </Button>
 
       <Box borderTopWidth={2} borderTopColor={'primary.400'} pt={3}>
-        {supType === 'Machine' ? (
-          <MachineRateCalculator
-            ItemCode={itemInfo?.ItemCode || routeParams.it_id}
-            Vol={plan}
-            SupportTypeVol={supType}
-            KTDiscount={ktDiscount}
-            ForMonth={installment}
-            UserID={user?.UserId || ''}
-          />
-        ) : (
-          <ChargeRateCalculator
-            ItemCode={itemInfo?.ItemCode || routeParams.it_id}
-            Vol={plan}
-            SupportTypeVol={supType}
-            KTDiscount={ktDiscount}
-            ForMonth={installment}
-            UserID={user?.UserId || ''}
-          />
-        )}
+        <RateCalculator
+          ItemCode={data?.ItemCode || routeParams.it_id}
+          Vol={plan}
+          SupportTypeVol={supType}
+          KTDiscount={ktDiscount}
+          ForMonth={installment}
+          UserID={user?.UserId || ''}
+        />
       </Box>
 
       <Box borderTopWidth={2} borderTopColor={'primary.400'}>
         <InfoTab
           html={htmlPreprocesser(
-            (infoTabSetter
-              ? itemInfo?.BuyBenefit[0].Common
-              : itemInfo?.CommAttn) || '',
+            (infoTabSetter ? data?.BuyBenefit[0].Common : data?.CommAttn) || '',
           )}
           infoTabSetter={infoTabSetter}
           setInfoTabSetter={setInfoTabSetter}
@@ -179,7 +156,7 @@ const Detail = () => {
       />
       {showModal && (
         <ShareModal
-          productId={itemInfo?.ItemCode || ''}
+          productId={data?.ItemCode || ''}
           showModal={showModal}
           setShowModal={setShowModal}
         />
