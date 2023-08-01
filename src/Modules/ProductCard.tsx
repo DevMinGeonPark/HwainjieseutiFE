@@ -1,6 +1,6 @@
 import {useWindowDimensions} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {Box, Button, Center, Image, Pressable} from 'native-base';
+import {Box, Center, Image, Pressable} from 'native-base';
 import {ItemList} from '@Types/MainDataTypes';
 import Price from '@src/Atomic/ProductCard/Price';
 import {useUserState} from '@src/contexts/UserContext';
@@ -19,16 +19,12 @@ import {Alert} from 'react-native';
 export default function ProductCard(data: ItemList) {
   const [color, setColor] = useState<string[]>();
   const [isPressed, setIsPressed] = useState<boolean>(false);
+  const [user] = useUserState();
+  const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
+  const routeName = useRoute().name;
+  const isLoggedIn = useLoginCheck();
   const width = useWindowDimensions().width;
   const cardMargin = 3;
-
-  const [user] = useUserState();
-
-  const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
-
-  const routeName = useRoute().name;
-
-  const isLoggedIn = useLoginCheck();
 
   useEffect(() => {
     setColor(data.ItemColor.match(/#[a-f0-9]{6}/g) || []);
@@ -71,16 +67,26 @@ export default function ProductCard(data: ItemList) {
           {/* 이미지가 좀더 사이즈에 맞게변화할 수 있는 방법을 강구해보자. */}
           {data.ItemImgUrl && (
             <Image
-              // w={width / 2 - cardMargin * 2 - 60}
-              // h={width / 2 - cardMargin * 2 - 60}
-              w={118}
-              h={127}
+              width={{base: '118px', md: '150px'}}
+              height={{base: '127px', md: '150px'}}
               resizeMode="cover"
               alt="product img"
               source={{
                 uri: data.ItemImgUrl,
               }}
             />
+
+            // <Image
+            //   // w={width / 2 - cardMargin * 2 - 60}
+            //   // h={width / 2 - cardMargin * 2 - 60}
+            //   w={118}
+            //   h={127}
+            //   resizeMode="cover"
+            //   alt="product img"
+            //   source={{
+            //     uri: data.ItemImgUrl,
+            //   }}
+            // />
           )}
         </Center>
         <Box pt={3}>

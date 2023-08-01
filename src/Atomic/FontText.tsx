@@ -14,7 +14,6 @@ export const FontText = (
 ) => {
   return (
     <Text fontFamily="SpoqaHanSansNeo" {...props}>
-      {/* <Text style={{fontFamily: 'SpoqaHanSansNeo'}} {...props}> */}
       {props.children}
     </Text>
   );

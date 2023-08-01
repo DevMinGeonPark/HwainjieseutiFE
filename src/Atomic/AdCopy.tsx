@@ -6,9 +6,11 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {FontText} from './FontText';
 import {Box, HStack, Pressable} from 'native-base';
 import {FontHeading} from './FontHeading';
+import {useLoginCheck} from '@src/hooks/useLoginCheck';
 
 export default function AdCopy() {
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
+  const isLoggedIn = useLoginCheck();
 
   return (
     <HStack
@@ -22,15 +24,20 @@ export default function AdCopy() {
           회원 전용 App
         </FontHeading>
       </HStack>
-      <HStack>
-        <Pressable onPress={() => navigation.navigate('Login')}>
-          <FontText>로그인</FontText>
-        </Pressable>
-        <FontText> | </FontText>
-        <Pressable onPress={() => {}}>
-          <FontText>회원가입</FontText>
-        </Pressable>
-      </HStack>
+      {!isLoggedIn && (
+        <HStack>
+          <Pressable onPress={() => navigation.navigate('Login')}>
+            <FontText>로그인</FontText>
+          </Pressable>
+          <FontText> | </FontText>
+          <Pressable
+            onPress={() => {
+              navigation.navigate('PrivacyCheck');
+            }}>
+            <FontText>회원가입</FontText>
+          </Pressable>
+        </HStack>
+      )}
     </HStack>
   );
 }

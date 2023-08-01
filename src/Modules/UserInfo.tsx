@@ -1,4 +1,3 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {useUserState} from '@src/contexts/UserContext';
 import {FontText} from '@src/Atomic/FontText';

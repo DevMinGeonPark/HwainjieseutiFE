@@ -1,18 +1,19 @@
 import React from 'react';
 import AdCopy from '@Atomic/AdCopy';
-import LogoHeader from '@Atomic/LogoHeader';
-import SideBarButton from '@src/Atomic/SideBarButton';
+import LogoHeader from '@src/Atomic/Header/LogoHeader';
+import SideBarButton from '@src/Atomic/Header/SideBarButton';
 import NavigationBar from '@src/Modules/NavigationBar';
 import UserInfo from './UserInfo';
 import {HStack} from 'native-base';
 import {useUserState} from '@src/contexts/UserContext';
+import {useLoginCheck} from '@src/hooks/useLoginCheck';
 
 interface HeaderProps {
   showLogo: boolean;
 }
 
 export default function Header({showLogo}: HeaderProps) {
-  const [user] = useUserState();
+  const isLoggedIn = useLoginCheck();
 
   return (
     <>
@@ -26,7 +27,7 @@ export default function Header({showLogo}: HeaderProps) {
         <SideBarButton />
         <NavigationBar />
       </HStack>
-      {user && showLogo && <UserInfo />}
+      {isLoggedIn && showLogo && <UserInfo />}
     </>
   );
 }

@@ -2,7 +2,7 @@ import {useWindowDimensions} from 'react-native';
 import React from 'react';
 import withCommontLayout from './withCommontLayout';
 import {useRoute} from '@react-navigation/native';
-import {SubPageBaseProps} from '@src/Types/ProductTypes';
+import {CommonSubPageProps} from '@src/Types/ProductTypes';
 import {Box} from 'native-base';
 import FastImage from 'react-native-fast-image';
 import useProductData from '@src/hooks/queryHooks/useProductData';
@@ -12,12 +12,12 @@ import LodingIndicator from '@src/Modules/LodingIndicator';
 const ImageProduct = () => {
   const width = useWindowDimensions().width;
 
-  const routeParams = useRoute().params as SubPageBaseProps;
+  const routeParams = useRoute().params as CommonSubPageProps;
 
   const {data, isLoading} = useProductData({
     MenuType: routeParams.MenuType,
     MenuVar: routeParams.MenuVar,
-  } as SubPageBaseProps);
+  } as CommonSubPageProps);
 
   if (isLoading) return <LodingIndicator count={4} />;
 

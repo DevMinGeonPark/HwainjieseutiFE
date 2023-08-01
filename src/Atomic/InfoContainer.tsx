@@ -1,13 +1,11 @@
-import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import Logos from './Footer/Logos';
 import Copyrigth from './Footer/Copyrigth';
-import {Box, Center, Container, HStack} from 'native-base';
+import {Center, HStack} from 'native-base';
 import {FontText} from './FontText';
 
 export default function InfoContainer() {
   return (
-    // <View style={{backgroundColor: 'white', padding: 20}}>
     <Center p={6}>
       <HStack flexWrap="wrap">
         <FontText fontSize={14}>회사명: </FontText>

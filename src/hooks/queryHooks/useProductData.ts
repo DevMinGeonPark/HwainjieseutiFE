@@ -6,12 +6,12 @@ import {
   EventData,
   ProductData,
   ProductProps,
-  SubPageBaseProps,
+  CommonSubPageProps,
   InternetPlusTVData,
 } from '@src/Types/ProductTypes';
 
 export default function useProductData(
-  params: SubPageBaseProps | ProductProps,
+  params: CommonSubPageProps | ProductProps,
 ) {
   const log = useLog('dev');
 

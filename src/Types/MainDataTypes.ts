@@ -5,15 +5,15 @@ export interface MainData {
   ItemNewList: ItemList[];
   ItemBestList: ItemList[];
 }
-export interface ImgMainRoll {
+
+interface _CommonImageProps {
   imgurl: string;
   imgsrc: string;
 }
 
-export interface ImgMainSub {
-  imgurl: string;
-  imgsrc: string;
-}
+export interface ImgMainRoll extends _CommonImageProps {}
+
+export interface ImgMainSub extends _CommonImageProps {}
 
 export interface ItemList {
   MenuType: string;

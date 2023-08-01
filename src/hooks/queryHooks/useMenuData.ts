@@ -1,3 +1,5 @@
+// 미사용 코드로 예상됨 삭제 고려
+
 import {getMenuData} from '@src/API/getMenuData';
 import {useMutation, useQuery} from 'react-query';
 import useLog from '../useLog';

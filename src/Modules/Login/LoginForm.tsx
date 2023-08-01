@@ -1,13 +1,9 @@
-import {StyleSheet} from 'react-native';
 import React, {useState} from 'react';
 import {
   Box,
-  Text,
-  Heading,
   VStack,
   FormControl,
   Input,
-  Link,
   Button,
   HStack,
   Center,
@@ -26,9 +22,7 @@ export default function LoginForm() {
   });
 
   const onPressLogin = () => {
-    if (loginLoading) {
-      return;
-    }
+    if (loginLoading) return;
     login({id, password});
   };
 
@@ -79,5 +73,3 @@ export default function LoginForm() {
     </Box>
   );
 }
-
-const styles = StyleSheet.create({});

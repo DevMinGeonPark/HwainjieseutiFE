@@ -3,7 +3,7 @@ import withCommontLayout from './withCommontLayout';
 import {useRoute} from '@react-navigation/native';
 import {
   ProductProps,
-  SubPageBaseProps,
+  CommonSubPageProps,
   isProductData,
 } from '@src/Types/ProductTypes';
 import ProductCard from '@src/Modules/ProductCard';
@@ -15,7 +15,7 @@ import SortBar from '@src/Modules/Products/SortBar';
 import ProductList from '@src/Modules/Main/ProductList';
 
 const Products = () => {
-  const routeParams = useRoute().params as SubPageBaseProps;
+  const routeParams = useRoute().params as CommonSubPageProps;
 
   const [params, setParams] = React.useState<ProductProps>({
     MenuType: routeParams.MenuType,

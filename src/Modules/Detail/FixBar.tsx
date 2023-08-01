@@ -1,7 +1,7 @@
 import React from 'react';
 import {Box, Button, Center, HStack, VStack} from 'native-base';
 import {FontText} from '@src/Atomic/FontText';
-import {useWindowDimensions} from 'react-native';
+import {Linking, useWindowDimensions} from 'react-native';
 import FixBarLabel from '@src/Atomic/Detail/FixBarLabel';
 import {useFixBarState} from '@src/contexts/FixBarStateContext';
 
@@ -50,7 +50,8 @@ export default function FixBar() {
         <Button
           bg="#f9e000"
           _text={{fontSize: 18, color: 'black', fontWeight: 'bold'}}
-          flex={1}>
+          flex={1}
+          onPress={() => Linking.openURL('https://pf.kakao.com/_ULWxfd')}>
           카톡상담
         </Button>
       </HStack>

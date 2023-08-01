@@ -1,12 +1,4 @@
-import {
-  HStack,
-  Box,
-  Input,
-  Button,
-  VStack,
-  SearchIcon,
-  IconButton,
-} from 'native-base';
+import {HStack, Box, Input, Button, VStack, SearchIcon} from 'native-base';
 import React from 'react';
 import {useToast} from 'native-base';
 import DividerTitle from '@src/Atomic/Navigator/DividerTitle';
@@ -19,7 +11,6 @@ import SearchTypeSelector from '@src/Atomic/Navigator/SearchTypeSelector';
 import SearchLogicSelector from '@src/Atomic/Navigator/SearchLogicSelector';
 
 export default function SearchDrawer(props: any) {
-  const Toast = useToast();
   const [, setDrawerType] = useDrawerState();
   const navigation = useNavigation<DrawerNavigationProp<DrawerScreenProps>>();
   const [copyText, setCopyText] = React.useState<string>('');

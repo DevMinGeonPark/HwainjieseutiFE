@@ -5,22 +5,31 @@ export type DrawerScreenProps = {
 export type StackScreenProps = {
   Main: undefined;
   Login: undefined;
-  Apple: {MenuType: string; MenuVar: string; num: number; name: string};
-  Samsung: {MenuType: string; MenuVar: string; num: number; name: string};
-  Etc: {MenuType: string; MenuVar: string};
-  Detail: {
-    name: string;
-    MenuType: string;
-    MenuVar: string;
-    it_id: string;
-    // ca_id: string;
-    num: number;
-  };
-  Event: {MenuType: string; MenuVar: string};
+  Apple: _ProductScreenProps;
+  Samsung: _ProductScreenProps;
+  Etc: _ProductScreenProps;
+  Detail: _DetailScreenProps;
+  Event: CommonScreenProps;
   EventBorad: {Uid: number};
-  InternetPlusTV: {MenuType: string; MenuVar: string};
+  InternetPlusTV: CommonScreenProps;
+  MyPoint: undefined;
   MyPage: undefined;
   Confirm: undefined;
+  PrivacyCheck: undefined;
   RegisterForm: undefined;
   CustomerInquiry: undefined;
 };
+
+interface CommonScreenProps {
+  MenuType: string;
+  MenuVar: string;
+}
+
+interface _ProductScreenProps extends CommonScreenProps {
+  num: number;
+  name: string;
+}
+
+interface _DetailScreenProps extends _ProductScreenProps, CommonScreenProps {
+  it_id: string;
+}

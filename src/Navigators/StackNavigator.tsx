@@ -1,6 +1,5 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-
 import Main from '../Templates/Main';
 import Login from '@src/Templates/Login';
 import {StackScreenProps} from '@Types/NavigationTypes';
@@ -14,9 +13,11 @@ import MyPage from '@src/Templates/MyPage';
 import Confirm from '@src/Templates/Confirm';
 import RegisterForm from '@src/Templates/RegisterForm';
 import CustomerInquiry from '@src/Templates/CustomerInquiry';
+import MyPoint from '@src/Templates/MyPoint';
+import PrivacyCheck from '@src/Templates/PrivacyCheck';
 
 const Stack = createStackNavigator<StackScreenProps>();
-// export default
+
 function StackNavigator() {
   // Login Check
   useAuthLoadEffect();
@@ -77,6 +78,16 @@ function StackNavigator() {
       />
 
       {/* SideBar Pages */}
+      <Stack.Screen
+        name="MyPoint"
+        component={MyPoint}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="PrivacyCheck"
+        component={PrivacyCheck}
+        options={{headerShown: false}}
+      />
       <Stack.Screen
         name="MyPage"
         component={MyPage}

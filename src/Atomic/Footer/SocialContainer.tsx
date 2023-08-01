@@ -1,7 +1,7 @@
 import {ImageSourcePropType} from 'react-native';
 import React, {FC} from 'react';
 import {HStack, Image, Box, Pressable, Center} from 'native-base';
-import {FontHeading} from './FontHeading';
+import {FontHeading} from '../FontHeading';
 
 interface Props {
   image: ImageSourcePropType;

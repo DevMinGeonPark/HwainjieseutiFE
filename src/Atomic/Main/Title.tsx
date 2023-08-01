@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View, useWindowDimensions} from 'react-native';
 import React from 'react';
 import {Box, Center} from 'native-base';
-import {FontHeading} from './FontHeading';
+import {FontHeading} from '../FontHeading';
 
 type Title = {
   title: string;
@@ -12,16 +12,8 @@ export default function Title({title, desc}: Title) {
   const width = useWindowDimensions().width;
 
   return (
-    <Box
-      style={{
-        marginBottom: 10,
-      }}>
-      <Center
-        style={{
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginTop: 50,
-        }}>
+    <Box m={10}>
+      <Center>
         <FontHeading fontSize={30} zIndex={2}>
           {title}
         </FontHeading>

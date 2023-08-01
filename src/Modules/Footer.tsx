@@ -1,5 +1,5 @@
 import React from 'react';
-import SocialContainer from '@src/Atomic/SocialContainer';
+import SocialContainer from '@src/Atomic/Footer/SocialContainer';
 import {Images} from '@assets/imgs/Images';
 import InfoContainer from '@src/Atomic/InfoContainer';
 import {Center} from 'native-base';

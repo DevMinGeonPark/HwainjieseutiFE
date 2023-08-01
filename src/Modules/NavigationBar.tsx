@@ -1,16 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {HStack, ScrollView} from 'native-base';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {useNavigation} from '@react-navigation/native';
 import MenuButton from '@src/Atomic/Menu/MenuButton';
 import {useRoute} from '@react-navigation/native';
-
-type onNavigationTypes = {
-  label: string;
-  menu_type: string;
-  menu_var: string;
-};
 
 const NavigationBar = () => {
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
@@ -55,7 +49,7 @@ const NavigationBar = () => {
           }}
           currentName={currentName}
         />
-        {/* 수정필요 */}
+        {/* 두 요소의 경우 num과 name이 필요없음. */}
         <MenuButton
           navigation={navigation}
           screenName="InternetPlusTV"

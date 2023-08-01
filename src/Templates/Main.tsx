@@ -1,11 +1,11 @@
 import {useWindowDimensions} from 'react-native';
 import React from 'react';
 import withCommontLayout from '@Templates/withCommontLayout';
-import CarouselView from '@Modules/CarouselView';
+import CarouselView from '@src/Modules/Main/CarouselView';
 import {Linking} from 'react-native';
 import useMainData from '@src/hooks/queryHooks/useMainData';
 import {Box, Pressable} from 'native-base';
-import Title from '@src/Atomic/Title';
+import Title from '@src/Atomic/Main/Title';
 import ProductList from '@src/Modules/Main/ProductList';
 import Banner from '@src/Modules/Main/Banner';
 

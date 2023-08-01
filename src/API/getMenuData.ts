@@ -1,3 +1,5 @@
+// 미사용 코드로 예상됨 삭제 고려
+
 import client from './client';
 import {getKTShopKey} from '@src/Utils/KTShopKey';
 

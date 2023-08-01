@@ -1,12 +1,9 @@
-import {Progress, Divider, Button, HStack, Box} from 'native-base';
+import {Box} from 'native-base';
 import React from 'react';
-import {DrawerContentScrollView} from '@react-navigation/drawer';
 import MenuItem from '@src/Atomic/Drawer/MenuItem';
 import {useUserState} from '@src/contexts/UserContext';
 import authStorage from '@src/Utils/authStorage';
 import {useToast} from 'native-base';
-import {FontText} from '@src/Atomic/FontText';
-import {FontHeading} from '@src/Atomic/FontHeading';
 import DividerTitle from '@src/Atomic/Navigator/DividerTitle';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -50,7 +47,13 @@ export default function MenuDrawer(props: any) {
       <DrawerInfo UserNm={user?.UserNm || ''} handleAuth={handleAuth} />
       <DividerTitle title="MY MENU" fontSize={14} />
       <Box mx={3}>
-        <MenuItem text="나의포인트" point="36497" onPress={() => {}} />
+        <MenuItem
+          text="나의포인트"
+          point="36497"
+          onPress={() => {
+            navigation.navigate('MyPoint');
+          }}
+        />
         <MenuItem
           text="마이페이지"
           point={undefined}
