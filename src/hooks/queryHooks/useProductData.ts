@@ -5,14 +5,12 @@ import useLog from '../useLog';
 import {
   EventData,
   ProductData,
-  ProductProps,
-  CommonSubPageProps,
+  ParamProps,
   InternetPlusTVData,
 } from '@src/Types/ProductTypes';
+import {CommonProps} from '@src/Types/CommonTypes';
 
-export default function useProductData(
-  params: CommonSubPageProps | ProductProps,
-) {
+export default function useProductData(params: CommonProps | ParamProps) {
   const log = useLog('dev');
 
   const query = useQuery(

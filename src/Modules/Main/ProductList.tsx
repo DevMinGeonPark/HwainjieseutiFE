@@ -14,9 +14,8 @@ export default function ProductList({items}: ProductListProps) {
         <ProductCard
           key={index}
           //   에러에 의해 임시 처리
-          MenuType={'ca_id'}
-          // MenuType={params.MenuType}
-          MenuVar={item.MenuVar || 'defulat'}
+          MenuType={item.MenuType || 'ca_id'}
+          MenuVar={item.MenuVar || '20'}
           CategorieCode={item.CategorieCode || 'defulat'}
           ItemCode={item.ItemCode || 'defulat'}
           ItemImgUrl={item.ItemImgUrl || 'defulat'}

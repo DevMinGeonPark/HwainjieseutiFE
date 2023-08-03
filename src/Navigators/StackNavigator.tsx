@@ -15,6 +15,7 @@ import RegisterForm from '@src/Templates/RegisterForm';
 import CustomerInquiry from '@src/Templates/CustomerInquiry';
 import MyPoint from '@src/Templates/MyPoint';
 import PrivacyCheck from '@src/Templates/PrivacyCheck';
+import SearchResult from '@src/Templates/SearchResult';
 
 const Stack = createStackNavigator<StackScreenProps>();
 
@@ -109,6 +110,11 @@ function StackNavigator() {
       <Stack.Screen
         name="CustomerInquiry"
         component={CustomerInquiry}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="SearchResult"
+        component={SearchResult}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

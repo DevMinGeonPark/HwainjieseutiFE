@@ -10,16 +10,12 @@ export interface ItemDetail {
   SupportType: SupportType[];
   ForMonth: string[];
   RatePlan: RatePlan[];
-
   RevMethod: Array<{
     Title: string;
     ClickComment: string;
   }>;
   KTDiscount: string[];
-  BuyBenefit: Array<{
-    Common: string;
-    MemberBenefit: string;
-  }>;
+  BuyBenefit: string;
   CommAttn: string;
   RateCode: string;
 }

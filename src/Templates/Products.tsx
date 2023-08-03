@@ -1,11 +1,8 @@
 import React from 'react';
 import withCommontLayout from './withCommontLayout';
 import {useRoute} from '@react-navigation/native';
-import {
-  ProductProps,
-  CommonSubPageProps,
-  isProductData,
-} from '@src/Types/ProductTypes';
+import {ParamProps, isProductData} from '@src/Types/ProductTypes';
+import {CommonProps} from '@src/Types/CommonTypes';
 import ProductCard from '@src/Modules/ProductCard';
 import LodingIndicator from '@src/Modules/LodingIndicator';
 
@@ -15,9 +12,9 @@ import SortBar from '@src/Modules/Products/SortBar';
 import ProductList from '@src/Modules/Main/ProductList';
 
 const Products = () => {
-  const routeParams = useRoute().params as CommonSubPageProps;
+  const routeParams = useRoute().params as CommonProps;
 
-  const [params, setParams] = React.useState<ProductProps>({
+  const [params, setParams] = React.useState<ParamProps>({
     MenuType: routeParams.MenuType,
     MenuVar: routeParams.MenuVar,
     sort: 'it_update_tme',

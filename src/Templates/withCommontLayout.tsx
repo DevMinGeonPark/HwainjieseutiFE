@@ -11,6 +11,7 @@ import {NativeScrollEvent, NativeSyntheticEvent} from 'react-native';
 import {FixBarContextProvider} from '@src/contexts/FixBarStateContext';
 
 import {Text} from 'native-base';
+import {useLoginCheck} from '@src/hooks/useLoginCheck';
 
 type Options = {showFixBar?: boolean};
 

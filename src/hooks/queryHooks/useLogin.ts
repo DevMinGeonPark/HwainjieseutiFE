@@ -36,8 +36,8 @@ export default function useLogin({id, loginType}: LoginData) {
 
         log.info('로그인 성공');
         toast.show({title: '로그인 성공'});
-        setUser({UserId: id, UserNm: data.UserNm});
-        authStorage.set({UserId: id, UserNm: data.UserNm});
+        setUser({UserId: id, UserNm: data.UserNm, Point: 0});
+        authStorage.set({UserId: id, UserNm: data.UserNm, Point: 0});
       } else {
         throw new Error(data.ErrMsg); //onError로 헨들링
       }

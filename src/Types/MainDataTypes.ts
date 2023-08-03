@@ -1,3 +1,4 @@
+import {CommonProps, Product} from './CommonTypes';
 export interface MainData {
   ImgMainRoll: ImgMainRoll[];
   ImgMainSub: ImgMainSub[];
@@ -15,18 +16,7 @@ export interface ImgMainRoll extends _CommonImageProps {}
 
 export interface ImgMainSub extends _CommonImageProps {}
 
-export interface ItemList {
-  MenuType: string;
-  MenuVar: string;
-  CategorieCode: string;
-  ItemCode: string;
-  ItemImgUrl: string;
-  ItemName: string;
-  ItemColor: string;
-  ItemChargeNormal: number;
-  ItemChargeSales: number;
-  ItemDCRate: number;
-}
+export interface ItemList extends Product, CommonProps {}
 
 export interface PriceType {
   ItemChargeNormal: number;

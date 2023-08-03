@@ -2,10 +2,10 @@ import {View, Text} from 'react-native';
 import React from 'react';
 import {HStack} from 'native-base';
 import SortItem from '@src/Atomic/Products/SortItem';
-import {ProductProps} from '@src/Types/ProductTypes';
+import {ParamProps} from '@src/Types/ProductTypes';
 
 interface SortBarProps {
-  setParams: React.Dispatch<React.SetStateAction<ProductProps>>;
+  setParams: React.Dispatch<React.SetStateAction<ParamProps>>;
   MenuType: string;
   MenuVar: string;
 }

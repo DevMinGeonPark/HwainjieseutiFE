@@ -13,6 +13,8 @@ const EventBorad = () => {
 
   const {data} = useEventData({Uid: routeParams.Uid});
 
+  // console.log(JSON.stringify(data, null, 2));
+
   return (
     <Box>
       <FontHeading p={2} py={3} fontSize={16}>
@@ -32,9 +34,9 @@ const EventBorad = () => {
         />
       </Box>
       <DividerTitle title="Comments" fontSize={16} />
-      {data?.Comments.map((item, index) => (
+      {/* {data?.Comments.map((item, index) => (
         <CommentBox key={index} Comment={item} />
-      ))}
+      ))} */}
     </Box>
   );
 };

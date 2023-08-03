@@ -5,7 +5,7 @@ import {Box} from 'native-base';
 
 interface props {
   text: string;
-  point: string | undefined;
+  point?: string;
   onPress: () => void;
 }
 export default function MenuItem(params: props) {

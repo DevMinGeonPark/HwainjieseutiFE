@@ -1,7 +1,7 @@
 import {StyleSheet, View, Text, ScrollView, Pressable} from 'react-native';
 import React, {useEffect} from 'react';
 import {useRoute} from '@react-navigation/native';
-import {ProductProps} from '@src/Types/ProductTypes';
+import {ParamProps} from '@src/Types/ProductTypes';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
@@ -18,7 +18,7 @@ interface ProductPieceProps {
 }
 
 const ProductPiece = ({MenuType, MenuVar}: ProductPieceProps) => {
-  const [params, setParams] = React.useState<ProductProps>({
+  const [params, setParams] = React.useState<ParamProps>({
     MenuType: MenuType,
     MenuVar: MenuVar,
     sort: 'it_update_time',

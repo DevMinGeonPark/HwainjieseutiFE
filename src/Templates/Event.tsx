@@ -11,8 +11,8 @@ import {isEventData} from '@src/Types/ProductTypes';
 
 const Event = () => {
   const routeParmas = useRoute().params as CommonSubPageProps;
-
   const {data} = useProductData(routeParmas);
+  // console.log(JSON.stringify(data, null, 2));
   return (
     <Box>
       <NoticePanel data={isEventData(data) ? data?.TopNotice : undefined} />

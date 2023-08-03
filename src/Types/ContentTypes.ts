@@ -1,6 +1,7 @@
 export interface User {
   UserNm: string;
   UserId: string;
+  Point: number;
 }
 
 export interface FixBarContextStateProps {

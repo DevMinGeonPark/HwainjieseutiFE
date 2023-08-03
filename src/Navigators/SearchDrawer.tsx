@@ -9,10 +9,15 @@ import {DrawerScreenProps} from '@Types/NavigationTypes';
 import {useNavigation, DrawerActions} from '@react-navigation/native';
 import SearchTypeSelector from '@src/Atomic/Navigator/SearchTypeSelector';
 import SearchLogicSelector from '@src/Atomic/Navigator/SearchLogicSelector';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {StackScreenProps} from '@Types/NavigationTypes';
 
 export default function SearchDrawer(props: any) {
   const [, setDrawerType] = useDrawerState();
-  const navigation = useNavigation<DrawerNavigationProp<DrawerScreenProps>>();
+  const drawerNavigation =
+    useNavigation<DrawerNavigationProp<DrawerScreenProps>>();
+  const stackNavigation =
+    useNavigation<StackNavigationProp<StackScreenProps>>();
   const [copyText, setCopyText] = React.useState<string>('');
 
   return (
@@ -26,7 +31,7 @@ export default function SearchDrawer(props: any) {
         />
         <DrawerButton
           title="나가기"
-          onPress={() => navigation.dispatch(DrawerActions.closeDrawer())}
+          onPress={() => drawerNavigation.dispatch(DrawerActions.closeDrawer())}
         />
       </HStack>
       <DividerTitle title="SEARCH" fontSize={14} />
@@ -51,9 +56,12 @@ export default function SearchDrawer(props: any) {
                 borderLeftColor="muted.300"
                 borderLeftWidth={1}
                 bg="#323C46"
-                onPress={() => {}}>
-                <SearchIcon size="5" color="white" />
-              </Button>
+                onPress={() => {}}
+                leftIcon={<SearchIcon size="5" color="white" />}
+                onPressIn={() => {
+                  stackNavigation.navigate('SearchResult');
+                }}
+              />
             }
           />
         </VStack>

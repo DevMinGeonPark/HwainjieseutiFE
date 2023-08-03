@@ -3,6 +3,7 @@ import {Box, Button, HStack} from 'native-base';
 import PanelItem from '@src/Atomic/PanelItem';
 import FormItem from '@src/Atomic/RegisterForm/FormItem';
 import {FontText} from '@src/Atomic/FontText';
+import {Linking} from 'react-native';
 
 interface SiteInfoFormProps {
   userName: string;
@@ -33,7 +34,14 @@ export default function PersonalInfoForm({userName}: SiteInfoFormProps) {
         <Button size="sm" bg="black">
           아이핀 본인확인
         </Button>
-        <Button size="sm" bg="black">
+        <Button
+          size="sm"
+          bg="black"
+          onPress={() => {
+            Linking.openURL(
+              'https://www.sktpass.com/applink/sktauth?agentTID=V49440000000&appToken=1234',
+            );
+          }}>
           휴대폰 본인확인
         </Button>
       </HStack>

@@ -18,6 +18,7 @@ export type StackScreenProps = {
   PrivacyCheck: undefined;
   RegisterForm: undefined;
   CustomerInquiry: undefined;
+  SearchResult: undefined;
 };
 
 interface CommonScreenProps {

@@ -8,6 +8,7 @@ import FastImage from 'react-native-fast-image';
 import useProductData from '@src/hooks/queryHooks/useProductData';
 import {isInternetPlusTvData} from '@src/Types/ProductTypes';
 import LodingIndicator from '@src/Modules/LodingIndicator';
+import AutoSizedImage from '@src/Modules/AutoSizedImage';
 
 const ImageProduct = () => {
   const width = useWindowDimensions().width;
@@ -24,6 +25,7 @@ const ImageProduct = () => {
   return (
     <Box>
       {isInternetPlusTvData(data) && (
+        // <AutoSizedImage source={{uri: data.Content}} />
         <FastImage
           style={{aspectRatio: 0.09, width: width}}
           source={{uri: data.Content}}

@@ -1,7 +1,8 @@
 import client from './client';
-import {CommonSubPageProps} from '@src/Types/ProductTypes';
+import {ParamProps} from '@Types/ProductTypes';
+import {CommonProps} from '@Types/CommonTypes';
 
-export async function getProductData(data: CommonSubPageProps) {
-  const res = await client.post('subpage.php', data);
+export async function getProductData(params: ParamProps | CommonProps) {
+  const res = await client.post('subpage.php', params);
   return res.data;
 }

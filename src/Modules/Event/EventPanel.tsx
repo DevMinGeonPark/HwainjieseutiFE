@@ -15,7 +15,6 @@ interface EventPanelProps {
 }
 
 export default function EventPanel({data}: EventPanelProps) {
-  const width = useWindowDimensions().width;
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
   const toast = useToast();
 
@@ -31,7 +30,7 @@ export default function EventPanel({data}: EventPanelProps) {
       <AspectRatio w="100%" ratio={18 / 12}>
         <Image
           source={{
-            uri: data?.ImgSrc.replace(/http:/g, 'https:'),
+            uri: data?.ImgSrc,
           }}
           alt="image"
         />
@@ -44,7 +43,7 @@ export default function EventPanel({data}: EventPanelProps) {
         <HStack space={1} alignItems="center">
           <CommentIcon name="comment" color="#777777" size={13} />
           <FontText fontSize={13} color="#E94E1B">
-            30
+            {data?.CommentsCount}
           </FontText>
         </HStack>
       </HStack>

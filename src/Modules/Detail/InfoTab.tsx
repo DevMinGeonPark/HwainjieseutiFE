@@ -1,43 +1,36 @@
-import {View, Text, useWindowDimensions, Pressable} from 'react-native';
+import {Pressable} from 'react-native';
 import React from 'react';
-import {Heading, Center} from 'native-base';
-import RenderHTML from 'react-native-render-html';
+import {Center} from 'native-base';
 import {FontHeading} from '@src/Atomic/FontHeading';
+import AutoSizedImage from '../AutoSizedImage';
 
 interface InfoTabProps {
-  html: string;
-  infoTabSetter: boolean;
-  setInfoTabSetter: React.Dispatch<React.SetStateAction<boolean>>;
+  BuyBenefit: string;
+  CommAttn: string;
 }
 
-export default function InfoTab({
-  html,
-  infoTabSetter,
-  setInfoTabSetter,
-}: InfoTabProps) {
-  const width = useWindowDimensions().width;
+export default function InfoTab({BuyBenefit, CommAttn}: InfoTabProps) {
+  const [infoTabSetter, setInfoTabSetter] = React.useState<boolean>(true);
+
   return (
     <>
       <Pressable onPress={() => setInfoTabSetter(true)}>
-        <Center bg={infoTabSetter ? '#dddddd' : 'white'}>
+        <Center bg={infoTabSetter ? 'white' : '#dddddd'}>
           <FontHeading p={3} size="lg">
             구매해택
           </FontHeading>
         </Center>
       </Pressable>
       <Pressable onPress={() => setInfoTabSetter(false)}>
-        <Center bg={infoTabSetter ? 'white' : '#dddddd'}>
+        <Center bg={infoTabSetter ? '#dddddd' : 'white'}>
           <FontHeading p={3} size="lg">
             공통유의사항
           </FontHeading>
         </Center>
       </Pressable>
-      <RenderHTML
-        contentWidth={width}
-        source={{
-          html: html || '',
-        }}
-      />
+      {infoTabSetter
+        ? BuyBenefit && <AutoSizedImage source={{uri: BuyBenefit}} />
+        : CommAttn && <AutoSizedImage source={{uri: CommAttn}} />}
     </>
   );
 }

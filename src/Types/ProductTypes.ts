@@ -1,27 +1,20 @@
 import {ItemList} from './MainDataTypes';
+import {CommonProps} from './CommonTypes';
 
-export interface CommonSubPageProps {
-  /** ca_id, co_id ... etc */
-  MenuType: string;
-  /** 10 20 50 */
-  MenuVar: string;
-}
-
-export interface ProductProps extends CommonSubPageProps {
+export interface ParamProps extends CommonProps {
   /** Product 필수 항목 */
   sort: string;
   /** Product 필수 항목 */
   sortodr: string;
 }
 
-export interface ProductData extends CommonSubPageProps {
+export interface ProductData extends CommonProps {
   ItemList: ItemList[];
 }
 
 interface CommonNoticeProps {
   Uid: number;
   Title: string;
-  WriteDate: string;
 }
 
 export interface CommonSubPageResProps {
@@ -38,10 +31,11 @@ export interface EventData extends CommonSubPageResProps {
   ListNotice: ListNotice[];
 }
 export interface TopNotice extends CommonNoticeProps {
-  // 여기에 TopNotice에만 있는 속성을 추가할 수 있습니다.
+  WriteDate: string;
 }
 
 export interface ListNotice extends CommonNoticeProps {
+  CommentsCount: number;
   ImgSrc: string;
 }
 

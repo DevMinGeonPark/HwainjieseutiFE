@@ -32,7 +32,7 @@ const Detail = () => {
   const [ktDiscount, setKtDiscount] = useState<string>('Y');
   const [user] = useUserState();
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [infoTabSetter, setInfoTabSetter] = useState<boolean>(true);
+
   const {scrollViewRef} = useContext(ScrollViewContext);
   const width = useWindowDimensions().width - 20;
   const routeParams = useRoute().params as DetailScreenProps;
@@ -41,6 +41,8 @@ const Detail = () => {
     ItemCode: routeParams.it_id,
     CategorieCode: routeParams.MenuVar,
   });
+
+  console.log(JSON.stringify(data, null, 2));
 
   useEffect(() => {
     setPlan('212121');
@@ -140,14 +142,10 @@ const Detail = () => {
           UserID={user?.UserId || ''}
         />
       </Box>
-
       <Box borderTopWidth={2} borderTopColor={'primary.400'}>
         <InfoTab
-          html={htmlPreprocesser(
-            (infoTabSetter ? data?.BuyBenefit[0].Common : data?.CommAttn) || '',
-          )}
-          infoTabSetter={infoTabSetter}
-          setInfoTabSetter={setInfoTabSetter}
+          BuyBenefit={data?.BuyBenefit || ''}
+          CommAttn={data?.CommAttn || ''}
         />
       </Box>
       <ProductPiece
