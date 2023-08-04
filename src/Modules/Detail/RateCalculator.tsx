@@ -16,7 +16,11 @@ import {FontHeading} from '@src/Atomic/FontHeading';
 import {useFixBarState} from '@src/contexts/FixBarStateContext';
 import useRateData from '@src/hooks/queryHooks/useRateData';
 
-export default function RateCalculator(Params: ParamProps) {
+interface RateCalculatorProps extends ParamProps {
+  OrderPage: string;
+}
+
+export default function RateCalculator(Params: RateCalculatorProps) {
   const {data, status} = useRateData(Params);
 
   const [, setFixbarProps] = useFixBarState();
@@ -26,6 +30,7 @@ export default function RateCalculator(Params: ParamProps) {
         ChgContractMonthChg: data?.ChgContractMonthChg,
         ChgContractMonthRate: data?.ChgContractMonthRate,
         ChgContractMonthTotal: data?.ChgContractMonthTotal,
+        OrderPage: Params?.OrderPage,
       });
     }
   }, [status, data, setFixbarProps]);

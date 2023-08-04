@@ -13,4 +13,7 @@ export interface FixBarContextStateProps {
 
   /** 요금제 월납부금 */ //state
   ChgContractMonthTotal: number | undefined;
+
+  /** OrderButton */
+  OrderPage: string;
 }

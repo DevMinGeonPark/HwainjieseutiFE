@@ -9,9 +9,14 @@ import DateTimeItem from '@src/Atomic/EventBoard/DateTimeItem';
 interface InfoPanelProps {
   WriteDate: string;
   HitCount: string;
+  CommentsCount: number;
 }
 
-export default function InfoPanel({WriteDate, HitCount}: InfoPanelProps) {
+export default function InfoPanel({
+  WriteDate,
+  HitCount,
+  CommentsCount,
+}: InfoPanelProps) {
   return (
     <HStack
       bg="#f5f5f5"
@@ -23,7 +28,12 @@ export default function InfoPanel({WriteDate, HitCount}: InfoPanelProps) {
         <InfoPanelItem icon="user" data="KT공식몰" color="#777" weight="400" />
       </HStack>
       <HStack space={3} flex={2}>
-        <InfoPanelItem icon="comment" data="30" color="#E94E1B" weight="bold" />
+        <InfoPanelItem
+          icon="comment"
+          data={CommentsCount.toString()}
+          color="#E94E1B"
+          weight="bold"
+        />
         <InfoPanelItem icon="eye" data={HitCount} color="#777" weight="400" />
       </HStack>
       <DateTimeItem Date={WriteDate} />

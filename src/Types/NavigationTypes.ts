@@ -17,7 +17,8 @@ export type StackScreenProps = {
   Confirm: undefined;
   PrivacyCheck: undefined;
   RegisterForm: undefined;
-  CustomerInquiry: undefined;
+  QnAMain: undefined;
+  WriteQnA: {QNAID: string | ''};
   SearchResult: undefined;
 };
 

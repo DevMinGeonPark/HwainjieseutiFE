@@ -53,7 +53,7 @@ export default function MenuItemModule({point}: MenuItemProps) {
       <MenuItem
         text="1:1문의"
         onPress={() => {
-          navigation.navigate('CustomerInquiry');
+          navigation.navigate('QnAMain');
         }}
       />
       {isOpen && <AlertModal isOpen={isOpen} setIsOpen={setIsOpen} />}

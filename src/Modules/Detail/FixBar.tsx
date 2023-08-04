@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Button, Center, HStack, VStack} from 'native-base';
+import {Box, Button, Center, HStack, Link, VStack} from 'native-base';
 import {FontText} from '@src/Atomic/FontText';
 import {Linking, useWindowDimensions} from 'react-native';
 import FixBarLabel from '@src/Atomic/Detail/FixBarLabel';
@@ -44,7 +44,8 @@ export default function FixBar() {
         <Button
           bg="#5ddfde"
           _text={{fontSize: 18, color: 'black', fontWeight: 'bold'}}
-          flex={1}>
+          flex={1}
+          onPress={() => Linking.openURL(fixbarProps?.OrderPage || '')}>
           주문하기
         </Button>
         <Button

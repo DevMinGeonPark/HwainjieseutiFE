@@ -5,7 +5,7 @@ import React from 'react';
 export default function InquiryPanel() {
   return (
     <HStack
-      my={5}
+      mt={3}
       py={3}
       borderTopColor="black"
       borderTopWidth={2}

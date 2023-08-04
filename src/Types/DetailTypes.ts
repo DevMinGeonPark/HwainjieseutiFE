@@ -17,6 +17,7 @@ export interface ItemDetail {
   KTDiscount: string[];
   BuyBenefit: string;
   CommAttn: string;
+  OrderPage: string;
   RateCode: string;
 }
 

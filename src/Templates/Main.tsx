@@ -13,7 +13,7 @@ const Main = () => {
   const {data} = useMainData();
   const width = useWindowDimensions().width;
 
-  console.log(JSON.stringify(data, null, 2));
+  // console.log(JSON.stringify(data, null, 2));
 
   const pressableStyle = {
     width: width,

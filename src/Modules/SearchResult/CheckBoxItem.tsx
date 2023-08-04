@@ -1,7 +1,7 @@
 import {Box, Button, Checkbox, HStack, Input, VStack} from 'native-base';
 import React from 'react';
 import {FontText} from '@src/Atomic/FontText';
-import CheckBoxItem from '@src/Atomic/SearchResult/SearchOption';
+import CheckBoxItem from '@src/Atomic/CheckBoxItem';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {ParamProps} from '@Types/SearchDataType';
 

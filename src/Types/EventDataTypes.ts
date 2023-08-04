@@ -7,6 +7,7 @@ export interface Comment {
   Content: string;
   UserID: string;
   UserNm: string;
+  WriteDate: string;
   Blinder: string;
 }
 
@@ -16,5 +17,6 @@ export interface EventData {
   Subject: string;
   WriteDate: string;
   HitCount: string;
+  CommentsCount: number;
   Comments: Comment[];
 }

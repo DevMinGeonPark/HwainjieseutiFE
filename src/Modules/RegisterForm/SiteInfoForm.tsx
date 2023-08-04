@@ -1,7 +1,7 @@
 import react from 'react';
 import {Box} from 'native-base';
 import PanelItem from '@src/Atomic/PanelItem';
-import FormItem from '@src/Atomic/RegisterForm/FormItem';
+import FormItem from '@src/Atomic/FormItem';
 import {FontText} from '@src/Atomic/FontText';
 
 interface SiteInfoFormProps {

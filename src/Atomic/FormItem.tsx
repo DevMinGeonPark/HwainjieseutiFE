@@ -1,14 +1,14 @@
 import {Box, Input} from 'native-base';
 import React from 'react';
-import {FontHeading} from '../FontHeading';
+import {FontHeading} from './FontHeading';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 interface FormItemProps {
   title: string;
   data: string;
   isDisabled: boolean;
-  type: 'text' | 'password' | undefined;
-  icon: string;
+  type?: 'text' | 'password';
+  icon?: string;
 }
 
 export default function FormItem({
@@ -19,7 +19,7 @@ export default function FormItem({
   icon,
 }: FormItemProps) {
   return (
-    <Box p={3}>
+    <Box>
       <FontHeading fontSize={14} pb={2}>
         {title}
       </FontHeading>
@@ -29,7 +29,7 @@ export default function FormItem({
         bg={isDisabled ? '#EEEEEE' : '#FFFFFF'}
         InputRightElement={
           <Box mr={3}>
-            <Icon name={icon} size={14} color="black" />
+            {icon && <Icon name={icon} size={14} color="black" />}
           </Box>
         }
         type={type}

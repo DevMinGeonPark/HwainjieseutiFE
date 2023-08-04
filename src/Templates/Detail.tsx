@@ -1,4 +1,4 @@
-import {useWindowDimensions} from 'react-native';
+import {useWindowDimensions, Linking} from 'react-native';
 import React, {useContext, useEffect, useState} from 'react';
 import withCommontLayout from './withCommontLayout';
 import {Button, Image, Box} from 'native-base';
@@ -23,6 +23,7 @@ import RateTypeUI from '@src/Modules/Detail/RateTypeUI';
 import useItemInfoData from '@src/hooks/queryHooks/useItemInfoData';
 import {DetailScreenProps} from '@src/Types/NavigationTypes';
 import RateCalculator from '@src/Modules/Detail/RateCalculator';
+import {useFixBarState} from '@src/contexts/FixBarStateContext';
 
 const Detail = () => {
   const [plan, setPlan] = useState<string>('212121');
@@ -36,13 +37,14 @@ const Detail = () => {
   const {scrollViewRef} = useContext(ScrollViewContext);
   const width = useWindowDimensions().width - 20;
   const routeParams = useRoute().params as DetailScreenProps;
+  const [, setFixbarProps] = useFixBarState();
 
   const {data} = useItemInfoData({
     ItemCode: routeParams.it_id,
     CategorieCode: routeParams.MenuVar,
   });
 
-  console.log(JSON.stringify(data, null, 2));
+  // console.log(JSON.stringify(data, null, 2));
 
   useEffect(() => {
     setPlan('212121');
@@ -128,7 +130,9 @@ const Detail = () => {
         bg={'primary.400'}
         variant={'solid'}
         _text={{fontSize: 'md', fontWeight: 'bold', color: 'black'}}
-        onPress={() => {}}>
+        onPress={() => {
+          Linking.openURL(data?.OrderPage || '');
+        }}>
         주문하기
       </Button>
 
@@ -140,6 +144,7 @@ const Detail = () => {
           KTDiscount={ktDiscount}
           ForMonth={installment}
           UserID={user?.UserId || ''}
+          OrderPage={data?.OrderPage || ''}
         />
       </Box>
       <Box borderTopWidth={2} borderTopColor={'primary.400'}>

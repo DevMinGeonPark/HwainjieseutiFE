@@ -26,7 +26,7 @@ export default function CommentBox({Comment}: CommentBoxProps) {
         <VStack space={2} flex={3}>
           <HStack px={3} space={3} alignItems="center">
             <FontHeading fontSize={14}>{Comment?.UserNm}</FontHeading>
-            <DateTimeItem Date="2023-07-03 10:12:04" />
+            <DateTimeItem Date={Comment?.WriteDate || ''} />
           </HStack>
           <CommentItem
             Option={Comment?.Option || ''}

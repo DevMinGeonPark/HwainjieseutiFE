@@ -12,10 +12,11 @@ import EventBorad from '@src/Templates/EventBorad';
 import MyPage from '@src/Templates/MyPage';
 import Confirm from '@src/Templates/Confirm';
 import RegisterForm from '@src/Templates/RegisterForm';
-import CustomerInquiry from '@src/Templates/CustomerInquiry';
+import CustomerInquiry from '@src/Templates/QnAMain';
 import MyPoint from '@src/Templates/MyPoint';
 import PrivacyCheck from '@src/Templates/PrivacyCheck';
 import SearchResult from '@src/Templates/SearchResult';
+import WriteQnA from '@src/Templates/WriteQnA';
 
 const Stack = createStackNavigator<StackScreenProps>();
 
@@ -108,8 +109,13 @@ function StackNavigator() {
       />
 
       <Stack.Screen
-        name="CustomerInquiry"
+        name="QnAMain"
         component={CustomerInquiry}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="WriteQnA"
+        component={WriteQnA}
         options={{headerShown: false}}
       />
       <Stack.Screen

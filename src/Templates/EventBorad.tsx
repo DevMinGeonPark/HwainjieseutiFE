@@ -1,42 +1,38 @@
 import {Box, Image} from 'native-base';
 import React from 'react';
 import withCommontLayout from './withCommontLayout';
-import {useRoute} from '@react-navigation/native';
+import {getFocusedRouteNameFromRoute, useRoute} from '@react-navigation/native';
 import useEventData from '@src/hooks/queryHooks/useEventData';
 import InfoPanel from '@src/Modules/EventBoard/InfoPanel';
 import {FontHeading} from '@src/Atomic/FontHeading';
 import DividerTitle from '@src/Atomic/Navigator/DividerTitle';
 import CommentBox from '@src/Modules/EventBoard/CommentBox';
+import AutoSizedImage from '@src/Modules/AutoSizedImage';
 
 const EventBorad = () => {
   const routeParams = useRoute().params as {Uid: string};
 
   const {data} = useEventData({Uid: routeParams.Uid});
 
-  // console.log(JSON.stringify(data, null, 2));
+  console.log(routeParams.Uid);
 
   return (
-    <Box>
+    <Box mt={3}>
       <FontHeading p={2} py={3} fontSize={16}>
         {data?.Subject}
       </FontHeading>
       <InfoPanel
         WriteDate={data?.WriteDate || ''}
         HitCount={data?.HitCount || ''}
+        CommentsCount={data?.CommentsCount || 0}
       />
-      <Box p={3} h={200}>
-        <Image
-          width="100%"
-          height="100%"
-          resizeMode="contain"
-          source={{uri: data?.ImgSrc}}
-          alt="image"
-        />
+      <Box mt={5}>
+        <AutoSizedImage source={{uri: data?.ImgSrc || ''}} />
       </Box>
       <DividerTitle title="Comments" fontSize={16} />
-      {/* {data?.Comments.map((item, index) => (
+      {data?.Comments.map((item, index) => (
         <CommentBox key={index} Comment={item} />
-      ))} */}
+      ))}
     </Box>
   );
 };

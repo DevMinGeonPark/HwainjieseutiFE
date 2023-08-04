@@ -8,7 +8,7 @@ interface SearchOptionProps {
 
 export default function CheckBoxItem({title, value}: SearchOptionProps) {
   return (
-    <Checkbox defaultIsChecked value={value}>
+    <Checkbox mt={2} defaultIsChecked value={value}>
       <FontText>{title}</FontText>
     </Checkbox>
   );
