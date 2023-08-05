@@ -9,10 +9,27 @@ import {useUserState} from '@src/contexts/UserContext';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {useNavigation} from '@react-navigation/native';
+import useConfirmPW from '@hooks/queryHooks/useConfirmPW';
+import {encrypt} from '@src/Utils/Encrypt';
 
 const Confirm = () => {
   const [user] = useUserState();
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
+  const confirmPassword = useConfirmPW();
+  const [password, setPassword] = React.useState(''); // 비밀번호 상태 추가
+
+  const handleconfirmPW = async () => {
+    try {
+      await confirmPassword.mutateAsync({
+        KTShopID: user?.UserId || '',
+        KTShopPW: encrypt(password),
+      });
+
+      navigation.navigate('RegisterForm');
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   return (
     <>
@@ -45,19 +62,22 @@ const Confirm = () => {
           </HStack>
           <Input
             mt={2}
+            onChangeText={text => setPassword(text)} // 입력 시 비밀번호 상태 업데이트
+            value={password} // Input의 값을 비밀번호 상태로 세팅
             InputRightElement={
               <Box mr={3}>
                 <Icon name="lock" size={16} color="black" />
               </Box>
             }
             bg="#FFFFFF"
+            secureTextEntry={true} // 비밀번호를 남들이 볼 수 없게 함
             type="password"
           />
           <Button
             mt={2}
             bg="#000000"
             _text={{color: '#FFFFFF'}}
-            onPress={() => navigation.navigate('RegisterForm')}>
+            onPress={handleconfirmPW}>
             확인하기
           </Button>
         </Box>

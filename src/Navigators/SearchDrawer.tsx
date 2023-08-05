@@ -1,18 +1,13 @@
-import {HStack, Box, VStack} from 'native-base';
-import React, {useState} from 'react';
+import {HStack, Box} from 'native-base';
+import React from 'react';
 import DividerTitle from '@src/Atomic/Navigator/DividerTitle';
 import DrawerButton from '@src/Atomic/Navigator/DrawerButton';
 import {useDrawerState} from '@src/contexts/DrawerStateContext';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
 import {DrawerScreenProps} from '@Types/NavigationTypes';
 import {useNavigation, DrawerActions} from '@react-navigation/native';
-import {SortedSelected} from '@Utils/SortedSelected';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
-import PriceController from '@src/Modules/Search/PriceController';
-import SearchSubText from '@src/Modules/Search/SearchSubText';
-import CheckboxGroup from '@src/Modules/Search/CheckBoxGroup';
-import {SearchInput} from '@src/Modules/SearchDrawer/SearchInput';
 import {useSearchState} from '@src/hooks/stateHooks/useSearchState';
 import SearchOption from '@src/Modules/SearchResult/SearchOption';
 
@@ -50,7 +45,6 @@ export default function SearchDrawer(props: any) {
         SearchStr: copyText,
       });
       handleDefaultValues();
-      setCopyText('');
     }
   };
 
