@@ -15,15 +15,22 @@ import useWriteQnA from '@src/hooks/queryHooks/useWriteQnA';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
+import {WriteQnAParamsProps} from '@Types/NavigationTypes';
 
 const WriteQnA = () => {
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
-  const routeParams = useRoute().params as {QNAID: string};
-  const [category, setCategory] = React.useState<string>('');
-  const [email, setEmail] = React.useState<string>('');
-  const [phone, setPhone] = React.useState<string>('');
-  const [title, setTitle] = React.useState<string>('');
-  const [content, setContent] = React.useState<string>('');
+  const routeParams = useRoute().params as WriteQnAParamsProps;
+  const [category, setCategory] = React.useState<string>(
+    routeParams.Category || '',
+  );
+  const [email, setEmail] = React.useState<string>(
+    routeParams.WriteEmail || '',
+  );
+  const [phone, setPhone] = React.useState<string>(routeParams.WriteHp || '');
+  const [title, setTitle] = React.useState<string>(routeParams.Subject || '');
+  const [content, setContent] = React.useState<string>(
+    routeParams.Content || '',
+  );
   const [user] = useUserState();
   // Validation
   const [isValidEmail, setIsValidEmail] = React.useState(true);
@@ -47,6 +54,7 @@ const WriteQnA = () => {
       Content: content,
     };
     await qnaWriteMutation.mutateAsync(formData); // 수정된 부분
+    navigation.navigate('QnAMain');
   };
 
   return (
@@ -61,7 +69,7 @@ const WriteQnA = () => {
         <FontHeading fontSize={14}>글작성</FontHeading>
       </Box>
       <VStack space={4} px={2}>
-        <CategorySelector setCategory={setCategory} />
+        <CategorySelector category={category} setCategory={setCategory} />
         <EmailInput
           value={email}
           onChange={setEmail}

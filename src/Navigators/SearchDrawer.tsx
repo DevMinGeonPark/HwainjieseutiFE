@@ -1,16 +1,20 @@
-import {HStack, Box, Input, Button, VStack, SearchIcon} from 'native-base';
-import React from 'react';
-import {useToast} from 'native-base';
+import {HStack, Box, VStack} from 'native-base';
+import React, {useState} from 'react';
 import DividerTitle from '@src/Atomic/Navigator/DividerTitle';
 import DrawerButton from '@src/Atomic/Navigator/DrawerButton';
 import {useDrawerState} from '@src/contexts/DrawerStateContext';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
 import {DrawerScreenProps} from '@Types/NavigationTypes';
 import {useNavigation, DrawerActions} from '@react-navigation/native';
-import SearchTypeSelector from '@src/Atomic/Navigator/SearchTypeSelector';
-import SearchLogicSelector from '@src/Atomic/Navigator/SearchLogicSelector';
+import {SortedSelected} from '@Utils/SortedSelected';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
+import PriceController from '@src/Modules/Search/PriceController';
+import SearchSubText from '@src/Modules/Search/SearchSubText';
+import CheckboxGroup from '@src/Modules/Search/CheckBoxGroup';
+import {SearchInput} from '@src/Modules/SearchDrawer/SearchInput';
+import {useSearchState} from '@src/hooks/stateHooks/useSearchState';
+import SearchOption from '@src/Modules/SearchResult/SearchOption';
 
 export default function SearchDrawer(props: any) {
   const [, setDrawerType] = useDrawerState();
@@ -18,7 +22,37 @@ export default function SearchDrawer(props: any) {
     useNavigation<DrawerNavigationProp<DrawerScreenProps>>();
   const stackNavigation =
     useNavigation<StackNavigationProp<StackScreenProps>>();
-  const [copyText, setCopyText] = React.useState<string>('');
+  const {
+    copyText,
+    setCopyText,
+    selected,
+    setSelected,
+    minPrice,
+    setMinPrice,
+    maxPrice,
+    setMaxPrice,
+    showError,
+    setShowError,
+    handleCheckboxToggle,
+    handleDefaultValues, // 이 부분 불러오기
+  } = useSearchState();
+
+  const handleSearch = () => {
+    if (copyText.length < 2) {
+      setShowError(true);
+    } else {
+      setShowError(false);
+      stackNavigation.navigate('SearchResult', {
+        SearchRange: selected.join('').toString(),
+        SearchPrice:
+          (minPrice && maxPrice && `${minPrice} ~ ${maxPrice}`) ||
+          '0 ~ 99999999',
+        SearchStr: copyText,
+      });
+      handleDefaultValues();
+      setCopyText('');
+    }
+  };
 
   return (
     <Box m={5} safeArea>
@@ -35,36 +69,19 @@ export default function SearchDrawer(props: any) {
         />
       </HStack>
       <DividerTitle title="SEARCH" fontSize={14} />
-      <Box bg="#fafafa" p={2}>
-        <VStack space={3}>
-          <HStack space={2}>
-            <SearchTypeSelector />
-            <SearchLogicSelector />
-          </HStack>
-          <Input
-            h={10}
-            bg="white"
-            style={{fontSize: 12}}
-            rounded="none"
-            placeholder="검색어는 두글자 이상"
-            onChangeText={v => setCopyText(v)}
-            value={copyText}
-            InputRightElement={
-              <Button
-                variant={'ghost'}
-                rounded="none"
-                borderLeftColor="muted.300"
-                borderLeftWidth={1}
-                bg="#323C46"
-                onPress={() => {}}
-                leftIcon={<SearchIcon size="5" color="white" />}
-                onPressIn={() => {
-                  stackNavigation.navigate('SearchResult');
-                }}
-              />
-            }
-          />
-        </VStack>
+      <Box bg="#fafafa" p={2} pt={7} borderWidth={1} borderColor="#CCC">
+        <SearchOption
+          selected={selected}
+          handleCheckboxToggle={handleCheckboxToggle}
+          minPrice={minPrice}
+          setMinPrice={setMinPrice}
+          maxPrice={maxPrice}
+          setMaxPrice={setMaxPrice}
+          copyText={copyText}
+          setCopyText={setCopyText}
+          handleSearch={handleSearch}
+          showError={showError}
+        />
       </Box>
     </Box>
   );

@@ -18,13 +18,37 @@ export type StackScreenProps = {
   PrivacyCheck: undefined;
   RegisterForm: undefined;
   QnAMain: undefined;
-  WriteQnA: {QNAID: string | ''};
-  SearchResult: undefined;
+  QnADetail: QnADetailProps;
+  WriteQnA: WriteQnAParamsProps;
+  SearchResult: SearchResultProps;
 };
+
+export interface SearchResultProps {
+  SearchRange: string;
+  SearchPrice: string;
+  SearchStr: string;
+}
 
 interface CommonScreenProps {
   MenuType: string;
   MenuVar: string;
+}
+
+export interface QnADetailProps {
+  QNAID: string;
+  KTShopID: string;
+  Status?: number;
+}
+
+export interface WriteQnAParamsProps {
+  QNAID: string | '';
+  KTShopID: string | '';
+  Category?: string | '';
+  Subject?: string | '';
+  Content?: string | '';
+  WriteName?: string | '';
+  WriteHp?: string | '';
+  WriteEmail?: string | '';
 }
 
 interface _ProductScreenProps extends CommonScreenProps {

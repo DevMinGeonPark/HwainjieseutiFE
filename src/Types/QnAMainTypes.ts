@@ -14,4 +14,5 @@ export interface QNAItem {
   Subject: string;
   WriteName: string;
   WriteDate: string;
+  Status: number;
 }

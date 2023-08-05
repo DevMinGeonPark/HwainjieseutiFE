@@ -8,7 +8,7 @@ export default function useSearchData(params: ParamProps) {
   const log = useLog('dev');
 
   const query = useQuery(
-    ['getItemInfoData', params],
+    ['getSearchData', params],
     () => getSearchData(params),
     {
       notifyOnChangeProps: ['data'],

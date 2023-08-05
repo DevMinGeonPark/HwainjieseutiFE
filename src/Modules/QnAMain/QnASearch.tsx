@@ -2,8 +2,19 @@ import {FontText} from '@src/Atomic/FontText';
 import {Box, Input, Button, HStack} from 'native-base';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {ParamProps} from '@src/Types/QnAMainTypes';
 
-export default function InquirySearch() {
+interface QnASearchProps {
+  setParams: React.Dispatch<React.SetStateAction<ParamProps>>;
+}
+
+export default function QnASearch({setParams}: QnASearchProps) {
+  const [searchStr, setSearchStr] = React.useState<string>('');
+
+  const onSummit = () => {
+    setParams(prev => ({...prev, SearchStr: searchStr}));
+  };
+
   return (
     <HStack
       space={2}
@@ -27,6 +38,7 @@ export default function InquirySearch() {
             <Icon name="search" size={15} color="black" />
           </Button>
         }
+        onChangeText={newStr => setSearchStr(newStr)}
       />
       <Button
         flex={1}
@@ -36,7 +48,8 @@ export default function InquirySearch() {
         leftIcon={<Icon name="search" size={12} color="white" />}
         borderRightColor="muted.300"
         _text={{fontSize: 12, color: 'white'}}
-        borderRightWidth={1}>
+        borderRightWidth={1}
+        onPress={onSummit}>
         검색
       </Button>
     </HStack>

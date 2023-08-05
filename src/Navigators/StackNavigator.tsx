@@ -17,6 +17,7 @@ import MyPoint from '@src/Templates/MyPoint';
 import PrivacyCheck from '@src/Templates/PrivacyCheck';
 import SearchResult from '@src/Templates/SearchResult';
 import WriteQnA from '@src/Templates/WriteQnA';
+import QnADetail from '@src/Templates/QnADetail';
 
 const Stack = createStackNavigator<StackScreenProps>();
 
@@ -111,6 +112,11 @@ function StackNavigator() {
       <Stack.Screen
         name="QnAMain"
         component={CustomerInquiry}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="QnADetail"
+        component={QnADetail}
         options={{headerShown: false}}
       />
       <Stack.Screen
