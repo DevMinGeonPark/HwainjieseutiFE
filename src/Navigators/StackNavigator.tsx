@@ -86,11 +86,7 @@ function StackNavigator() {
         component={MyPoint}
         options={{headerShown: false}}
       />
-      <Stack.Screen
-        name="PrivacyCheck"
-        component={PrivacyCheck}
-        options={{headerShown: false}}
-      />
+
       <Stack.Screen
         name="MyPage"
         component={MyPage}

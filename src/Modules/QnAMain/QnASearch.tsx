@@ -24,6 +24,7 @@ export default function QnASearch({setParams}: QnASearchProps) {
       borderWidth={1}
       borderColor="#ddd">
       <Input
+        autoCapitalize="none"
         flex={2}
         rounded="none"
         placeholder="검색어"

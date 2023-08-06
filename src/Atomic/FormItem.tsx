@@ -5,18 +5,20 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 interface FormItemProps {
   title: string;
-  data: string;
   isDisabled: boolean;
   type?: 'text' | 'password';
   icon?: string;
+  text: string;
+  setText: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function FormItem({
   title,
-  data,
   isDisabled,
   type,
   icon,
+  text,
+  setText,
 }: FormItemProps) {
   return (
     <Box>
@@ -24,7 +26,8 @@ export default function FormItem({
         {title}
       </FontHeading>
       <Input
-        value={data}
+        autoCapitalize="none"
+        value={text}
         isDisabled={isDisabled}
         bg={isDisabled ? '#EEEEEE' : '#FFFFFF'}
         InputRightElement={
@@ -32,6 +35,7 @@ export default function FormItem({
             {icon && <Icon name={icon} size={14} color="black" />}
           </Box>
         }
+        onChangeText={text => setText(text)}
         type={type}
       />
     </Box>

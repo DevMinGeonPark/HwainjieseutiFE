@@ -28,6 +28,7 @@ export default function DrawerLoginFrom() {
           placeholder="아이디"
           backgroundColor="white"
           onChangeText={newStr => setID(newStr)}
+          autoCapitalize="none"
           InputLeftElement={
             <Button
               variant={'ghost'}
@@ -44,6 +45,7 @@ export default function DrawerLoginFrom() {
         <Input
           placeholder="비밀번호"
           backgroundColor="white"
+          autoCapitalize="none"
           type="password"
           onChangeText={newStr => setPassword(newStr)}
           InputLeftElement={

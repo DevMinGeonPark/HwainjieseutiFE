@@ -31,7 +31,12 @@ const TitleInput: React.FC<TitleInputProps> = ({
   return (
     <FormControl isRequired isInvalid={!isValid}>
       <FormControl.Label>제목</FormControl.Label>
-      <Input value={value} onChangeText={handleChange} type="text" />
+      <Input
+        autoCapitalize="none"
+        value={value}
+        onChangeText={handleChange}
+        type="text"
+      />
       {!isValid && (
         <FormControl.ErrorMessage>
           올바른 제목을 입력해주세요. 제목은 3글자이상의 문자열이어야 합니다.

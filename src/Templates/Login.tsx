@@ -15,7 +15,7 @@ function Login() {
 
   useEffect(() => {
     if (!!user) {
-      navigation.pop();
+      navigation.navigate('Main');
       toast.show({title: '이미 로그인 되어있습니다.'});
     }
   }, []);

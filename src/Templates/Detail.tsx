@@ -37,7 +37,7 @@ const Detail = () => {
   const {scrollViewRef} = useContext(ScrollViewContext);
   const width = useWindowDimensions().width - 20;
   const routeParams = useRoute().params as DetailScreenProps;
-  const [, setFixbarProps] = useFixBarState();
+  const [, setFixbarProps] = useFixBarState(); //erorr?
 
   const {data} = useItemInfoData({
     ItemCode: routeParams.it_id,

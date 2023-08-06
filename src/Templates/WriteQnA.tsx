@@ -76,6 +76,7 @@ const WriteQnA = () => {
           onValidityChange={setIsValidEmail}
         />
         <PhoneInput
+          title="Phone"
           value={phone}
           onChange={setPhone}
           onValidityChange={setIsValidPhone}

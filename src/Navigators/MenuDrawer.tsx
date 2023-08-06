@@ -22,7 +22,7 @@ export default function MenuDrawer(props: any) {
   const Toast = useToast();
   const isLoggedIn = useLoginCheck();
 
-  const {data} = useMemberInfoData({KTShopID: user?.UserId || ''});
+  const {data, refetch} = useMemberInfoData({KTShopID: user?.UserId || ''});
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
 
   const handlePointSave = React.useCallback(async () => {
@@ -34,6 +34,7 @@ export default function MenuDrawer(props: any) {
       savedPointResult.result == 1
         ? Alert.alert('포인트가 적립되었습니다.')
         : Alert.alert('이미 적립된 포인트입니다.');
+      refetch();
     } catch (error) {
       console.error('Error during point saving:', error);
     }
@@ -53,7 +54,11 @@ export default function MenuDrawer(props: any) {
       <Box safeArea m={5}>
         <DrawerLoginFrom />
         <DividerTitle title="MY MENU" fontSize={14} />
-        <MenuItem text="회원가입" point={undefined} onPress={() => {}} />
+        <MenuItem
+          text="회원가입"
+          point={undefined}
+          onPress={() => navigation.navigate('RegisterForm', {})}
+        />
         <MenuItem
           text="아이디/비밀번호 찾기"
           point={undefined}

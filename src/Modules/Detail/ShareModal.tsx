@@ -117,6 +117,7 @@ export default function ShareModal({
                 width={width - 70}
                 rounded="none"
                 fontSize={19}
+                autoCapitalize="none"
                 onChangeText={v => setCopyText(v)}
                 value={copyText}
                 InputRightElement={

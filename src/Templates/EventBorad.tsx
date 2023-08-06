@@ -7,12 +7,15 @@ import InfoPanel from '@src/Modules/EventBoard/InfoPanel';
 import {FontHeading} from '@src/Atomic/FontHeading';
 import DividerTitle from '@src/Atomic/Navigator/DividerTitle';
 import CommentBox from '@src/Modules/EventBoard/CommentBox';
-import AutoSizedImage from '@src/Modules/AutoSizedImage';
+import AutoHeightImage from 'react-native-auto-height-image';
+import {useWindowDimensions} from 'react-native';
 
 const EventBorad = () => {
   const routeParams = useRoute().params as {Uid: string};
 
   const {data} = useEventData({Uid: routeParams.Uid});
+
+  const width = useWindowDimensions().width;
 
   console.log(routeParams.Uid);
 
@@ -27,7 +30,9 @@ const EventBorad = () => {
         CommentsCount={data?.CommentsCount || 0}
       />
       <Box mt={5}>
-        <AutoSizedImage source={{uri: data?.ImgSrc || ''}} />
+        {data?.ImgSrc && (
+          <AutoHeightImage width={width} source={{uri: data?.ImgSrc || ''}} />
+        )}
       </Box>
       <DividerTitle title="Comments" fontSize={16} />
       {data?.Comments.map((item, index) => (
@@ -37,4 +42,4 @@ const EventBorad = () => {
   );
 };
 
-export default withCommontLayout(EventBorad);
+export default React.memo(withCommontLayout(EventBorad));

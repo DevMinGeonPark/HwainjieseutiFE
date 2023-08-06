@@ -29,6 +29,7 @@ export default function PriceController({
       <HStack space={2} alignItems="center">
         <Input
           w={100}
+          autoCapitalize="none"
           placeholder="최소 가격"
           value={minPrice}
           onChangeText={handleMinPriceChange}
@@ -36,6 +37,7 @@ export default function PriceController({
         <FontText>~</FontText>
         <Input
           w={100}
+          autoCapitalize="none"
           placeholder="최대 가격"
           value={maxPrice}
           onChangeText={handleMaxPriceChange}

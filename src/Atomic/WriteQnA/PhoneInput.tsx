@@ -3,43 +3,36 @@ import {FormControl, Input, VStack} from 'native-base';
 import {isValidPhone} from '@Utils/Validatior';
 
 interface PhoneInputProps {
+  title: string;
   value: string;
   onChange: React.Dispatch<React.SetStateAction<string>>;
-  onValidityChange: (isValid: boolean) => void; // 추가된 부분
+  onValidityChange: (isValid: boolean) => void;
 }
 
 const PhoneInput: React.FC<PhoneInputProps> = ({
+  title,
   value,
   onChange,
   onValidityChange,
 }) => {
   const [isValid, setIsValid] = useState(true);
 
-  const formatPhoneNumber = (value: string) => {
-    const cleaned = ('' + value).replace(/\D/g, '');
-    const match = cleaned.match(/^(\d{3})(\d{3,4})(\d{4})$/);
-    if (match) {
-      const formatted = `${match[1]}-${match[2]}${
-        match[3].length === 4 ? '-' : ''
-      }${match[3]}`;
-      return formatted;
-    }
-    return value;
-  };
-
   const handleChange = (inputValue: string) => {
-    const formattedValue = formatPhoneNumber(inputValue);
-    const valid = isValidPhone(formattedValue.replace(/-/g, ''));
-    onValidityChange(valid); // 추가된 부분
-    onChange(formattedValue);
+    const valid = isValidPhone(inputValue);
+    onValidityChange(valid);
+    onChange(inputValue);
     setIsValid(valid);
   };
 
   return (
     <FormControl isRequired isInvalid={!isValid}>
       <VStack>
-        <FormControl.Label>Phone</FormControl.Label>
+        <FormControl.Label
+          _text={{fontSize: 14, fontWeight: 'bold', color: 'black'}}>
+          {title}
+        </FormControl.Label>
         <Input
+          autoCapitalize="none"
           value={value}
           onChangeText={handleChange}
           autoComplete="tel"

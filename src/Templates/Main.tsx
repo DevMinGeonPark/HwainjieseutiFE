@@ -24,7 +24,10 @@ const Main = () => {
     <Box>
       <CarouselView props={data?.ImgMainRoll} />
       <Pressable {...pressableStyle}>
-        <Banner img={data?.ImgMainSub[0].imgsrc} />
+        <Banner
+          img={data?.ImgMainSub[0].imgsrc}
+          imgUrl={data?.ImgMainSub[0].imgurl}
+        />
       </Pressable>
       <Title title="NEW" desc="얼리어답터를 위한 신제품!" />
       <ProductList items={data?.ItemNewList || []} />

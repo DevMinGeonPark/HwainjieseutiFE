@@ -1,14 +1,29 @@
 import react from 'react';
-import {Box} from 'native-base';
+import {Box, VStack} from 'native-base';
 import PanelItem from '@src/Atomic/PanelItem';
 import FormItem from '@src/Atomic/FormItem';
 import {FontText} from '@src/Atomic/FontText';
+import {useRoute} from '@react-navigation/native';
+import {RegisterProps} from '@src/Types/NavigationTypes';
 
 interface SiteInfoFormProps {
-  userID: string;
+  id: string;
+  password: string;
+  confirmPassword: string;
+  setId: React.Dispatch<React.SetStateAction<string>>;
+  setPassword: React.Dispatch<React.SetStateAction<string>>;
+  setConfirmPassword: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function SiteInfoForm({userID}: SiteInfoFormProps) {
+export default function SiteInfoForm({
+  id,
+  password,
+  setPassword,
+  setId,
+  setConfirmPassword,
+  confirmPassword,
+}: SiteInfoFormProps) {
+  const routeParams = useRoute().params as RegisterProps;
   return (
     <Box
       mt={6}
@@ -22,30 +37,36 @@ export default function SiteInfoForm({userID}: SiteInfoFormProps) {
         titleSize={14}
         iconSize={14}
       />
-      <FormItem
-        title="아이디"
-        data={userID}
-        isDisabled={true}
-        type="text"
-        icon="check"
-      />
-      <FontText fontSize={14} px={3} color="#777777">
-        영문자, 숫자,_만 입력 가능, 최소 3자이상 입력하세요.
-      </FontText>
-      <FormItem
-        title="비밀번호"
-        data={''}
-        isDisabled={false}
-        type="password"
-        icon="lock"
-      />
-      <FormItem
-        title="비밀번호 확인"
-        data={''}
-        isDisabled={false}
-        type="password"
-        icon="check"
-      />
+      <VStack p={3} space={2}>
+        <FormItem
+          title="아이디"
+          isDisabled={routeParams?.KTShopID ? true : false}
+          type="text"
+          icon="check"
+          text={id}
+          setText={setId}
+        />
+        <FontText fontSize={14} color="#777777">
+          영문자, 숫자,_만 입력 가능, 최소 3자이상 입력하세요.
+        </FontText>
+
+        <FormItem
+          title="비밀번호"
+          isDisabled={false}
+          type="password"
+          icon="lock"
+          text={password}
+          setText={setPassword}
+        />
+        <FormItem
+          title="비밀번호 확인"
+          isDisabled={false}
+          type="password"
+          icon="check"
+          text={confirmPassword}
+          setText={setConfirmPassword}
+        />
+      </VStack>
     </Box>
   );
 }

@@ -21,6 +21,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
         bg="white"
         style={{fontSize: 12}}
         rounded="none"
+        autoCapitalize="none"
         placeholder="검색어는 두글자 이상"
         onChangeText={v => setCopyText(v)}
         value={copyText}

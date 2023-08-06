@@ -2,7 +2,8 @@ import {Pressable} from 'react-native';
 import React from 'react';
 import {Center} from 'native-base';
 import {FontHeading} from '@src/Atomic/FontHeading';
-import AutoSizedImage from '../AutoSizedImage';
+import AutoHeightImage from 'react-native-auto-height-image';
+import {useWindowDimensions} from 'react-native';
 
 interface InfoTabProps {
   BuyBenefit: string;
@@ -11,6 +12,7 @@ interface InfoTabProps {
 
 export default function InfoTab({BuyBenefit, CommAttn}: InfoTabProps) {
   const [infoTabSetter, setInfoTabSetter] = React.useState<boolean>(true);
+  const width = useWindowDimensions().width;
 
   return (
     <>
@@ -29,8 +31,12 @@ export default function InfoTab({BuyBenefit, CommAttn}: InfoTabProps) {
         </Center>
       </Pressable>
       {infoTabSetter
-        ? BuyBenefit && <AutoSizedImage source={{uri: BuyBenefit}} />
-        : CommAttn && <AutoSizedImage source={{uri: CommAttn}} />}
+        ? BuyBenefit && (
+            <AutoHeightImage width={width} source={{uri: BuyBenefit}} />
+          )
+        : CommAttn && (
+            <AutoHeightImage width={width} source={{uri: CommAttn}} />
+          )}
     </>
   );
 }

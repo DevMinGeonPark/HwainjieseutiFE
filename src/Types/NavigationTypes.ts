@@ -15,13 +15,17 @@ export type StackScreenProps = {
   MyPoint: undefined;
   MyPage: undefined;
   Confirm: undefined;
-  PrivacyCheck: undefined;
-  RegisterForm: undefined;
+  RegisterForm: RegisterProps;
   QnAMain: undefined;
   QnADetail: QnADetailProps;
   WriteQnA: WriteQnAParamsProps;
   SearchResult: SearchResultProps;
 };
+
+export interface RegisterProps {
+  KTShopID?: string;
+  UserNm?: string;
+}
 
 export interface SearchResultProps {
   SearchRange: string;

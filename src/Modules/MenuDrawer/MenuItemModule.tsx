@@ -35,7 +35,7 @@ export default function MenuItemModule({point}: MenuItemProps) {
       <MenuItem
         text="마이페이지"
         onPress={() => {
-          navigation.navigate('MyPage');
+          // navigation.navigate('MyPage');
         }}
       />
       <MenuItem

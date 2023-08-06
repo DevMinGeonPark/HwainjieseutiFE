@@ -20,12 +20,16 @@ const Confirm = () => {
 
   const handleconfirmPW = async () => {
     try {
+      // 테스트 중 임시로 주석처리
       await confirmPassword.mutateAsync({
         KTShopID: user?.UserId || '',
         KTShopPW: encrypt(password),
       });
 
-      navigation.navigate('RegisterForm');
+      navigation.navigate('RegisterForm', {
+        KTShopID: user?.UserId || '',
+        UserNm: user?.UserNm || '',
+      });
     } catch (error) {
       console.error('Error:', error);
     }
@@ -62,6 +66,7 @@ const Confirm = () => {
           </HStack>
           <Input
             mt={2}
+            autoCapitalize="none"
             onChangeText={text => setPassword(text)} // 입력 시 비밀번호 상태 업데이트
             value={password} // Input의 값을 비밀번호 상태로 세팅
             InputRightElement={
