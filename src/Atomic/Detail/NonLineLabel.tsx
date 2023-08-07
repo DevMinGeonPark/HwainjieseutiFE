@@ -1,6 +1,7 @@
 import React from 'react';
 import {Box, HStack} from 'native-base';
 import {FontText} from '../FontText';
+import {NumberPreprocesser} from '@Utils/NumberPreprocesser';
 
 interface NonLineLabelProps {
   label: string;
@@ -15,7 +16,7 @@ export default function NonLineLabel({label, Rate}: NonLineLabelProps) {
           {label}
         </FontText>
         <FontText fontSize="md" color={'#AAA'}>
-          {Rate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' 원'}
+          {NumberPreprocesser(Rate.toString()) + ' 원'}
         </FontText>
       </HStack>
     </Box>

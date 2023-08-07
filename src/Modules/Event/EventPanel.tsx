@@ -28,12 +28,14 @@ export default function EventPanel({data}: EventPanelProps) {
             });
       }}>
       <AspectRatio w="100%" ratio={18 / 12}>
-        <Image
-          source={{
-            uri: data?.ImgSrc,
-          }}
-          alt="image"
-        />
+        {data?.ImgSrc && (
+          <Image
+            source={{
+              uri: data?.ImgSrc || '',
+            }}
+            alt="image"
+          />
+        )}
       </AspectRatio>
       <Center p={2}>
         <FontHeading fontSize={12}>{data?.Title}</FontHeading>

@@ -18,7 +18,7 @@ export default function AdCopy() {
       justifyContent="space-between"
       borderBottomColor="#CCC"
       borderBottomWidth={1}>
-      <HStack>
+      <HStack alignItems="center">
         <FontText fontSize={14}> KT화인지에스티 </FontText>
         <FontHeading fontSize={14} color="#f00">
           회원 전용 App

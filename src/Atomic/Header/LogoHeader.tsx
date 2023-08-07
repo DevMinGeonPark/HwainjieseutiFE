@@ -20,12 +20,14 @@ export default function LogoHeader() {
   return (
     <Center>
       <Pressable width="150" onPress={() => stackNavigation.navigate('Main')}>
-        <Image
-          width="100%"
-          resizeMode="contain"
-          alt="logo"
-          source={Images.Logo.Logo}
-        />
+        {Images.Logo.Logo && (
+          <Image
+            width="100%"
+            resizeMode="contain"
+            alt="logo"
+            source={Images.Logo.Logo}
+          />
+        )}
       </Pressable>
       <Pressable
         position="absolute"

@@ -31,7 +31,7 @@ export default function InstallmentButtons({
           variant="outline"
           size="sm"
           borderWidth={selection === index ? 2 : 1}
-          borderColor={selection === index ? '#5fdedd' : 'muted.300'}
+          borderColor={selection === index ? '#5ddfde' : '#DDD'}
           _text={{fontSize: 13, fontWeight: 'bold', color: 'black'}}>
           {month + '개월'}
         </Button>

@@ -42,7 +42,7 @@ export default function NoticePanelItem({
         <HStack space={1}>
           <Image
             style={{width: 37, height: 16}}
-            source={Images.Event.Notice}
+            source={Images.Event.Notice || ''}
             alt="notice"
             size={16}
           />

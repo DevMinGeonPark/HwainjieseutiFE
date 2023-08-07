@@ -23,7 +23,6 @@ const ImageProduct = () => {
   return (
     <Box w={width}>
       {isInternetPlusTvData(data) && data?.Content && (
-        // <AutoHeightImage width={width} source={{uri: data.Content}} />
         <FastImage
           style={{aspectRatio: 0.09, width: width}}
           source={{uri: data.Content}}
@@ -35,10 +34,3 @@ const ImageProduct = () => {
 };
 
 export default React.memo(withCommontLayout(ImageProduct));
-{
-  /* <FastImage
-    style={{aspectRatio: 0.09, width: width}}
-    source={{uri: data.Content}}
-    resizeMode={FastImage.resizeMode.stretch}
-  /> */
-}

@@ -36,7 +36,7 @@ export default function KTDiscountButtons({
               variant="outline"
               size="sm"
               borderWidth={selection === index ? 3 : 1}
-              borderColor={selection === index ? 'primary.400' : 'muted.300'}
+              borderColor={selection === index ? '#5ddfde' : '#DDD'}
               _text={{fontSize: 'xl', fontWeight: 'bold', color: 'black'}}>
               {KTDiscount}
             </Button>

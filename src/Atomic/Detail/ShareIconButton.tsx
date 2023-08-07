@@ -18,13 +18,15 @@ export default function ShareIconButton({
   return (
     <Pressable onPress={onPress}>
       <Center>
-        <Image
-          source={image}
-          alt="ShareIconButtons"
-          width={100}
-          height={100}
-          resizeMode="contain"
-        />
+        {image && (
+          <Image
+            source={image}
+            alt="ShareIconButtons"
+            width={100}
+            height={100}
+            resizeMode="contain"
+          />
+        )}
         <FontText m={1} fontSize={14}>
           {label}
         </FontText>

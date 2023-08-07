@@ -24,12 +24,14 @@ export default function CommentItem({
   } else if (Option === 'secret') {
     return (
       <HStack px={3} space={1} alignItems="center">
-        <Image
-          style={{width: 10, height: 10}}
-          source={Images.Event.Secret}
-          alt="notice"
-          size={16}
-        />
+        {Images.Event.Secret && (
+          <Image
+            style={{width: 10, height: 10}}
+            source={Images.Event.Secret || ''}
+            alt="notice"
+            size={16}
+          />
+        )}
         <FontText fontSize={12}>댓글내용 확인</FontText>
       </HStack>
     );

@@ -72,21 +72,9 @@ export default function ProductCard(data: ItemList) {
               resizeMode="cover"
               alt="product img"
               source={{
-                uri: data.ItemImgUrl,
+                uri: data.ItemImgUrl || '',
               }}
             />
-
-            // <Image
-            //   // w={width / 2 - cardMargin * 2 - 60}
-            //   // h={width / 2 - cardMargin * 2 - 60}
-            //   w={118}
-            //   h={127}
-            //   resizeMode="cover"
-            //   alt="product img"
-            //   source={{
-            //     uri: data.ItemImgUrl,
-            //   }}
-            // />
           )}
         </Center>
         <Box pt={3}>

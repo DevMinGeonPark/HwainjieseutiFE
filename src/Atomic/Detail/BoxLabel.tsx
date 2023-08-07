@@ -2,6 +2,7 @@ import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {Box, Heading, HStack} from 'native-base';
 import {FontText} from '../FontText';
+import {NumberPreprocesser} from '@Utils/NumberPreprocesser';
 
 interface BoxLabelProps {
   label: string;
@@ -19,7 +20,7 @@ export default function BoxLabel({label, Rate, fontColor}: BoxLabelProps) {
           color={fontColor}
           fontWeight={fontColor === '#d71826' ? 'bold' : 'light'}>
           {fontColor === '#d71826' && Rate != 0 ? '-' : ''}
-          {Rate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' 원'}
+          {NumberPreprocesser(Rate.toString()) + ' 원'}
         </FontText>
       </HStack>
     </Box>

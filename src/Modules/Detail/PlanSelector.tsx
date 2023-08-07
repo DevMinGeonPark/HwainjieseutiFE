@@ -46,7 +46,7 @@ export default function PlanSelector({
         }}
         borderRadius="2xl"
         borderWidth="2"
-        borderColor="primary.400"
+        borderColor="#5ddfde"
         onValueChange={itemValue => setPlan(itemValue)}>
         {render().map((item: any) => item)}
       </Select>

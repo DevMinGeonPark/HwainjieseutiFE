@@ -32,10 +32,10 @@ export default function InfoTab({BuyBenefit, CommAttn}: InfoTabProps) {
       </Pressable>
       {infoTabSetter
         ? BuyBenefit && (
-            <AutoHeightImage width={width} source={{uri: BuyBenefit}} />
+            <AutoHeightImage width={width} source={{uri: BuyBenefit || ''}} />
           )
         : CommAttn && (
-            <AutoHeightImage width={width} source={{uri: CommAttn}} />
+            <AutoHeightImage width={width} source={{uri: CommAttn || ''}} />
           )}
     </>
   );

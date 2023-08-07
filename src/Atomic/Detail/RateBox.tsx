@@ -2,6 +2,7 @@ import React from 'react';
 import {Box, HStack, Center} from 'native-base';
 import {FontText} from '../FontText';
 import {FontHeading} from '../FontHeading';
+import {NumberPreprocesser} from '@Utils/NumberPreprocesser';
 
 interface RateBoxProps {
   Rate: number;
@@ -13,9 +14,7 @@ export default function RateBox({Rate}: RateBoxProps) {
       <Center>
         <HStack alignItems="baseline" m={2}>
           <FontText>(월)</FontText>
-          <FontHeading>
-            {Rate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-          </FontHeading>
+          <FontHeading>{NumberPreprocesser(Rate.toString())}</FontHeading>
           <FontText>원</FontText>
         </HStack>
         <FontText mb={3} fontSize={'md'}>

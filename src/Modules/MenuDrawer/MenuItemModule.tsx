@@ -6,6 +6,7 @@ import {StackScreenProps} from '@Types/NavigationTypes';
 import MenuItem from '@src/Atomic/Drawer/MenuItem';
 import AlertModal from '@src/Modules/MenuDrawer/AlertModal';
 import {useUserState} from '@src/contexts/UserContext';
+import {NumberPreprocesser} from '@src/Utils/NumberPreprocesser';
 
 interface MenuItemProps {
   point?: number;
@@ -27,7 +28,7 @@ export default function MenuItemModule({point}: MenuItemProps) {
     <Box mx={3}>
       <MenuItem
         text="나의포인트"
-        point={point?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+        point={NumberPreprocesser(point?.toString() || '0')}
         onPress={() => {
           navigation.navigate('MyPoint');
         }}

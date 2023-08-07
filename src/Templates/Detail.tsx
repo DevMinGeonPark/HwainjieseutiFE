@@ -62,7 +62,7 @@ const Detail = () => {
       <DetailTitle name={routeParams.name || ''} />
       {data?.ItemImgUrl && (
         <Image
-          source={{uri: data?.ItemImgUrl}}
+          source={{uri: data?.ItemImgUrl || ''}}
           alt="product Image"
           size={width}
         />
@@ -107,7 +107,7 @@ const Detail = () => {
           variant="outline"
           size="sm"
           borderWidth={3}
-          borderColor={'primary.400'}
+          borderColor={'#5ddfde'}
           _text={{fontSize: 'md', fontWeight: 'bold', color: 'black'}}>
           {data?.RevMethod?.[0]?.Title || 'Title unavailable'}
         </Button>
@@ -127,7 +127,7 @@ const Detail = () => {
       <Button
         m={2}
         my={5}
-        bg={'primary.400'}
+        bg={'#5ddfde'}
         variant={'solid'}
         _text={{fontSize: 'md', fontWeight: 'bold', color: 'black'}}
         onPress={() => {
