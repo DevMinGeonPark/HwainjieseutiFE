@@ -37,15 +37,13 @@ export default function Banner({img, imgUrl}: BannerProps) {
             })
           : Alert.alert('주소가 이상합니다.');
       }}>
-      {img && (
-        <Image
-          width={width}
-          height={'100%'}
-          resizeMode="cover"
-          alt="MainImage"
-          source={{uri: img}}
-        />
-      )}
+      <Image
+        width={width}
+        height={'100%'}
+        resizeMode="cover"
+        alt="MainImage"
+        source={{uri: img}}
+      />
     </Pressable>
   );
 }

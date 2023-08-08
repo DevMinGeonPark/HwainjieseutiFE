@@ -17,7 +17,10 @@ const EventBorad = () => {
 
   const width = useWindowDimensions().width;
 
-  console.log(routeParams.Uid);
+  // console.log(JSON.stringify(data, null, 2));
+  console.log(data?.Comments.length);
+
+  // console.log(routeParams.Uid);
 
   return (
     <Box mt={3}>

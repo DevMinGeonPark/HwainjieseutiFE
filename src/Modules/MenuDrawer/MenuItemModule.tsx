@@ -29,14 +29,12 @@ export default function MenuItemModule({point}: MenuItemProps) {
       <MenuItem
         text="나의포인트"
         point={NumberPreprocesser(point?.toString() || '0')}
-        onPress={() => {
-          navigation.navigate('MyPoint');
-        }}
+        onPress={() => {}}
       />
       <MenuItem
         text="마이페이지"
         onPress={() => {
-          // navigation.navigate('MyPage');
+          navigation.navigate('MyPoint');
         }}
       />
       <MenuItem

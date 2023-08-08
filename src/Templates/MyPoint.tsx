@@ -13,7 +13,7 @@ const MyPoint = () => {
   return (
     <Box>
       <PanelItem
-        title={`${user?.UserNm}님의 MP 내역`}
+        title={`마이페이지`}
         icon="user"
         titleSize={undefined}
         iconSize={undefined}
