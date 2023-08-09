@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* HwainjieseutiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* HwainjieseutiTests.m */; };
+		00E356F31AD99517003FC87E /* finegstAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* finegstAppTests.m */; };
 		08B6AB0952194E1B85274500 /* SpoqaHanSansNeo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 374C7F1AD6F04759A0398492 /* SpoqaHanSansNeo-Bold.ttf */; };
 		0DCA83BF650C4F2AA3ACB4F0 /* SpoqaHanSansNeo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E058E48FFA5424DA89D68D5 /* SpoqaHanSansNeo-Medium.ttf */; };
 		0E3893A4BCC342349D09F6A2 /* SpoqaHanSansNeo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F99A4C293BD44329B965428E /* SpoqaHanSansNeo-Regular.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2AB80CF9C2BE55BA889966B6 /* libPods-Hwainjieseuti.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17329BE1AF08DA42B80968FB /* libPods-Hwainjieseuti.a */; };
+		2AB80CF9C2BE55BA889966B6 /* libPods-finegstApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17329BE1AF08DA42B80968FB /* libPods-finegstApp.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		DA1736331931309A0AA48A9B /* libPods-Hwainjieseuti-HwainjieseutiTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5330A8C51720F8794927E784 /* libPods-Hwainjieseuti-HwainjieseutiTests.a */; };
+		DA1736331931309A0AA48A9B /* libPods-finegstApp-finegstAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5330A8C51720F8794927E784 /* libPods-finegstApp-finegstAppTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,22 +25,22 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = Hwainjieseuti;
+			remoteInfo = finegstApp;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* HwainjieseutiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HwainjieseutiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* finegstAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = finegstAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* HwainjieseutiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HwainjieseutiTests.m; sourceTree = "<group>"; };
-		02481BB3C9048D0215C0A1B2 /* Pods-Hwainjieseuti.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hwainjieseuti.debug.xcconfig"; path = "Target Support Files/Pods-Hwainjieseuti/Pods-Hwainjieseuti.debug.xcconfig"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* Hwainjieseuti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hwainjieseuti.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Hwainjieseuti/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = Hwainjieseuti/AppDelegate.mm; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Hwainjieseuti/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Hwainjieseuti/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Hwainjieseuti/main.m; sourceTree = "<group>"; };
-		17329BE1AF08DA42B80968FB /* libPods-Hwainjieseuti.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hwainjieseuti.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356F21AD99517003FC87E /* finegstAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = finegstAppTests.m; sourceTree = "<group>"; };
+		02481BB3C9048D0215C0A1B2 /* Pods-finegstApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-finegstApp.debug.xcconfig"; path = "Target Support Files/Pods-finegstApp/Pods-finegstApp.debug.xcconfig"; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* finegstApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = finegstApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = finegstApp/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = finegstApp/AppDelegate.mm; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = finegstApp/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = finegstApp/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = finegstApp/main.m; sourceTree = "<group>"; };
+		17329BE1AF08DA42B80968FB /* libPods-finegstApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-finegstApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		374C7F1AD6F04759A0398492 /* SpoqaHanSansNeo-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = file; path = "SpoqaHanSansNeo-Bold.ttf"; sourceTree = "<group>"; };
 		3946798E2A57F78900056570 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Octicons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		3946798F2A57F78900056570 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SimpleLineIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
@@ -58,12 +58,12 @@
 		3946799B2A57F78B00056570 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		3946799C2A57F78B00056570 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		3946799D2A57F78C00056570 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Zocial.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
-		496C9BA8AD74C98DB8FA0F91 /* Pods-Hwainjieseuti.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hwainjieseuti.release.xcconfig"; path = "Target Support Files/Pods-Hwainjieseuti/Pods-Hwainjieseuti.release.xcconfig"; sourceTree = "<group>"; };
+		496C9BA8AD74C98DB8FA0F91 /* Pods-finegstApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-finegstApp.release.xcconfig"; path = "Target Support Files/Pods-finegstApp/Pods-finegstApp.release.xcconfig"; sourceTree = "<group>"; };
 		4E058E48FFA5424DA89D68D5 /* SpoqaHanSansNeo-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = file; path = "SpoqaHanSansNeo-Medium.ttf"; sourceTree = "<group>"; };
-		5330A8C51720F8794927E784 /* libPods-Hwainjieseuti-HwainjieseutiTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hwainjieseuti-HwainjieseutiTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		672D50BB79D7EA0A3ACC379D /* Pods-Hwainjieseuti-HwainjieseutiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hwainjieseuti-HwainjieseutiTests.debug.xcconfig"; path = "Target Support Files/Pods-Hwainjieseuti-HwainjieseutiTests/Pods-Hwainjieseuti-HwainjieseutiTests.debug.xcconfig"; sourceTree = "<group>"; };
-		811D759AD9056D6417A14C9C /* Pods-Hwainjieseuti-HwainjieseutiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hwainjieseuti-HwainjieseutiTests.release.xcconfig"; path = "Target Support Files/Pods-Hwainjieseuti-HwainjieseutiTests/Pods-Hwainjieseuti-HwainjieseutiTests.release.xcconfig"; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Hwainjieseuti/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5330A8C51720F8794927E784 /* libPods-finegstApp-finegstAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-finegstApp-finegstAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		672D50BB79D7EA0A3ACC379D /* Pods-finegstApp-finegstAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-finegstApp-finegstAppTests.debug.xcconfig"; path = "Target Support Files/Pods-finegstApp-finegstAppTests/Pods-finegstApp-finegstAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		811D759AD9056D6417A14C9C /* Pods-finegstApp-finegstAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-finegstApp-finegstAppTests.release.xcconfig"; path = "Target Support Files/Pods-finegstApp-finegstAppTests/Pods-finegstApp-finegstAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = finegstApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F99A4C293BD44329B965428E /* SpoqaHanSansNeo-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = file; path = "SpoqaHanSansNeo-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,7 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA1736331931309A0AA48A9B /* libPods-Hwainjieseuti-HwainjieseutiTests.a in Frameworks */,
+				DA1736331931309A0AA48A9B /* libPods-finegstApp-finegstAppTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,20 +81,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AB80CF9C2BE55BA889966B6 /* libPods-Hwainjieseuti.a in Frameworks */,
+				2AB80CF9C2BE55BA889966B6 /* libPods-finegstApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* HwainjieseutiTests */ = {
+		00E356EF1AD99517003FC87E /* finegstAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* HwainjieseutiTests.m */,
+				00E356F21AD99517003FC87E /* finegstAppTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = HwainjieseutiTests;
+			path = finegstAppTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -105,7 +105,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* Hwainjieseuti */ = {
+		13B07FAE1A68108700A75B9A /* finegstApp */ = {
 			isa = PBXGroup;
 			children = (
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -115,15 +115,15 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = Hwainjieseuti;
+			name = finegstApp;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				17329BE1AF08DA42B80968FB /* libPods-Hwainjieseuti.a */,
-				5330A8C51720F8794927E784 /* libPods-Hwainjieseuti-HwainjieseutiTests.a */,
+				17329BE1AF08DA42B80968FB /* libPods-finegstApp.a */,
+				5330A8C51720F8794927E784 /* libPods-finegstApp-finegstAppTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -165,9 +165,9 @@
 			isa = PBXGroup;
 			children = (
 				395158AD2A57EEE800FDFE18 /* Fonts */,
-				13B07FAE1A68108700A75B9A /* Hwainjieseuti */,
+				13B07FAE1A68108700A75B9A /* finegstApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* HwainjieseutiTests */,
+				00E356EF1AD99517003FC87E /* finegstAppTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
@@ -181,8 +181,8 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* Hwainjieseuti.app */,
-				00E356EE1AD99517003FC87E /* HwainjieseutiTests.xctest */,
+				13B07F961A680F5B00A75B9A /* finegstApp.app */,
+				00E356EE1AD99517003FC87E /* finegstAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -197,10 +197,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				02481BB3C9048D0215C0A1B2 /* Pods-Hwainjieseuti.debug.xcconfig */,
-				496C9BA8AD74C98DB8FA0F91 /* Pods-Hwainjieseuti.release.xcconfig */,
-				672D50BB79D7EA0A3ACC379D /* Pods-Hwainjieseuti-HwainjieseutiTests.debug.xcconfig */,
-				811D759AD9056D6417A14C9C /* Pods-Hwainjieseuti-HwainjieseutiTests.release.xcconfig */,
+				02481BB3C9048D0215C0A1B2 /* Pods-finegstApp.debug.xcconfig */,
+				496C9BA8AD74C98DB8FA0F91 /* Pods-finegstApp.release.xcconfig */,
+				672D50BB79D7EA0A3ACC379D /* Pods-finegstApp-finegstAppTests.debug.xcconfig */,
+				811D759AD9056D6417A14C9C /* Pods-finegstApp-finegstAppTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -208,9 +208,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* HwainjieseutiTests */ = {
+		00E356ED1AD99517003FC87E /* finegstAppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "HwainjieseutiTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "finegstAppTests" */;
 			buildPhases = (
 				24BEBAB5D875B4E6147DC4BB /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -224,14 +224,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = HwainjieseutiTests;
-			productName = HwainjieseutiTests;
-			productReference = 00E356EE1AD99517003FC87E /* HwainjieseutiTests.xctest */;
+			name = finegstAppTests;
+			productName = finegstAppTests;
+			productReference = 00E356EE1AD99517003FC87E /* finegstAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* Hwainjieseuti */ = {
+		13B07F861A680F5B00A75B9A /* finegstApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Hwainjieseuti" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "finegstApp" */;
 			buildPhases = (
 				77E70EF984337D084C439BCE /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -246,9 +246,9 @@
 			);
 			dependencies = (
 			);
-			name = Hwainjieseuti;
-			productName = Hwainjieseuti;
-			productReference = 13B07F961A680F5B00A75B9A /* Hwainjieseuti.app */;
+			name = finegstApp;
+			productName = finegstApp;
+			productReference = 13B07F961A680F5B00A75B9A /* finegstApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -268,21 +268,22 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Hwainjieseuti" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "finegstApp" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* Hwainjieseuti */,
-				00E356ED1AD99517003FC87E /* HwainjieseutiTests */,
+				13B07F861A680F5B00A75B9A /* finegstApp */,
+				00E356ED1AD99517003FC87E /* finegstAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -341,7 +342,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Hwainjieseuti-HwainjieseutiTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-finegstApp-finegstAppTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -354,15 +355,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti-HwainjieseutiTests/Pods-Hwainjieseuti-HwainjieseutiTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-finegstApp-finegstAppTests/Pods-finegstApp-finegstAppTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti-HwainjieseutiTests/Pods-Hwainjieseuti-HwainjieseutiTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-finegstApp-finegstAppTests/Pods-finegstApp-finegstAppTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti-HwainjieseutiTests/Pods-Hwainjieseuti-HwainjieseutiTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-finegstApp-finegstAppTests/Pods-finegstApp-finegstAppTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		77E70EF984337D084C439BCE /* [CP] Check Pods Manifest.lock */ = {
@@ -380,7 +381,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Hwainjieseuti-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-finegstApp-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -393,15 +394,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti-HwainjieseutiTests/Pods-Hwainjieseuti-HwainjieseutiTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-finegstApp-finegstAppTests/Pods-finegstApp-finegstAppTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti-HwainjieseutiTests/Pods-Hwainjieseuti-HwainjieseutiTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-finegstApp-finegstAppTests/Pods-finegstApp-finegstAppTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti-HwainjieseutiTests/Pods-Hwainjieseuti-HwainjieseutiTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-finegstApp-finegstAppTests/Pods-finegstApp-finegstAppTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A5C69EBF024477E1A26363F8 /* [CP] Copy Pods Resources */ = {
@@ -410,15 +411,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti/Pods-Hwainjieseuti-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-finegstApp/Pods-finegstApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti/Pods-Hwainjieseuti-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-finegstApp/Pods-finegstApp-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti/Pods-Hwainjieseuti-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-finegstApp/Pods-finegstApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EAE30A5E39FCEBF302090906 /* [CP] Embed Pods Frameworks */ = {
@@ -427,15 +428,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti/Pods-Hwainjieseuti-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-finegstApp/Pods-finegstApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti/Pods-Hwainjieseuti-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-finegstApp/Pods-finegstApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hwainjieseuti/Pods-Hwainjieseuti-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-finegstApp/Pods-finegstApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -464,7 +465,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* HwainjieseutiTests.m in Sources */,
+				00E356F31AD99517003FC87E /* finegstAppTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,7 +483,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* Hwainjieseuti */;
+			target = 13B07F861A680F5B00A75B9A /* finegstApp */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -490,7 +491,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 672D50BB79D7EA0A3ACC379D /* Pods-Hwainjieseuti-HwainjieseutiTests.debug.xcconfig */;
+			baseConfigurationReference = 672D50BB79D7EA0A3ACC379D /* Pods-finegstApp-finegstAppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = GZ3288K5Z3;
@@ -498,7 +499,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = HwainjieseutiTests/Info.plist;
+				INFOPLIST_FILE = finegstAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -510,20 +511,20 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "shop.kt-online.Hwainjieseuti";
+				PRODUCT_BUNDLE_IDENTIFIER = "shop.kt-online.finegstApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hwainjieseuti.app/Hwainjieseuti";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/finegstApp.app/finegstApp";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 811D759AD9056D6417A14C9C /* Pods-Hwainjieseuti-HwainjieseutiTests.release.xcconfig */;
+			baseConfigurationReference = 811D759AD9056D6417A14C9C /* Pods-finegstApp-finegstAppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = GZ3288K5Z3;
-				INFOPLIST_FILE = HwainjieseutiTests/Info.plist;
+				INFOPLIST_FILE = finegstAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -535,22 +536,23 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "shop.kt-online.Hwainjieseuti";
+				PRODUCT_BUNDLE_IDENTIFIER = "shop.kt-online.finegstApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hwainjieseuti.app/Hwainjieseuti";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/finegstApp.app/finegstApp";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 02481BB3C9048D0215C0A1B2 /* Pods-Hwainjieseuti.debug.xcconfig */;
+			baseConfigurationReference = 02481BB3C9048D0215C0A1B2 /* Pods-finegstApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YBRFC9NSTS;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = Hwainjieseuti/Info.plist;
+				INFOPLIST_FILE = finegstApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "화인지에스티";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -561,8 +563,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "shop.kt-online.Hwainjieseuti";
-				PRODUCT_NAME = Hwainjieseuti;
+				PRODUCT_BUNDLE_IDENTIFIER = "shop.kt-online.finegstApp";
+				PRODUCT_NAME = finegstApp;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -571,13 +573,14 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 496C9BA8AD74C98DB8FA0F91 /* Pods-Hwainjieseuti.release.xcconfig */;
+			baseConfigurationReference = 496C9BA8AD74C98DB8FA0F91 /* Pods-finegstApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YBRFC9NSTS;
-				INFOPLIST_FILE = Hwainjieseuti/Info.plist;
+				INFOPLIST_FILE = finegstApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "화인지에스티";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -588,8 +591,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "shop.kt-online.Hwainjieseuti";
-				PRODUCT_NAME = Hwainjieseuti;
+				PRODUCT_BUNDLE_IDENTIFIER = "shop.kt-online.finegstApp";
+				PRODUCT_NAME = finegstApp;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -737,7 +740,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "HwainjieseutiTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "finegstAppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -746,7 +749,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Hwainjieseuti" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "finegstApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -755,7 +758,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Hwainjieseuti" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "finegstApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

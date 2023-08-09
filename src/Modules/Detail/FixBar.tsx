@@ -4,6 +4,7 @@ import {FontText} from '@src/Atomic/FontText';
 import {Linking, useWindowDimensions} from 'react-native';
 import FixBarLabel from '@src/Atomic/Detail/FixBarLabel';
 import {useFixBarState} from '@src/contexts/FixBarStateContext';
+import {NumberPreprocesser} from '@src/Utils/NumberPreprocesser';
 
 export default function FixBar() {
   const width = useWindowDimensions().width;
@@ -15,14 +16,18 @@ export default function FixBar() {
         <HStack space={4} alignItems="center">
           <FixBarLabel
             Title="월 할부금"
-            Rate={fixbarProps?.ChgContractMonthChg || 0}
+            Rate={NumberPreprocesser(
+              fixbarProps?.ChgContractMonthChg?.toString() || '0',
+            )}
           />
           <FontText fontSize={14} color={'white'}>
             +
           </FontText>
           <FixBarLabel
             Title="월 통신요금"
-            Rate={fixbarProps?.ChgContractMonthRate || 0}
+            Rate={NumberPreprocesser(
+              fixbarProps?.ChgContractMonthRate?.toString() || '0',
+            )}
           />
           <FontText fontSize={14} color={'white'}>
             =
@@ -32,7 +37,10 @@ export default function FixBar() {
               월 통신요금
             </FontText>
             <FontText fontSize={15} fontWeight="bold" color={'white'}>
-              {fixbarProps?.ChgContractMonthTotal || 0} 원
+              {NumberPreprocesser(
+                fixbarProps?.ChgContractMonthTotal?.toString() || '0',
+              )}{' '}
+              원
             </FontText>
             <FontText fontSize={12} color={'white'}>
               (할부이자 별도)

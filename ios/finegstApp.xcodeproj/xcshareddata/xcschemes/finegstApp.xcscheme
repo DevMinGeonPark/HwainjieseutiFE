@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "Hwainjieseuti.app"
-               BlueprintName = "Hwainjieseuti"
-               ReferencedContainer = "container:Hwainjieseuti.xcodeproj">
+               BuildableName = "finegstApp.app"
+               BlueprintName = "finegstApp"
+               ReferencedContainer = "container:finegstApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "HwainjieseutiTests.xctest"
-               BlueprintName = "HwainjieseutiTests"
-               ReferencedContainer = "container:Hwainjieseuti.xcodeproj">
+               BuildableName = "finegstAppTests.xctest"
+               BlueprintName = "finegstAppTests"
+               ReferencedContainer = "container:finegstApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Hwainjieseuti.app"
-            BlueprintName = "Hwainjieseuti"
-            ReferencedContainer = "container:Hwainjieseuti.xcodeproj">
+            BuildableName = "finegstApp.app"
+            BlueprintName = "finegstApp"
+            ReferencedContainer = "container:finegstApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Hwainjieseuti.app"
-            BlueprintName = "Hwainjieseuti"
-            ReferencedContainer = "container:Hwainjieseuti.xcodeproj">
+            BuildableName = "finegstApp.app"
+            BlueprintName = "finegstApp"
+            ReferencedContainer = "container:finegstApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
