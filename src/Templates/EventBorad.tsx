@@ -15,10 +15,11 @@ const EventBorad = () => {
 
   const {data} = useEventData({Uid: routeParams.Uid});
 
+  // console.log(routeParams.Uid);
+
   const width = useWindowDimensions().width;
 
   // console.log(JSON.stringify(data, null, 2));
-  console.log(data?.Comments.length);
 
   // console.log(routeParams.Uid);
 

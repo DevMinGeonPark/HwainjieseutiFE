@@ -62,3 +62,13 @@ target 'finegstApp' do
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
 end
+
+
+use_frameworks! :linkage => :static
+$RNFirebaseAsStaticFramework = true
+
+pod 'Firebase', :modular_headers => true
+pod 'FirebaseCoreInternal', :modular_headers => true
+pod 'GoogleUtilities', :modular_headers => true
+pod 'FirebaseCore', :modular_headers => true
+pod 'Firebase/Messaging', :modular_headers => true

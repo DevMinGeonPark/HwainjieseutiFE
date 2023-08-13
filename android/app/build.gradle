@@ -2,6 +2,7 @@ apply plugin: "com.android.application"
 apply plugin: "com.facebook.react"
 // apply from: "../../node_modules/react-native/react.gradle" // 72.06 삭제 
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle" // add this line
+apply plugin: "com.google.gms.google-services"
 /**
  * This is the configuration block to customize your React Native Android app.
  * By default you don't need to apply any configuration, just uncomment the lines you need.
@@ -74,9 +75,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.hwainjieseuti"
+    namespace "com.finegstApp"
     defaultConfig {
-        applicationId "com.hwainjieseuti"
+        applicationId "com.finegstApp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -110,6 +111,9 @@ dependencies {
 
     //React Native Screen Depen
     implementation project(':react-native-splash-screen')
+
+    // firebaes
+    implementation platform('com.google.firebase:firebase-bom:32.2.2')
 
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")

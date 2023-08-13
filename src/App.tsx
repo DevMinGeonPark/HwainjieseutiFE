@@ -5,6 +5,10 @@ import DrawerNavigator from '@Navigators/DrawerNavigator';
 import {QueryClientProvider, QueryClient} from 'react-query';
 import {UserContextProvider} from './contexts/UserContext';
 import {DrawerContextProvider} from './contexts/DrawerStateContext';
+import messaging from '@react-native-firebase/messaging';
+import useMessaging from './hooks/useMessaging';
+
+import localNotification from './Utils/localNotification';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -45,6 +49,23 @@ const theme = extendTheme({
 });
 
 export default function App() {
+  const {requestUserPermission, callApiSubscribeTopic} = useMessaging();
+
+  React.useEffect(() => {
+    requestUserPermission(); // 알림 권한 요청
+    callApiSubscribeTopic(); // 토픽 구독
+  }, []);
+
+  async function onMessageReceived(message: any) {
+    console.log('onMessageReceived', message);
+    localNotification(message);
+  }
+
+  messaging().setBackgroundMessageHandler(async remoteMessage => {
+    console.log('Message handled in the background!', remoteMessage);
+  });
+  messaging().onMessage(onMessageReceived);
+
   return (
     <UserContextProvider>
       <QueryClientProvider client={queryClient}>

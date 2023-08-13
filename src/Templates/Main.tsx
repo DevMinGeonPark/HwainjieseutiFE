@@ -9,16 +9,59 @@ import Title from '@src/Atomic/Main/Title';
 import ProductList from '@src/Modules/Main/ProductList';
 import Banner from '@src/Modules/Main/Banner';
 
+// import messaging from '@react-native-firebase/messaging';
+// import localNotification from '@src/Utils/localNotification';
+import notifee, {EventType} from '@notifee/react-native';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {StackScreenProps} from '@Types/NavigationTypes';
+import {dataTypes} from '@Types/notificationTypes';
+import messaging from '@react-native-firebase/messaging';
+import localNotification from '@src/Utils/localNotification';
+
 const Main = () => {
   const {data} = useMainData();
   const width = useWindowDimensions().width;
-
-  // console.log(JSON.stringify(data, null, 2));
+  const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
 
   const pressableStyle = {
     width: width,
     maxHeight: 357,
   };
+
+  React.useEffect(() => {
+    return notifee.onForegroundEvent(({type, detail}) => {
+      switch (type) {
+        case EventType.DISMISSED:
+          console.log('User dismissed notification', detail.notification);
+          break;
+        case EventType.PRESS:
+          const data = detail.notification?.data as unknown as dataTypes;
+          navigation.navigate('EventBorad', {
+            Uid: data.uid,
+          });
+          break;
+      }
+    });
+  }, []);
+
+  React.useEffect(() => {
+    return notifee.onBackgroundEvent(async ({type, detail}) => {
+      console.log('사용자가 알림을 클릭했습니다.', detail.notification);
+      switch (type) {
+        case EventType.PRESS:
+          // console.log('사용자가 알림을 클릭했습니다.', detail.notification);
+          const data = detail.notification?.data as unknown as dataTypes;
+          navigation.navigate('EventBorad', {
+            Uid: data.uid,
+          });
+          break;
+        case EventType.DISMISSED:
+          console.log('사용자가 알림을 닫았습니다.', detail.notification);
+          break;
+      }
+    });
+  }, []);
 
   return (
     <Box>
