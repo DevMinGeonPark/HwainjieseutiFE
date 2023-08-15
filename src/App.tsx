@@ -9,6 +9,7 @@ import messaging from '@react-native-firebase/messaging';
 import useMessaging from './hooks/useMessaging';
 
 import localNotification from './Utils/localNotification';
+import notifee, {EventType} from '@notifee/react-native';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -61,9 +62,6 @@ export default function App() {
     localNotification(message);
   }
 
-  messaging().setBackgroundMessageHandler(async remoteMessage => {
-    console.log('Message handled in the background!', remoteMessage);
-  });
   messaging().onMessage(onMessageReceived);
 
   return (

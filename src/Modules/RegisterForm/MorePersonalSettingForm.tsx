@@ -3,20 +3,11 @@ import {Box, Checkbox, VStack} from 'native-base';
 import PanelItem from '@src/Atomic/PanelItem';
 import {FontText} from '@src/Atomic/FontText';
 import {FontHeading} from '@src/Atomic/FontHeading';
+import {useRegisterForm} from '@src/hooks/stateHooks/useRegisterForm';
 
-interface MorePersonalSettingFormProps {
-  maling: number;
-  setMaling: React.Dispatch<React.SetStateAction<number>>;
-  openInfo: number;
-  setOpenInfo: React.Dispatch<React.SetStateAction<number>>;
-}
+export default function MorePersonalSettingForm() {
+  const {maling, setMaling, openInfo, setOpenInfo} = useRegisterForm();
 
-export default function MorePersonalSettingForm({
-  maling,
-  setMaling,
-  openInfo,
-  setOpenInfo,
-}: MorePersonalSettingFormProps) {
   const isChecked = maling === 1;
 
   const handleMaling = (isChecked: boolean) => {
@@ -40,13 +31,6 @@ export default function MorePersonalSettingForm({
         titleSize={14}
         iconSize={14}
       />
-      {/* <Box p={3}>
-        <FontHeading fontSize={12}>회원아이콘</FontHeading>
-        <FontText fontSize={12} color="#777777">
-          이미지크기는 가로22픽셀, 세로22픽셀 이하로 해주세요. gif만 가능하며
-          용량은 5,000바이트 이하만 등록됩니다.
-        </FontText>
-      </Box> */}
       <VStack p={3} space={3}>
         <FontHeading fontSize={14}>메일링서비스</FontHeading>
         <Checkbox
@@ -68,11 +52,6 @@ export default function MorePersonalSettingForm({
           정보공개를 바꾸시면 앞으로 0일 이내에는 변경이 안됩니다.
         </FontText>
       </VStack>
-
-      {/* <FontHeading fontSize={12} px={3} pt={3}>
-        자동등록방지
-      </FontHeading> */}
-      {/* Chapchar 추가하기 */}
     </Box>
   );
 }

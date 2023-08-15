@@ -4,6 +4,7 @@ import useLog from '../useLog';
 import {ParamProps} from '@Types/axiosTypes';
 import {ConfirmPassword} from '@src/API/ConfirmPassword';
 import {Alert} from 'react-native';
+import {useToast} from 'native-base';
 
 type AuthError = {
   message: string;
@@ -11,6 +12,8 @@ type AuthError = {
 
 export default function useConfirmPW() {
   const log = useLog('dev');
+  const toast = useToast();
+
   const mutation = useMutation(
     (params: ParamProps) => ConfirmPassword(params),
     {
@@ -18,7 +21,9 @@ export default function useConfirmPW() {
         log.info('password 검증 완료');
         log.info('status:', data);
         if (data.Status === 'A10') {
-          Alert.alert('비밀번호가 일치합니다.');
+          toast.show({
+            title: '비밀번호가 일치합니다.',
+          });
         } else {
           throw new Error(data.ErrMsg); //onError로 헨들링
         }

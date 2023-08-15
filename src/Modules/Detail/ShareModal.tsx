@@ -49,7 +49,7 @@ export default function ShareModal({
         <Modal.Body>
           <Center my={2}>
             <HStack space={3} m={3}>
-              <ShareIconButton image={Images.Share.Kakao} label="카카오톡" />
+              {/* <ShareIconButton image={Images.Share.Kakao} label="카카오톡" /> */}
               <ShareIconButton
                 image={Images.Share.KakaoStory}
                 label="카카오스토리"

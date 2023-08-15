@@ -10,20 +10,27 @@ if (__DEV__) {
     import('./config').then(() => console.log('Reactotron Configured'));
 }
 
+messaging().setBackgroundMessageHandler(async remoteMessage => {
+    const { notification, data } = remoteMessage;
+    notifee.displayNotification({
+        title: notification.title,
+        body: notification.body,
+        data
+    });
+});
 
+notifee.onBackgroundEvent(async ({ type, detail }) => {
+    const { notification, pressAction } = detail;
 
-// notifee.onBackgroundEvent(async ({ type, detail }) => {
-//     console.log('사용자가 알림을 클릭했습니다.', detail.notification);
-//     switch (type) {
-//         case EventType.PRESSED:
-//             console.log('사용자가 알림을 클릭했습니다.', detail.notification);
-//             break;
-//         case EventType.DISMISSED:
-//             console.log('사용자가 알림을 닫았습니다.', detail.notification);
-//             break;
-//     }
-// });
+    // Check if the user pressed the "Mark as read" action
+    if (type === EventType.ACTION_PRESS && pressAction.id === 'mark-as-read') {
+        // Update external API
+        cosole.log("test");
 
+        // Remove the notification
+        await notifee.cancelNotification(notification.id);
+    }
+});
 
 
 

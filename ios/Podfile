@@ -72,3 +72,4 @@ pod 'FirebaseCoreInternal', :modular_headers => true
 pod 'GoogleUtilities', :modular_headers => true
 pod 'FirebaseCore', :modular_headers => true
 pod 'Firebase/Messaging', :modular_headers => true
+pod 'Firebase/Auth', :modular_headers => true

@@ -15,7 +15,7 @@ interface MessageData {
   };
 }
 
-const localNotification = async (message: MessageData) => {
+const localNotification = async (message: any) => {
   const channelAnoucement = await notifee.createChannel({
     id: 'default',
     name: 'Default Channel',

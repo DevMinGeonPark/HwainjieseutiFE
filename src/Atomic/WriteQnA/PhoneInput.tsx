@@ -7,6 +7,7 @@ interface PhoneInputProps {
   value: string;
   onChange: React.Dispatch<React.SetStateAction<string>>;
   onValidityChange: (isValid: boolean) => void;
+  isCerti: boolean;
 }
 
 const PhoneInput: React.FC<PhoneInputProps> = ({
@@ -14,6 +15,7 @@ const PhoneInput: React.FC<PhoneInputProps> = ({
   value,
   onChange,
   onValidityChange,
+  isCerti,
 }) => {
   const [isValid, setIsValid] = useState(true);
 
@@ -36,6 +38,7 @@ const PhoneInput: React.FC<PhoneInputProps> = ({
           value={value}
           onChangeText={handleChange}
           autoComplete="tel"
+          isDisabled={isCerti}
           keyboardType="phone-pad"
         />
         {!isValid && (

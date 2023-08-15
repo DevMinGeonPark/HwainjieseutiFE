@@ -17,24 +17,28 @@ import useCreateMember from '@src/hooks/queryHooks/useCreateMember';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {useNavigation} from '@react-navigation/native';
+import {useRegisterForm} from '@src/hooks/stateHooks/useRegisterForm';
+import RegisterNavigationButton from '@src/Modules/RegisterForm/RegisterNavigationButton';
 
 const RegisterForm = () => {
   const routeParams = useRoute().params as RegisterProps;
 
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
-  const [password, setPassword] = useState<string>('');
-  const [confirmPassword, setConfirmPassword] = useState<string>('');
-  const [id, setId] = useState<string>(routeParams.KTShopID || '');
-  const [name, setName] = useState<string>(routeParams.UserNm || '');
-  const [birth, setBirth] = useState<string>('');
-  const [phone, setPhone] = useState<string>('');
-  const [activatePhone, setActivatePhone] = useState<string>('');
 
-  const [isValidBirth, setIsValidBirth] = React.useState(false);
-  const [isValidPhone, setIsValidPhone] = React.useState(false);
-  const [isValidActivatePhone, setIsValidActivatePhone] = React.useState(false);
-  const [maling, setMaling] = useState<number>(1);
-  const [openInfo, setOpenInfo] = useState<number>(1);
+  const {
+    password,
+    confirmPassword,
+    id,
+    name,
+    birth,
+    phone,
+    activatePhone,
+    isValidBirth,
+    isValidPhone,
+    isValidActivatePhone,
+    maling,
+    openInfo,
+  } = useRegisterForm(routeParams);
 
   const updateMember = useUpdateMember();
   const createMember = useCreateMember();
@@ -52,14 +56,13 @@ const RegisterForm = () => {
     } else if (!isValidActivatePhone) {
       Alert.alert('개통번호를 확인해주세요.');
     } else {
-      console.log(password);
       const param: ParamProps = {
         KTShopID: id,
         UserName: name,
         UserPW: encrypt(password),
         UserBirth: birth,
         UserOpenHp: activatePhone,
-        UserHp: '01012345678',
+        UserHp: phone,
         Maling: maling,
         OpenInfo: openInfo,
       };
@@ -80,56 +83,20 @@ const RegisterForm = () => {
         titleSize={undefined}
         iconSize={undefined}
       />
-      <SiteInfoForm
-        id={id}
-        setId={setId}
-        password={password}
-        setPassword={setPassword}
-        confirmPassword={confirmPassword}
-        setConfirmPassword={setConfirmPassword}
-      />
-      <PersonalInfoForm
-        name={name}
-        setName={setName}
-        birth={birth}
-        setBirth={setBirth}
-        phone={phone}
-        setPhone={setPhone}
-        activatePhone={activatePhone}
-        setActivatePhone={setActivatePhone}
-        setIsValidBirth={setIsValidBirth}
-        setIsValidPhone={setIsValidPhone}
-        setIsValidActivatePhone={setIsValidActivatePhone}
-      />
-      <MorePersonalSettingForm
-        maling={maling}
-        setMaling={setMaling}
-        openInfo={openInfo}
-        setOpenInfo={setOpenInfo}
-      />
+      <SiteInfoForm />
+      <PersonalInfoForm />
+      <MorePersonalSettingForm />
       <HStack space={2} mt={5} mb={5} justifyContent="center">
-        <Button
-          mt={5}
-          mx={3}
-          bg="#333333"
-          borderWidth={1}
-          borderColor="black"
-          size="xs"
-          _text={{fontSize: 14, fontWeight: 'bold', color: 'white'}}
-          onPress={handleSummit}>
-          {routeParams?.KTShopID ? '정보수정' : '회원가입'}
-        </Button>
-        <Button
-          mt={5}
-          mx={3}
-          bg="#333333"
-          borderWidth={1}
-          borderColor="black"
-          size="xs"
-          _text={{fontSize: 14, fontWeight: 'bold', color: 'white'}}
-          onPress={() => navigation.navigate('Main')}>
-          목록
-        </Button>
+        <RegisterNavigationButton
+          title={routeParams?.KTShopID ? '정보수정' : '회원가입'}
+          handleSummit={handleSummit}
+        />
+        <RegisterNavigationButton
+          title="목록"
+          handleSummit={() => {
+            navigation.navigate('Main');
+          }}
+        />
       </HStack>
     </Box>
   );

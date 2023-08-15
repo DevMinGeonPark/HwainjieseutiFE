@@ -1,7 +1,7 @@
-// EmailInput.tsx
 import React, {useState} from 'react';
 import {FormControl, Input, VStack} from 'native-base';
 import {isValidEmail} from '@Utils/Validatior';
+import {FontText} from '../FontText';
 
 interface EmailInputProps {
   value: string;
@@ -26,7 +26,10 @@ const EmailInput: React.FC<EmailInputProps> = ({
   return (
     <FormControl isRequired isInvalid={!isValid}>
       <VStack>
-        <FormControl.Label>Email</FormControl.Label>
+        <FormControl.Label
+          _text={{fontSize: 14, fontWeight: 'bold', color: 'black'}}>
+          Email
+        </FormControl.Label>
         <Input
           value={value}
           onChangeText={handleChange}

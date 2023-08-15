@@ -80,6 +80,7 @@ const WriteQnA = () => {
           value={phone}
           onChange={setPhone}
           onValidityChange={setIsValidPhone}
+          isCerti={false}
         />
         <TitleInput
           value={title}

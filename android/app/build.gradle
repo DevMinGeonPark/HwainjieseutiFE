@@ -82,6 +82,8 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true // 추가 (line:140)
+
     }
     signingConfigs {
         debug {
@@ -114,6 +116,9 @@ dependencies {
 
     // firebaes
     implementation platform('com.google.firebase:firebase-bom:32.2.2')
+
+    // Firebase dependencies
+    implementation 'com.google.firebase:firebase-auth'
 
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")
