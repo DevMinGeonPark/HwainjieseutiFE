@@ -13,3 +13,8 @@ export interface DeleteParamProps {
   KTShopID: string;
   KTShopPW: string;
 }
+
+export interface Res {
+  Status: string;
+  ErrMsg: string;
+}

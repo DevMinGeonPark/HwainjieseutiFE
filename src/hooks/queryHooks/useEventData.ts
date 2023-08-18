@@ -7,9 +7,8 @@ import {getEventData} from '@src/API/Event/getEventData';
 export default function useEventData(params: Body) {
   const log = useLog('dev');
 
-  const query = useQuery('getEventData', () => getEventData(params), {
+  const query = useQuery(['getEventData', params], () => getEventData(params), {
     notifyOnChangeProps: ['data'],
-
     onSuccess: (data: EventData) => {
       log.info(`Event 데이터 불러오기 성공`);
       return data;

@@ -22,6 +22,7 @@ export default function BirthInput({
 
   const handleChange = (text: string) => {
     if (validateBirthInput(text)) {
+      console.log('vali' + validateBirthInput(text));
       setIsValidBirth(validateBirthInput(text));
       setError('');
     } else {

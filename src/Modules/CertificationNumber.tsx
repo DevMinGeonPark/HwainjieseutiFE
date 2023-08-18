@@ -2,6 +2,7 @@ import {View, Text} from 'react-native';
 import React from 'react';
 import {FormControl, Input, Modal, VStack, Button} from 'native-base';
 import {FontText} from '@src/Atomic/FontText';
+import {useToast} from 'native-base';
 
 interface CertificationNumberProps {
   // isValid: boolean;
@@ -22,6 +23,7 @@ export default function CertificationNumber({
   setShowModal,
   setPhoneCerti,
 }: CertificationNumberProps) {
+  const toast = useToast();
   return (
     <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
       <Modal.Content maxWidth="400px">
@@ -71,8 +73,9 @@ export default function CertificationNumber({
               bg="black"
               onPress={() => {
                 confirmCode();
-                // setShowModal(false);
+                setShowModal(false);
                 setPhoneCerti(true);
+                toast.show({title: '인증이 완료되었습니다.'});
               }}>
               인증완료
             </Button>

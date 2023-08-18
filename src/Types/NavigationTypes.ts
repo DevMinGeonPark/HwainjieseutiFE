@@ -15,11 +15,13 @@ export type StackScreenProps = {
   MyPoint: undefined;
   MyPage: undefined;
   Confirm: undefined;
+  RegisterStipulation: undefined;
   RegisterForm: RegisterProps;
   QnAMain: undefined;
   QnADetail: QnADetailProps;
   WriteQnA: WriteQnAParamsProps;
   SearchResult: SearchResultProps;
+  FindUser: undefined;
 };
 
 export interface RegisterProps {

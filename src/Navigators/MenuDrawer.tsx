@@ -57,12 +57,15 @@ export default function MenuDrawer(props: any) {
         <MenuItem
           text="회원가입"
           point={undefined}
-          onPress={() => navigation.navigate('RegisterForm', {})}
+          onPress={() => {
+            navigation.navigate('RegisterForm', {});
+            // navigation.navigate('RegisterStipulation');
+          }}
         />
         <MenuItem
           text="아이디/비밀번호 찾기"
           point={undefined}
-          onPress={() => {}}
+          onPress={() => navigation.navigate('FindUser')}
         />
       </Box>
     );

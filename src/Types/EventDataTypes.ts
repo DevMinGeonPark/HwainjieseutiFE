@@ -1,5 +1,6 @@
 export interface Body {
   Uid: string;
+  CommentsPage: number;
 }
 
 export interface Comment {

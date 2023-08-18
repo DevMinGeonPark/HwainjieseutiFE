@@ -12,6 +12,7 @@ export function useRegisterForm(routeParams?: RegisterProps) {
   const [email, setEmail] = useState<string>('');
   const [maling, setMaling] = useState<number>(1);
   const [openInfo, setOpenInfo] = useState<number>(1);
+  const [phoneCerti, setPhoneCerti] = useState<boolean>(false);
 
   const [isValidBirth, setIsValidBirth] = useState(false);
   const [isValidPhone, setIsValidPhone] = useState(false);
@@ -47,5 +48,7 @@ export function useRegisterForm(routeParams?: RegisterProps) {
     setIsValidActivatePhone,
     isValidEmail,
     setIsValidEmail,
+    phoneCerti,
+    setPhoneCerti,
   };
 }

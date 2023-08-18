@@ -38,10 +38,11 @@ const RegisterForm = () => {
     isValidActivatePhone,
     maling,
     openInfo,
+    phoneCerti,
   } = useRegisterForm(routeParams);
 
-  const updateMember = useUpdateMember();
-  const createMember = useCreateMember();
+  const updateMember = useUpdateMember(navigation);
+  const createMember = useCreateMember(navigation);
 
   const {scrollViewRef} = useContext(ScrollViewContext);
 
@@ -49,12 +50,14 @@ const RegisterForm = () => {
     if (password !== confirmPassword) {
       Alert.alert('비밀번호가 일치하지 않습니다.');
       scrollViewRef?.current?.scrollTo({x: 0, y: 0, animated: true});
-    } else if (!isValidBirth) {
+    } else if (isValidBirth) {
       Alert.alert('생년월일을 확인해주세요.');
-    } else if (!isValidPhone) {
+    } else if (isValidPhone) {
       Alert.alert('휴대폰 번호를 확인해주세요.');
-    } else if (!isValidActivatePhone) {
+    } else if (isValidActivatePhone) {
       Alert.alert('개통번호를 확인해주세요.');
+    } else if (phoneCerti) {
+      Alert.alert('휴대전화 인증을 진행하세요.');
     } else {
       const param: ParamProps = {
         KTShopID: id,
@@ -71,7 +74,6 @@ const RegisterForm = () => {
       } else {
         await createMember.mutateAsync(param);
       }
-      navigation.navigate('Main');
     }
   };
 

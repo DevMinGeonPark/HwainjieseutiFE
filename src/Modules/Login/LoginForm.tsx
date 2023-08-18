@@ -11,10 +11,15 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import useLogin from '@src/hooks/queryHooks/useLogin';
 import {FontText} from '@src/Atomic/FontText';
+import {Pressable} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {StackScreenProps} from '@Types/NavigationTypes';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 export default function LoginForm() {
   const [id, setID] = useState<string>('gksrudgh3795');
   const [password, setPassword] = useState<string>('ghkdls2012.');
+  const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
 
   const {mutate: login, isLoading: loginLoading} = useLogin({
     id: id,
@@ -63,10 +68,12 @@ export default function LoginForm() {
               backgroundColor={'dark.100'}>
               로그인
             </Button>
-            <HStack justifyContent="flex-end">
-              <Icon name="search" size={15} />
-              <FontText> 정보찾기 </FontText>
-            </HStack>
+            <Pressable onPress={() => navigation.navigate('FindUser')}>
+              <HStack justifyContent="flex-end">
+                <Icon name="search" size={15} />
+                <FontText> 정보찾기 </FontText>
+              </HStack>
+            </Pressable>
           </VStack>
         </Box>
       </Center>

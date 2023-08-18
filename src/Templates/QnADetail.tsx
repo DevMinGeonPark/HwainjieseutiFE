@@ -14,6 +14,7 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {QnADetailProps} from '@Types/NavigationTypes';
+import {removeHTMLTagsAndEntities} from '@src/Utils/removeHTMLTagsAndEntities';
 
 const QnADetail = () => {
   const routeParams = useRoute().params as QnADetailProps;
@@ -26,7 +27,7 @@ const QnADetail = () => {
   const deleteQnA = useDeleteQnA();
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
 
-  // console.log(JSON.stringify(data, null, 2));
+  console.log(JSON.stringify(data, null, 2));
 
   const handleDelete = async () => {
     try {
@@ -80,7 +81,9 @@ const QnADetail = () => {
       {routeParams.Status === 1 ? (
         <Center p={8} borderBottomWidth={1} borderBottomColor="#CCC">
           <FontHeading>{data?.AnswerSubject}</FontHeading>
-          <FontText pt={7}>{data?.AnswerContent}</FontText>
+          <FontText pt={7}>
+            {removeHTMLTagsAndEntities(data?.AnswerContent || '')}
+          </FontText>
         </Center>
       ) : (
         <Center p={8} borderBottomWidth={1} borderBottomColor="#CCC">

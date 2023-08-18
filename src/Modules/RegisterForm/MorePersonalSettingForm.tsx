@@ -8,7 +8,8 @@ import {useRegisterForm} from '@src/hooks/stateHooks/useRegisterForm';
 export default function MorePersonalSettingForm() {
   const {maling, setMaling, openInfo, setOpenInfo} = useRegisterForm();
 
-  const isChecked = maling === 1;
+  const isMalingChecked = maling === 1;
+  const isOpenInfoChecked = openInfo === 1;
 
   const handleMaling = (isChecked: boolean) => {
     setMaling(isChecked ? 1 : 0);
@@ -35,15 +36,15 @@ export default function MorePersonalSettingForm() {
         <FontHeading fontSize={14}>메일링서비스</FontHeading>
         <Checkbox
           value={maling.toString()}
-          isChecked={isChecked}
+          isChecked={isMalingChecked}
           onChange={(isChecked: boolean) => handleMaling(isChecked)}>
           <FontText ml={-1}>정보메일을 받겠습니다.</FontText>
         </Checkbox>
         <FontHeading fontSize={14}>정보공개</FontHeading>
         <Checkbox
           value={openInfo.toString()}
-          isChecked={isChecked}
-          onChange={(isChecked: boolean) => handleMaling(isChecked)}>
+          isChecked={isOpenInfoChecked}
+          onChange={(isChecked: boolean) => handleOpenInfo(isChecked)}>
           <FontText ml={-1}>
             다른분들이 나의 정보를 볼 수 있도록 합니다.
           </FontText>

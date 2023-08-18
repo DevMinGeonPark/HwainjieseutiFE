@@ -18,6 +18,8 @@ import PrivacyCheck from '@src/Templates/PrivacyCheck';
 import SearchResult from '@src/Templates/SearchResult';
 import WriteQnA from '@src/Templates/WriteQnA';
 import QnADetail from '@src/Templates/QnADetail';
+import FindUser from '@src/Templates/FindUser';
+import RegisterStipulation from '@src/Templates/RegisterStipulation';
 
 const Stack = createStackNavigator<StackScreenProps>();
 
@@ -100,6 +102,12 @@ function StackNavigator() {
         options={{headerShown: false}}
       />
       <Stack.Screen
+        name="RegisterStipulation"
+        component={RegisterStipulation}
+        options={{headerShown: false}}
+      />
+
+      <Stack.Screen
         name="RegisterForm"
         component={RegisterForm}
         options={{headerShown: false}}
@@ -123,6 +131,11 @@ function StackNavigator() {
       <Stack.Screen
         name="SearchResult"
         component={SearchResult}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="FindUser"
+        component={FindUser}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

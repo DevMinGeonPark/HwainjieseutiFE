@@ -15,27 +15,9 @@ import {FirebaseAuthTypes} from '@react-native-firebase/auth';
 import useLog from '@src/hooks/useLog';
 import {useRegisterForm} from '@src/hooks/stateHooks/useRegisterForm';
 
-// interface PersonalInfoFormProps {
-//   name: string;
-//   setName: React.Dispatch<React.SetStateAction<string>>;
-//   birth: string;
-//   setBirth: React.Dispatch<React.SetStateAction<string>>;
-//   phone: string;
-//   setPhone: React.Dispatch<React.SetStateAction<string>>;
-//   activatePhone: string;
-//   setActivatePhone: React.Dispatch<React.SetStateAction<string>>;
-//   email: string;
-//   setEmail: React.Dispatch<React.SetStateAction<string>>;
-//   setIsValidBirth: React.Dispatch<React.SetStateAction<boolean>>;
-//   setIsValidPhone: React.Dispatch<React.SetStateAction<boolean>>;
-//   setIsValidActivatePhone: React.Dispatch<React.SetStateAction<boolean>>;
-//   setIsValidEmail: React.Dispatch<React.SetStateAction<boolean>>;
-// }
-
 export default function PersonalInfoForm() {
   const routeParams = useRoute().params as RegisterProps;
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [phoneCerti, setPhoneCerti] = useState<boolean>(false);
 
   const {
     name,
@@ -49,6 +31,8 @@ export default function PersonalInfoForm() {
     setIsValidBirth,
     setIsValidPhone,
     setIsValidActivatePhone,
+    phoneCerti,
+    setPhoneCerti,
   } = useRegisterForm(routeParams);
 
   const [confirm, setConfirm] =
@@ -130,17 +114,6 @@ export default function PersonalInfoForm() {
           onValidityChange={setIsValidActivatePhone}
           isCerti={false}
         />
-        {/* <EmailInput
-          value={email}
-          onChange={setEmail}
-          onValidityChange={setIsValidEmail}
-        />
-        <Button size="sm" bg="black">
-          Email 인증
-        </Button>
-        <FontText fontSize={12} px={3} color="#777777">
-          이메일 본인인증은 차후 계정을 찾는데 이용됩니다.
-        </FontText> */}
         <PhoneInput
           title="휴대폰번호"
           value={phone}

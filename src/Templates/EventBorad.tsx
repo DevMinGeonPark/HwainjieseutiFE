@@ -1,4 +1,4 @@
-import {Box, Image} from 'native-base';
+import {Box, Center, Image} from 'native-base';
 import React from 'react';
 import withCommontLayout from './withCommontLayout';
 import {getFocusedRouteNameFromRoute, useRoute} from '@react-navigation/native';
@@ -9,17 +9,23 @@ import DividerTitle from '@src/Atomic/Navigator/DividerTitle';
 import CommentBox from '@src/Modules/EventBoard/CommentBox';
 import AutoHeightImage from 'react-native-auto-height-image';
 import {useWindowDimensions} from 'react-native';
+import Pagination from '@src/Modules/EventBoard/Pagination';
 
 const EventBorad = () => {
   const routeParams = useRoute().params as {Uid: string};
-
-  const {data} = useEventData({Uid: routeParams.Uid});
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const {data, refetch} = useEventData({
+    Uid: routeParams.Uid,
+    CommentsPage: currentPage,
+  });
 
   // console.log(routeParams.Uid);
 
   const width = useWindowDimensions().width;
 
-  // console.log(JSON.stringify(data, null, 2));
+  React.useEffect(() => {
+    refetch();
+  }, [currentPage, refetch]);
 
   // console.log(routeParams.Uid);
 
@@ -42,6 +48,13 @@ const EventBorad = () => {
       {data?.Comments.map((item, index) => (
         <CommentBox key={index} Comment={item} />
       ))}
+      <Center my={5}>
+        <Pagination
+          CommentsCount={data?.CommentsCount || 0}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      </Center>
     </Box>
   );
 };
