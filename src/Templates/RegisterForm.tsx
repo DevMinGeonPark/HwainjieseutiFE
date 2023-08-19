@@ -10,7 +10,6 @@ import {Alert} from 'react-native';
 import {encrypt} from '@src/Utils/Encrypt';
 import {useRoute} from '@react-navigation/native';
 import {RegisterProps} from '@src/Types/NavigationTypes';
-import {ScrollViewContext} from '@src/contexts/ScrollViewContext';
 import useUpdateMember from '@src/hooks/queryHooks/useUpdateMember';
 import {ParamProps} from '@src/Types/MemberTypes';
 import useCreateMember from '@src/hooks/queryHooks/useCreateMember';
@@ -19,6 +18,7 @@ import {StackScreenProps} from '@Types/NavigationTypes';
 import {useNavigation} from '@react-navigation/native';
 import {useRegisterForm} from '@src/hooks/stateHooks/useRegisterForm';
 import RegisterNavigationButton from '@src/Modules/RegisterForm/RegisterNavigationButton';
+import {FlatListContext} from '@src/contexts/FlatListContext';
 
 const RegisterForm = () => {
   const routeParams = useRoute().params as RegisterProps;
@@ -44,12 +44,13 @@ const RegisterForm = () => {
   const updateMember = useUpdateMember(navigation);
   const createMember = useCreateMember(navigation);
 
-  const {scrollViewRef} = useContext(ScrollViewContext);
+  const {flatListRef} = useContext(FlatListContext);
 
   const handleSummit = async () => {
+    // TODO: 수정 현재 비밀번호 등의내용이 작동 x
     if (password !== confirmPassword) {
       Alert.alert('비밀번호가 일치하지 않습니다.');
-      scrollViewRef?.current?.scrollTo({x: 0, y: 0, animated: true});
+      flatListRef?.current?.scrollToOffset({offset: 0, animated: true});
     } else if (isValidBirth) {
       Alert.alert('생년월일을 확인해주세요.');
     } else if (isValidPhone) {

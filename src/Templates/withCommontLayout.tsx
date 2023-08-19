@@ -1,19 +1,20 @@
 import React, {useCallback, useState, useRef, useMemo} from 'react';
 import Header from '@src/Modules/Header';
 import Footer from '@src/Modules/Footer';
-import {Box, ScrollView} from 'native-base';
+import {Box, View} from 'native-base';
 import FixBar from '@src/Modules/Detail/FixBar';
-import {
-  ScrollViewContext,
-  ScrollViewInstance,
-} from '@src/contexts/ScrollViewContext';
-import {NativeScrollEvent, NativeSyntheticEvent} from 'react-native';
+import {NativeScrollEvent, NativeSyntheticEvent, FlatList} from 'react-native';
 import {FixBarContextProvider} from '@src/contexts/FixBarStateContext';
 
 import {Text} from 'native-base';
 import {useLoginCheck} from '@src/hooks/useLoginCheck';
+import {FlatListContext, FlatListInstance} from '@src/contexts/FlatListContext';
 
 type Options = {showFixBar?: boolean};
+
+interface ListItem {
+  type: 'wrappedComponent' | 'space' | 'footer';
+}
 
 const withCommontLayout = (
   WrappedComponent: React.ComponentType<unknown>,
@@ -28,7 +29,8 @@ const withCommontLayout = (
     );
     const showFixBar = mergedOptions.showFixBar;
 
-    const scrollViewRef = useRef<ScrollViewInstance>(null);
+    // const scrollViewRef = useRef<ScrollViewInstance>(null);
+    const flatListRef = useRef(null);
 
     const [showLogo, setShowLogo] = useState(true);
 
@@ -40,20 +42,37 @@ const withCommontLayout = (
       [],
     );
 
+    const renderItem = ({item}: {item: ListItem}) => {
+      if (item.type === 'wrappedComponent') {
+        return <WrappedComponent {...props} />;
+      } else if (item.type === 'space') {
+        return <Box width={30} height={30} />;
+      } else if (item.type === 'footer') {
+        return <Footer />;
+      }
+
+      return null;
+    };
+
     return (
       <Box flex={1} bg={'white'} safeArea>
         <Header showLogo={showLogo} />
         <FixBarContextProvider>
-          <ScrollViewContext.Provider value={{scrollViewRef}}>
-            <ScrollView
-              ref={scrollViewRef}
+          <FlatListContext.Provider value={{flatListRef}}>
+            <FlatList
+              // ref={scrollViewRef}
+              ref={flatListRef}
               onScroll={onScrollHandler}
-              scrollEventThrottle={16}>
-              <WrappedComponent {...props} />
-              <Box width={30} height={30} />
-              <Footer />
-            </ScrollView>
-          </ScrollViewContext.Provider>
+              scrollEventThrottle={16}
+              data={[
+                {type: 'wrappedComponent'},
+                {type: 'space'},
+                {type: 'footer'},
+              ]}
+              renderItem={renderItem}
+              keyExtractor={(item, index) => index.toString()}
+            />
+          </FlatListContext.Provider>
           {showFixBar && <FixBar />}
         </FixBarContextProvider>
       </Box>

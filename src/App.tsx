@@ -10,6 +10,11 @@ import useMessaging from './hooks/useMessaging';
 
 import localNotification from './Utils/localNotification';
 import notifee, {EventType} from '@notifee/react-native';
+import testStore from './test/testStore';
+import {
+  NotificationProvider,
+  useNotification,
+} from './test/NotificationContext';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -68,11 +73,15 @@ export default function App() {
     <UserContextProvider>
       <QueryClientProvider client={queryClient}>
         <DrawerContextProvider>
-          <NavigationContainer>
-            <NativeBaseProvider theme={theme}>
-              <DrawerNavigator />
-            </NativeBaseProvider>
-          </NavigationContainer>
+          <NotificationProvider>
+            <NavigationContainer>
+              {/* 테스트 */}
+              <NativeBaseProvider theme={theme}>
+                <DrawerNavigator />
+              </NativeBaseProvider>
+              {/* 테스트 */}
+            </NavigationContainer>
+          </NotificationProvider>
         </DrawerContextProvider>
       </QueryClientProvider>
     </UserContextProvider>

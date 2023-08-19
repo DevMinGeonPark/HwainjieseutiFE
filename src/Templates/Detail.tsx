@@ -15,7 +15,6 @@ import ProductPiece from '@src/Modules/Detail/ProductPiece';
 import ShareModal from '@src/Modules/Detail/ShareModal';
 import {FontText} from '@src/Atomic/FontText';
 import InfoTab from '@src/Modules/Detail/InfoTab';
-import {ScrollViewContext} from '@src/contexts/ScrollViewContext';
 import DetailTitle from '@src/Modules/Detail/DetailTitle';
 import DetailInfo from '@src/Modules/Detail/DetailInfo';
 import ShareModalButtonModule from '@src/Modules/Detail/ShareModalButtonModule';
@@ -24,6 +23,8 @@ import useItemInfoData from '@src/hooks/queryHooks/useItemInfoData';
 import {DetailScreenProps} from '@src/Types/NavigationTypes';
 import RateCalculator from '@src/Modules/Detail/RateCalculator';
 import {useFixBarState} from '@src/contexts/FixBarStateContext';
+
+import {FlatListContext} from '@src/contexts/FlatListContext';
 
 const Detail = () => {
   const [plan, setPlan] = useState<string>('212121');
@@ -34,7 +35,8 @@ const Detail = () => {
   const [user] = useUserState();
   const [showModal, setShowModal] = useState<boolean>(false);
 
-  const {scrollViewRef} = useContext(ScrollViewContext);
+  const {flatListRef} = useContext(FlatListContext);
+
   const width = useWindowDimensions().width - 20;
   const routeParams = useRoute().params as DetailScreenProps;
   const [, setFixbarProps] = useFixBarState(); //erorr?
@@ -44,11 +46,9 @@ const Detail = () => {
     CategorieCode: routeParams.MenuVar,
   });
 
-  // console.log(JSON.stringify(data, null, 2));
-
   useEffect(() => {
     setPlan('212121');
-    scrollViewRef?.current?.scrollTo({x: 0, y: 0, animated: true});
+    flatListRef?.current?.scrollToOffset({offset: 0, animated: true});
   }, [data]);
 
   useEffect(() => {

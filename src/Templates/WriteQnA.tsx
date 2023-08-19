@@ -54,6 +54,7 @@ const WriteQnA = () => {
       Content: content,
     };
     await qnaWriteMutation.mutateAsync(formData); // 수정된 부분
+    console.log('formData', formData);
     navigation.navigate('QnAMain');
   };
 

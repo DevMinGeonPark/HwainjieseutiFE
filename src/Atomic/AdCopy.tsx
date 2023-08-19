@@ -32,8 +32,8 @@ export default function AdCopy() {
           <FontText> | </FontText>
           <Pressable
             onPress={() => {
-              navigation.navigate('RegisterForm', {});
-              // navigation.navigate('RegisterStipulation');
+              // navigation.navigate('RegisterForm', {});
+              navigation.navigate('RegisterStipulation');
             }}>
             <FontText>회원가입</FontText>
           </Pressable>

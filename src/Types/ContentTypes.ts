@@ -17,3 +17,7 @@ export interface FixBarContextStateProps {
   /** OrderButton */
   OrderPage: string;
 }
+
+export interface testType {
+  uid: number;
+}
