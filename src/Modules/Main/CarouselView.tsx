@@ -30,12 +30,14 @@ export default function CarouselView(props: Props) {
         <Pressable
           key={index}
           onPress={() => {
-            console.log();
             item.imgurl.match(/wr_id=(\d+)/)?.[1]
               ? navigation.navigate('EventBorad', {
                   Uid: Number(item.imgurl.match(/wr_id=(\d+)/)?.[1]) || 0,
                 })
-              : Alert.alert('주소가 이상합니다.');
+              : navigation.navigate('Event', {
+                  MenuType: 'bo_table',
+                  MenuVar: 'free',
+                });
           }}>
           {item.imgsrc && (
             <Image

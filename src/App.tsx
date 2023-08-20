@@ -7,14 +7,7 @@ import {UserContextProvider} from './contexts/UserContext';
 import {DrawerContextProvider} from './contexts/DrawerStateContext';
 import messaging from '@react-native-firebase/messaging';
 import useMessaging from './hooks/useMessaging';
-
 import localNotification from './Utils/localNotification';
-import notifee, {EventType} from '@notifee/react-native';
-import testStore from './test/testStore';
-import {
-  NotificationProvider,
-  useNotification,
-} from './test/NotificationContext';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -73,15 +66,11 @@ export default function App() {
     <UserContextProvider>
       <QueryClientProvider client={queryClient}>
         <DrawerContextProvider>
-          <NotificationProvider>
-            <NavigationContainer>
-              {/* 테스트 */}
-              <NativeBaseProvider theme={theme}>
-                <DrawerNavigator />
-              </NativeBaseProvider>
-              {/* 테스트 */}
-            </NavigationContainer>
-          </NotificationProvider>
+          <NavigationContainer>
+            <NativeBaseProvider theme={theme}>
+              <DrawerNavigator />
+            </NativeBaseProvider>
+          </NavigationContainer>
         </DrawerContextProvider>
       </QueryClientProvider>
     </UserContextProvider>
