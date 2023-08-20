@@ -45,7 +45,7 @@ export default function CarouselView(props: Props) {
               height={'100%'}
               resizeMode="cover"
               alt="MainBannerCarousel"
-              source={{uri: item.imgsrc || ''}}
+              source={{uri: item.imgsrc}}
             />
           )}
         </Pressable>

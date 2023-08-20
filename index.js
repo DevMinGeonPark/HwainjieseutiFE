@@ -3,6 +3,7 @@ import App from './src/App';
 import { name as appName } from './app.json';
 import 'react-native-gesture-handler';
 import messaging from '@react-native-firebase/messaging';
+import notifee from '@notifee/react-native';
 
 
 
@@ -14,5 +15,11 @@ if (__DEV__) {
 messaging().setBackgroundMessageHandler(async remoteMessage => {
     console.log('Message handled in the background!', remoteMessage);
 });
+
+
+notifee.onBackgroundEvent(async ({ type, detail }) => {
+    console.log('Background Event', { type, detail });
+});
+
 
 AppRegistry.registerComponent(appName, () => App);

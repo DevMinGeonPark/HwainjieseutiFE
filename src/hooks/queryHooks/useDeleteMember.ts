@@ -4,7 +4,7 @@ import {DeleteParamProps} from '@src/Types/MemberTypes';
 import {DeleteMember} from '@src/API/RegisterForm/DeleteMember';
 
 export default function useDeleteMember() {
-  const log = useLog('dev');
+  const log = useLog('root');
   const mutation = useMutation(
     (params: DeleteParamProps) => DeleteMember(params),
     {
@@ -13,7 +13,7 @@ export default function useDeleteMember() {
         log.info('status:', data);
       },
       onError: error => {
-        log.info('멤버 삭제 실패', error);
+        log.error('멤버 삭제 실패', error);
       },
     },
   );

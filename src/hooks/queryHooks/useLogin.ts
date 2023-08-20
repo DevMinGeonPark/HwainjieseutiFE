@@ -23,7 +23,7 @@ export default function useLogin({id, loginType}: LoginData) {
     useNavigation<DrawerNavigationProp<DrawerScreenProps>>();
 
   const alert = useAlert();
-  const log = useLog('dev');
+  const log = useLog('root');
   const [, setUser] = useUserState();
   const toast = useToast();
 
@@ -44,7 +44,7 @@ export default function useLogin({id, loginType}: LoginData) {
     },
     onError: (error: AuthError) => {
       const handle = error.message;
-      log.info(`로그인 실패 [${handle}]`);
+      log.error(`로그인 실패 [${handle}]`);
       if (handle === '로그인 정보 없음') {
         alert({
           title: '로그인 실패',
@@ -66,7 +66,7 @@ export default function useLogin({id, loginType}: LoginData) {
           title: '로그인 실패',
           message: '원인불명 관리자에게 문의하세요!',
         });
-        log.info(handle);
+        log.error(handle);
       }
     },
   });

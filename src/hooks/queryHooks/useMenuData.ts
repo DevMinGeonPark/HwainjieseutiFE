@@ -7,15 +7,15 @@ import useLog from '../useLog';
 import {MenuType} from '@src/Types/MenuType';
 
 export default function useMenuData() {
-  const log = useLog('dev');
+  const log = useLog('data');
 
   const query = useQuery('getMenuData', getMenuData, {
     onSuccess: (data: MenuType[]) => {
-      log.info(`메인 데이터 불러오기 성공`);
+      log.info(`menu 데이터 불러오기 성공`);
       return data;
     },
     onError: error => {
-      log.info(`메인 데이터 불러오기 실패`);
+      log.error(`menu 데이터 불러오기 실패 ${error}`);
     },
   });
   // return mutation;

@@ -4,16 +4,16 @@ import useLog from '../useLog';
 import {getSubData} from '@src/API/getSubData';
 
 export default function useSubData(params: any) {
-  const log = useLog('dev');
+  const log = useLog('data');
 
   const query = useQuery('getProductData', () => getSubData(params), {
     notifyOnChangeProps: ['data'],
     onSuccess: (data: any) => {
-      log.info(`Product Data 불러오기 성공`);
+      log.info(`Sub Data 불러오기 성공`);
       return data;
     },
     onError: error => {
-      log.info(`Product Data 불러오기 실패`);
+      log.info(`Sub Data 불러오기 실패`);
     },
   });
   // return mutation;

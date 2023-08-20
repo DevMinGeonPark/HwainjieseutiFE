@@ -33,8 +33,6 @@ const SearchResult = () => {
     handleDefaultValues, // 이 부분 불러오기
   } = useSearchState();
 
-  // console.log(JSON.stringify(data, null, 2));
-
   const sorting = (value: string) => {
     setParams({...params, OrderBy: value});
   };

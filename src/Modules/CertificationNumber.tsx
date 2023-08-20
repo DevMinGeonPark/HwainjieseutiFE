@@ -5,7 +5,6 @@ import {FontText} from '@src/Atomic/FontText';
 import {useToast} from 'native-base';
 
 interface CertificationNumberProps {
-  // isValid: boolean;
   code: string;
   setCode: React.Dispatch<React.SetStateAction<string>>;
   confirmCode: () => void;
@@ -15,7 +14,6 @@ interface CertificationNumberProps {
 }
 
 export default function CertificationNumber({
-  // isValid,
   code,
   setCode,
   confirmCode,
@@ -31,7 +29,6 @@ export default function CertificationNumber({
         <Modal.Header>휴대전화 인증</Modal.Header>
         <Modal.Body>
           <FormControl>
-            {/* isInvalid={!isValid} */}
             <FormControl isRequired>
               <VStack>
                 <FormControl.Label
@@ -48,11 +45,6 @@ export default function CertificationNumber({
                   휴대전화로 전송된 인증번호를 입력해주세요. 해당 모달을 나가게
                   되면 다시 인증하셔야됩니다.
                 </FontText>
-                {/* {!isValid && (
-                  <FormControl.ErrorMessage>
-                    올바른 인증번호를 입력해주세요.
-                  </FormControl.ErrorMessage>
-                )} */}
               </VStack>
             </FormControl>
           </FormControl>

@@ -9,7 +9,7 @@ import {
 import {getRateData} from '@src/API/Detail/getRateData';
 
 export default function useRateData(params: ParamProps) {
-  const log = useLog('dev');
+  const log = useLog('data');
 
   const query = useQuery(
     ['getItemInfoData', params],
@@ -17,12 +17,12 @@ export default function useRateData(params: ParamProps) {
     {
       notifyOnChangeProps: ['data'],
       onSuccess: (data: MachineCalResType | ChargeCalResType) => {
-        log.info(`Event 데이터 불러오기 성공`);
+        log.info(`Rate 데이터 불러오기 성공`);
         return data;
       },
       onError: error => {
-        log.info(`Event 데이터 불러오기 실패`);
-        log.info(error);
+        log.error(`Rate 데이터 불러오기 실패`);
+        log.error(error);
       },
     },
   );

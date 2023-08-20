@@ -4,7 +4,7 @@ import {ParamProps, QnADetailData} from '@src/Types/QnADetailTypes';
 import {getQnADetailData} from '@src/API/QnADetail/getQnADetailData';
 
 export default function useQnADetailData(params: ParamProps) {
-  const log = useLog('dev');
+  const log = useLog('data');
 
   const query = useQuery(
     ['getQnADetailData', params],
@@ -12,11 +12,11 @@ export default function useQnADetailData(params: ParamProps) {
     {
       notifyOnChangeProps: ['data'],
       onSuccess: (data: QnADetailData) => {
-        log.info(`불러오기 성공`);
+        log.info(`QnA Detail data 불러오기 성공`);
         return data;
       },
       onError: error => {
-        log.info(`불러오기 실패`);
+        log.error(`불러오기 실패 ${error}`);
       },
     },
   );

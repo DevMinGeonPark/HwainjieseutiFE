@@ -16,7 +16,6 @@ const ImageProduct = () => {
   const routeParams = useRoute().params as CommonProps;
 
   const {data, isLoading} = useProductData(routeParams);
-  console.log(data);
 
   if (isLoading) return <LodingIndicator count={4} />;
 

@@ -11,7 +11,7 @@ type AuthError = {
 };
 
 export default function useConfirmPW() {
-  const log = useLog('dev');
+  const log = useLog('root');
   const toast = useToast();
 
   const mutation = useMutation(

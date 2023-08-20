@@ -4,7 +4,7 @@ import {getPointDetail} from '@src/API/MyPoint/getPointDetail';
 import {ParamProps, PointDetailData} from '@Types/PointDetailTypes';
 
 export default function usePointDetailData(params: ParamProps) {
-  const log = useLog('dev');
+  const log = useLog('data');
 
   const transformData = (data: PointDetailData[]): string[][] => {
     return data.map(item => [
@@ -25,12 +25,12 @@ export default function usePointDetailData(params: ParamProps) {
     {
       notifyOnChangeProps: ['data'],
       onSuccess: (data: string[][]) => {
-        log.info(`데이터 불러오기 성공`);
+        log.info(`PointDetail 데이터 불러오기 성공`);
         return data;
       },
       onError: error => {
-        log.info(`데이터 불러오기 실패`);
-        log.info(error);
+        log.error(`PointDetail 데이터 불러오기 실패`);
+        log.error(error);
       },
     },
   );

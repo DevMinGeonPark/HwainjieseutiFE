@@ -24,8 +24,8 @@ export default function useLog(level: string) {
 
   const log = logger.createLogger(config);
 
-  if (level === 'dev') {
-    return log.extend('dev');
+  if (level === 'data') {
+    return log.extend('data');
   } else {
     return log.extend('root');
   }

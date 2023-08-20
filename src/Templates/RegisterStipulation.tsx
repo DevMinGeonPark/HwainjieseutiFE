@@ -16,12 +16,9 @@ const RegisterStipulation = () => {
   const {registerCheck, setRegisterCheck, personalCheck, setPersonalCheck} =
     useStipulationState();
 
-  const [user] = useUserState();
-
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
 
   const handleRegisterCheck = () => {
-    console.log(registerCheck, personalCheck);
     if (registerCheck && personalCheck) {
       navigation.navigate('RegisterForm', {});
     } else {

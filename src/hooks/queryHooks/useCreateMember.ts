@@ -12,7 +12,7 @@ import {StackScreenProps} from '@Types/NavigationTypes';
 export default function useCreateMember(
   navigation: StackNavigationProp<StackScreenProps>,
 ) {
-  const log = useLog('dev');
+  const log = useLog('root');
   const toast = useToast();
   const mutation = useMutation((params: ParamProps) => CreateMember(params), {
     onSuccess: (data: Res) => {

@@ -13,7 +13,6 @@ import CertificationNumber from '@src/Modules/CertificationNumber';
 import auth from '@react-native-firebase/auth';
 import {FirebaseAuthTypes} from '@react-native-firebase/auth';
 import useLog from '@src/hooks/useLog';
-import {useRegisterForm} from '@src/hooks/stateHooks/useRegisterForm';
 
 interface PersonalInfoFormProps {
   name: string;
@@ -48,6 +47,7 @@ export default function PersonalInfoForm({
 }: PersonalInfoFormProps) {
   const routeParams = useRoute().params as RegisterProps;
   const [showModal, setShowModal] = useState<boolean>(false);
+  const log = useLog('root');
 
   const [confirm, setConfirm] =
     useState<FirebaseAuthTypes.ConfirmationResult>();
@@ -73,7 +73,7 @@ export default function PersonalInfoForm({
       } else if (error.code === 'auth/too-many-requests') {
         // 너무 많은 요청으로 인한 경우 처리
         Alert.alert('요청이 너무 많습니다. 잠시 후 다시 시도해주세요.');
-        console.log(error.message);
+        log.error(error.message);
       } else {
         // 그 외의 경우
         Alert.alert(
@@ -87,11 +87,9 @@ export default function PersonalInfoForm({
   async function confirmCode() {
     try {
       let data = await confirm?.confirm(code);
-      console.log(data);
     } catch (e) {
       const error = e as FirebaseAuthTypes.NativeFirebaseAuthError;
-      console.log(error.code);
-      console.log(error.message);
+      log.error(`${error.code}: ${error.message}}`);
     }
   }
   return (

@@ -4,7 +4,7 @@ import useLog from '../useLog';
 import {MainData} from '@Types/MainDataTypes';
 
 export default function useMainData() {
-  const log = useLog('dev');
+  const log = useLog('data');
 
   const query = useQuery('getMainData', getMainData, {
     onSuccess: (data: MainData) => {
@@ -12,7 +12,7 @@ export default function useMainData() {
       return data;
     },
     onError: error => {
-      log.info(`메인 데이터 불러오기 실패`);
+      log.error(`메인 데이터 불러오기 실패 ${error}}`);
     },
   });
   return query;

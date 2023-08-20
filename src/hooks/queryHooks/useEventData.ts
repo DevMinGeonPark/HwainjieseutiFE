@@ -5,7 +5,7 @@ import {EventData, Body} from '@Types/EventDataTypes';
 import {getEventData} from '@src/API/Event/getEventData';
 
 export default function useEventData(params: Body) {
-  const log = useLog('dev');
+  const log = useLog('data');
 
   const query = useQuery(['getEventData', params], () => getEventData(params), {
     notifyOnChangeProps: ['data'],
@@ -15,7 +15,7 @@ export default function useEventData(params: Body) {
     },
     onError: error => {
       log.info(`Event 데이터 불러오기 실패`);
-      log.info(error);
+      log.error(error);
     },
   });
   return query;

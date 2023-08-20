@@ -13,22 +13,17 @@ import Pagination from '@src/Modules/EventBoard/Pagination';
 
 const EventBorad = () => {
   const routeParams = useRoute().params as {Uid: string};
-  console.log(routeParams.Uid);
   const [currentPage, setCurrentPage] = React.useState(1);
   const {data, refetch} = useEventData({
     Uid: routeParams.Uid,
     CommentsPage: currentPage,
   });
 
-  // console.log(routeParams.Uid);
-
   const width = useWindowDimensions().width;
 
   React.useEffect(() => {
     refetch();
   }, [currentPage, refetch]);
-
-  // console.log(routeParams.Uid);
 
   return (
     <Box mt={3}>

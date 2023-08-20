@@ -2,7 +2,7 @@ import {Box, ScrollView, HStack} from 'native-base';
 import React, {useState} from 'react';
 import PanelItem from '@src/Atomic/PanelItem';
 import {FontText} from '@src/Atomic/FontText';
-import data from '@src/static/RegisterStripulation.json';
+import data from '@src/static/PersonalStripulation.json';
 import {FontHeading} from '@src/Atomic/FontHeading';
 import StipulationCheckBox from '@src/Atomic/RegisterStipulation/StipulationCheckBox';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -29,7 +29,9 @@ export default function StipulationPersonal({
 
   const renderItem = ({item}: {item: List}) => (
     <Box p={3}>
-      <FontHeading>{item.title}</FontHeading>
+      <FontText color="#0083B9" fontWeight="bold">
+        {item.title}
+      </FontText>
       {item.content.map((text, index) => (
         <FontText key={`${item.title}-${index}`}>{text}</FontText>
       ))}

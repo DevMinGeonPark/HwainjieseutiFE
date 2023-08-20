@@ -6,7 +6,7 @@ import {MemberInfoData, ParamProps} from '@Types/MemberInfoTypes';
 import {getItemInfo} from '@src/API/Detail/getItemInfo';
 
 export default function useMemberInfoData(params: ParamProps) {
-  const log = useLog('dev');
+  const log = useLog('data');
 
   const query = useQuery(
     ['getMemberInfo', params],
@@ -14,12 +14,12 @@ export default function useMemberInfoData(params: ParamProps) {
     {
       notifyOnChangeProps: ['data'],
       onSuccess: (data: MemberInfoData) => {
-        log.info(`Event 데이터 불러오기 성공`);
+        log.info(`MemberInfoData 데이터 불러오기 성공`);
         return data;
       },
       onError: error => {
-        log.info(`Event 데이터 불러오기 실패`);
-        log.info(error);
+        log.error(`MemberInfoData 데이터 불러오기 실패`);
+        log.error(error);
       },
     },
   );

@@ -11,7 +11,7 @@ import {
 import {CommonProps} from '@src/Types/CommonTypes';
 
 export default function useProductData(params: CommonProps | ParamProps) {
-  const log = useLog('dev');
+  const log = useLog('data');
 
   const query = useQuery(
     ['getProductData', params],
@@ -23,7 +23,7 @@ export default function useProductData(params: CommonProps | ParamProps) {
         return data;
       },
       onError: error => {
-        log.info(`productDatas 불러오기 실패`);
+        log.error(`productDatas 불러오기 실패 ${error}`);
       },
     },
   );

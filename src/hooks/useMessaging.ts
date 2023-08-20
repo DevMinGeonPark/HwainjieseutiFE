@@ -1,6 +1,7 @@
 import React from 'react';
 import messaging from '@react-native-firebase/messaging';
 import {useToast} from 'native-base';
+import useLog from './useLog';
 
 interface UseMessagingReturnType {
   requestUserPermission: () => Promise<void>;
@@ -9,6 +10,7 @@ interface UseMessagingReturnType {
 
 const useMessaging = (): UseMessagingReturnType => {
   const toast = useToast();
+  const log = useLog('root');
   const requestUserPermission = async () => {
     const authStatus = await messaging().requestPermission();
     const enabled =
@@ -23,11 +25,12 @@ const useMessaging = (): UseMessagingReturnType => {
   const callApiSubscribeTopic = async () => {
     try {
       await messaging().subscribeToTopic('ALL');
-      console.log('구독성공');
+      log.info('구독성공');
       toast.show({
         title: 'ALL 구독에 성공했습니다.',
       });
     } catch (error) {
+      log.info('구독실패');
       toast.show({
         title: 'ALL 구독에 실패했습니다.',
       });

@@ -53,8 +53,7 @@ const WriteQnA = () => {
       WriteHp: phone,
       Content: content,
     };
-    await qnaWriteMutation.mutateAsync(formData); // 수정된 부분
-    console.log('formData', formData);
+    await qnaWriteMutation.mutateAsync(formData);
     navigation.navigate('QnAMain');
   };
 

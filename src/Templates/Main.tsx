@@ -35,6 +35,7 @@ const Main = () => {
         navigation.navigate('EventBorad', {
           Uid: Number(remoteMessage?.data?.uid) || 0,
         });
+        notifee.cancelAllNotifications();
       });
       // 앱이 종료된 상태에서 알림을 받았을 때
       messaging()
@@ -44,6 +45,7 @@ const Main = () => {
             navigation.navigate('EventBorad', {
               Uid: Number(remoteMessage?.data?.uid) || 0,
             });
+            notifee.cancelAllNotifications();
           }
         });
     }
@@ -61,6 +63,7 @@ const Main = () => {
           navigation.navigate('EventBorad', {
             Uid: data.uid,
           });
+          notifee.cancelAllNotifications();
           break;
       }
     });

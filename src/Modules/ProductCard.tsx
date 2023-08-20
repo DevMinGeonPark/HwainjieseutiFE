@@ -64,7 +64,6 @@ export default function ProductCard(data: ItemList) {
       style={{margin: cardMargin}}>
       <Box pt={4}>
         <Center>
-          {/* 이미지가 좀더 사이즈에 맞게변화할 수 있는 방법을 강구해보자. */}
           {data.ItemImgUrl && (
             <Image
               width={{base: '118px', md: '150px'}}
