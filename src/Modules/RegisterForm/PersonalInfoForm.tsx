@@ -15,25 +15,39 @@ import {FirebaseAuthTypes} from '@react-native-firebase/auth';
 import useLog from '@src/hooks/useLog';
 import {useRegisterForm} from '@src/hooks/stateHooks/useRegisterForm';
 
-export default function PersonalInfoForm() {
+interface PersonalInfoFormProps {
+  name: string;
+  setName: React.Dispatch<React.SetStateAction<string>>;
+  birth: string;
+  setBirth: React.Dispatch<React.SetStateAction<string>>;
+  phone: string;
+  setPhone: React.Dispatch<React.SetStateAction<string>>;
+  activatePhone: string;
+  setActivatePhone: React.Dispatch<React.SetStateAction<string>>;
+  setIsValidBirth: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsValidPhone: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsValidActivatePhone: React.Dispatch<React.SetStateAction<boolean>>;
+  phoneCerti: boolean;
+  setPhoneCerti: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function PersonalInfoForm({
+  name,
+  setName,
+  birth,
+  setBirth,
+  phone,
+  setPhone,
+  activatePhone,
+  setActivatePhone,
+  setIsValidBirth,
+  setIsValidPhone,
+  setIsValidActivatePhone,
+  phoneCerti,
+  setPhoneCerti,
+}: PersonalInfoFormProps) {
   const routeParams = useRoute().params as RegisterProps;
   const [showModal, setShowModal] = useState<boolean>(false);
-
-  const {
-    name,
-    setName,
-    birth,
-    setBirth,
-    phone,
-    setPhone,
-    activatePhone,
-    setActivatePhone,
-    setIsValidBirth,
-    setIsValidPhone,
-    setIsValidActivatePhone,
-    phoneCerti,
-    setPhoneCerti,
-  } = useRegisterForm(routeParams);
 
   const [confirm, setConfirm] =
     useState<FirebaseAuthTypes.ConfirmationResult>();

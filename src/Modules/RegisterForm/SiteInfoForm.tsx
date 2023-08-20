@@ -6,17 +6,27 @@ import {FontText} from '@src/Atomic/FontText';
 import {useRoute} from '@react-navigation/native';
 import {RegisterProps} from '@src/Types/NavigationTypes';
 import {useRegisterForm} from '@src/hooks/stateHooks/useRegisterForm';
+import React from 'react';
 
-export default function SiteInfoForm() {
+interface SiteInfoFormProps {
+  password: string;
+  setPassword: React.Dispatch<React.SetStateAction<string>>;
+  id: string;
+  setId: React.Dispatch<React.SetStateAction<string>>;
+  confirmPassword: string;
+  setConfirmPassword: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export default function SiteInfoForm({
+  password,
+  setPassword,
+  id,
+  setId,
+  confirmPassword,
+  setConfirmPassword,
+}: SiteInfoFormProps) {
   const routeParams = useRoute().params as RegisterProps;
-  const {
-    password,
-    setPassword,
-    id,
-    setId,
-    confirmPassword,
-    setConfirmPassword,
-  } = useRegisterForm(routeParams);
+
   return (
     <Box
       mt={6}

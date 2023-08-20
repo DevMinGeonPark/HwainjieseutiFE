@@ -27,18 +27,31 @@ const RegisterForm = () => {
 
   const {
     password,
+    setPassword,
     confirmPassword,
+    setConfirmPassword,
     id,
+    setId,
     name,
     birth,
     phone,
     activatePhone,
     isValidBirth,
+    setIsValidBirth,
     isValidPhone,
+    setIsValidPhone,
     isValidActivatePhone,
+    setIsValidActivatePhone,
     maling,
+    setMaling,
     openInfo,
+    setOpenInfo,
     phoneCerti,
+    setPhoneCerti,
+    setName,
+    setBirth,
+    setPhone,
+    setActivatePhone,
   } = useRegisterForm(routeParams);
 
   const updateMember = useUpdateMember(navigation);
@@ -47,9 +60,11 @@ const RegisterForm = () => {
   const {flatListRef} = useContext(FlatListContext);
 
   const handleSummit = async () => {
-    // TODO: 수정 현재 비밀번호 등의내용이 작동 x
     if (password !== confirmPassword) {
       Alert.alert('비밀번호가 일치하지 않습니다.');
+      flatListRef?.current?.scrollToOffset({offset: 0, animated: true});
+    } else if (id === '') {
+      Alert.alert('아이디를 입력해주세요.');
       flatListRef?.current?.scrollToOffset({offset: 0, animated: true});
     } else if (isValidBirth) {
       Alert.alert('생년월일을 확인해주세요.');
@@ -86,9 +101,35 @@ const RegisterForm = () => {
         titleSize={undefined}
         iconSize={undefined}
       />
-      <SiteInfoForm />
-      <PersonalInfoForm />
-      <MorePersonalSettingForm />
+      <SiteInfoForm
+        password={password}
+        setPassword={setPassword}
+        id={id}
+        setId={setId}
+        confirmPassword={confirmPassword}
+        setConfirmPassword={setConfirmPassword}
+      />
+      <PersonalInfoForm
+        name={name}
+        setName={setName}
+        birth={birth}
+        setBirth={setBirth}
+        phone={phone}
+        setPhone={setPhone}
+        activatePhone={activatePhone}
+        setActivatePhone={setActivatePhone}
+        setIsValidBirth={setIsValidBirth}
+        setIsValidPhone={setIsValidPhone}
+        setIsValidActivatePhone={setIsValidActivatePhone}
+        phoneCerti={phoneCerti}
+        setPhoneCerti={setPhoneCerti}
+      />
+      <MorePersonalSettingForm
+        maling={maling}
+        setMaling={setMaling}
+        openInfo={openInfo}
+        setOpenInfo={setOpenInfo}
+      />
       <HStack space={2} mt={5} mb={5} justifyContent="center">
         <RegisterNavigationButton
           title={routeParams?.KTShopID ? '정보수정' : '회원가입'}

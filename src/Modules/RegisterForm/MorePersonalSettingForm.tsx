@@ -5,9 +5,19 @@ import {FontText} from '@src/Atomic/FontText';
 import {FontHeading} from '@src/Atomic/FontHeading';
 import {useRegisterForm} from '@src/hooks/stateHooks/useRegisterForm';
 
-export default function MorePersonalSettingForm() {
-  const {maling, setMaling, openInfo, setOpenInfo} = useRegisterForm();
+interface MorePersonalSettingFormProps {
+  maling: number;
+  setMaling: React.Dispatch<React.SetStateAction<number>>;
+  openInfo: number;
+  setOpenInfo: React.Dispatch<React.SetStateAction<number>>;
+}
 
+export default function MorePersonalSettingForm({
+  maling,
+  setMaling,
+  openInfo,
+  setOpenInfo,
+}: MorePersonalSettingFormProps) {
   const isMalingChecked = maling === 1;
   const isOpenInfoChecked = openInfo === 1;
 
