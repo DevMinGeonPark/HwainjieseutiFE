@@ -28,8 +28,6 @@ const withCommontLayout = (
       [options],
     );
     const showFixBar = mergedOptions.showFixBar;
-
-    // const scrollViewRef = useRef<ScrollViewInstance>(null);
     const flatListRef = useRef(null);
 
     const [showLogo, setShowLogo] = useState(true);
@@ -60,7 +58,6 @@ const withCommontLayout = (
         <FixBarContextProvider>
           <FlatListContext.Provider value={{flatListRef}}>
             <FlatList
-              // ref={scrollViewRef}
               ref={flatListRef}
               onScroll={onScrollHandler}
               scrollEventThrottle={16}
@@ -70,7 +67,7 @@ const withCommontLayout = (
                 {type: 'footer'},
               ]}
               renderItem={renderItem}
-              keyExtractor={(item, index) => index.toString()}
+              keyExtractor={(item, index) => `wr-${item.type}-${index}`}
             />
           </FlatListContext.Provider>
           {showFixBar && <FixBar />}

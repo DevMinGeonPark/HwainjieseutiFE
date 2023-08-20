@@ -6,9 +6,15 @@ import {FontText} from '../FontText';
 
 interface StipulationCheckBoxProps {
   title: string;
+  check: boolean;
+  onChange: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function StipulationCheckBox({title}: StipulationCheckBoxProps) {
+export default function StipulationCheckBox({
+  title,
+  onChange,
+  check,
+}: StipulationCheckBoxProps) {
   return (
     <Box
       p={3}
@@ -16,7 +22,7 @@ export default function StipulationCheckBox({title}: StipulationCheckBoxProps) {
       borderBottomWidth={1}
       borderTopWidth={1}
       borderColor="#CCC">
-      <Checkbox value="agree">
+      <Checkbox value="agree" onChange={() => onChange(!check)}>
         <FontText ml={-1} fontSize={12}>
           {title}
         </FontText>

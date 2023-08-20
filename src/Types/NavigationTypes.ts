@@ -47,8 +47,8 @@ export interface QnADetailProps {
 }
 
 export interface WriteQnAParamsProps {
-  QNAID: string | '';
-  KTShopID: string | '';
+  QNAID?: string | '';
+  KTShopID?: string | '';
   Category?: string | '';
   Subject?: string | '';
   Content?: string | '';

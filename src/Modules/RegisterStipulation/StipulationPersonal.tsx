@@ -1,5 +1,5 @@
-import {Box, FlatList, ScrollView, HStack} from 'native-base';
-import React from 'react';
+import {Box, ScrollView, HStack} from 'native-base';
+import React, {useState} from 'react';
 import PanelItem from '@src/Atomic/PanelItem';
 import {FontText} from '@src/Atomic/FontText';
 import data from '@src/static/RegisterStripulation.json';
@@ -7,18 +7,31 @@ import {FontHeading} from '@src/Atomic/FontHeading';
 import StipulationCheckBox from '@src/Atomic/RegisterStipulation/StipulationCheckBox';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Table from '@src/Atomic/RegisterStipulation/Table';
+import {Pressable} from 'react-native';
+import {FlatList} from 'react-native-gesture-handler';
+import {useStipulationState} from '@src/hooks/stateHooks/useStipulationState';
 
 interface List {
   title: string;
   content: string[];
 }
 
-export default function StipulationPersonal() {
+interface StipulationRegisterProps {
+  personalCheck: boolean;
+  setPersonalCheck: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function StipulationPersonal({
+  personalCheck,
+  setPersonalCheck,
+}: StipulationRegisterProps) {
+  const [showDetail, setShowDetail] = useState<boolean>(false);
+
   const renderItem = ({item}: {item: List}) => (
     <Box p={3}>
       <FontHeading>{item.title}</FontHeading>
-      {item.content.map(i => (
-        <FontText>{i}</FontText>
+      {item.content.map((text, index) => (
+        <FontText key={`${item.title}-${index}`}>{text}</FontText>
       ))}
     </Box>
   );
@@ -36,17 +49,26 @@ export default function StipulationPersonal() {
           <Icon name="user" size={14} color="black" />
           <FontHeading fontSize={14}>개인정보처리방침안내</FontHeading>
         </HStack>
-        <FontText>전문보기</FontText>
+        <Pressable onPress={() => setShowDetail(!showDetail)}>
+          <FontText>전문보기</FontText>
+        </Pressable>
       </HStack>
+      {showDetail && (
+        <Box h={200} overflow="scroll">
+          <FlatList
+            data={data.data}
+            renderItem={renderItem}
+            nestedScrollEnabled
+            keyExtractor={(item, index) => `list-${index}`}
+          />
+        </Box>
+      )}
       <Table />
-      {/* <ScrollView h={200}>
-        <FlatList
-          data={data.data}
-          renderItem={renderItem}
-          keyExtractor={(item, index) => index.toString()}
-        />
-      </ScrollView> */}
-      <StipulationCheckBox title="회원가입약관의 내용에 동의합니다." />
+      <StipulationCheckBox
+        title="(필수) 개인정보처리방침안내의 내용에 동의합니다."
+        check={personalCheck}
+        onChange={setPersonalCheck}
+      />
     </Box>
   );
 }

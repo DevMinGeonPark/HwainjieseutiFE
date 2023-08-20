@@ -58,8 +58,7 @@ export default function MenuDrawer(props: any) {
           text="회원가입"
           point={undefined}
           onPress={() => {
-            navigation.navigate('RegisterForm', {});
-            // navigation.navigate('RegisterStipulation');
+            navigation.navigate('RegisterStipulation');
           }}
         />
         <MenuItem

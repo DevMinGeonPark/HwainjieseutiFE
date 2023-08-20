@@ -14,7 +14,7 @@ export default function InquiryWriteButton() {
         bg="black"
         _text={{color: 'white'}}
         rounded="none"
-        onPress={() => navigation.navigate('WriteQnA', {QNAID: ''})}>
+        onPress={() => navigation.navigate('WriteQnA', {})}>
         글쓰기
       </Button>
     </Center>
