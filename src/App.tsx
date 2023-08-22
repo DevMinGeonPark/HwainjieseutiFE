@@ -48,11 +48,10 @@ const theme = extendTheme({
 });
 
 export default function App() {
-  const {requestUserPermission, callApiSubscribeTopic} = useMessaging();
+  const {requestUserPermission} = useMessaging();
 
   React.useEffect(() => {
     requestUserPermission(); // 알림 권한 요청
-    callApiSubscribeTopic(); // 토픽 구독
   }, []);
 
   async function onMessageReceived(message: any) {
