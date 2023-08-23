@@ -59,18 +59,19 @@ const Detail = () => {
 
   return (
     <Box>
-      <DetailTitle name={routeParams.name || ''} />
-      {data?.ItemImgUrl && (
+      {/* {data?.ItemImgUrl && (
         <Image
           source={{uri: data?.ItemImgUrl || ''}}
           alt="product Image"
           size={width}
         />
+      )} */}
+      {data?.ItemColor && (
+        <DetailInfo
+          productTitle={data?.ItemName || ''}
+          data={data?.ItemColor || []}
+        />
       )}
-      <DetailInfo
-        productTitle={data?.ItemName || ''}
-        productColors={data?.ItemColor || ''}
-      />
       <ShareModalButtonModule setShowModal={setShowModal} />
       <RateTypeUI heading="가입형태">
         <SignTypeButtons regiTypes={data?.RegiType || []} route={routeParams} />
@@ -99,7 +100,6 @@ const Detail = () => {
           <FontText>{planDesc}</FontText>
         </Box>
       </RateTypeUI>
-
       <RateTypeUI heading="수령방법">
         <Button
           mt={2}
@@ -115,7 +115,6 @@ const Detail = () => {
           {data?.RevMethod?.[0]?.ClickComment || 'ClickComment unavailable'}
         </FontText>
       </RateTypeUI>
-
       <RateTypeUI heading="KT공식몰 추가할인">
         <KTDiscountButtons
           KTDiscount={data?.KTDiscount || []}
@@ -123,7 +122,6 @@ const Detail = () => {
           route={routeParams}
         />
       </RateTypeUI>
-
       <Button
         m={2}
         my={5}
@@ -135,7 +133,6 @@ const Detail = () => {
         }}>
         주문하기
       </Button>
-
       <Box borderTopWidth={2} borderTopColor={'primary.400'} pt={3}>
         <RateCalculator
           ItemCode={data?.ItemCode || routeParams.it_id}

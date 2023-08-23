@@ -45,6 +45,8 @@ const useMessaging = (): UseMessagingReturnType => {
         return callApiSubscribeTopic();
       } else {
         log.info('PUSH Permission denied');
+        log.info('IOS Permission request');
+        iosPermission();
       }
     } catch (e) {
       const error = e as Error;

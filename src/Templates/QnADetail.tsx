@@ -27,8 +27,6 @@ const QnADetail = () => {
   const deleteQnA = useDeleteQnA();
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
 
-  console.log(JSON.stringify(data, null, 2));
-
   const handleDelete = async () => {
     try {
       await deleteQnA.mutateAsync(QnAInfo);

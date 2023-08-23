@@ -2,7 +2,7 @@ export interface ItemDetail {
   ItemCode: string;
   ItemImgUrl: string;
   ItemName: string;
-  ItemColor: string;
+  ItemColor: ItemColor[];
   ItemImg: Array<{
     ImgUrl: string;
   }>;
@@ -19,6 +19,12 @@ export interface ItemDetail {
   CommAttn: string;
   OrderPage: string;
   RateCode: string;
+}
+
+export interface ItemColor {
+  ColorRGB: string;
+  ColorName: string;
+  ColorImg: string;
 }
 
 export interface ParamProps {
