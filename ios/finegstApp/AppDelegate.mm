@@ -6,6 +6,10 @@
 
 #import "Firebase.h"
 
+#import <CodePush/CodePush.h> // code push
+#import <AppCenterReactNative.h>
+#import <AppCenterReactNativeAnalytics.h>
+#import <AppCenterReactNativeCrashes.h>
 
 @implementation AppDelegate
 
@@ -23,6 +27,9 @@
   bool didFinish=[super application:application didFinishLaunchingWithOptions:launchOptions];
   
   [RNSplashScreen show];  // here
+  [AppCenterReactNative register];
+  [AppCenterReactNativeAnalytics registerWithInitiallyEnabled:true];
+  [AppCenterReactNativeCrashes registerWithAutomaticProcessing];
 
 
   return didFinish;
@@ -34,7 +41,7 @@
 #if DEBUG
   return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index"];
 #else
-  return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+  return [CodePush bundleURL];
 #endif
 }
 

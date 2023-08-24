@@ -19,7 +19,7 @@ export default function InfoTab({BuyBenefit, CommAttn}: InfoTabProps) {
       <Pressable onPress={() => setInfoTabSetter(true)}>
         <Center bg={infoTabSetter ? 'white' : '#dddddd'}>
           <FontHeading p={3} size="lg">
-            구매해택
+            구매혜택
           </FontHeading>
         </Center>
       </Pressable>

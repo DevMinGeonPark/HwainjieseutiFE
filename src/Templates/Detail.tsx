@@ -59,13 +59,6 @@ const Detail = () => {
 
   return (
     <Box>
-      {/* {data?.ItemImgUrl && (
-        <Image
-          source={{uri: data?.ItemImgUrl || ''}}
-          alt="product Image"
-          size={width}
-        />
-      )} */}
       {data?.ItemColor && (
         <DetailInfo
           productTitle={data?.ItemName || ''}

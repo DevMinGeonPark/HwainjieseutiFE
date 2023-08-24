@@ -22,4 +22,7 @@ export const Images = {
     Notice: require('@assets/imgs/event/notice.gif'),
     Secret: require('@assets/imgs/event/secret.gif'),
   },
+  Product: {
+    NoImage: require('@assets/imgs/product/NoImage.png'),
+  },
 };

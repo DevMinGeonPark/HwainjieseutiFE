@@ -10,6 +10,9 @@ import com.facebook.react.defaults.DefaultReactNativeHost;
 import com.facebook.soloader.SoLoader;
 import java.util.List;
 
+// codepush
+import com.microsoft.codepush.react.CodePush;
+
 //SplashScreen
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 
@@ -44,6 +47,12 @@ public class MainApplication extends Application implements ReactApplication {
         protected Boolean isHermesEnabled() {
           return BuildConfig.IS_HERMES_ENABLED;
         }
+
+        @Override
+        protected String getJSBundleFile() {
+          return CodePush.getJSBundleFile();
+        }
+
       };
 
   @Override

@@ -3,6 +3,7 @@ apply plugin: "com.facebook.react"
 // apply from: "../../node_modules/react-native/react.gradle" // 72.06 삭제 
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle" // add this line
 apply plugin: "com.google.gms.google-services"
+apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
 /**
  * This is the configuration block to customize your React Native Android app.
  * By default you don't need to apply any configuration, just uncomment the lines you need.
@@ -57,6 +58,8 @@ react {
  */
 def enableProguardInReleaseBuilds = false
 
+def enableSeparateBuildPerCPUArchitecture = true
+
 /**
  * The preferred build flavor of JavaScriptCore (JSC)
  *
@@ -75,6 +78,13 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
+
+    lintOptions {
+        checkReleaseBuilds false
+
+        abortOnError false
+    }
+
     namespace "com.finegstApp"
     defaultConfig {
         applicationId "com.finegstApp"
@@ -92,6 +102,14 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            if (project.hasProperty('RELEASE_STORE_FILE')) {
+                storeFile file(RELEASE_STORE_FILE)
+                storePassword RELEASE_STORE_PASSWORD
+                keyAlias RELEASE_KEY_ALIAS
+                keyPassword RELEASE_KEY_PASSWORD
+            }
+        }
     }
     buildTypes {
         debug {
@@ -100,7 +118,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }

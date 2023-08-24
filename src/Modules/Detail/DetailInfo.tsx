@@ -4,6 +4,7 @@ import React, {useEffect, useState} from 'react';
 import {ItemColor} from '@src/Types/DetailTypes';
 import Circles from '@src/Atomic/ProductCard/Circles';
 import {useWindowDimensions} from 'react-native';
+import {Images} from '@assets/imgs/Images';
 
 interface DetailInfoProps {
   productTitle: string;
@@ -27,8 +28,10 @@ export default function DetailInfo({productTitle, data}: DetailInfoProps) {
 
   return (
     <Box my={3}>
-      {imgUrl && imgUrl.endsWith('.jpg') && (
+      {imgUrl && imgUrl.endsWith('.jpg') ? (
         <Image source={{uri: imgUrl}} alt="product" size={width} />
+      ) : (
+        <Image source={Images.Product.NoImage} alt="product" size={width} />
       )}
       <Center>
         <FontHeading size="md">{productTitle}</FontHeading>
