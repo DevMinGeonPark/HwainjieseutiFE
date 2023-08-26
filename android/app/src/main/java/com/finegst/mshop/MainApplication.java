@@ -1,4 +1,4 @@
-package com.finegstApp;
+package com.finegst.mshop;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

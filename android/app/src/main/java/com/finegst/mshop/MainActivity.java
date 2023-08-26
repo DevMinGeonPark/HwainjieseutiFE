@@ -1,4 +1,4 @@
-package com.finegstApp;
+package com.finegst.mshop;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

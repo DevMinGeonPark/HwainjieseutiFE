@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">화인지에스티</string>
+    <string name="app_name">finegstApp</string>
     <string name="appCenterCrashes_whenToSendCrashes" moduleConfig="true" translatable="false">DO_NOT_ASK_JAVASCRIPT</string>
     <string name="appCenterAnalytics_whenToEnableAnalytics" moduleConfig="true" translatable="false">ALWAYS_SEND</string>
     <!-- Product 등록위치 -->
