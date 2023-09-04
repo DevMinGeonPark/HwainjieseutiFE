@@ -16,7 +16,7 @@ const Confirm = () => {
   const [user] = useUserState();
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
   const confirmPassword = useConfirmPW();
-  const [password, setPassword] = React.useState<string>('ghkdls2012.'); // TODO: 테스트용 임시 비밀번호
+  const [password, setPassword] = React.useState<string>('');
 
   const handleconfirmPW = async () => {
     try {

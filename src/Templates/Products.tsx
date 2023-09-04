@@ -36,4 +36,4 @@ const Products = () => {
   );
 };
 
-export default withCommontLayout(Products);
+export default React.memo(withCommontLayout(Products));

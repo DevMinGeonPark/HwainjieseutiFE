@@ -59,10 +59,11 @@ const Detail = () => {
 
   return (
     <Box>
-      {data?.ItemColor && (
+      {data?.ItemColor && data?.ItemImgUrl && (
         <DetailInfo
           productTitle={data?.ItemName || ''}
           data={data?.ItemColor || []}
+          errImg={data?.ItemImgUrl || ''}
         />
       )}
       <ShareModalButtonModule setShowModal={setShowModal} />
