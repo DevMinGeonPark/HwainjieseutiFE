@@ -1,4 +1,3 @@
-// src/hooks/useDeleteQnA.ts
 import {useMutation} from 'react-query';
 import {deleteQnA} from '@src/API/QnADetail/deleteQnA';
 import useLog from '../useLog';
@@ -8,21 +7,24 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {useToast} from 'native-base';
 import {Alert} from 'react-native';
+import {useUserState} from '@src/contexts/UserContext';
+import authStorage from '@src/Utils/authStorage';
 
-export default function useCreateMember(
+export default function useUpdateMember(
   navigation: StackNavigationProp<StackScreenProps>,
 ) {
   const log = useLog('root');
   const toast = useToast();
   const mutation = useMutation((params: ParamProps) => UpdateMember(params), {
     onSuccess: data => {
-      if (data.Status === 'A10') {
+      if (data.Status.includes('A')) {
         toast.show({
           title: '정보수정이 완료되었습니다.',
         });
+
         log.info('status:', data);
-        navigation.navigate('Main');
       } else {
+        console.log(data);
         throw new Error(data.ErrMsg); //onError로 헨들링
       }
     },

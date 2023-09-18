@@ -13,6 +13,8 @@ export async function login(params: LoginParams) {
     KTShopID: params.id,
     KTShopPW: encrypt(params.password),
   };
+  console.log('data::', data);
+
   const res = await client.post('login.php', data);
 
   return res.data;

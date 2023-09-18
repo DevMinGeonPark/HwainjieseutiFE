@@ -4,7 +4,7 @@ import withCommontLayout from '@Templates/withCommontLayout';
 import CarouselView from '@src/Modules/Main/CarouselView';
 import {Linking} from 'react-native';
 import useMainData from '@src/hooks/queryHooks/useMainData';
-import {Box, Button, Input, Pressable} from 'native-base';
+import {Box, Button, Image, Input, Pressable} from 'native-base';
 import Title from '@src/Atomic/Main/Title';
 import ProductList from '@src/Modules/Main/ProductList';
 import Banner from '@src/Modules/Main/Banner';
@@ -91,7 +91,15 @@ const Main = () => {
               : '',
           )
         }>
-        <Banner img={data?.SubBanner.BannerImg} />
+        {data?.SubBanner?.BannerImg && (
+          <Image
+            width={width}
+            height={'100%'}
+            resizeMode="cover"
+            alt="MainImage"
+            source={{uri: data?.SubBanner?.BannerImg}}
+          />
+        )}
       </Pressable>
       <Title title="BEST" desc="주문폭주! 이달의 BEST 상품!" />
       <ProductList items={data?.ItemBestList || []} />

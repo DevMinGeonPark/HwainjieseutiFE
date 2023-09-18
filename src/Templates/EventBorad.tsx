@@ -23,6 +23,8 @@ const EventBorad = () => {
     CommentsPage: currentPage,
   });
 
+  console.log(JSON.stringify(data, null, 2));
+
   const log = useLog('root');
 
   const width = useWindowDimensions().width;

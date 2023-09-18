@@ -17,8 +17,8 @@ const Products = () => {
   const [params, setParams] = React.useState<ParamProps>({
     MenuType: routeParams.MenuType,
     MenuVar: routeParams.MenuVar,
-    sort: 'it_update_tme',
-    sortodr: 'desc',
+    sort: '',
+    sortodr: '',
   });
   const {data, isLoading} = useProductData(params);
 

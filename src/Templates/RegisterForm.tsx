@@ -19,11 +19,14 @@ import {useNavigation} from '@react-navigation/native';
 import {useRegisterForm} from '@src/hooks/stateHooks/useRegisterForm';
 import RegisterNavigationButton from '@src/Modules/RegisterForm/RegisterNavigationButton';
 import {FlatListContext} from '@src/contexts/FlatListContext';
+import authStorage from '@src/Utils/authStorage';
 
 const RegisterForm = () => {
   const routeParams = useRoute().params as RegisterProps;
 
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
+
+  const [, setUser] = useUserState();
 
   const {
     password,
@@ -55,7 +58,7 @@ const RegisterForm = () => {
   } = useRegisterForm(routeParams);
 
   const updateMember = useUpdateMember(navigation);
-  const createMember = useCreateMember(navigation);
+  // const createMember = useCreateMember(navigation);
 
   const {flatListRef} = useContext(FlatListContext);
 
@@ -66,14 +69,14 @@ const RegisterForm = () => {
     } else if (id === '') {
       Alert.alert('아이디를 입력해주세요.');
       flatListRef?.current?.scrollToOffset({offset: 0, animated: true});
-    } else if (isValidBirth) {
-      Alert.alert('생년월일을 확인해주세요.');
-    } else if (isValidPhone) {
-      Alert.alert('휴대폰 번호를 확인해주세요.');
-    } else if (isValidActivatePhone) {
-      Alert.alert('개통번호를 확인해주세요.');
-    } else if (phoneCerti) {
-      Alert.alert('휴대전화 인증을 진행하세요.');
+      // } else if (isValidBirth) {
+      //   Alert.alert('생년월일을 확인해주세요.');
+      // } else if (isValidPhone) {
+      //   Alert.alert('휴대폰 번호를 확인해주세요.');
+      // } else if (isValidActivatePhone) {
+      //   Alert.alert('개통번호를 확인해주세요.');
+      // } else if (phoneCerti) {
+      //   Alert.alert('휴대전화 인증을 진행하세요.');
     } else {
       const param: ParamProps = {
         KTShopID: id,
@@ -82,14 +85,13 @@ const RegisterForm = () => {
         UserBirth: birth,
         UserOpenHp: activatePhone,
         UserHp: phone,
-        Maling: maling,
-        OpenInfo: openInfo,
+        Maling: 0, //maling
+        OpenInfo: 0, //openInfo
       };
-      if (routeParams?.KTShopID) {
-        await updateMember.mutateAsync(param);
-      } else {
-        await createMember.mutateAsync(param);
-      }
+      await updateMember.mutateAsync(param);
+      setUser(null);
+      authStorage.clear();
+      navigation.navigate('Main');
     }
   };
 
@@ -124,15 +126,9 @@ const RegisterForm = () => {
         phoneCerti={phoneCerti}
         setPhoneCerti={setPhoneCerti}
       />
-      <MorePersonalSettingForm
-        maling={maling}
-        setMaling={setMaling}
-        openInfo={openInfo}
-        setOpenInfo={setOpenInfo}
-      />
       <HStack space={2} mt={5} mb={5} justifyContent="center">
         <RegisterNavigationButton
-          title={routeParams?.KTShopID ? '정보수정' : '회원가입'}
+          title="정보수정"
           handleSummit={handleSummit}
         />
         <RegisterNavigationButton

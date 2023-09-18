@@ -89,8 +89,8 @@ android {
         applicationId "com.finegst.mshop"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 11
-        versionName "3.0"
+        versionCode 17
+        versionName "5.0.3"
         multiDexEnabled true // 추가 (line:140)
 
     }

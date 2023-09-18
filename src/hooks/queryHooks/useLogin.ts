@@ -29,7 +29,7 @@ export default function useLogin({id, loginType}: LoginData) {
 
   const mutation = useMutation(login, {
     onSuccess: data => {
-      if (data.Status === 'A10') {
+      if (data.Status.includes('A')) {
         loginType === 'drawer'
           ? drawerNavigation.goBack()
           : stackNavigation.pop();
@@ -39,6 +39,7 @@ export default function useLogin({id, loginType}: LoginData) {
         setUser({UserId: id, UserNm: data.UserNm, Point: 0});
         authStorage.set({UserId: id, UserNm: data.UserNm, Point: 0});
       } else {
+        log.error('beforeOnError:', JSON.stringify(data, null, 2));
         throw new Error(data.ErrMsg); //onError로 헨들링
       }
     },
@@ -62,6 +63,7 @@ export default function useLogin({id, loginType}: LoginData) {
           message: '아이디를 입력해주세요.',
         });
       } else {
+        console.log(handle);
         alert({
           title: '로그인 실패',
           message: '원인불명 관리자에게 문의하세요!',

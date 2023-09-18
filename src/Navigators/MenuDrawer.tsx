@@ -16,13 +16,16 @@ import MenuItemModule from '@src/Modules/MenuDrawer/MenuItemModule';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
+import {hasUserProperties} from '@src/Types/ContentTypes';
 
 export default function MenuDrawer(props: any) {
   const [user, setUser] = useUserState();
   const Toast = useToast();
-  const isLoggedIn = useLoginCheck();
 
-  const {data, refetch} = useMemberInfoData({KTShopID: user?.UserId || ''});
+  // 두 Drawer 파일을 분리하는 방안에 대해 생각해보기..
+  const {data, refetch} = useMemberInfoData({
+    KTShopID: user?.UserId || 'web336',
+  });
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
 
   const handlePointSave = React.useCallback(async () => {
@@ -40,16 +43,16 @@ export default function MenuDrawer(props: any) {
     }
   }, [user]);
 
-  const logOut = () => {
+  const logOut = async () => {
     if (user) {
-      authStorage.clear();
+      await authStorage.clear();
+      await setUser(null);
       Toast.show({title: '로그아웃이 완료되었습니다.'});
-      setUser(null);
       navigation.navigate('Main');
     }
   };
 
-  if (!isLoggedIn)
+  if (!hasUserProperties(user))
     return (
       <Box safeArea m={5}>
         <DrawerLoginFrom />
@@ -58,7 +61,7 @@ export default function MenuDrawer(props: any) {
           text="회원가입"
           point={undefined}
           onPress={() => {
-            navigation.navigate('RegisterStipulation');
+            navigation.navigate('WebRegister');
           }}
         />
         <MenuItem

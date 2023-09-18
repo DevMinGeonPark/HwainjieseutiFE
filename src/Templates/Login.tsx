@@ -9,16 +9,6 @@ import {useToast} from 'native-base';
 import PanelItem from '@src/Atomic/PanelItem';
 
 function Login() {
-  const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
-  const toast = useToast();
-  const [user] = useUserState();
-
-  useEffect(() => {
-    if (!!user) {
-      navigation.navigate('Main');
-      toast.show({title: '이미 로그인 되어있습니다.'});
-    }
-  }, []);
   return (
     <>
       <PanelItem

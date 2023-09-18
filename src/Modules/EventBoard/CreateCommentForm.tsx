@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import useWriteComment from '@src/hooks/queryHooks/useWriteComment';
 import {WriteParamProps} from '@src/Types/EventDataTypes';
 import {useUserState} from '@src/contexts/UserContext';
+import {useToast} from 'native-base';
 
 interface CreateCommentFormProps {
   EventIDX: string;
@@ -18,6 +19,7 @@ export default function CreateCommentForm({
   const [content, setContent] = React.useState('');
   const [isChecked, setIsChecked] = React.useState(false); // 체크박스 상태 관리
   const [user] = useUserState();
+  const toast = useToast();
 
   const textAreaRef = useRef<any>(null);
 
@@ -37,6 +39,7 @@ export default function CreateCommentForm({
     } as WriteParamProps);
     textAreaRef.current.clear();
     await CommentRefetch();
+    toast.show({title: '댓글이 등록되었습니다.'});
   };
 
   return (
