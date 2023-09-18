@@ -15,6 +15,7 @@ import ToDetailButton from '@src/Atomic/ProductCard/ToDetailButton';
 import {NameSelector} from '@src/Utils/NameSelector';
 import {useLoginCheck} from '@src/hooks/useLoginCheck';
 import {Alert} from 'react-native';
+import {hasUserProperties} from '@src/Types/ContentTypes';
 
 export default function ProductCard(data: ItemList) {
   const [color, setColor] = useState<string[]>();
@@ -22,7 +23,6 @@ export default function ProductCard(data: ItemList) {
   const [user] = useUserState();
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
   const routeName = useRoute().name;
-  const isLoggedIn = useLoginCheck();
   const width = useWindowDimensions().width;
   const cardMargin = 3;
 
@@ -44,7 +44,7 @@ export default function ProductCard(data: ItemList) {
         setIsPressed(false);
       }}
       onPress={() => {
-        isLoggedIn
+        hasUserProperties(user)
           ? navigation.navigate('Detail', {
               name: NameSelector(data.MenuVar),
               MenuType: data.MenuType,
@@ -81,7 +81,7 @@ export default function ProductCard(data: ItemList) {
             <FontHeading fontSize={14}>{data.ItemName}</FontHeading>
           </Center>
           <Circles color={color || []} size={15} onCirclePress={() => {}} />
-          {user && (
+          {hasUserProperties(user) && (
             <Price
               ItemChargeNormal={data?.ItemChargeNormal}
               ItemChargeSales={data?.ItemChargeSales}

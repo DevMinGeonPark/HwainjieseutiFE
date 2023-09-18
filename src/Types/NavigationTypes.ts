@@ -22,6 +22,9 @@ export type StackScreenProps = {
   WriteQnA: WriteQnAParamsProps;
   SearchResult: SearchResultProps;
   FindUser: undefined;
+
+  // Test
+  WebRegister: undefined;
 };
 
 export interface RegisterProps {

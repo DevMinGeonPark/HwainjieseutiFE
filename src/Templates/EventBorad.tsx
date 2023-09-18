@@ -6,10 +6,14 @@ import useEventData from '@src/hooks/queryHooks/useEventData';
 import InfoPanel from '@src/Modules/EventBoard/InfoPanel';
 import {FontHeading} from '@src/Atomic/FontHeading';
 import DividerTitle from '@src/Atomic/Navigator/DividerTitle';
-import CommentBox from '@src/Modules/EventBoard/CommentBox';
+
 import AutoHeightImage from 'react-native-auto-height-image';
 import {useWindowDimensions} from 'react-native';
 import Pagination from '@src/Modules/EventBoard/Pagination';
+import {CRCommentContextProvider} from '@src/contexts/CRCommentModalContext';
+import CommentGroup from '@src/Modules/EventBoard/CommentGroup';
+import useLog from '@src/hooks/useLog';
+import CreateCommentForm from '@src/Modules/EventBoard/CreateCommentForm';
 
 const EventBorad = () => {
   const routeParams = useRoute().params as {Uid: string};
@@ -19,11 +23,20 @@ const EventBorad = () => {
     CommentsPage: currentPage,
   });
 
+  console.log(JSON.stringify(data, null, 2));
+
+  const log = useLog('root');
+
   const width = useWindowDimensions().width;
 
   React.useEffect(() => {
     refetch();
   }, [currentPage, refetch]);
+
+  const CommentRefetch = () => {
+    refetch();
+    log.info('refetching');
+  };
 
   return (
     <Box mt={3}>
@@ -41,9 +54,15 @@ const EventBorad = () => {
         )}
       </Box>
       <DividerTitle title="Comments" fontSize={16} />
-      {data?.Comments.map((item, index) => (
-        <CommentBox key={index} Comment={item} />
-      ))}
+      <CRCommentContextProvider>
+        {data?.Comments && (
+          <CommentGroup
+            data={data?.Comments}
+            EventIDX={routeParams?.Uid}
+            CommentRefetch={CommentRefetch}
+          />
+        )}
+      </CRCommentContextProvider>
       <Center my={5}>
         <Pagination
           CommentsCount={data?.CommentsCount || 0}
@@ -51,6 +70,10 @@ const EventBorad = () => {
           setCurrentPage={setCurrentPage}
         />
       </Center>
+      <CreateCommentForm
+        EventIDX={routeParams?.Uid}
+        CommentRefetch={CommentRefetch}
+      />
     </Box>
   );
 };

@@ -3,10 +3,13 @@ import {useUserState} from '@src/contexts/UserContext';
 import {FontText} from '@src/Atomic/FontText';
 import {Center} from 'native-base';
 import {NumberPreprocesser} from '@Utils/NumberPreprocesser';
+import {User} from '@src/Types/ContentTypes';
 
-export default function UserInfo() {
-  const [user] = useUserState();
+interface UserInfoProps {
+  user: User | null;
+}
 
+export default function UserInfo({user}: UserInfoProps) {
   return (
     <Center p={3} borderBottomColor="#333" borderBottomWidth={2}>
       <FontText fontSize={14} color="#666">

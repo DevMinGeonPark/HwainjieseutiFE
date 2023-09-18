@@ -9,21 +9,30 @@ import {Images} from '@assets/imgs/Images';
 interface DetailInfoProps {
   productTitle: string;
   data: ItemColor[];
+  errImg?: string;
 }
 
-export default function DetailInfo({productTitle, data}: DetailInfoProps) {
+export default function DetailInfo({
+  productTitle,
+  data,
+  errImg,
+}: DetailInfoProps) {
   const [text, setText] = useState<string>(''); //색상이름
   const [imgUrl, setImgUrl] = useState<string>(''); //색상이미지
   const width = useWindowDimensions().width;
 
   useEffect(() => {
-    setText(data[0].ColorName);
-    setImgUrl(data[0].ColorImg);
+    setText(data[0]?.ColorName || '');
+    setImgUrl(data[0]?.ColorImg || errImg || '');
   }, []);
 
   const onCirclePress = (index: number) => {
-    setText(data[index].ColorName);
-    setImgUrl(data[index].ColorImg);
+    try {
+      setText(data[index]?.ColorName);
+      setImgUrl(data[index]?.ColorImg);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (

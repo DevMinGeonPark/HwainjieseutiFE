@@ -580,22 +580,22 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = finegstApp/finegstApp.entitlements;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = YBRFC9NSTS;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = finegstApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "화인지에스티";
+				INFOPLIST_KEY_CFBundleDisplayName = finegstApp;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = finegst.juniman.app;
+				PRODUCT_BUNDLE_IDENTIFIER = "shop.kt-online.finegstApp";
 				PRODUCT_NAME = finegstApp;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -610,21 +610,21 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = finegstApp/finegstApp.entitlements;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = YBRFC9NSTS;
 				INFOPLIST_FILE = finegstApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "화인지에스티";
+				INFOPLIST_KEY_CFBundleDisplayName = finegstApp;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = finegst.juniman.app;
+				PRODUCT_BUNDLE_IDENTIFIER = "shop.kt-online.finegstApp";
 				PRODUCT_NAME = finegstApp;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

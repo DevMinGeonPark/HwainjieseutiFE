@@ -26,7 +26,7 @@ export default function DrawerInfo({memberInfo, handleAuth}: DrawerInfoProps) {
         <FontText fontSize={12}>레벨{memberInfo?.UserLevel}</FontText>
         <FontText fontSize={12}>
           Exp{' '}
-          {NumberPreprocesser(memberInfo?.UserLvUntilPoint.toString() || '0')}(
+          {NumberPreprocesser(memberInfo?.UserLvUntilPoint?.toString() || '0')}(
           {memberInfo?.UserLvUntilPer}%)
         </FontText>
       </HStack>

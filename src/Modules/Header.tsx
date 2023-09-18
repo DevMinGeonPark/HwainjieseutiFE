@@ -7,6 +7,7 @@ import UserInfo from './UserInfo';
 import {HStack} from 'native-base';
 import {useUserState} from '@src/contexts/UserContext';
 import {useLoginCheck} from '@src/hooks/useLoginCheck';
+import {hasUserProperties} from '@src/Types/ContentTypes';
 
 interface HeaderProps {
   showLogo: boolean;
@@ -14,6 +15,7 @@ interface HeaderProps {
 
 export default function Header({showLogo}: HeaderProps) {
   const isLoggedIn = useLoginCheck();
+  const [user] = useUserState();
 
   return (
     <>
@@ -27,7 +29,9 @@ export default function Header({showLogo}: HeaderProps) {
         <SideBarButton />
         <NavigationBar />
       </HStack>
-      {isLoggedIn && showLogo && <UserInfo />}
+      {isLoggedIn && showLogo && hasUserProperties(user) && (
+        <UserInfo user={user} />
+      )}
     </>
   );
 }

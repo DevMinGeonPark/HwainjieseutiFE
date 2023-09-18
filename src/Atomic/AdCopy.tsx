@@ -7,10 +7,12 @@ import {FontText} from './FontText';
 import {Box, HStack, Pressable} from 'native-base';
 import {FontHeading} from './FontHeading';
 import {useLoginCheck} from '@src/hooks/useLoginCheck';
+import {useUserState} from '@src/contexts/UserContext';
+import {hasUserProperties} from '@src/Types/ContentTypes';
 
 export default function AdCopy() {
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
-  const isLoggedIn = useLoginCheck();
+  const [user] = useUserState();
 
   return (
     <HStack
@@ -24,7 +26,7 @@ export default function AdCopy() {
           회원 전용 App
         </FontHeading>
       </HStack>
-      {!isLoggedIn && (
+      {!hasUserProperties(user) && (
         <HStack>
           <Pressable onPress={() => navigation.navigate('Login')}>
             <FontText>로그인</FontText>
@@ -32,8 +34,7 @@ export default function AdCopy() {
           <FontText> | </FontText>
           <Pressable
             onPress={() => {
-              // navigation.navigate('RegisterForm', {});
-              navigation.navigate('RegisterStipulation');
+              navigation.navigate('WebRegister');
             }}>
             <FontText>회원가입</FontText>
           </Pressable>

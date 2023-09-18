@@ -20,6 +20,7 @@ import WriteQnA from '@src/Templates/WriteQnA';
 import QnADetail from '@src/Templates/QnADetail';
 import FindUser from '@src/Templates/FindUser';
 import RegisterStipulation from '@src/Templates/RegisterStipulation';
+import WebRegister from '@src/Templates/WebRegister';
 
 const Stack = createStackNavigator<StackScreenProps>();
 
@@ -110,6 +111,12 @@ function StackNavigator() {
       <Stack.Screen
         name="RegisterForm"
         component={RegisterForm}
+        options={{headerShown: false}}
+      />
+
+      <Stack.Screen
+        name="WebRegister"
+        component={WebRegister}
         options={{headerShown: false}}
       />
 

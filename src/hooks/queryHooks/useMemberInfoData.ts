@@ -4,9 +4,13 @@ import {getMemberInfo} from '@src/API/MenuDrawer/getMemberInfo';
 import {MemberInfoData, ParamProps} from '@Types/MemberInfoTypes';
 
 import {getItemInfo} from '@src/API/Detail/getItemInfo';
+import {useUserState} from '@src/contexts/UserContext';
+import authStorage from '@src/Utils/authStorage';
 
 export default function useMemberInfoData(params: ParamProps) {
   const log = useLog('data');
+
+  const [user, setUser] = useUserState();
 
   const query = useQuery(
     ['getMemberInfo', params],
@@ -15,6 +19,14 @@ export default function useMemberInfoData(params: ParamProps) {
       notifyOnChangeProps: ['data'],
       onSuccess: (data: MemberInfoData) => {
         log.info(`MemberInfoData 데이터 불러오기 성공`);
+
+        setUser({UserId: user?.UserId || '', UserNm: data.UserNm, Point: 0});
+        authStorage.set({
+          UserId: user?.UserId || '',
+          UserNm: data.UserNm,
+          Point: 0,
+        });
+
         return data;
       },
       onError: error => {

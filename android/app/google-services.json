@@ -7,6 +7,59 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:152608354592:android:ca45825a7180aa2c2fe745",
+        "android_client_info": {
+          "package_name": "com.finegst.mshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "152608354592-5pumloopv1pq3irag9eok35tbqcol209.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.finegst.mshop",
+            "certificate_hash": "d00bb6afa59da42a1156b57cf04e83fd1a88258b"
+          }
+        },
+        {
+          "client_id": "152608354592-pf827hsast2n0mostuiiaggvsou70bni.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.finegst.mshop",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "152608354592-394l3bv0ln7sd0n9bbl6ntgntv349n3h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-AKE6OMsXKtwIEc3quK9e25sFufk6690"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "152608354592-394l3bv0ln7sd0n9bbl6ntgntv349n3h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "152608354592-mu7m8ejiq6bi89ofanrpn6svjrbp9ha5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "shop.kt-online.finegstApp",
+                "app_store_id": "1482248635"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:152608354592:android:572558ce108562e22fe745",
         "android_client_info": {
           "package_name": "com.finegstApp"
@@ -37,6 +90,14 @@
             {
               "client_id": "152608354592-394l3bv0ln7sd0n9bbl6ntgntv349n3h.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "152608354592-mu7m8ejiq6bi89ofanrpn6svjrbp9ha5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "shop.kt-online.finegstApp",
+                "app_store_id": "1482248635"
+              }
             }
           ]
         }

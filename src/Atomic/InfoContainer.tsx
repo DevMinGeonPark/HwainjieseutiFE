@@ -24,8 +24,8 @@ export default function InfoContainer() {
         <HStack flexWrap="wrap">
           <FontText>이메일: </FontText>
           <FontText style={{fontWeight: 'bold'}}>fine@finegst.com</FontText>
-          <FontText>개인정보관리: 한경호</FontText>
         </HStack>
+        <FontText>개인정보관리: 한경호</FontText>
       </Center>
       <Logos />
       <Copyrigth />

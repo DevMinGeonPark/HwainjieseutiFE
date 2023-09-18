@@ -1,17 +1,10 @@
-import react, {useState} from 'react';
-import {Box, Button, HStack, VStack} from 'native-base';
+import {Box, VStack} from 'native-base';
 import PanelItem from '@src/Atomic/PanelItem';
 import FormItem from '@src/Atomic/FormItem';
-import {FontText} from '@src/Atomic/FontText';
-import {Alert, Linking} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import {RegisterProps} from '@src/Types/NavigationTypes';
 import BirthInput from '@src/Atomic/PersonalInfoForm/BirthInput';
 import PhoneInput from '@src/Atomic/WriteQnA/PhoneInput';
-import EmailInput from '@src/Atomic/WriteQnA/EmailInput';
-import CertificationNumber from '@src/Modules/CertificationNumber';
-import auth from '@react-native-firebase/auth';
-import {FirebaseAuthTypes} from '@react-native-firebase/auth';
 import useLog from '@src/hooks/useLog';
 
 interface PersonalInfoFormProps {
@@ -46,52 +39,8 @@ export default function PersonalInfoForm({
   setPhoneCerti,
 }: PersonalInfoFormProps) {
   const routeParams = useRoute().params as RegisterProps;
-  const [showModal, setShowModal] = useState<boolean>(false);
   const log = useLog('root');
 
-  const [confirm, setConfirm] =
-    useState<FirebaseAuthTypes.ConfirmationResult>();
-
-  const [code, setCode] = useState<string>('');
-
-  const phoneAuth = async (phoneNumber: string) => {
-    auth().settings.forceRecaptchaFlowForTesting = true;
-
-    if (phoneNumber === '') {
-      Alert.alert('전화번호가 입력되지않았습니다.');
-      return;
-    }
-
-    try {
-      const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
-      setConfirm(confirmation);
-      setShowModal(true); //모달 띄우기
-    } catch (e) {
-      const error = e as FirebaseAuthTypes.NativeFirebaseAuthError;
-      if (error.code === 'auth/invalid-phone-number') {
-        Alert.alert('휴대전화 번호가 이상합니다. 다시 입력해주세요.');
-      } else if (error.code === 'auth/too-many-requests') {
-        // 너무 많은 요청으로 인한 경우 처리
-        Alert.alert('요청이 너무 많습니다. 잠시 후 다시 시도해주세요.');
-        log.error(error.message);
-      } else {
-        // 그 외의 경우
-        Alert.alert(
-          '예기치 않은 오류가 발생했습니다: 관리자에게 해당 코드를 전달해주세요.',
-          error.code,
-        );
-      }
-    }
-  };
-
-  async function confirmCode() {
-    try {
-      let data = await confirm?.confirm(code);
-    } catch (e) {
-      const error = e as FirebaseAuthTypes.NativeFirebaseAuthError;
-      log.error(`${error.code}: ${error.message}}`);
-    }
-  }
   return (
     <Box
       mt={6}
@@ -133,26 +82,7 @@ export default function PersonalInfoForm({
           onValidityChange={setIsValidPhone}
           isCerti={phoneCerti}
         />
-        {!phoneCerti && (
-          <Button
-            size="sm"
-            bg="black"
-            onPress={() => {
-              phoneAuth(phone.replace(/^0/, '+82'));
-              setIsValidPhone(true);
-            }}>
-            휴대전화 인증
-          </Button>
-        )}
       </VStack>
-      <CertificationNumber
-        showModal={showModal}
-        setShowModal={setShowModal}
-        confirmCode={confirmCode}
-        code={code}
-        setCode={setCode}
-        setPhoneCerti={setPhoneCerti}
-      />
     </Box>
   );
 }

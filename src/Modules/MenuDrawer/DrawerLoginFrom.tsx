@@ -5,15 +5,13 @@ import useLogin from '@src/hooks/queryHooks/useLogin';
 import {useRoute} from '@react-navigation/native';
 
 export default function DrawerLoginFrom() {
-  const [id, setID] = useState<string>('gksrudgh3795');
-  const [password, setPassword] = useState<string>('ghkdls2012.');
+  const [id, setID] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
   const {mutate: login, isLoading: loginLoading} = useLogin({
     id: id,
     loginType: 'drawer',
   });
-
-  // const routeName = useRoute();
 
   const onPressLogin = () => {
     if (loginLoading) {
