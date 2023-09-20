@@ -23,7 +23,8 @@ const EventBorad = () => {
     CommentsPage: currentPage,
   });
 
-  console.log(JSON.stringify(data, null, 2));
+  console.log(routeParams.Uid);
+  // console.log(JSON.stringify(data, null, 2));
 
   const log = useLog('root');
 

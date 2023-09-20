@@ -1,5 +1,5 @@
-import React, {useState, useRef, useCallback} from 'react';
-import {Alert, Linking, View, Button} from 'react-native';
+import React, {useState, useRef, useCallback, useEffect} from 'react';
+import {Alert, Linking, View, Button, ActivityIndicator} from 'react-native';
 import WebView, {WebViewNavigation} from 'react-native-webview';
 import Header from '@src/Modules/Header';
 import Footer from '@src/Modules/Footer';
@@ -8,29 +8,25 @@ import {StackScreenProps} from '@Types/NavigationTypes';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {useNavigation, useFocusEffect} from '@react-navigation/native';
 import CertiModal from '@src/Modules/WebRegister/CertiModal';
+import useLog from '@src/hooks/useLog';
 
 const WebRegister = () => {
   const [showLogo, setShowLogo] = useState(true);
   const [height, setHeight] = useState(0);
   const [showWebView, setShowWebView] = useState(true);
-  const [webViewKey, setWebViewKey] = useState(0);
+
+  // const [webViewKey, setWebViewKey] = useState<number>(0);
+  const [webViewKey, setWebViewKey] = useState<number>(0);
+
+  const [URL, setURL] = useState<string>(
+    'https://www.kt-online.shop/bbs/register.php',
+  );
+
+  const log = useLog('root');
 
   const webViewRef = useRef<WebView>(null);
 
-  const [modalVisible, setModalVisible] = useState(false);
-  const [modalUri, setModalUri] = useState('');
-
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
-
-  function resetAndReloadWebview() {
-    setWebViewKey(prevKey => prevKey + 1);
-  }
-
-  useFocusEffect(
-    useCallback(() => {
-      resetAndReloadWebview();
-    }, []),
-  );
 
   // This script will be injected into the web page
   const injectedJavaScriptOnLoad = `
@@ -122,21 +118,51 @@ const WebRegister = () => {
         data: new FormData(event.target)
       }));
     });
+
+    btn = document.querySelector("#thema_wrapper > div.at-body > div > div > div.text-center > a")
+
+    if (btn) {
+      btn.style.display = 'none';
+    }
     
-      
+    // btn.addEventListener('click', function(event) {
+    //   event.preventDefault();
+    //   window.ReactNativeWebView.postMessage(
+    //     JSON.stringify({
+    //       type: 'message',
+    //       href: btn.href,
+    //     })
+    //   );
+    // });
+
 
 
      true;
 `;
-  // url 감시용
-  // const onShouldStartLoadWithRequest = (navState: WebViewNavigation) => {
-  //   console.log(navState.url);
 
-  //   return true;
-  // };
+  useFocusEffect(
+    React.useCallback(() => {
+      // 페이지에 진입할 때마다 WebView를 초기화합니다.
+      setWebViewKey(prev => prev + 1);
+    }, []),
+  );
+
+  // url 감시용
+  const onShouldStartLoadWithRequest = (navState: WebViewNavigation) => {
+    log.info('onShouldStartLoadWithRequest', navState.url);
+    log.info('now status:', URL);
+    log.info('webview: ', webViewKey);
+    // resetURL(navState.url);
+
+    return true;
+  };
 
   const handleOnMessage = (event: {nativeEvent: {data: string}}) => {
     const data = JSON.parse(event.nativeEvent.data);
+
+    console.log('---------------------------');
+    console.log(JSON.stringify(data, null, 2));
+    console.log('---------------------------');
 
     if (data.isClicked) {
       setShowWebView(false);
@@ -173,6 +199,8 @@ const WebRegister = () => {
         {showWebView && (
           <WebView
             ref={webViewRef}
+            key={webViewKey}
+            // source={{uri: URL}}
             source={{uri: 'https://www.kt-online.shop/bbs/register.php'}}
             userAgent="Mozilla/5.0 (Linux; Android 4.1.1; Galaxy Nexus Build/JRO03C) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19"
             style={{height: height, opacity: 0.99, minHeight: 1}}
@@ -187,12 +215,21 @@ const WebRegister = () => {
             onMessage={handleOnMessage}
             setSupportMultipleWindows={false} // popup window
             onNavigationStateChange={navState => {
-              if (navState.url === 'https://www.kt-online.shop/') {
-                webViewRef?.current?.stopLoading(); // WebView 로딩 중단
-                navigation.navigate('Main'); // Main으로 이동
+              if (
+                navState.url ===
+                'https://www.kt-online.shop/bbs/register_result.php'
+              ) {
+                setHeight(410);
+                // navigation.navigate('Main');
               }
             }}
-            // onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
+            startInLoadingState={true}
+            renderLoading={() => (
+              <Box flex={1}>
+                <ActivityIndicator size="large" />
+              </Box>
+            )}
+            onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
             onError={syntheticEvent => {
               const {nativeEvent} = syntheticEvent;
               console.error('WebView error: ', nativeEvent);
