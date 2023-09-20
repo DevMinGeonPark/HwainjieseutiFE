@@ -11,14 +11,14 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import useLogin from '@src/hooks/queryHooks/useLogin';
 import {FontText} from '@src/Atomic/FontText';
-import {Pressable} from 'react-native';
+import {Alert, Pressable} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {StackNavigationProp} from '@react-navigation/stack';
 
 export default function LoginForm() {
-  const [id, setID] = useState<string>('gksrudgh3795');
-  const [password, setPassword] = useState<string>('ghkdls2012.');
+  const [id, setID] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
 
   const {mutate: login, isLoading: loginLoading} = useLogin({
@@ -28,6 +28,12 @@ export default function LoginForm() {
 
   const onPressLogin = () => {
     if (loginLoading) return;
+
+    if (!id || !password) {
+      Alert.alert('Error', '아이디와 비밀번호를 모두 입력해주세요.');
+      return;
+    }
+
     login({id, password});
   };
 

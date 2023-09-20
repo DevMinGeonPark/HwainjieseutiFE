@@ -3,6 +3,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import React, {useState} from 'react';
 import useLogin from '@src/hooks/queryHooks/useLogin';
 import {useRoute} from '@react-navigation/native';
+import {Alert} from 'react-native';
 
 export default function DrawerLoginFrom() {
   const [id, setID] = useState<string>('');
@@ -14,11 +15,16 @@ export default function DrawerLoginFrom() {
   });
 
   const onPressLogin = () => {
-    if (loginLoading) {
+    if (loginLoading) return;
+
+    if (!id || !password) {
+      Alert.alert('Error', '아이디와 비밀번호를 모두 입력해주세요.');
       return;
     }
+
     login({id, password});
   };
+
   return (
     <VStack space={3}>
       <FormControl>
