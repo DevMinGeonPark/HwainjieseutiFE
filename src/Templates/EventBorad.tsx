@@ -20,12 +20,11 @@ const EventBorad = () => {
   const [currentPage, setCurrentPage] = React.useState(1);
   const {data, refetch} = useEventData({
     Uid: routeParams.Uid,
-    // CommentsPage: currentPage,
-    CommentsPage: 7,
+    CommentsPage: currentPage,
   });
 
   console.log(routeParams.Uid);
-  // console.log(JSON.stringify(data, null, 2));
+  console.log(JSON.stringify(data, null, 2));
 
   const log = useLog('root');
 

@@ -9,6 +9,9 @@ import messaging from '@react-native-firebase/messaging';
 import useMessaging from './hooks/useMessaging';
 import localNotification from './Utils/localNotification';
 import CodePush, {CodePushOptions} from 'react-native-code-push';
+import {LogBox} from 'react-native';
+
+LogBox.ignoreLogs(["Can't open url"]);
 
 const queryClient = new QueryClient({
   defaultOptions: {

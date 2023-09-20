@@ -19,7 +19,6 @@ import SearchResult from '@src/Templates/SearchResult';
 import WriteQnA from '@src/Templates/WriteQnA';
 import QnADetail from '@src/Templates/QnADetail';
 import FindUser from '@src/Templates/FindUser';
-import RegisterStipulation from '@src/Templates/RegisterStipulation';
 import WebRegister from '@src/Templates/WebRegister';
 
 const Stack = createStackNavigator<StackScreenProps>();
@@ -100,11 +99,6 @@ function StackNavigator() {
       <Stack.Screen
         name="Confirm"
         component={Confirm}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="RegisterStipulation"
-        component={RegisterStipulation}
         options={{headerShown: false}}
       />
 

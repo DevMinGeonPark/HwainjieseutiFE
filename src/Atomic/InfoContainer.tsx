@@ -26,7 +26,8 @@ export default function InfoContainer() {
           <FontText style={{fontWeight: 'bold'}}>fine@finegst.com</FontText>
         </HStack>
         <FontText>개인정보관리: 한경호</FontText>
-        <FontText>Version: 5.0.4</FontText>
+        {/* codepush 변경부분 (확인용) */}
+        <FontText>Version: 5.0.5</FontText>
       </Center>
       <Logos />
       <Copyrigth />

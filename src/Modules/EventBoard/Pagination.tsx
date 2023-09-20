@@ -14,9 +14,8 @@ const Pagination: React.FC<Props> = ({
   currentPage,
   setCurrentPage,
 }) => {
-  const totalPages = Math.floor(CommentsCount / 10);
+  const totalPages = Math.ceil(CommentsCount / 10);
   const buttonsPerPage = 5;
-
   const defaultButtonPage = Math.ceil(currentPage / buttonsPerPage);
   const [currentButtonPage, setCurrentButtonPage] = useState(defaultButtonPage);
 

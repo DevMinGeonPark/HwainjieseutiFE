@@ -1,38 +1,33 @@
 import React, {useState, useRef, useCallback, useEffect} from 'react';
 import {Alert, Linking, View, Button, ActivityIndicator} from 'react-native';
-import WebView, {WebViewNavigation} from 'react-native-webview';
+import WebView from 'react-native-webview';
 import Header from '@src/Modules/Header';
 import Footer from '@src/Modules/Footer';
-import {Box, Modal, ScrollView} from 'native-base';
+import {Box, Modal, ScrollView, useToast} from 'native-base';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {useNavigation, useFocusEffect} from '@react-navigation/native';
-import CertiModal from '@src/Modules/WebRegister/CertiModal';
-import useLog from '@src/hooks/useLog';
 
 const WebRegister = () => {
   const [showLogo, setShowLogo] = useState(true);
   const [height, setHeight] = useState(0);
   const [showWebView, setShowWebView] = useState(true);
 
-  // const [webViewKey, setWebViewKey] = useState<number>(0);
   const [webViewKey, setWebViewKey] = useState<number>(0);
-
-  const [URL, setURL] = useState<string>(
-    'https://www.kt-online.shop/bbs/register.php',
-  );
-
-  const log = useLog('root');
 
   const webViewRef = useRef<WebView>(null);
 
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
 
+  const toast = useToast();
+
   // This script will be injected into the web page
   const injectedJavaScriptOnLoad = `
 
+    // zoom in이 되지않도록 scale을 1로 고정
     const meta = document.createElement('meta'); meta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0'); meta.setAttribute('name', 'viewport'); document.getElementsByTagName('head')[0].appendChild(meta);
 
+    // app에서 필요없는 요소들을 숨김
     var header = document.querySelector('.m-header');
     if (header) {
       header.style.display = 'none';
@@ -53,6 +48,7 @@ const WebRegister = () => {
       IDInput.autocapitalize = "none";
     }
 
+    // 웹 요소의 최종 Height를 알아내기 위한 코드
     var lastHeight = document.documentElement.scrollHeight;
 
     new MutationObserver(function() {
@@ -77,6 +73,7 @@ const WebRegister = () => {
        })
      );
 
+    // bbs/register_form.php에서 취소버튼 무효화
     const cancel = document.querySelector('#fregisterform > .text-center > .btn.btn-black');
     cancel.href = "" //cancel 무효화
   
@@ -91,6 +88,8 @@ const WebRegister = () => {
       });
     }
 
+
+    // Alert 처리
     window.alert = function(message) {
       window.ReactNativeWebView.postMessage(JSON.stringify({
         type: 'alert',
@@ -98,6 +97,7 @@ const WebRegister = () => {
       }));
     };
  
+    // confirm 처리
     window.confirm = function(message) {
       var result = true; 
  
@@ -110,7 +110,7 @@ const WebRegister = () => {
       return result;
     };
 
-
+    // submit 처리
     document.querySelector('form').addEventListener('submit', function(event) {
       event.preventDefault();
       window.ReactNativeWebView.postMessage(JSON.stringify({
@@ -118,24 +118,6 @@ const WebRegister = () => {
         data: new FormData(event.target)
       }));
     });
-
-    btn = document.querySelector("#thema_wrapper > div.at-body > div > div > div.text-center > a")
-
-    if (btn) {
-      btn.style.display = 'none';
-    }
-    
-    // btn.addEventListener('click', function(event) {
-    //   event.preventDefault();
-    //   window.ReactNativeWebView.postMessage(
-    //     JSON.stringify({
-    //       type: 'message',
-    //       href: btn.href,
-    //     })
-    //   );
-    // });
-
-
 
      true;
 `;
@@ -147,48 +129,57 @@ const WebRegister = () => {
     }, []),
   );
 
-  // url 감시용
-  const onShouldStartLoadWithRequest = (navState: WebViewNavigation) => {
-    log.info('onShouldStartLoadWithRequest', navState.url);
-    log.info('now status:', URL);
-    log.info('webview: ', webViewKey);
-    // resetURL(navState.url);
+  const handleNavigationChange = (navState: {url: string}) => {
+    if (navState.url === 'https://www.kt-online.shop/bbs/register_result.php') {
+      toMain(true);
+    }
+  };
 
-    return true;
+  // url 감시용
+  // const onShouldStartLoadWithRequest = (navState: WebViewNavigation) => {
+  //  console.log('onShouldStartLoadWithRequest', navState.url);
+
+  //   return true;
+  // };
+
+  const toMain = (isClicked: boolean) => {
+    if (isClicked) {
+      setShowWebView(false);
+      toast.show({
+        title: '회원가입이 완료되었습니다!',
+        duration: 3000,
+      });
+      navigation.navigate('Main');
+    }
   };
 
   const handleOnMessage = (event: {nativeEvent: {data: string}}) => {
     const data = JSON.parse(event.nativeEvent.data);
 
-    console.log('---------------------------');
-    console.log(JSON.stringify(data, null, 2));
-    console.log('---------------------------');
-
-    if (data.isClicked) {
-      setShowWebView(false);
-      navigation.navigate('Main');
-    }
-
-    // 사이즈 처리
-    setHeight(data.scrollHeight);
-
-    // alert, confirm 처리
-    switch (data.type) {
-      case 'alert':
-        Alert.alert('Alert', data.message);
-        break;
-      case 'confirm':
-        Alert.alert('Confirm', data.message, [
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-          {
-            text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
-            style: 'cancel',
-          },
-        ]);
-        break;
-      default:
-        break;
+    if (data.scrollHeight) {
+      // 사이즈 처리
+      setHeight(data.scrollHeight);
+    } else if (data.isClicked) {
+      toMain(data.isClicked);
+    } else {
+      // alert, confirm 처리
+      switch (data.type) {
+        case 'alert':
+          Alert.alert('Alert', data.message);
+          break;
+        case 'confirm':
+          Alert.alert('Confirm', data.message, [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+            {
+              text: 'Cancel',
+              onPress: () => console.log('Cancel Pressed'),
+              style: 'cancel',
+            },
+          ]);
+          break;
+        default:
+          break;
+      }
     }
   };
 
@@ -198,38 +189,28 @@ const WebRegister = () => {
         <Header showLogo={showLogo} />
         {showWebView && (
           <WebView
-            ref={webViewRef}
-            key={webViewKey}
-            // source={{uri: URL}}
+            ref={webViewRef} // WebView를 사용하기 위한 ref
+            key={webViewKey} // WebView를 초기화하기 위한 키값
             source={{uri: 'https://www.kt-online.shop/bbs/register.php'}}
-            userAgent="Mozilla/5.0 (Linux; Android 4.1.1; Galaxy Nexus Build/JRO03C) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19"
             style={{height: height, opacity: 0.99, minHeight: 1}}
-            javaScriptEnabled={true}
+            javaScriptEnabled={true} // 자바스크립트 허용
             sharedCookiesEnabled={true} // 쿠키허용
-            cacheEnabled={false}
+            cacheEnabled={false} // 캐시허용
             injectedJavaScript={injectedJavaScriptOnLoad}
             scalesPageToFit={false} // webView zoomIn disable
             allowsInlineMediaPlayback // iOS에서 인라인 재생을 허용합니다.
             mixedContentMode="always" // 모든 콘텐츠를 허용합니다.
             domStorageEnabled={true} // DOM Storage 사용을 허용합니다.
-            onMessage={handleOnMessage}
-            setSupportMultipleWindows={false} // popup window
-            onNavigationStateChange={navState => {
-              if (
-                navState.url ===
-                'https://www.kt-online.shop/bbs/register_result.php'
-              ) {
-                setHeight(410);
-                // navigation.navigate('Main');
-              }
-            }}
+            onMessage={handleOnMessage} // 웹뷰에서 postMessage를 통해 메시지를 받습니다.
+            setSupportMultipleWindows={false} // popup window 허용
+            onNavigationStateChange={handleNavigationChange} // navigation url이 변경될 때마다 호출됩니다.
             startInLoadingState={true}
             renderLoading={() => (
               <Box flex={1}>
                 <ActivityIndicator size="large" />
               </Box>
             )}
-            onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
+            // onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
             onError={syntheticEvent => {
               const {nativeEvent} = syntheticEvent;
               console.error('WebView error: ', nativeEvent);
