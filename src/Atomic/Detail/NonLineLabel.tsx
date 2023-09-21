@@ -12,10 +12,10 @@ export default function NonLineLabel({label, Rate}: NonLineLabelProps) {
   return (
     <Box px={3} py={2}>
       <HStack justifyContent="space-between">
-        <FontText fontSize="md" color={'#AAA'}>
+        <FontText fontSize="md" color={'#AAAAAA'}>
           {label}
         </FontText>
-        <FontText fontSize="md" color={'#AAA'}>
+        <FontText fontSize="md" color={'#AAAAAA'}>
           {NumberPreprocesser(Rate.toString()) + ' 원'}
         </FontText>
       </HStack>

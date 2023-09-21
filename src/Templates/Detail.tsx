@@ -39,7 +39,7 @@ const Detail = () => {
 
   const width = useWindowDimensions().width - 20;
   const routeParams = useRoute().params as DetailScreenProps;
-  const [, setFixbarProps] = useFixBarState(); //erorr?
+  const [, setFixbarProps] = useFixBarState();
 
   const {data} = useItemInfoData({
     ItemCode: routeParams.it_id,

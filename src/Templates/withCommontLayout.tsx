@@ -3,7 +3,12 @@ import Header from '@src/Modules/Header';
 import Footer from '@src/Modules/Footer';
 import {Box, View} from 'native-base';
 import FixBar from '@src/Modules/Detail/FixBar';
-import {NativeScrollEvent, NativeSyntheticEvent, FlatList} from 'react-native';
+import {
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  FlatList,
+  useWindowDimensions,
+} from 'react-native';
 import {FixBarContextProvider} from '@src/contexts/FixBarStateContext';
 
 import {Text} from 'native-base';
@@ -29,13 +34,14 @@ const withCommontLayout = (
     );
     const showFixBar = mergedOptions.showFixBar;
     const flatListRef = useRef(null);
+    const width = useWindowDimensions().width;
 
     const [showLogo, setShowLogo] = useState(true);
 
     const onScrollHandler = useCallback(
       (event: NativeSyntheticEvent<NativeScrollEvent>) => {
         const currentY = event.nativeEvent.contentOffset.y;
-        currentY > 80 ? setShowLogo(false) : setShowLogo(true);
+        currentY > width ? setShowLogo(false) : setShowLogo(true);
       },
       [],
     );
