@@ -4,7 +4,7 @@ export interface ParamProps {
   SupportTypeVol: string;
   KTDiscount: string;
   ForMonth: string;
-  UserID: string;
+  UserID: string | null;
 }
 
 interface CommonCalResType {

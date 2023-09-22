@@ -3,12 +3,7 @@ import Header from '@src/Modules/Header';
 import Footer from '@src/Modules/Footer';
 import {Box, View} from 'native-base';
 import FixBar from '@src/Modules/Detail/FixBar';
-import {
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-  FlatList,
-  useWindowDimensions,
-} from 'react-native';
+import {NativeScrollEvent, NativeSyntheticEvent, FlatList} from 'react-native';
 import {FixBarContextProvider} from '@src/contexts/FixBarStateContext';
 
 import {Text} from 'native-base';
@@ -18,7 +13,7 @@ import {FlatListContext, FlatListInstance} from '@src/contexts/FlatListContext';
 type Options = {showFixBar?: boolean};
 
 interface ListItem {
-  type: 'wrappedComponent' | 'space' | 'footer';
+  type: 'header' | 'wrappedComponent' | 'space' | 'footer';
 }
 
 const withCommontLayout = (
@@ -34,20 +29,11 @@ const withCommontLayout = (
     );
     const showFixBar = mergedOptions.showFixBar;
     const flatListRef = useRef(null);
-    const width = useWindowDimensions().width;
-
-    const [showLogo, setShowLogo] = useState(true);
-
-    const onScrollHandler = useCallback(
-      (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-        const currentY = event.nativeEvent.contentOffset.y;
-        currentY > width ? setShowLogo(false) : setShowLogo(true);
-      },
-      [],
-    );
 
     const renderItem = ({item}: {item: ListItem}) => {
-      if (item.type === 'wrappedComponent') {
+      if (item.type === 'header') {
+        return <Header />;
+      } else if (item.type === 'wrappedComponent') {
         return <WrappedComponent {...props} />;
       } else if (item.type === 'space') {
         return <Box width={30} height={30} />;
@@ -60,14 +46,13 @@ const withCommontLayout = (
 
     return (
       <Box flex={1} bg={'white'} safeArea>
-        <Header showLogo={showLogo} />
         <FixBarContextProvider>
           <FlatListContext.Provider value={{flatListRef}}>
             <FlatList
               ref={flatListRef}
-              onScroll={onScrollHandler}
               scrollEventThrottle={16}
               data={[
+                {type: 'header'},
                 {type: 'wrappedComponent'},
                 {type: 'space'},
                 {type: 'footer'},

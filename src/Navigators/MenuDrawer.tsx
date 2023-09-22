@@ -1,4 +1,4 @@
-import {Box, Button} from 'native-base';
+import {Box, Button, VStack} from 'native-base';
 import React, {useEffect} from 'react';
 import MenuItem from '@src/Atomic/Drawer/MenuItem';
 import {useUserState} from '@src/contexts/UserContext';
@@ -22,9 +22,8 @@ export default function MenuDrawer(props: any) {
   const [user, setUser] = useUserState();
   const Toast = useToast();
 
-  // 두 Drawer 파일을 분리하는 방안에 대해 생각해보기..
   const {data, refetch} = useMemberInfoData({
-    KTShopID: user?.UserId || 'web336',
+    KTShopID: user?.UserId || '',
   });
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
 
@@ -77,16 +76,27 @@ export default function MenuDrawer(props: any) {
       <DrawerInfo memberInfo={data} handleAuth={logOut} />
       <DividerTitle title="MY MENU" fontSize={14} />
       <MenuItemModule point={data?.UserPoint} />
-      <Button
-        mt={20}
-        leftIcon={<Icon name="coins" size={15} color="black" />}
-        _text={{color: 'black'}}
-        variant="ghost"
-        onPress={() => {
-          handlePointSave();
-        }}>
-        내 포인트 받기
-      </Button>
+      <VStack mt={10}>
+        <Button
+          leftIcon={<Icon name="coins" size={15} color="black" />}
+          _text={{color: 'black'}}
+          variant="ghost"
+          onPress={() => {
+            handlePointSave();
+          }}>
+          출석 포인트 받기
+        </Button>
+        <Button
+          leftIcon={<Icon name="redo-alt" size={15} color="black" />}
+          _text={{color: 'black'}}
+          variant="ghost"
+          onPress={() => {
+            refetch();
+            Toast.show({title: '포인트가 새로고침 되었습니다.'});
+          }}>
+          포인트 새고로침
+        </Button>
+      </VStack>
     </Box>
   );
 }

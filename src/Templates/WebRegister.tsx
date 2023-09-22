@@ -186,7 +186,7 @@ const WebRegister = () => {
   return (
     <Box flex={1} safeArea bg="white">
       <ScrollView>
-        <Header showLogo={showLogo} />
+        <Header />
         {showWebView && (
           <WebView
             ref={webViewRef} // WebView를 사용하기 위한 ref

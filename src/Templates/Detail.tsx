@@ -134,7 +134,7 @@ const Detail = () => {
           SupportTypeVol={supType}
           KTDiscount={ktDiscount}
           ForMonth={installment}
-          UserID={user?.UserId || ''}
+          UserID={user?.UserId || null}
           OrderPage={data?.OrderPage || ''}
         />
       </Box>

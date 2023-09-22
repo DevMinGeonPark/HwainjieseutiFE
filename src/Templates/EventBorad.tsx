@@ -14,6 +14,8 @@ import {CRCommentContextProvider} from '@src/contexts/CRCommentModalContext';
 import CommentGroup from '@src/Modules/EventBoard/CommentGroup';
 import useLog from '@src/hooks/useLog';
 import CreateCommentForm from '@src/Modules/EventBoard/CreateCommentForm';
+import {hasUserProperties} from '@src/Types/ContentTypes';
+import {useUserState} from '@src/contexts/UserContext';
 
 const EventBorad = () => {
   const routeParams = useRoute().params as {Uid: string};
@@ -23,8 +25,7 @@ const EventBorad = () => {
     CommentsPage: currentPage,
   });
 
-  console.log(routeParams.Uid);
-  console.log(JSON.stringify(data, null, 2));
+  const [user] = useUserState();
 
   const log = useLog('root');
 
@@ -71,10 +72,12 @@ const EventBorad = () => {
           setCurrentPage={setCurrentPage}
         />
       </Center>
-      <CreateCommentForm
-        EventIDX={routeParams?.Uid}
-        CommentRefetch={CommentRefetch}
-      />
+      {hasUserProperties(user) && (
+        <CreateCommentForm
+          EventIDX={routeParams?.Uid}
+          CommentRefetch={CommentRefetch}
+        />
+      )}
     </Box>
   );
 };

@@ -20,11 +20,15 @@ export default function useMemberInfoData(params: ParamProps) {
       onSuccess: (data: MemberInfoData) => {
         log.info(`MemberInfoData 데이터 불러오기 성공`);
 
-        setUser({UserId: user?.UserId || '', UserNm: data.UserNm, Point: 0});
+        setUser({
+          UserId: user?.UserId || '',
+          UserNm: data.UserNm,
+          Point: data?.UserPoint,
+        });
         authStorage.set({
           UserId: user?.UserId || '',
           UserNm: data.UserNm,
-          Point: 0,
+          Point: data?.UserPoint,
         });
 
         return data;
