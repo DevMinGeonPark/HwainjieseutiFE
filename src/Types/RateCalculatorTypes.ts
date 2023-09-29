@@ -12,7 +12,7 @@ interface CommonCalResType {
   ChgFactory: number;
 
   /** 마이포인트 */
-  ChgMyPoint: number;
+  ChgMyPoint: number | undefined;
 
   /** 요금제명 */
   ChgNm: string;
@@ -39,7 +39,7 @@ interface CommonCalResType {
   ChgContractMonthTotal: number;
 
   /** KT공식몰 추가할인 */
-  ChgKTmalldiscount: number;
+  ChgKTmalldiscount: number | undefined;
 }
 
 export interface MachineCalResType extends CommonCalResType {

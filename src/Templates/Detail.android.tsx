@@ -23,7 +23,6 @@ import useItemInfoData from '@src/hooks/queryHooks/useItemInfoData';
 import {DetailScreenProps} from '@src/Types/NavigationTypes';
 import RateCalculator from '@src/Modules/Detail/RateCalculator';
 import {useFixBarState} from '@src/contexts/FixBarStateContext';
-
 import {FlatListContext} from '@src/contexts/FlatListContext';
 
 const Detail = () => {
@@ -33,7 +32,6 @@ const Detail = () => {
   const [installment, setInstallment] = useState<string>('24');
   const [ktDiscount, setKtDiscount] = useState<string>('Y');
   const [user] = useUserState();
-  const [showModal, setShowModal] = useState<boolean>(false);
 
   const {flatListRef} = useContext(FlatListContext);
 
@@ -66,7 +64,6 @@ const Detail = () => {
           errImg={data?.ItemImgUrl || ''}
         />
       )}
-      <ShareModalButtonModule setShowModal={setShowModal} />
       <RateTypeUI heading="가입형태">
         <SignTypeButtons regiTypes={data?.RegiType || []} route={routeParams} />
       </RateTypeUI>
@@ -148,13 +145,6 @@ const Detail = () => {
         MenuType={routeParams.MenuType}
         MenuVar={routeParams.MenuVar}
       />
-      {showModal && (
-        <ShareModal
-          productId={data?.ItemCode || ''}
-          showModal={showModal}
-          setShowModal={setShowModal}
-        />
-      )}
     </Box>
   );
 };

@@ -1,4 +1,4 @@
-import {useWindowDimensions} from 'react-native';
+import {Platform, useWindowDimensions} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {Box, Center, Image, Pressable} from 'native-base';
 import {ItemList} from '@Types/MainDataTypes';
@@ -44,15 +44,19 @@ export default function ProductCard(data: ItemList) {
         setIsPressed(false);
       }}
       onPress={() => {
-        hasUserProperties(user)
-          ? navigation.navigate('Detail', {
-              name: NameSelector(data.MenuVar),
-              MenuType: data.MenuType,
-              MenuVar: data.MenuVar,
-              it_id: data.ItemCode,
-              num: Math.random(),
-            })
-          : Alert.alert('로그인이 필요합니다.');
+        // ios 이거나 로그인이 되어있으면
+        if (Platform.OS === 'ios' || hasUserProperties(user)) {
+          navigation.navigate('Detail', {
+            name: NameSelector(data.MenuVar),
+            MenuType: data.MenuType,
+            MenuVar: data.MenuVar,
+            it_id: data.ItemCode,
+            num: Math.random(),
+          });
+        } else {
+          // 안드로이드이고 로그인이 안되어있으면
+          Alert.alert('로그인이 필요합니다.');
+        }
       }}
       p={2}
       bg="white"

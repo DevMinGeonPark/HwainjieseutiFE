@@ -23,7 +23,7 @@ export default function MenuDrawer(props: any) {
   const Toast = useToast();
 
   const {data, refetch} = useMemberInfoData({
-    KTShopID: user?.UserId || '',
+    KTShopID: user?.UserId || 'app_test',
   });
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
 

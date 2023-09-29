@@ -1,10 +1,9 @@
 import React from 'react';
-import {Pressable} from 'react-native';
+import {Pressable, Platform, Alert} from 'react-native';
 import {Center} from 'native-base';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {FontText} from '../FontText';
 import {useLoginCheck} from '@src/hooks/useLoginCheck';
-import {Alert} from 'react-native';
 import {useUserState} from '@src/contexts/UserContext';
 import {hasUserProperties} from '@src/Types/ContentTypes';
 
@@ -33,9 +32,11 @@ const MenuButton: React.FC<MenuButtonProps> = ({
   return (
     <Pressable
       onPress={() => {
-        hasUserProperties(user)
-          ? navigation.navigate(screenName, params)
-          : Alert.alert('로그인이 필요합니다.');
+        if (Platform.OS === 'ios' || hasUserProperties(user)) {
+          navigation.navigate(screenName, params);
+        } else {
+          Alert.alert('로그인이 필요합니다.');
+        }
       }}>
       <Center>
         <FontText

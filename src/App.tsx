@@ -62,31 +62,31 @@ const codePushOptions: CodePushOptions = {
 };
 
 function App() {
-  // useEffect(() => {
-  //   CodePush.sync(
-  //     {
-  //       installMode: CodePush.InstallMode.IMMEDIATE,
-  //       mandatoryInstallMode: CodePush.InstallMode.IMMEDIATE,
-  //       updateDialog: {
-  //         mandatoryUpdateMessage:
-  //           '필수 업데이트가 있어 설치 후 앱을 재시작합니다.',
-  //         mandatoryContinueButtonLabel: '재시작',
-  //         optionalIgnoreButtonLabel: '나중에',
-  //         optionalInstallButtonLabel: '재시작',
-  //         optionalUpdateMessage: '업데이트가 있습니다. 설치하시겠습니까?',
-  //         title: '업데이트 안내',
-  //       },
-  //     },
-  //     status => {
-  //       console.log(`Changed ${status}`);
-  //     },
-  //     downloadProgress => {
-  //       // 여기서 몇 % 다운로드되었는지 체크 가능
-  //     },
-  //   ).then(status => {
-  //     console.log(`CodePush ${status}`);
-  //   });
-  // }, []);
+  useEffect(() => {
+    CodePush.sync(
+      {
+        installMode: CodePush.InstallMode.IMMEDIATE,
+        mandatoryInstallMode: CodePush.InstallMode.IMMEDIATE,
+        updateDialog: {
+          mandatoryUpdateMessage:
+            '필수 업데이트가 있어 설치 후 앱을 재시작합니다.',
+          mandatoryContinueButtonLabel: '재시작',
+          optionalIgnoreButtonLabel: '나중에',
+          optionalInstallButtonLabel: '재시작',
+          optionalUpdateMessage: '업데이트가 있습니다. 설치하시겠습니까?',
+          title: '업데이트 안내',
+        },
+      },
+      status => {
+        console.log(`Changed ${status}`);
+      },
+      downloadProgress => {
+        // 여기서 몇 % 다운로드되었는지 체크 가능
+      },
+    ).then(status => {
+      console.log(`CodePush ${status}`);
+    });
+  }, []);
 
   const {requestUserPermission} = useMessaging();
 
@@ -116,5 +116,5 @@ function App() {
   );
 }
 
-// export default CodePush(codePushOptions)(App);
-export default App;
+export default CodePush(codePushOptions)(App);
+// export default App;

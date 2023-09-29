@@ -6,7 +6,6 @@ import {StackScreenProps} from '@Types/NavigationTypes';
 import useAuthLoadEffect from '@src/hooks/useAuthLoadEffect';
 import InternetPlusTV from '@src/Templates/InternetPlusTV';
 import Products from '@src/Templates/Products';
-import Detail from '@src/Templates/Detail';
 import Event from '@src/Templates/Event';
 import EventBorad from '@src/Templates/EventBorad';
 import MyPage from '@src/Templates/MyPage';
@@ -20,6 +19,18 @@ import WriteQnA from '@src/Templates/WriteQnA';
 import QnADetail from '@src/Templates/QnADetail';
 import FindUser from '@src/Templates/FindUser';
 import WebRegister from '@src/Templates/WebRegister';
+
+import DetailAndroid from '@src/Templates/Detail.android';
+import DetailIOS from '@src/Templates/Detail.ios';
+import {Platform} from 'react-native';
+// import Detail from '@src/Templates/Detail.ios';
+
+// Detail 분기 처리
+const Detail = Platform.select({
+  ios: DetailIOS,
+  android: DetailAndroid,
+  default: DetailAndroid, //default is android
+});
 
 const Stack = createStackNavigator<StackScreenProps>();
 

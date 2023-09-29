@@ -16,6 +16,8 @@ import {FontHeading} from '@src/Atomic/FontHeading';
 import {useFixBarState} from '@src/contexts/FixBarStateContext';
 import useRateData from '@src/hooks/queryHooks/useRateData';
 import {FontText} from '@src/Atomic/FontText';
+import {useUserState} from '@src/contexts/UserContext';
+import {hasUserProperties} from '@src/Types/ContentTypes';
 
 interface RateCalculatorProps extends ParamProps {
   OrderPage: string;
@@ -24,9 +26,10 @@ interface RateCalculatorProps extends ParamProps {
 export default function RateCalculator(Params: RateCalculatorProps) {
   const {data, status} = useRateData(Params);
 
-  // console.log(JSON.stringify(data, null, 2));
-
   const [, setFixbarProps] = useFixBarState();
+
+  const [user] = useUserState();
+
   useEffect(() => {
     if (status === 'success') {
       setFixbarProps({
@@ -67,24 +70,31 @@ export default function RateCalculator(Params: RateCalculatorProps) {
           />
         </>
       )}
-      <BoxLabel
-        label="KT공식몰 추가할인"
-        Rate={data?.ChgKTmalldiscount || 0}
-        fontColor={'#d71826'}
-        fontWeight="bold"
-      />
+      {data?.ChgKTmalldiscount !== undefined &&
+        Params?.KTDiscount !== 'N' &&
+        hasUserProperties(user) && (
+          <BoxLabel
+            label="KT공식몰 추가할인"
+            Rate={data?.ChgKTmalldiscount || 0}
+            fontColor={'#d71826'}
+            fontWeight="bold"
+          />
+        )}
       <BoxLabel
         label="할부원금"
         Rate={data?.ChgMonthlyPlan || 0}
         fontColor={'#000000'}
         fontWeight="normal"
       />
-      <BoxLabel
-        label="마이포인트"
-        Rate={data?.ChgMyPoint || 0}
-        fontColor={'#000000'}
-        fontWeight="normal"
-      />
+      {data?.ChgMyPoint !== undefined && hasUserProperties(user) && (
+        <BoxLabel
+          label="마이포인트"
+          Rate={data?.ChgMyPoint || 0}
+          fontColor={'#000000'}
+          fontWeight="normal"
+        />
+      )}
+
       <BoxTitle title="요금제 금액" borderWidth={1} />
       <BoxLabel
         label={data?.ChgNm || ''}
