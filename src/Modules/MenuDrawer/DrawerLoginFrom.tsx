@@ -4,6 +4,7 @@ import React, {useState} from 'react';
 import useLogin from '@src/hooks/queryHooks/useLogin';
 import {useRoute} from '@react-navigation/native';
 import {Alert} from 'react-native';
+import useMemberInfoData from '@src/hooks/queryHooks/useMemberInfoData';
 
 export default function DrawerLoginFrom() {
   const [id, setID] = useState<string>('');
@@ -12,6 +13,10 @@ export default function DrawerLoginFrom() {
   const {mutate: login, isLoading: loginLoading} = useLogin({
     id: id,
     loginType: 'drawer',
+  });
+
+  const {refetch} = useMemberInfoData({
+    KTShopID: id || '',
   });
 
   const onPressLogin = () => {
@@ -23,6 +28,7 @@ export default function DrawerLoginFrom() {
     }
 
     login({id, password});
+    refetch();
   };
 
   return (

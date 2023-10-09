@@ -10,6 +10,7 @@ interface UserInfoProps {
 }
 
 export default function UserInfo({user}: UserInfoProps) {
+  console.log(user);
   return (
     <Center p={3} borderBottomColor="#333" borderBottomWidth={2}>
       <FontText fontSize={14} color="#666">

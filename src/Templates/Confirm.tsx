@@ -20,7 +20,6 @@ const Confirm = () => {
 
   const handleconfirmPW = async () => {
     try {
-      // 테스트 중 임시로 주석처리
       await confirmPassword.mutateAsync({
         KTShopID: user?.UserId || '',
         KTShopPW: encrypt(password),

@@ -78,8 +78,21 @@ const Main = () => {
           imgUrl={data?.ImgMainSub[0].imgurl}
         />
       </Pressable>
-      <Title title="NEW" desc="얼리어답터를 위한 신제품!" />
-      <ProductList items={data?.ItemNewList || []} />
+
+      {/* IOS FIX */}
+      {Platform.OS === 'android' ? (
+        <Box>
+          <Title title="NEW" desc="얼리어답터를 위한 신제품!" />
+          <ProductList items={data?.ItemNewList || []} />
+        </Box>
+      ) : (
+        <Box>
+          <Title title="BEST" desc="주문폭주! 이달의 BEST 상품!" />
+          <ProductList items={data?.ItemBestList || []} />
+        </Box>
+      )}
+      {/* -------- */}
+
       <Pressable
         {...pressableStyle}
         maxHeight={200}
@@ -101,8 +114,12 @@ const Main = () => {
           />
         )}
       </Pressable>
-      <Title title="BEST" desc="주문폭주! 이달의 BEST 상품!" />
-      <ProductList items={data?.ItemBestList || []} />
+      {Platform.OS === 'android' && (
+        <Box>
+          <Title title="BEST" desc="주문폭주! 이달의 BEST 상품!" />
+          <ProductList items={data?.ItemBestList || []} />
+        </Box>
+      )}
     </Box>
   );
 };

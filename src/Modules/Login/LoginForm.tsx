@@ -15,6 +15,7 @@ import {Alert, Pressable} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {StackNavigationProp} from '@react-navigation/stack';
+import useMemberInfoData from '@src/hooks/queryHooks/useMemberInfoData';
 
 export default function LoginForm() {
   const [id, setID] = useState<string>('');
@@ -26,6 +27,10 @@ export default function LoginForm() {
     loginType: 'login',
   });
 
+  const {refetch} = useMemberInfoData({
+    KTShopID: id || '',
+  });
+
   const onPressLogin = () => {
     if (loginLoading) return;
 
@@ -35,6 +40,7 @@ export default function LoginForm() {
     }
 
     login({id, password});
+    refetch();
   };
 
   return (

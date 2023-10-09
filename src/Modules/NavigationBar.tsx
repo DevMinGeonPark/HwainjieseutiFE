@@ -5,6 +5,7 @@ import {StackScreenProps} from '@Types/NavigationTypes';
 import {useNavigation} from '@react-navigation/native';
 import MenuButton from '@src/Atomic/Menu/MenuButton';
 import {useRoute} from '@react-navigation/native';
+import {Platform} from 'react-native';
 
 const NavigationBar = () => {
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
@@ -13,18 +14,22 @@ const NavigationBar = () => {
   return (
     <ScrollView horizontal={true}>
       <HStack space={7} flexDirection="row" alignItems="center" px={5}>
-        <MenuButton
-          navigation={navigation}
-          screenName="Samsung"
-          menuText="삼성"
-          params={{
-            MenuType: 'ca_id',
-            MenuVar: '10',
-            num: Math.random(),
-            name: '삼성',
-          }}
-          currentName={currentName}
-        />
+        {/* IOS FIX */}
+        {Platform.OS === 'android' && (
+          <MenuButton
+            navigation={navigation}
+            screenName="Samsung"
+            menuText="삼성"
+            params={{
+              MenuType: 'ca_id',
+              MenuVar: '10',
+              num: Math.random(),
+              name: '삼성',
+            }}
+            currentName={currentName}
+          />
+        )}
+        {/* ------- */}
         <MenuButton
           navigation={navigation}
           screenName="Apple"
@@ -37,18 +42,22 @@ const NavigationBar = () => {
           }}
           currentName={currentName}
         />
-        <MenuButton
-          navigation={navigation}
-          screenName="Etc"
-          menuText="기타"
-          params={{
-            MenuType: 'ca_id',
-            MenuVar: '50',
-            num: Math.random(),
-            name: '기타',
-          }}
-          currentName={currentName}
-        />
+        {/* IOS FIX */}
+        {Platform.OS === 'android' && (
+          <MenuButton
+            navigation={navigation}
+            screenName="Etc"
+            menuText="기타"
+            params={{
+              MenuType: 'ca_id',
+              MenuVar: '50',
+              num: Math.random(),
+              name: '기타',
+            }}
+            currentName={currentName}
+          />
+        )}
+        {/* ------ */}
         {/* 두 요소의 경우 num과 name이 필요없음. */}
         <MenuButton
           navigation={navigation}

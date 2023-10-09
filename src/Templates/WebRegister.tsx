@@ -119,6 +119,12 @@ const WebRegister = () => {
       }));
     });
 
+
+    var ipin = document.getElementById('win_ipin_cert');
+    if (ipin) {
+      ipin.style.display = 'none';
+    }
+    
      true;
 `;
 

@@ -29,12 +29,14 @@ export default function useLogin({id, loginType}: LoginData) {
 
   const mutation = useMutation(login, {
     onSuccess: data => {
-      if (data.Status.includes('A')) {
+      // if (data.Status.includes('A')) {
+      if (data.Status === 'A10' || data.Status === 'A50') {
         loginType === 'drawer'
           ? drawerNavigation.goBack()
           : stackNavigation.pop();
 
         log.info('로그인 성공');
+        log.info('로그인 정보:', JSON.stringify(data, null, 2));
         toast.show({title: '로그인 성공'});
         setUser({UserId: id, UserNm: data.UserNm, Point: 0});
         authStorage.set({UserId: id, UserNm: data.UserNm, Point: 0});
