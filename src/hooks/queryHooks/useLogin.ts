@@ -10,6 +10,7 @@ import authStorage from '@src/Utils/authStorage';
 import {useToast} from 'native-base';
 import {DrawerScreenProps} from '@Types/NavigationTypes';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
+import logOutStatus from '@src/Utils/logOutStatus';
 
 interface LoginData {
   id: string;
@@ -40,6 +41,7 @@ export default function useLogin({id, loginType}: LoginData) {
         toast.show({title: '로그인 성공'});
         setUser({UserId: id, UserNm: data.UserNm, Point: 0});
         authStorage.set({UserId: id, UserNm: data.UserNm, Point: 0});
+        logOutStatus.set({lastLoginDate: new Date().toISOString()});
       } else {
         log.error('beforeOnError:', JSON.stringify(data, null, 2));
         throw new Error(data.ErrMsg); //onError로 헨들링
