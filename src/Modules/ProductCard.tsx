@@ -45,7 +45,7 @@ export default function ProductCard(data: ItemList) {
       }}
       onPress={() => {
         // ios 이거나 로그인이 되어있으면
-        if (Platform.OS === 'ios' || hasUserProperties(user)) {
+        if (hasUserProperties(user)) {
           navigation.navigate('Detail', {
             name: NameSelector(data.MenuVar),
             MenuType: data.MenuType,

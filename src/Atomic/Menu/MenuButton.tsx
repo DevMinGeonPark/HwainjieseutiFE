@@ -32,7 +32,7 @@ const MenuButton: React.FC<MenuButtonProps> = ({
   return (
     <Pressable
       onPress={() => {
-        if (Platform.OS === 'ios' || hasUserProperties(user)) {
+        if (hasUserProperties(user)) {
           navigation.navigate(screenName, params);
         } else {
           Alert.alert('로그인이 필요합니다.');

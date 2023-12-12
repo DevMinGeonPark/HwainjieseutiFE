@@ -27,7 +27,7 @@ export default function InfoContainer() {
         </HStack>
         <FontText>개인정보관리: 한경호</FontText>
         {/* codepush 변경부분 (확인용) */}
-        <FontText>Version: 5.0.9</FontText>
+        <FontText>Version: 5.0.10</FontText>
       </Center>
       <Logos />
       <Copyrigth />

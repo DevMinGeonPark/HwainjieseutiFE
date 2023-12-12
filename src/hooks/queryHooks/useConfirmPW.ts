@@ -20,7 +20,7 @@ export default function useConfirmPW() {
       onSuccess: data => {
         log.info('password 검증 완료');
         log.info('status:', data);
-        if (data.Status === 'A10') {
+        if (data.Status === 'A10' || data.Status === 'A50') {
           toast.show({
             title: '비밀번호가 일치합니다.',
           });
@@ -29,8 +29,8 @@ export default function useConfirmPW() {
         }
       },
       onError: (error: AuthError) => {
-        log.info('QnA 삭제 실패', error);
-        Alert.alert('비밀번호가 일치하지 않습니다.');
+        log.info('password 삭제 실패', error);
+        Alert.alert(`비밀번호가 일치하지 않습니다. \n${error}`);
       },
     },
   );
