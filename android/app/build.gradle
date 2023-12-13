@@ -90,7 +90,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 17 //android update시 변경
-        versionName "5.0.10" //codepush 변경부분
+        versionName "5.0.13" //codepush 변경부분
         multiDexEnabled true // 추가 (line:140)
 
     }
