@@ -7,12 +7,12 @@ import {FontText} from '../FontText';
 export default function Price(data: PriceType) {
   return (
     <Center>
-      <FontHeading fontSize={16}>{data.ItemDCRate}% DC</FontHeading>
+      <FontHeading fontSize={14}>{data.ItemDCRate}% DC</FontHeading>
       <HStack space={3}>
         <FontText fontSize={13} color="#888" strikeThrough>
           {data.ItemChargeNormal.toLocaleString()}
         </FontText>
-        <FontHeading fontSize={16} color={'red.600'}>
+        <FontHeading fontSize={14} color={'red.600'}>
           ￦ {data.ItemChargeSales.toLocaleString()}
         </FontHeading>
       </HStack>

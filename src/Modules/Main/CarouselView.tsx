@@ -7,6 +7,8 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
 
+import AutoHeightImage from 'react-native-auto-height-image';
+
 interface Props {
   props: ImgMainRoll[] | undefined;
 }
@@ -19,7 +21,7 @@ export default function CarouselView(props: Props) {
     <Carousel
       loop
       width={width}
-      height={377}
+      height={288} // 288은 임의의 값이기 때문에 에러 가능성 있음
       autoPlay={true}
       data={props.props ? props.props : []}
       scrollAnimationDuration={1000}
@@ -40,13 +42,7 @@ export default function CarouselView(props: Props) {
                 });
           }}>
           {item.imgsrc && (
-            <Image
-              width={width}
-              height={'100%'}
-              resizeMode="cover"
-              alt="MainBannerCarousel"
-              source={{uri: item.imgsrc}}
-            />
+            <AutoHeightImage width={width} source={{uri: item.imgsrc}} />
           )}
         </Pressable>
       )}

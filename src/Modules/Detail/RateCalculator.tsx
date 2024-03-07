@@ -30,6 +30,8 @@ export default function RateCalculator(Params: RateCalculatorProps) {
 
   const [user] = useUserState();
 
+  console.log(JSON.stringify(data, null, 2));
+
   useEffect(() => {
     if (status === 'success') {
       setFixbarProps({

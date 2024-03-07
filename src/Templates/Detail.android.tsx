@@ -26,7 +26,6 @@ import {useFixBarState} from '@src/contexts/FixBarStateContext';
 import {FlatListContext} from '@src/contexts/FlatListContext';
 
 const Detail = () => {
-  const [plan, setPlan] = useState<string>('212121');
   const [planDesc, setPlanDesc] = useState<string>('');
   const [supType, setSupType] = useState<string>('Machine');
   const [installment, setInstallment] = useState<string>('24');
@@ -37,6 +36,12 @@ const Detail = () => {
 
   const width = useWindowDimensions().width - 20;
   const routeParams = useRoute().params as DetailScreenProps;
+
+  // TODO : 임시처리 || 키즈폰이면 19100이 디폴트인걸로 설정
+  const planDefulats = routeParams.it_id == '1705380409' ? '191000' : '212121';
+
+  const [plan, setPlan] = useState<string>(planDefulats);
+
   const [, setFixbarProps] = useFixBarState();
 
   const {data} = useItemInfoData({
@@ -45,7 +50,7 @@ const Detail = () => {
   });
 
   useEffect(() => {
-    setPlan('212121');
+    setPlan(planDefulats);
     flatListRef?.current?.scrollToOffset({offset: 0, animated: true});
   }, [data]);
 

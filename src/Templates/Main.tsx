@@ -1,5 +1,5 @@
 import {Platform, useWindowDimensions} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import withCommontLayout from '@Templates/withCommontLayout';
 import CarouselView from '@src/Modules/Main/CarouselView';
 import {Linking} from 'react-native';
@@ -15,16 +15,45 @@ import {StackScreenProps} from '@Types/NavigationTypes';
 import {dataTypes} from '@Types/notificationTypes';
 import messaging from '@react-native-firebase/messaging';
 import useLog from '@src/hooks/useLog';
+import PopupModal from '@src/Modules/Main/PopupModal';
+import popupStorage from '@src/Utils/popupStorage';
 
 const Main = () => {
   const {data} = useMainData();
   const width = useWindowDimensions().width;
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
   const log = useLog('root');
+  const [modal, setModal] = useState<boolean>(true);
+
+  useEffect(() => {
+    const fn = async () => {
+      const status = await popupStorage.get();
+
+      if (!status) {
+        return;
+      }
+      const popUplastTime = new Date(status?.lastDate).getDate();
+      const currentLoginDate = new Date().getDate();
+
+      const dateDiff = currentLoginDate - popUplastTime;
+
+      if (dateDiff >= 1) {
+        setModal(true);
+      } else {
+        setModal(false);
+      }
+    };
+
+    fn();
+  }, []);
 
   const pressableStyle = {
     width: width,
     maxHeight: 357,
+  };
+
+  const closeModal = () => {
+    setModal(false);
   };
 
   // android only
@@ -111,6 +140,7 @@ const Main = () => {
         <Title title="BEST" desc="주문폭주! 이달의 BEST 상품!" />
         <ProductList items={data?.ItemBestList || []} />
       </Box>
+      {data && <PopupModal isOpen={modal} onClose={closeModal} />}
     </Box>
   );
 };

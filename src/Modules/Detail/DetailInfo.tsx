@@ -37,7 +37,10 @@ export default function DetailInfo({
 
   return (
     <Box my={3}>
-      {imgUrl && imgUrl.endsWith('.jpg') ? (
+      {(imgUrl && imgUrl.endsWith('.jpg')) ||
+      imgUrl.endsWith('.JPG') ||
+      imgUrl.endsWith('.png') ||
+      imgUrl.endsWith('.PNG') ? (
         <Image source={{uri: imgUrl}} alt="product" size={width} />
       ) : (
         <Image source={Images.Product.NoImage} alt="product" size={width} />

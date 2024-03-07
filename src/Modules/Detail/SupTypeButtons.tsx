@@ -40,7 +40,7 @@ export default function SupTypeButtons({
             size="sm"
             borderWidth={selection === index ? 2 : 1}
             borderColor={selection === index ? '#5ddfde' : '#DDD'}
-            _text={{fontSize: 'xl', fontWeight: 'bold', color: 'black'}}>
+            _text={{fontSize: '14px', fontWeight: 'bold', color: 'black'}}>
             {supportType.Title}
           </Button>
         ))}
