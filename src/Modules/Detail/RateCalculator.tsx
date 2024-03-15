@@ -30,8 +30,6 @@ export default function RateCalculator(Params: RateCalculatorProps) {
 
   const [user] = useUserState();
 
-  console.log(JSON.stringify(data, null, 2));
-
   useEffect(() => {
     if (status === 'success') {
       setFixbarProps({
@@ -82,20 +80,20 @@ export default function RateCalculator(Params: RateCalculatorProps) {
             fontWeight="bold"
           />
         )}
+      {data?.ChgMyPoint !== undefined && hasUserProperties(user) && (
+        <BoxLabel
+          label="마이포인트"
+          Rate={data?.ChgMyPoint || 0}
+          fontColor={'#d71826'}
+          fontWeight="bold"
+        />
+      )}
       <BoxLabel
         label="할부원금"
         Rate={data?.ChgMonthlyPlan || 0}
         fontColor={'#000000'}
         fontWeight="normal"
       />
-      {data?.ChgMyPoint !== undefined && hasUserProperties(user) && (
-        <BoxLabel
-          label="마이포인트"
-          Rate={data?.ChgMyPoint || 0}
-          fontColor={'#000000'}
-          fontWeight="normal"
-        />
-      )}
 
       <BoxTitle title="요금제 금액" borderWidth={1} />
       <BoxLabel

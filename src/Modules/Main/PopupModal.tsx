@@ -4,27 +4,29 @@ import popupStorage from '@src/Utils/popupStorage';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {useNavigation} from '@react-navigation/native';
+import AutoHeightImage from 'react-native-auto-height-image';
+import {useWindowDimensions} from 'react-native';
 
 interface PopupModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
-// 94
+
 export default function PopupModal({isOpen, onClose}: PopupModalProps) {
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
+  const width = useWindowDimensions().width;
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose} size="full" p={2}>
       <Modal.Content>
         <VStack>
           <Pressable
+            width={width}
             onPress={() => {
-              onClose(false);
-              navigation.navigate('EventBorad', {Uid: 94});
+              onClose();
+              navigation.navigate('EventBorad', {Uid: 94}); //임시 맵핑 kt 공식몰
             }}>
-            <Image
-              w={320}
-              h={360}
-              alt="popup"
+            <AutoHeightImage
+              width={width}
               source={{
                 uri: 'https://ai.esmplus.com/ollehfine/app/pop-up/popup.jpg',
               }}

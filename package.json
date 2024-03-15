@@ -1,6 +1,6 @@
 {
   "name": "finegstapp",
-  "version": "5.0.10",
+  "version": "5.0.15",
   "private": true,
   "scripts": {
     "android": "react-native run-android",

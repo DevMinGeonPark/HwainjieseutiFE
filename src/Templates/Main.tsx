@@ -17,6 +17,7 @@ import messaging from '@react-native-firebase/messaging';
 import useLog from '@src/hooks/useLog';
 import PopupModal from '@src/Modules/Main/PopupModal';
 import popupStorage from '@src/Utils/popupStorage';
+import {ImgMainRoll} from '@src/Types/MainDataTypes';
 
 const Main = () => {
   const {data} = useMainData();
@@ -100,7 +101,7 @@ const Main = () => {
 
   return (
     <Box>
-      <CarouselView props={data?.ImgMainRoll} />
+      <CarouselView imgs={data?.ImgMainRoll || ([] as ImgMainRoll[])} />
       <Pressable {...pressableStyle}>
         <Banner
           img={data?.ImgMainSub[0].imgsrc}

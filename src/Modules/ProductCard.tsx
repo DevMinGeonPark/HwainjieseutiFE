@@ -55,7 +55,9 @@ export default function ProductCard(data: ItemList) {
           });
         } else {
           // 안드로이드이고 로그인이 안되어있으면
-          Alert.alert('로그인이 필요합니다.');
+          Alert.alert('로그인이 필요합니다.', '', [
+            {text: 'OK', onPress: () => navigation.navigate('Login')},
+          ]);
         }
       }}
       p={2}

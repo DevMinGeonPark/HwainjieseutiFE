@@ -10,20 +10,22 @@ import {StackScreenProps} from '@Types/NavigationTypes';
 import AutoHeightImage from 'react-native-auto-height-image';
 
 interface Props {
-  props: ImgMainRoll[] | undefined;
+  imgs: ImgMainRoll[];
 }
 
-export default function CarouselView(props: Props) {
+export default function CarouselView({imgs}: Props) {
   const width = useWindowDimensions().width;
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
+
+  const [height, setHeight] = useState<number>(0);
 
   return (
     <Carousel
       loop
       width={width}
-      height={288} // 288은 임의의 값이기 때문에 에러 가능성 있음
+      height={height} // 288은 임의의 값이기 때문에 에러 가능성 있음
       autoPlay={true}
-      data={props.props ? props.props : []}
+      data={imgs ? imgs : []}
       scrollAnimationDuration={1000}
       panGestureHandlerProps={{
         activeOffsetX: [-10, 10],
@@ -42,7 +44,13 @@ export default function CarouselView(props: Props) {
                 });
           }}>
           {item.imgsrc && (
-            <AutoHeightImage width={width} source={{uri: item.imgsrc}} />
+            <AutoHeightImage
+              onHeightChange={height => {
+                setHeight(height);
+              }}
+              width={width}
+              source={{uri: item.imgsrc}}
+            />
           )}
         </Pressable>
       )}

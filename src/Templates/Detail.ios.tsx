@@ -14,7 +14,6 @@ import {useUserState} from '@src/contexts/UserContext';
 import ProductPiece from '@src/Modules/Detail/ProductPiece';
 import ShareModal from '@src/Modules/Detail/ShareModal';
 import {FontText} from '@src/Atomic/FontText';
-import InfoTab from '@src/Modules/Detail/InfoTab';
 import DetailTitle from '@src/Modules/Detail/DetailTitle';
 import DetailInfo from '@src/Modules/Detail/DetailInfo';
 import ShareModalButtonModule from '@src/Modules/Detail/ShareModalButtonModule';
@@ -26,6 +25,7 @@ import {useFixBarState} from '@src/contexts/FixBarStateContext';
 
 import {FlatListContext} from '@src/contexts/FlatListContext';
 import {hasUserProperties} from '@src/Types/ContentTypes';
+import InfoTab from '@src/Modules/Detail/InfoTab';
 
 const Detail = () => {
   const [plan, setPlan] = useState<string>('212121');

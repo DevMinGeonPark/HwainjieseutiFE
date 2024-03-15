@@ -35,7 +35,10 @@ const MenuButton: React.FC<MenuButtonProps> = ({
         if (hasUserProperties(user)) {
           navigation.navigate(screenName, params);
         } else {
-          Alert.alert('로그인이 필요합니다.');
+          // Alert.alert('로그인이 필요합니다.', );
+          Alert.alert('로그인이 필요합니다.', '', [
+            {text: 'OK', onPress: () => navigation.navigate('Login')},
+          ]);
         }
       }}>
       <Center>
