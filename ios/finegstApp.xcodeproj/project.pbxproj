@@ -16,8 +16,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		3900ECF32A97281300DFC8AE /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3900ECF22A97281300DFC8AE /* AppCenter-Config.plist */; };
 		3900ECF42A97281300DFC8AE /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3900ECF22A97281300DFC8AE /* AppCenter-Config.plist */; };
-		39DB936D2ACAAE8B0097F0EA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39DB936C2ACAAE8B0097F0EA /* GoogleService-Info.plist */; };
-		39DB936E2ACAAE8B0097F0EA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39DB936C2ACAAE8B0097F0EA /* GoogleService-Info.plist */; };
+		4B5FA40C2BBACC2200C9E86D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B5FA40B2BBACC2200C9E86D /* GoogleService-Info.plist */; };
+		4B5FA40D2BBACC2200C9E86D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B5FA40B2BBACC2200C9E86D /* GoogleService-Info.plist */; };
 		58F3A94E2AAF3BCF2346B224 /* libPods-finegstApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9303191DF31BA695FCEE25 /* libPods-finegstApp.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		FE49E7B5A28DE250DB92A2C8 /* libPods-finegstApp-finegstAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36AB2ECE56F275ED8D0E03F7 /* libPods-finegstApp-finegstAppTests.a */; };
@@ -63,8 +63,8 @@
 		3946799C2A57F78B00056570 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		3946799D2A57F78C00056570 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Zocial.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		394F1B702A879B3400D3E8AF /* finegstApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = finegstApp.entitlements; path = finegstApp/finegstApp.entitlements; sourceTree = "<group>"; };
-		39DB936C2ACAAE8B0097F0EA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4B1A9AC937B22930EB1449B5 /* Pods-finegstApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-finegstApp.release.xcconfig"; path = "Target Support Files/Pods-finegstApp/Pods-finegstApp.release.xcconfig"; sourceTree = "<group>"; };
+		4B5FA40B2BBACC2200C9E86D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Desktop/Frelance/Hwainjieseuti/Example_nativ/화인지에스트_ios/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4E058E48FFA5424DA89D68D5 /* SpoqaHanSansNeo-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = file; path = "SpoqaHanSansNeo-Medium.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = finegstApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8C942834AB5C4B609B64A66D /* Pods-finegstApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-finegstApp.debug.xcconfig"; path = "Target Support Files/Pods-finegstApp/Pods-finegstApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -172,7 +172,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				39DB936C2ACAAE8B0097F0EA /* GoogleService-Info.plist */,
+				4B5FA40B2BBACC2200C9E86D /* GoogleService-Info.plist */,
 				3900ECF22A97281300DFC8AE /* AppCenter-Config.plist */,
 				395158AD2A57EEE800FDFE18 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* finegstApp */,
@@ -308,7 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3900ECF42A97281300DFC8AE /* AppCenter-Config.plist in Resources */,
-				39DB936E2ACAAE8B0097F0EA /* GoogleService-Info.plist in Resources */,
+				4B5FA40D2BBACC2200C9E86D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,7 +322,7 @@
 				3900ECF32A97281300DFC8AE /* AppCenter-Config.plist in Resources */,
 				0DCA83BF650C4F2AA3ACB4F0 /* SpoqaHanSansNeo-Medium.ttf in Resources */,
 				0E3893A4BCC342349D09F6A2 /* SpoqaHanSansNeo-Regular.ttf in Resources */,
-				39DB936D2ACAAE8B0097F0EA /* GoogleService-Info.plist in Resources */,
+				4B5FA40C2BBACC2200C9E86D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
