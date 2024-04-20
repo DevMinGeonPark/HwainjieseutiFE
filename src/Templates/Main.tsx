@@ -146,4 +146,4 @@ const Main = () => {
   );
 };
 
-export default withCommontLayout(Main);
+export default withCommontLayout(Main, {showGoCustomerCenter: true});
