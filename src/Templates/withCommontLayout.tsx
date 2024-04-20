@@ -10,7 +10,9 @@ import {Text} from 'native-base';
 import {useLoginCheck} from '@src/hooks/useLoginCheck';
 import {FlatListContext, FlatListInstance} from '@src/contexts/FlatListContext';
 
-type Options = {showFixBar?: boolean};
+import GoCustomerCenter from '@src/Atomic/Main/GoCustomerCenter';
+
+type Options = {showFixBar?: boolean; showGoCustomerCenter?: boolean};
 
 interface ListItem {
   type: 'header' | 'wrappedComponent' | 'space' | 'footer';
@@ -20,7 +22,10 @@ const withCommontLayout = (
   WrappedComponent: React.ComponentType<unknown>,
   options?: Options,
 ): React.FC => {
-  const defaultOptions: Options = {showFixBar: false};
+  const defaultOptions: Options = {
+    showFixBar: false,
+    showGoCustomerCenter: false,
+  };
 
   const HOC: React.FC = props => {
     const mergedOptions = useMemo(
@@ -28,6 +33,7 @@ const withCommontLayout = (
       [options],
     );
     const showFixBar = mergedOptions.showFixBar;
+    const showGoCustomerCenter = mergedOptions.showGoCustomerCenter;
     const flatListRef = useRef(null);
 
     const renderItem = ({item}: {item: ListItem}) => {
@@ -63,6 +69,7 @@ const withCommontLayout = (
           </FlatListContext.Provider>
           {showFixBar && <FixBar />}
         </FixBarContextProvider>
+        {showGoCustomerCenter && <GoCustomerCenter />}
       </Box>
     );
   };
