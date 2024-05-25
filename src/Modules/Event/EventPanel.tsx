@@ -9,9 +9,11 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {useToast} from 'native-base';
+import {EventClassList} from '@src/Types/EventDataTypes';
 
 interface EventPanelProps {
-  data: ListNotice | undefined;
+  // data: ListNotice | undefined;
+  data: EventClassList | undefined;
 }
 
 export default function EventPanel({data}: EventPanelProps) {
@@ -21,24 +23,27 @@ export default function EventPanel({data}: EventPanelProps) {
   return (
     <Pressable
       onPress={() => {
-        data?.Uid
-          ? navigation.navigate('EventBorad', {Uid: data?.Uid})
+        data?.NoticeID
+          ? navigation.navigate('EventBorad', {
+              EventClassCode: data?.NoticeID,
+            })
           : toast.show({
-              title: 'uid가 존재하지않습니다. 관리자에게 문의하세요.',
+              title:
+                'EventClassCode가 존재하지않습니다. 관리자에게 문의하세요.',
             });
       }}>
       <AspectRatio w="100%" ratio={18 / 12}>
-        {data?.ImgSrc && (
+        {data?.NoticeImg && (
           <Image
             source={{
-              uri: data?.ImgSrc || '',
+              uri: data?.NoticeImg || '',
             }}
             alt="image"
           />
         )}
       </AspectRatio>
       <Center p={2}>
-        <FontHeading fontSize={12}>{data?.Title}</FontHeading>
+        <FontHeading fontSize={13}>{data?.NoticeSubject}</FontHeading>
       </Center>
       <HStack justifyContent="space-between" mx={3} p={2}>
         <FontText fontSize={12}>KT공식몰</FontText>

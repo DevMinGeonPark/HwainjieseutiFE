@@ -1,12 +1,14 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import Main from '../Templates/Main';
+import MainAndroid from '../Templates/Main.android';
+import MainIos from '../Templates/Main.ios';
 import Login from '@src/Templates/Login';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import useAuthLoadEffect from '@src/hooks/useAuthLoadEffect';
 import InternetPlusTV from '@src/Templates/InternetPlusTV';
 import Products from '@src/Templates/Products';
 import Event from '@src/Templates/Event';
+// import EventList from '@src/Templates/EventList';
 import EventBorad from '@src/Templates/EventBorad';
 import MyPage from '@src/Templates/MyPage';
 import Confirm from '@src/Templates/Confirm';
@@ -30,6 +32,13 @@ const Detail = Platform.select({
   ios: DetailIOS,
   android: DetailAndroid,
   default: DetailAndroid, //default is android
+});
+
+// Main 분기 처리
+const Main = Platform.select({
+  ios: MainIos,
+  android: MainAndroid,
+  default: MainAndroid, //default is android
 });
 
 const Stack = createStackNavigator<StackScreenProps>();
@@ -87,11 +96,16 @@ function StackNavigator() {
         component={Event}
         options={{headerShown: false}}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
+        name="EventList"
+        component={EventList}
+        options={{headerShown: false}}
+      /> */}
+      {/* <Stack.Screen
         name="EventBorad"
         component={EventBorad}
         options={{headerShown: false}}
-      />
+      /> */}
 
       {/* SideBar Pages */}
       <Stack.Screen

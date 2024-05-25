@@ -6,7 +6,7 @@ import AutoHeightImage from 'react-native-auto-height-image';
 import {useWindowDimensions} from 'react-native';
 
 interface InfoTabProps {
-  BuyBenefit: string;
+  BuyBenefit: string[];
   CommAttn: string;
 }
 
@@ -32,13 +32,15 @@ export default function InfoTab({BuyBenefit, CommAttn}: InfoTabProps) {
         </Center>
       </Pressable>
       {infoTabSetter
-        ? BuyBenefit && (
+        ? BuyBenefit &&
+          BuyBenefit.filter(item => item !== '').map((item, index) => (
             <AutoHeightImage
+              key={index}
               width={width}
               onHeightChange={height => console.log(height, width)}
-              source={{uri: BuyBenefit || ''}}
+              source={{uri: item}}
             />
-          )
+          ))
         : CommAttn && (
             <AutoHeightImage width={width} source={{uri: CommAttn || ''}} />
           )}

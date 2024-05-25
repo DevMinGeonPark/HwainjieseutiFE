@@ -1,4 +1,8 @@
 export const Images = {
+  Modal: {
+    katalk: require('@assets/imgs/modal/katalk.png'),
+    tel: require('@assets/imgs/modal/tel.png'),
+  },
   Logo: {
     Logo: require('@assets/imgs/logo/logo.png'),
   },

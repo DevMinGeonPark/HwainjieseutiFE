@@ -3,7 +3,7 @@ import {HStack, ScrollView} from 'native-base';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {useNavigation} from '@react-navigation/native';
-import MenuButton from '@src/Atomic/Menu/MenuButton';
+import MenuButton from '@src/Atomic/Menu/MenuButton.android';
 import {useRoute} from '@react-navigation/native';
 import {Platform} from 'react-native';
 
@@ -68,12 +68,6 @@ const NavigationBar = () => {
           navigation={navigation}
           screenName="Event"
           menuText="이벤트"
-          params={{
-            MenuType: 'bo_table',
-            MenuVar: 'free',
-            num: Math.random(),
-            name: '이벤트',
-          }}
           currentName={currentName}
         />
       </HStack>

@@ -15,7 +15,7 @@ export interface ItemDetail {
     ClickComment: string;
   }>;
   KTDiscount: string[];
-  BuyBenefit: string;
+  BuyBenefit: string[];
   CommAttn: string;
   OrderPage: string;
   RateCode: string;
@@ -30,6 +30,7 @@ export interface ItemColor {
 export interface ParamProps {
   ItemCode: string;
   CategorieCode: string;
+  LogInID?: string;
 }
 
 export interface RegiType {

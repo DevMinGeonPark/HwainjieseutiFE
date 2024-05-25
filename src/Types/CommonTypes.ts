@@ -14,4 +14,10 @@ export interface CommonProps {
   MenuType: string;
   /** 10 20 50 */
   MenuVar: string;
+
+  LogInID?: string;
+}
+
+export interface ShopVersion {
+  ShopVersion: string;
 }

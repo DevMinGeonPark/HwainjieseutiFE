@@ -140,12 +140,13 @@ const Detail = () => {
           OrderPage={data?.OrderPage || ''}
         />
       </Box>
-      <Box borderTopWidth={2} borderTopColor={'primary.400'}>
+      {/* 애플 업데이트 후 변경 */}
+      {/* <Box borderTopWidth={2} borderTopColor={'primary.400'}>
         <InfoTab
           BuyBenefit={data?.BuyBenefit || ''}
           CommAttn={data?.CommAttn || ''}
         />
-      </Box>
+      </Box> */}
       <ProductPiece
         MenuType={routeParams.MenuType}
         MenuVar={routeParams.MenuVar}

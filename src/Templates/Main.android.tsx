@@ -62,9 +62,10 @@ const Main = () => {
     // 백그라운드에서 알림을 받았을 때
     if (Platform.OS === 'android') {
       messaging().onNotificationOpenedApp(remoteMessage => {
-        navigation.navigate('EventBorad', {
-          Uid: Number(remoteMessage?.data?.uid) || 0,
-        });
+        // 수정 필요
+        // navigation.navigate('EventBorad', {
+        //   Uid: Number(remoteMessage?.data?.uid) || 0,
+        // });
         notifee.cancelAllNotifications();
       });
       // 앱이 종료된 상태에서 알림을 받았을 때
@@ -72,9 +73,10 @@ const Main = () => {
         .getInitialNotification()
         .then(remoteMessage => {
           if (remoteMessage) {
-            navigation.navigate('EventBorad', {
-              Uid: Number(remoteMessage?.data?.uid) || 0,
-            });
+            // 수정 필요
+            // navigation.navigate('EventBorad', {
+            //   Uid: Number(remoteMessage?.data?.uid) || 0,
+            // });
             notifee.cancelAllNotifications();
           }
         });
@@ -90,9 +92,10 @@ const Main = () => {
           break;
         case EventType.PRESS:
           const data = detail.notification?.data as unknown as dataTypes;
-          navigation.navigate('EventBorad', {
-            Uid: data.uid,
-          });
+          // 수정 필요
+          // navigation.navigate('EventBorad', {
+          //   Uid: data.uid,
+          // });
           notifee.cancelAllNotifications();
           break;
       }

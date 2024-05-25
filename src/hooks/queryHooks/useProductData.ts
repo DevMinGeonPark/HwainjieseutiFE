@@ -9,17 +9,25 @@ import {
   InternetPlusTVData,
 } from '@src/Types/ProductTypes';
 import {CommonProps} from '@src/Types/CommonTypes';
+import {useUserState} from '@src/contexts/UserContext';
 
 export default function useProductData(params: CommonProps | ParamProps) {
   const log = useLog('data');
 
+  const [user] = useUserState();
+
   const query = useQuery(
     ['getProductData', params],
+    // 애플 테스트 후 변경
+    // () => getProductData({...params, LogInID: user?.UserId || ''}),
     () => getProductData(params),
+
     {
       notifyOnChangeProps: ['data'],
       onSuccess: (data: EventData | ProductData | InternetPlusTVData) => {
+        // log.info(`productDatas 불러오기 성공`, JSON.stringify(data, null, 2));
         log.info(`productDatas 불러오기 성공`);
+
         return data;
       },
       onError: error => {

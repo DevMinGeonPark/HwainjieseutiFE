@@ -34,14 +34,9 @@ export default function CarouselView({imgs}: Props) {
         <Pressable
           key={index}
           onPress={() => {
-            item.imgurl.match(/wr_id=(\d+)/)?.[1]
-              ? navigation.navigate('EventBorad', {
-                  Uid: Number(item.imgurl.match(/wr_id=(\d+)/)?.[1]) || 0,
-                })
-              : navigation.navigate('Event', {
-                  MenuType: 'bo_table',
-                  MenuVar: 'free',
-                });
+            item.imgurl
+              ? navigation.navigate('Event', {url: item.imgurl})
+              : navigation.navigate('Event');
           }}>
           {item.imgsrc && (
             <AutoHeightImage

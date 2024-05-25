@@ -83,3 +83,36 @@ export interface EventData {
   CommentsCount: number;
   Comments: Comment[];
 }
+
+export interface EventClass {
+  EventClassCode: number; // 이벤트코드
+  EventClassImg: string; // 이벤트구분이미지
+  EventSubject: string; // 이벤트이름
+}
+
+export interface EventClassListProps {
+  EventClassCode: number;
+  EventPage: number;
+  LogInID: string;
+}
+
+export interface EventClassList {
+  LogIn: string;
+  NoticeID: number;
+  NoticeSubject: string;
+  NoticeImg: string;
+  HitCount: number;
+  CommentsCount: number;
+}
+
+export interface EventClassNotice {
+  EventClassCode: number;
+}
+
+export interface EventClassNoticeList {
+  NoticeID: number;
+  NoticeSubject: string;
+  NoticeWriteName: string;
+  WriteDate: string;
+  NoticeImg: string;
+}

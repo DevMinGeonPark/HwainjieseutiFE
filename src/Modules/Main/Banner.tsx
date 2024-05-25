@@ -15,12 +15,14 @@ export default function Banner({img, imgUrl}: BannerProps) {
   const width = useWindowDimensions().width;
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
 
+  console.log('imgUrl', imgUrl);
+
   return (
     <Pressable
       onPress={() => {
-        imgUrl?.match(/wr_id=(\d+)/)?.[1]
-          ? navigation.navigate('EventBorad', {
-              Uid: Number(imgUrl?.match(/wr_id=(\d+)/)?.[1]) || 0,
+        imgUrl
+          ? navigation.navigate('Event', {
+              url: `https://kt-online.shop/${imgUrl}`,
             })
           : Alert.alert('주소가 이상합니다.');
       }}>

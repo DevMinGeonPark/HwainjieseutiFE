@@ -3,6 +3,7 @@ import Logos from './Footer/Logos';
 import Copyrigth from './Footer/Copyrigth';
 import {Center, HStack} from 'native-base';
 import {FontText} from './FontText';
+import LOCAL_VERSION from '@src/Utils/localVersion';
 
 export default function InfoContainer() {
   return (
@@ -27,7 +28,7 @@ export default function InfoContainer() {
         </HStack>
         <FontText>개인정보관리: 한경호</FontText>
         {/* codepush 변경부분 (확인용) */}
-        <FontText>Version: 5.0.15</FontText>
+        <FontText>Version: {LOCAL_VERSION}</FontText>
       </Center>
       <Logos />
       <Copyrigth />

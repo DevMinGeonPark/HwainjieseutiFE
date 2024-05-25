@@ -1,11 +1,12 @@
 import {Modal, VStack, HStack, Button, Image, Pressable} from 'native-base';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import popupStorage from '@src/Utils/popupStorage';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {useNavigation} from '@react-navigation/native';
 import AutoHeightImage from 'react-native-auto-height-image';
 import {useWindowDimensions} from 'react-native';
+import usePopupModal from '@src/hooks/queryHooks/usePopupModal';
 
 interface PopupModalProps {
   isOpen: boolean;
@@ -15,6 +16,9 @@ interface PopupModalProps {
 export default function PopupModal({isOpen, onClose}: PopupModalProps) {
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
   const width = useWindowDimensions().width;
+
+  const {data} = usePopupModal();
+
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="full" p={2}>
       <Modal.Content>
@@ -28,7 +32,9 @@ export default function PopupModal({isOpen, onClose}: PopupModalProps) {
             <AutoHeightImage
               width={width}
               source={{
-                uri: 'https://ai.esmplus.com/ollehfine/app/pop-up/popup.jpg',
+                uri:
+                  // src ||
+                  'https://ai.esmplus.com/ollehfine/app/pop-up/popup.jpg',
               }}
             />
           </Pressable>

@@ -1,3 +1,5 @@
+import {EventClassListProps, EventClassNotice} from '@Types/EventDataTypes';
+
 export type DrawerScreenProps = {
   DrawerMain: undefined;
 };
@@ -9,8 +11,12 @@ export type StackScreenProps = {
   Samsung: _ProductScreenProps;
   Etc: _ProductScreenProps;
   Detail: DetailScreenProps;
-  Event: CommonScreenProps;
-  EventBorad: {Uid: number};
+  // fix 후 관련 로직 삭제
+  Event: {url: string} | undefined;
+  // Event: CommonScreenProps;
+  // EventList: EventClassListProps;
+  // EventBorad: EventClassNotice;
+  // Event 수정 필요
   InternetPlusTV: CommonScreenProps;
   MyPoint: undefined;
   MyPage: undefined;
@@ -22,8 +28,6 @@ export type StackScreenProps = {
   WriteQnA: WriteQnAParamsProps;
   SearchResult: SearchResultProps;
   FindUser: undefined;
-
-  // Test
   WebRegister: undefined;
 };
 

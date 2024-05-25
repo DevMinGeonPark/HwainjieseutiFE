@@ -9,6 +9,8 @@ export interface ParamProps extends CommonProps {
 }
 
 export interface ProductData extends CommonProps {
+  LogInID: string;
+  PageViewType: string;
   ItemList: ItemList[];
 }
 
@@ -23,10 +25,13 @@ export interface CommonSubPageResProps {
 }
 
 export interface InternetPlusTVData extends CommonSubPageResProps {
+  LogInID: string;
+  PageViewType: string;
   Content: string;
 }
 
 export interface EventData extends CommonSubPageResProps {
+  LogInID: string;
   TopNotice: TopNotice[];
   ListNotice: ListNotice[];
 }

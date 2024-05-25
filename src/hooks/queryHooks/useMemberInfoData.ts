@@ -16,6 +16,7 @@ export default function useMemberInfoData(params: ParamProps) {
     ['getMemberInfo', params],
     () => getMemberInfo(params),
     {
+      enabled: !!user?.UserId,
       notifyOnChangeProps: ['data'],
       onSuccess: (data: MemberInfoData) => {
         log.info(`MemberInfoData 데이터 불러오기 성공`);
