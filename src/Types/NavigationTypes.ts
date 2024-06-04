@@ -1,5 +1,3 @@
-import {EventClassListProps, EventClassNotice} from '@Types/EventDataTypes';
-
 export type DrawerScreenProps = {
   DrawerMain: undefined;
 };

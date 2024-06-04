@@ -8,8 +8,6 @@ import useAuthLoadEffect from '@src/hooks/useAuthLoadEffect';
 import InternetPlusTV from '@src/Templates/InternetPlusTV';
 import Products from '@src/Templates/Products';
 import Event from '@src/Templates/Event';
-// import EventList from '@src/Templates/EventList';
-import EventBorad from '@src/Templates/EventBorad';
 import MyPage from '@src/Templates/MyPage';
 import Confirm from '@src/Templates/Confirm';
 import RegisterForm from '@src/Templates/RegisterForm';
@@ -96,16 +94,6 @@ function StackNavigator() {
         component={Event}
         options={{headerShown: false}}
       />
-      {/* <Stack.Screen
-        name="EventList"
-        component={EventList}
-        options={{headerShown: false}}
-      /> */}
-      {/* <Stack.Screen
-        name="EventBorad"
-        component={EventBorad}
-        options={{headerShown: false}}
-      /> */}
 
       {/* SideBar Pages */}
       <Stack.Screen

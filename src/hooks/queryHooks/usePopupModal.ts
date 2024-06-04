@@ -1,8 +1,5 @@
-import {getMainData} from '@src/API/getMainData';
 import {useMutation, useQuery} from 'react-query';
 import useLog from '../useLog';
-import {EventData, Body} from '@Types/EventDataTypes';
-import {getEventData} from '@src/API/Event/getEventData';
 import {popupModal} from '@src/API/PopupModal';
 
 export default function usePopupModal() {
