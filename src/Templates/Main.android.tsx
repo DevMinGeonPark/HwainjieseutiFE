@@ -1,4 +1,4 @@
-import {Platform, useWindowDimensions} from 'react-native';
+import {Alert, Platform, useWindowDimensions} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import withCommontLayout from '@Templates/withCommontLayout';
 import CarouselView from '@src/Modules/Main/CarouselView';
@@ -13,11 +13,16 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {dataTypes} from '@Types/notificationTypes';
-import messaging from '@react-native-firebase/messaging';
+import messaging, {
+  FirebaseMessagingTypes,
+} from '@react-native-firebase/messaging';
 import useLog from '@src/hooks/useLog';
 import PopupModal from '@src/Modules/Main/PopupModal';
 import popupStorage from '@src/Utils/popupStorage';
 import {ImgMainRoll} from '@src/Types/MainDataTypes';
+import {useUserState} from '@src/contexts/UserContext';
+import {hasUserProperties} from '@src/Types/ContentTypes';
+import authStorage from '@src/Utils/authStorage';
 
 const Main = () => {
   const {data} = useMainData();
@@ -25,6 +30,8 @@ const Main = () => {
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
   const log = useLog('root');
   const [modal, setModal] = useState<boolean>(true);
+
+  const [user] = useUserState();
 
   useEffect(() => {
     const fn = async () => {
@@ -62,21 +69,20 @@ const Main = () => {
     // 백그라운드에서 알림을 받았을 때
     if (Platform.OS === 'android') {
       messaging().onNotificationOpenedApp(remoteMessage => {
-        // 수정 필요
-        // navigation.navigate('EventBorad', {
-        //   Uid: Number(remoteMessage?.data?.uid) || 0,
-        // });
+        if (remoteMessage?.data?.url) {
+          navigation.navigate('Event', {url: remoteMessage.data.url});
+        }
         notifee.cancelAllNotifications();
       });
       // 앱이 종료된 상태에서 알림을 받았을 때
       messaging()
         .getInitialNotification()
         .then(remoteMessage => {
+          // 앱이 종료된 상태에서 알림을 받았을 때는 까다로워서 그냥 처리
           if (remoteMessage) {
-            // 수정 필요
-            // navigation.navigate('EventBorad', {
-            //   Uid: Number(remoteMessage?.data?.uid) || 0,
-            // });
+            if (remoteMessage?.data?.url) {
+              navigation.navigate('Event', {url: remoteMessage.data.url});
+            }
             notifee.cancelAllNotifications();
           }
         });
@@ -92,10 +98,13 @@ const Main = () => {
           break;
         case EventType.PRESS:
           const data = detail.notification?.data as unknown as dataTypes;
-          // 수정 필요
-          // navigation.navigate('EventBorad', {
-          //   Uid: data.uid,
-          // });
+          if (hasUserProperties(user) && data.url) {
+            navigation.navigate('Event', {url: data.url});
+          } else {
+            Alert.alert('로그인이 필요합니다.', '', [
+              {text: 'OK', onPress: () => navigation.navigate('Login')},
+            ]);
+          }
           notifee.cancelAllNotifications();
           break;
       }
@@ -105,12 +114,12 @@ const Main = () => {
   return (
     <Box>
       <CarouselView imgs={data?.ImgMainRoll || ([] as ImgMainRoll[])} />
-      <Pressable {...pressableStyle}>
+      <Box {...pressableStyle}>
         <Banner
           img={data?.ImgMainSub[0].imgsrc}
           imgUrl={data?.ImgMainSub[0].imgurl}
         />
-      </Pressable>
+      </Box>
       <Box>
         <Title title="NEW" desc="얼리어답터를 위한 신제품!" />
         <ProductList items={data?.ItemNewList || []} />

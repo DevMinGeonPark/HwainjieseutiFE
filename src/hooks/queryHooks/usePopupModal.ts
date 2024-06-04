@@ -12,7 +12,7 @@ export default function usePopupModal() {
     notifyOnChangeProps: ['data'],
     onSuccess: data => {
       log.info(`usePopupModal 데이터 불러오기 성공`);
-      log.info(JSON.stringify(data, null, 2));
+      log.info('popup', JSON.stringify(data, null, 2));
       return data;
     },
     onError: error => {

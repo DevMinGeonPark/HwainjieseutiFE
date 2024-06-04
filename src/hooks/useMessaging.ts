@@ -56,6 +56,7 @@ const useMessaging = (): UseMessagingReturnType => {
 
   const callApiSubscribeTopic = async (retryCount = 0) => {
     try {
+      // TODO 테스트 토픽
       await messaging().subscribeToTopic('TEST');
       log.info('구독성공');
       toast.show({

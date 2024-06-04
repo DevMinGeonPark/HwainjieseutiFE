@@ -20,45 +20,19 @@ const Event = () => {
 
   const [height, setHeight] = useState(0);
 
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   const webViewRef = useRef<WebView>(null);
 
+  console.log(url);
+
   const injectedJavaScriptOnLoad = `
-    // 페이지 로드 전에 .m-header 숨기기
-    var style = document.createElement('style');
-    style.type = 'text/css';
-    style.innerHTML = '.m-header { display: none !important; }';
-    document.head.appendChild(style);
 
     // zoom in이 되지 않도록 scale을 1로 고정
     const meta = document.createElement('meta'); 
     meta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0'); 
     meta.setAttribute('name', 'viewport'); 
     document.getElementsByTagName('head')[0].appendChild(meta);
-    
-
-    var atFooter = document.querySelector('.at-footer');
-    if (atFooter) {
-        atFooter.style.display = 'none';
-    }
-
-    var atMenu = document.querySelector('.at-menu'); 
-    if (atMenu) { 
-        atMenu.style.display = 'none'; 
-    }
-
-    var IDInput = document.getElementById('reg_mb_id');
-    if (IDInput) {
-      IDInput.autocapitalize = "none";
-    }
-
-    const viewIcon = document.querySelector('#thema_wrapper > div.at-body > div > div > div.view-wrap > div.print-hide.view-icon');
-    if (viewIcon) {
-      viewIcon.style.display = 'none';
-    }
-
-    
 
     function getVisibleHeight() {
       const allElements = document.querySelectorAll('*');
@@ -126,10 +100,6 @@ const Event = () => {
         data: new FormData(event.target)
       }));
     });
-  
-    window.ReactNativeWebView.postMessage(JSON.stringify({
-      type: 'done'
-    }));
 
 
      true;
@@ -145,10 +115,6 @@ const Event = () => {
     } else {
       // alert, confirm 처리
       switch (data.type) {
-        case 'done':
-          console.log('done');
-          setLoading(false);
-          break;
         case 'Link':
           console.log('Link', data.url);
           break;
@@ -180,18 +146,18 @@ const Event = () => {
 
   return (
     <Box>
-      {user?.UserId && loading && <ActivityIndicator size="large" />}
       {user?.UserId && (
         <WebView
           ref={webViewRef} // WebView를 사용하기 위한 ref
           key={webViewKey} // WebView를 초기화하기 위한 키값
           source={{
-            uri: `${url}?loginid=${user?.UserId}`,
+            uri: `${url}&loginid=${user.UserId}&app_page=1`,
           }}
           style={{
-            height: height || 1200,
-            opacity: loading ? 0 : 0.99,
+            height: height || 2000,
+            opacity: 0.99,
             minHeight: 1,
+            marginTop: 15,
           }}
           onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
           javaScriptEnabled={true} // 자바스크립트 허용

@@ -27,7 +27,7 @@ export default function PopupModal({isOpen, onClose}: PopupModalProps) {
             width={width}
             onPress={() => {
               onClose();
-              navigation.navigate('EventBorad', {Uid: 94}); //임시 맵핑 kt 공식몰
+              // navigation.navigate('EventBorad', {Uid: 94}); //임시 맵핑 kt 공식몰
             }}>
             <AutoHeightImage
               width={width}

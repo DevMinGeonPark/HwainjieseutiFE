@@ -2,8 +2,13 @@ import client from './client';
 
 interface PopupModal {
   GongSubject: string;
-  GongContent: string;
+  GongContent: GongContent[];
   GongImg: string;
+}
+
+interface GongContent {
+  GongLinkUrl: string;
+  GongImgUrl: string;
 }
 
 export async function popupModal(): Promise<PopupModal> {

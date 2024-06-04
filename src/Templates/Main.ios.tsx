@@ -1,4 +1,4 @@
-import {Platform, useWindowDimensions} from 'react-native';
+import {Alert, Platform, useWindowDimensions} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import withCommontLayout from '@Templates/withCommontLayout';
 import CarouselView from '@src/Modules/Main/CarouselView';
@@ -18,6 +18,8 @@ import useLog from '@src/hooks/useLog';
 import PopupModal from '@src/Modules/Main/PopupModal';
 import popupStorage from '@src/Utils/popupStorage';
 import {ImgMainRoll} from '@src/Types/MainDataTypes';
+import {useUserState} from '@src/contexts/UserContext';
+import {hasUserProperties} from '@src/Types/ContentTypes';
 
 const Main = () => {
   const {data} = useMainData();
@@ -25,6 +27,8 @@ const Main = () => {
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
   const log = useLog('root');
   const [modal, setModal] = useState<boolean>(true);
+
+  const [user] = useUserState();
 
   useEffect(() => {
     const fn = async () => {
@@ -57,32 +61,6 @@ const Main = () => {
     setModal(false);
   };
 
-  // android only
-  React.useEffect(() => {
-    // 백그라운드에서 알림을 받았을 때
-    if (Platform.OS === 'android') {
-      messaging().onNotificationOpenedApp(remoteMessage => {
-        // 수정 필요
-        // navigation.navigate('EventBorad', {
-        //   Uid: Number(remoteMessage?.data?.uid) || 0,
-        // });
-        notifee.cancelAllNotifications();
-      });
-      // 앱이 종료된 상태에서 알림을 받았을 때
-      messaging()
-        .getInitialNotification()
-        .then(remoteMessage => {
-          if (remoteMessage) {
-            // 수정 필요
-            // navigation.navigate('EventBorad', {
-            //   Uid: Number(remoteMessage?.data?.uid) || 0,
-            // });
-            notifee.cancelAllNotifications();
-          }
-        });
-    }
-  }, []);
-
   // Foreground process
   React.useEffect(() => {
     return notifee.onForegroundEvent(({type, detail}) => {
@@ -92,10 +70,9 @@ const Main = () => {
           break;
         case EventType.PRESS:
           const data = detail.notification?.data as unknown as dataTypes;
-          // 수정 필요
-          // navigation.navigate('EventBorad', {
-          //   Uid: data.uid,
-          // });
+          if (data.url) {
+            navigation.navigate('Event', {url: data.url});
+          }
           notifee.cancelAllNotifications();
           break;
       }
@@ -104,13 +81,13 @@ const Main = () => {
 
   return (
     <Box>
-      <CarouselView imgs={data?.ImgMainRoll || ([] as ImgMainRoll[])} />
-      <Pressable {...pressableStyle}>
+      {/* <CarouselView imgs={data?.ImgMainRoll || ([] as ImgMainRoll[])} />
+      <Box {...pressableStyle}>
         <Banner
           img={data?.ImgMainSub[0].imgsrc}
           imgUrl={data?.ImgMainSub[0].imgurl}
         />
-      </Pressable>
+      </Box> */}
       <Box>
         <Title title="NEW" desc="얼리어답터를 위한 신제품!" />
         <ProductList items={data?.ItemNewList || []} />
@@ -119,7 +96,7 @@ const Main = () => {
         <Title title="BEST" desc="주문폭주! 이달의 BEST 상품!" />
         <ProductList items={data?.ItemBestList || []} />
       </Box>
-      <Pressable
+      {/* <Pressable
         {...pressableStyle}
         maxHeight={200}
         marginTop={50}
@@ -139,7 +116,7 @@ const Main = () => {
             source={{uri: data?.SubBanner?.BannerImg}}
           />
         )}
-      </Pressable>
+      </Pressable> */}
       <Box>
         <Title title="BEST" desc="주문폭주! 이달의 BEST 상품!" />
         <ProductList items={data?.ItemBestList || []} />

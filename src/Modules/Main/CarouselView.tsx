@@ -8,6 +8,8 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
 
 import AutoHeightImage from 'react-native-auto-height-image';
+import {useUserState} from '@src/contexts/UserContext';
+import {hasUserProperties} from '@src/Types/ContentTypes';
 
 interface Props {
   imgs: ImgMainRoll[];
@@ -16,6 +18,8 @@ interface Props {
 export default function CarouselView({imgs}: Props) {
   const width = useWindowDimensions().width;
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
+
+  const [user] = useUserState();
 
   const [height, setHeight] = useState<number>(0);
 
@@ -34,9 +38,15 @@ export default function CarouselView({imgs}: Props) {
         <Pressable
           key={index}
           onPress={() => {
-            item.imgurl
-              ? navigation.navigate('Event', {url: item.imgurl})
-              : navigation.navigate('Event');
+            if (hasUserProperties(user)) {
+              item.imgurl
+                ? navigation.navigate('Event', {url: item.imgurl})
+                : navigation.navigate('Event');
+            } else {
+              Alert.alert('로그인이 필요합니다.', '', [
+                {text: 'OK', onPress: () => navigation.navigate('Login')},
+              ]);
+            }
           }}>
           {item.imgsrc && (
             <AutoHeightImage
