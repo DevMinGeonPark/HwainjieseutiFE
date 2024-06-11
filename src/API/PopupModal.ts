@@ -1,18 +1,9 @@
+import {GongContent} from '@src/Utils/processGongContent';
 import client from './client';
+import {processGongContent} from '@src/Utils/processGongContent';
 
-interface PopupModal {
-  GongSubject: string;
-  GongContent: GongContent[];
-  GongImg: string;
-}
-
-interface GongContent {
-  GongLinkUrl: string;
-  GongImgUrl: string;
-}
-
-export async function popupModal(): Promise<PopupModal> {
+export async function popupModal(): Promise<GongContent[]> {
   const res = await client.post('pushgonggi.php', {});
 
-  return res.data;
+  return processGongContent(res.data);
 }

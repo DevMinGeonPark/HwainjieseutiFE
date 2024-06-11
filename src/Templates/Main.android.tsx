@@ -98,6 +98,9 @@ const Main = () => {
           break;
         case EventType.PRESS:
           const data = detail.notification?.data as unknown as dataTypes;
+
+          console.log(data);
+
           if (hasUserProperties(user) && data.url) {
             navigation.navigate('Event', {url: data.url});
           } else {
@@ -153,7 +156,7 @@ const Main = () => {
         <Title title="BEST" desc="주문폭주! 이달의 BEST 상품!" />
         <ProductList items={data?.ItemBestList || []} />
       </Box>
-      {data && <PopupModal isOpen={modal} onClose={closeModal} />}
+      {user && data && <PopupModal isOpen={modal} onClose={closeModal} />}
     </Box>
   );
 };

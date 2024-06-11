@@ -5,8 +5,11 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {useNavigation} from '@react-navigation/native';
 import AutoHeightImage from 'react-native-auto-height-image';
-import {useWindowDimensions} from 'react-native';
+import {Alert, Text, useWindowDimensions} from 'react-native';
 import usePopupModal from '@src/hooks/queryHooks/usePopupModal';
+import Carousel from 'react-native-reanimated-carousel';
+import {useUserState} from '@src/contexts/UserContext';
+import {hasUserProperties} from '@src/Types/ContentTypes';
 
 interface PopupModalProps {
   isOpen: boolean;
@@ -18,26 +21,50 @@ export default function PopupModal({isOpen, onClose}: PopupModalProps) {
   const width = useWindowDimensions().width;
 
   const {data} = usePopupModal();
+  const [user] = useUserState();
+
+  const [height, setHeight] = useState<number>(0);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="full" p={2}>
       <Modal.Content>
         <VStack>
-          <Pressable
+          <Carousel
+            loop
             width={width}
-            onPress={() => {
-              onClose();
-              // navigation.navigate('EventBorad', {Uid: 94}); //임시 맵핑 kt 공식몰
-            }}>
-            <AutoHeightImage
-              width={width}
-              source={{
-                uri:
-                  // src ||
-                  'https://ai.esmplus.com/ollehfine/app/pop-up/popup.jpg',
-              }}
-            />
-          </Pressable>
+            height={height} // 288은 임의의 값이기 때문에 에러 가능성 있음
+            autoPlay={true}
+            data={data ? data : []}
+            scrollAnimationDuration={1000}
+            panGestureHandlerProps={{
+              activeOffsetX: [-10, 10],
+            }}
+            renderItem={({item, index}): JSX.Element => (
+              <Pressable
+                key={index}
+                onPress={() => {
+                  onClose();
+                  if (hasUserProperties(user)) {
+                    console.log(item.GongLinkUrl);
+                    navigation.navigate('Event', {
+                      url: item.GongLinkUrl,
+                    });
+                  } else {
+                    Alert.alert('로그인이 필요합니다.', '', [
+                      {text: 'OK', onPress: () => navigation.navigate('Login')},
+                    ]);
+                  }
+                }}>
+                <AutoHeightImage
+                  onHeightChange={height => {
+                    setHeight(height);
+                  }}
+                  width={width}
+                  source={{uri: item.GongImgUrl}}
+                />
+              </Pressable>
+            )}
+          />
           <HStack
             bg="black"
             py={2}

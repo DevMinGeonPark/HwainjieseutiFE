@@ -16,15 +16,13 @@ const Event = () => {
     ? routeParams.url
     : 'https://kt-online.shop/event.php';
 
+  console.log('url:', url);
+
   const [user] = useUserState();
 
   const [height, setHeight] = useState(0);
 
-  // const [loading, setLoading] = useState(true);
-
   const webViewRef = useRef<WebView>(null);
-
-  console.log(url);
 
   const injectedJavaScriptOnLoad = `
 
@@ -71,36 +69,6 @@ const Event = () => {
       })
     );
     
-    // Alert 처리
-    window.alert = function(message) {
-      window.ReactNativeWebView.postMessage(JSON.stringify({
-        type: 'alert',
-        message,
-      }));
-    };
- 
-    // confirm 처리
-    window.confirm = function(message) {
-      var result = true; 
- 
-      window.ReactNativeWebView.postMessage(JSON.stringify({
-        type: 'confirm',
-        message,
-        result,
-      }));
- 
-      return result;
-    };
-
-    // submit 처리
-    document.querySelector('form').addEventListener('submit', function(event) {
-      event.preventDefault();
-      window.ReactNativeWebView.postMessage(JSON.stringify({
-        type: 'submit',
-        data: new FormData(event.target)
-      }));
-    });
-
 
      true;
 `;
@@ -112,28 +80,6 @@ const Event = () => {
       // 사이즈 처리
       console.log('scrollHeight', data.scrollHeight);
       setHeight(data.scrollHeight);
-    } else {
-      // alert, confirm 처리
-      switch (data.type) {
-        case 'Link':
-          console.log('Link', data.url);
-          break;
-        case 'alert':
-          Alert.alert('Alert', data.message);
-          break;
-        case 'confirm':
-          Alert.alert('Confirm', data.message, [
-            {text: 'OK', onPress: () => console.log('OK Pressed')},
-            {
-              text: 'Cancel',
-              onPress: () => console.log('Cancel Pressed'),
-              style: 'cancel',
-            },
-          ]);
-          break;
-        default:
-          break;
-      }
     }
   };
 
@@ -151,7 +97,7 @@ const Event = () => {
           ref={webViewRef} // WebView를 사용하기 위한 ref
           key={webViewKey} // WebView를 초기화하기 위한 키값
           source={{
-            uri: `${url}&loginid=${user.UserId}&app_page=1`,
+            uri: `${url}?loginid=${user.UserId}&app_page=1`,
           }}
           style={{
             height: height || 2000,
