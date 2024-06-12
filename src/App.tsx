@@ -13,6 +13,7 @@ import {LogBox} from 'react-native';
 import {getShopVersion} from '@src/API/getShopVersion';
 import LOCAL_VERSION from './Utils/localVersion';
 import {Platform, Linking} from 'react-native'; // Platform과 Linking 모듈을 임포트합니다.
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 LogBox.ignoreLogs(["Can't open url"]);
 
@@ -129,9 +130,9 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    compareVersions();
-  }, []);
+  // useEffect(() => {
+  //   compareVersions();
+  // }, []);
 
   const {requestUserPermission} = useMessaging();
 
@@ -147,17 +148,19 @@ function App() {
   messaging().onMessage(onMessageReceived);
 
   return (
-    <UserContextProvider>
-      <QueryClientProvider client={queryClient}>
-        <DrawerContextProvider>
-          <NavigationContainer>
-            <NativeBaseProvider theme={theme}>
-              <DrawerNavigator />
-            </NativeBaseProvider>
-          </NavigationContainer>
-        </DrawerContextProvider>
-      </QueryClientProvider>
-    </UserContextProvider>
+    <GestureHandlerRootView style={{flex: 1}}>
+      <UserContextProvider>
+        <QueryClientProvider client={queryClient}>
+          <DrawerContextProvider>
+            <NavigationContainer>
+              <NativeBaseProvider theme={theme}>
+                <DrawerNavigator />
+              </NativeBaseProvider>
+            </NavigationContainer>
+          </DrawerContextProvider>
+        </QueryClientProvider>
+      </UserContextProvider>
+    </GestureHandlerRootView>
   );
 }
 

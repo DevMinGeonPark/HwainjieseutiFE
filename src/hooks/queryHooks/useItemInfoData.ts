@@ -12,8 +12,7 @@ export default function useItemInfoData(params: ParamProps) {
 
   const query = useQuery(
     ['getItemInfoData', params],
-    // () => getItemInfo({...params, LogInID: user?.UserId || ''}),
-    () => getItemInfo(params),
+    () => getItemInfo({...params, LogInID: user?.UserId || ''}),
     {
       notifyOnChangeProps: ['data'],
       onSuccess: (data: ItemDetail) => {

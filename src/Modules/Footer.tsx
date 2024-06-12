@@ -20,7 +20,7 @@ export default function Footer() {
           image={Images.Footer.kakao}
           title="카카오톡채널"
           desc="클릭하면 바로 1:1 상담가능!"
-          onPress={() => Linking.openURL('https://pf.kakao.com/_ULWxfd')}
+          onPress={() => Linking.openURL('http://pf.kakao.com/_ULWxfd/chat')}
         />
         <SocialContainer
           image={Images.Footer.naver}

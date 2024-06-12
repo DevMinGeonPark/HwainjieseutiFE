@@ -89,8 +89,8 @@ android {
         applicationId "com.finegst.mshop"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 17 //android update시 변경
-        versionName "5.0.15" //codepush 변경부분
+        versionCode 18 //android update시 변경 (이전 17 // 5월)
+        versionName "6.0.0" //codepush 변경부분 (이번 5.0.15 // 5월)
         multiDexEnabled true // 추가 (line:140)
 
     }
