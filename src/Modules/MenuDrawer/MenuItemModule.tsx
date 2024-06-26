@@ -5,8 +5,8 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import MenuItem from '@src/Atomic/Drawer/MenuItem';
 import AlertModal from '@src/Modules/MenuDrawer/AlertModal';
-import {useUserState} from '@src/contexts/UserContext';
 import {NumberPreprocesser} from '@src/Utils/NumberPreprocesser';
+import {useUserStore} from '@src/Store/userStore';
 
 interface MenuItemProps {
   point?: number;
@@ -14,7 +14,7 @@ interface MenuItemProps {
 export default function MenuItemModule({point}: MenuItemProps) {
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
-  const [user, setUser] = useUserState();
+  const {user, setUser} = useUserStore();
 
   useEffect(() => {
     setUser({

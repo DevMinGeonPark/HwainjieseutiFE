@@ -1,6 +1,6 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {StackNavigator} from './StackNavigator';
+import {StackNavigator} from './_StackNavigator.ios';
 import {DrawerScreenProps} from '@Types/NavigationTypes';
 import {useDrawerState} from '@src/contexts/DrawerStateContext';
 import MenuDrawer from './MenuDrawer';

@@ -9,15 +9,15 @@ import QnAPost from '@src/Modules/QnAMain/QnAPost';
 import InquiryWriteButton from '@src/Atomic/CustomerInquiry/InquiryWriteButton';
 import useQnAMainData from '@src/hooks/queryHooks/useQnAMainData';
 import {ParamProps} from '@src/Types/QnAMainTypes';
-import {useUserState} from '@src/contexts/UserContext';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {useNavigation} from '@react-navigation/native';
 import {WriteDatePreprocesser} from '@Utils/WriteDatePreprocesser';
 import {useFocusEffect} from '@react-navigation/native';
+import {useUserStore} from '@src/Store/userStore';
 
 const QnAMain = () => {
-  const [user] = useUserState();
+  const {user} = useUserStore();
   const [params, setParams] = React.useState<ParamProps>({
     KTShopID: user?.UserId || '',
     Category: 'A' || '',

@@ -3,9 +3,7 @@ import {Pressable, Platform, Alert} from 'react-native';
 import {Center} from 'native-base';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {FontText} from '../FontText';
-import {useLoginCheck} from '@src/hooks/useLoginCheck';
-import {useUserState} from '@src/contexts/UserContext';
-import {hasUserProperties} from '@src/Types/ContentTypes';
+import {useUserStore} from '@src/Store/userStore';
 
 interface MenuButtonProps {
   navigation: StackNavigationProp<any>;
@@ -27,8 +25,6 @@ const MenuButton: React.FC<MenuButtonProps> = ({
   params,
   currentName,
 }) => {
-  const [user] = useUserState();
-
   return (
     <Pressable
       onPress={() => {

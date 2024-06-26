@@ -8,8 +8,9 @@ export default function usePopupModal() {
   const query = useQuery(['PopupModal'], () => popupModal(), {
     notifyOnChangeProps: ['data'],
     onSuccess: data => {
-      log.info(`usePopupModal 데이터 불러오기 성공`);
-      log.info('popup', JSON.stringify(data, null, 2));
+      // log.info(`usePopupModal 데이터 불러오기 성공`);
+      // log.info('popup', JSON.stringify(data, null, 2));
+
       return data;
     },
     onError: error => {
@@ -17,5 +18,9 @@ export default function usePopupModal() {
       log.error(error);
     },
   });
-  return query;
+
+  // 원하는 이름으로 할당
+  const {data: popupData, ...restQuery} = query;
+
+  return {popupData, ...restQuery};
 }

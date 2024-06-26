@@ -10,7 +10,6 @@ import InstallmentButtons from '../Modules/Detail/InstallmentButtons';
 import PlanSelector from '@src/Modules/Detail/PlanSelector';
 import KTDiscountButtons from '@src/Modules/Detail/KTDiscountButtons';
 import getPlanDesc from '@src/API/Detail/getPlanDesc';
-import {useUserState} from '@src/contexts/UserContext';
 import ProductPiece from '@src/Modules/Detail/ProductPiece';
 import ShareModal from '@src/Modules/Detail/ShareModal';
 import {FontText} from '@src/Atomic/FontText';
@@ -24,15 +23,18 @@ import {DetailScreenProps} from '@src/Types/NavigationTypes';
 import RateCalculator from '@src/Modules/Detail/RateCalculator';
 import {useFixBarState} from '@src/contexts/FixBarStateContext';
 import {FlatListContext} from '@src/contexts/FlatListContext';
+import {useUserStore} from '@src/Store/userStore';
+import Layout from '@src/Modules/Layout';
+import FixBar from '@src/Modules/Detail/FixBar';
 
 const Detail = () => {
   const [planDesc, setPlanDesc] = useState<string>('');
   const [supType, setSupType] = useState<string>('Machine');
   const [installment, setInstallment] = useState<string>('24');
   const [ktDiscount, setKtDiscount] = useState<string>('Y');
-  const [user] = useUserState();
+  const {user} = useUserStore();
 
-  const {flatListRef} = useContext(FlatListContext);
+  // const {flatListRef} = useContext(FlatListContext);
 
   const width = useWindowDimensions().width - 20;
   const routeParams = useRoute().params as DetailScreenProps;
@@ -42,8 +44,6 @@ const Detail = () => {
 
   const [plan, setPlan] = useState<string>(planDefulats);
 
-  const [, setFixbarProps] = useFixBarState();
-
   const {data} = useItemInfoData({
     ItemCode: routeParams.it_id,
     CategorieCode: routeParams.MenuVar,
@@ -51,8 +51,8 @@ const Detail = () => {
 
   useEffect(() => {
     setPlan(planDefulats);
-    flatListRef?.current?.scrollToOffset({offset: 0, animated: true});
-  }, [data]);
+    // flatListRef?.current?.scrollToOffset({offset: 0, animated: true});
+  }, []);
 
   useEffect(() => {
     if (plan.length !== 0 && data?.RateCode) {
@@ -62,96 +62,102 @@ const Detail = () => {
 
   return (
     <Box>
-      {data?.ItemColor && data?.ItemImgUrl && (
-        <DetailInfo
-          productTitle={data?.ItemName || ''}
-          data={data?.ItemColor || []}
-          errImg={data?.ItemImgUrl || ''}
-        />
-      )}
-      <RateTypeUI heading="가입형태">
-        <SignTypeButtons regiTypes={data?.RegiType || []} route={routeParams} />
-      </RateTypeUI>
-      <RateTypeUI heading="지원형태">
-        <SupTypeButtons
-          SupportType={data?.SupportType || []}
-          setSupType={setSupType}
-          route={routeParams}
-        />
-      </RateTypeUI>
-      <RateTypeUI heading="할부개월">
-        <InstallmentButtons
-          ForMonth={data?.ForMonth || []}
-          setInstallment={setInstallment}
-          route={routeParams}
-        />
-      </RateTypeUI>
-      <RateTypeUI heading="요금제 선택">
-        <PlanSelector
-          RatePlans={data?.RatePlan || []}
-          plan={plan}
-          setPlan={setPlan}
-        />
-        <Box ml={1} mt={3}>
-          <FontText>{planDesc}</FontText>
-        </Box>
-      </RateTypeUI>
-      <RateTypeUI heading="수령방법">
+      <Layout>
+        {data?.ItemColor && data?.ItemImgUrl && (
+          <DetailInfo
+            productTitle={data?.ItemName || ''}
+            data={data?.ItemColor || []}
+            errImg={data?.ItemImgUrl || ''}
+          />
+        )}
+        <RateTypeUI heading="가입형태">
+          <SignTypeButtons
+            regiTypes={data?.RegiType || []}
+            route={routeParams}
+          />
+        </RateTypeUI>
+        <RateTypeUI heading="지원형태">
+          <SupTypeButtons
+            SupportType={data?.SupportType || []}
+            setSupType={setSupType}
+            route={routeParams}
+          />
+        </RateTypeUI>
+        <RateTypeUI heading="할부개월">
+          <InstallmentButtons
+            ForMonth={data?.ForMonth || []}
+            setInstallment={setInstallment}
+            route={routeParams}
+          />
+        </RateTypeUI>
+        <RateTypeUI heading="요금제 선택">
+          <PlanSelector
+            RatePlans={data?.RatePlan || []}
+            plan={plan}
+            setPlan={setPlan}
+          />
+          <Box ml={1} mt={3}>
+            <FontText>{planDesc}</FontText>
+          </Box>
+        </RateTypeUI>
+        <RateTypeUI heading="수령방법">
+          <Button
+            mt={2}
+            onPress={() => {}}
+            variant="outline"
+            size="sm"
+            borderWidth={3}
+            borderColor={'#5ddfde'}
+            _text={{fontSize: 'md', fontWeight: 'bold', color: 'black'}}>
+            {data?.RevMethod?.[0]?.Title || 'Title unavailable'}
+          </Button>
+          <FontText mt={1}>
+            {data?.RevMethod?.[0]?.ClickComment || 'ClickComment unavailable'}
+          </FontText>
+        </RateTypeUI>
+        <RateTypeUI heading="KT공식몰 추가할인">
+          <KTDiscountButtons
+            KTDiscount={data?.KTDiscount || []}
+            setKtDiscount={setKtDiscount}
+            route={routeParams}
+          />
+        </RateTypeUI>
         <Button
-          mt={2}
-          onPress={() => {}}
-          variant="outline"
-          size="sm"
-          borderWidth={3}
-          borderColor={'#5ddfde'}
-          _text={{fontSize: 'md', fontWeight: 'bold', color: 'black'}}>
-          {data?.RevMethod?.[0]?.Title || 'Title unavailable'}
+          m={2}
+          my={5}
+          bg={'#5ddfde'}
+          variant={'solid'}
+          _text={{fontSize: 'md', fontWeight: 'bold', color: 'black'}}
+          onPress={() => {
+            Linking.openURL(data?.OrderPage || '');
+          }}>
+          주문하기
         </Button>
-        <FontText mt={1}>
-          {data?.RevMethod?.[0]?.ClickComment || 'ClickComment unavailable'}
-        </FontText>
-      </RateTypeUI>
-      <RateTypeUI heading="KT공식몰 추가할인">
-        <KTDiscountButtons
-          KTDiscount={data?.KTDiscount || []}
-          setKtDiscount={setKtDiscount}
-          route={routeParams}
+        <Box borderTopWidth={2} borderTopColor={'primary.400'} pt={3}>
+          <RateCalculator
+            ItemCode={data?.ItemCode || routeParams.it_id}
+            Vol={plan}
+            SupportTypeVol={supType}
+            KTDiscount={ktDiscount}
+            ForMonth={installment}
+            UserID={user?.UserId || null}
+            OrderPage={data?.OrderPage || ''}
+          />
+        </Box>
+        {/* 애플 업데이트 후 변경 */}
+        <Box borderTopWidth={2} borderTopColor={'primary.400'}>
+          <InfoTab
+            BuyBenefit={data?.BuyBenefit || []}
+            CommAttn={data?.CommAttn || ''}
+          />
+        </Box>
+        <ProductPiece
+          MenuType={routeParams.MenuType}
+          MenuVar={routeParams.MenuVar}
         />
-      </RateTypeUI>
-      <Button
-        m={2}
-        my={5}
-        bg={'#5ddfde'}
-        variant={'solid'}
-        _text={{fontSize: 'md', fontWeight: 'bold', color: 'black'}}
-        onPress={() => {
-          Linking.openURL(data?.OrderPage || '');
-        }}>
-        주문하기
-      </Button>
-      <Box borderTopWidth={2} borderTopColor={'primary.400'} pt={3}>
-        <RateCalculator
-          ItemCode={data?.ItemCode || routeParams.it_id}
-          Vol={plan}
-          SupportTypeVol={supType}
-          KTDiscount={ktDiscount}
-          ForMonth={installment}
-          UserID={user?.UserId || null}
-          OrderPage={data?.OrderPage || ''}
-        />
-      </Box>
-      {/* 애플 업데이트 후 변경 */}
-      <Box borderTopWidth={2} borderTopColor={'primary.400'}>
-        <InfoTab
-          BuyBenefit={data?.BuyBenefit || []}
-          CommAttn={data?.CommAttn || ''}
-        />
-      </Box>
-      <ProductPiece
-        MenuType={routeParams.MenuType}
-        MenuVar={routeParams.MenuVar}
-      />
+      </Layout>
+      <FixBar />
     </Box>
   );
 };
-export default withCommontLayout(Detail, {showFixBar: true});
+export default Detail;

@@ -5,8 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import AutoHeightImage from 'react-native-auto-height-image';
-import {useUserState} from '@src/contexts/UserContext';
-import {hasUserProperties} from '@src/Types/ContentTypes';
+import {useUserStore} from '@src/Store/userStore';
 
 interface BannerProps {
   img?: string;
@@ -16,20 +15,14 @@ interface BannerProps {
 export default function Banner({img, imgUrl}: BannerProps) {
   const width = useWindowDimensions().width;
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
-  const [user] = useUserState();
+  const {hasUser} = useUserStore();
 
   return (
     <Pressable
       onPress={() => {
-        if (hasUserProperties(user) && imgUrl) {
-          navigation.navigate('Event', {
-            url: `https://kt-online.shop//${imgUrl}`,
-          });
-        } else {
-          Alert.alert('로그인이 필요합니다.', '', [
-            {text: 'OK', onPress: () => navigation.navigate('Login')},
-          ]);
-        }
+        navigation.navigate('Event', {
+          url: `https://kt-online.shop//${imgUrl}`,
+        });
       }}>
       {img && <AutoHeightImage width={width} source={{uri: img}} />}
     </Pressable>

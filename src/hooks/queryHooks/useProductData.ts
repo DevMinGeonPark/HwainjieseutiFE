@@ -9,12 +9,12 @@ import {
   InternetPlusTVData,
 } from '@src/Types/ProductTypes';
 import {CommonProps} from '@src/Types/CommonTypes';
-import {useUserState} from '@src/contexts/UserContext';
+import {useUserStore} from '@src/Store/userStore';
 
 export default function useProductData(params: CommonProps | ParamProps) {
   const log = useLog('data');
 
-  const [user] = useUserState();
+  const {user} = useUserStore();
 
   const query = useQuery(
     ['getProductData', params],

@@ -7,7 +7,7 @@ interface ProductListProps {
   items: ItemList[];
 }
 
-export default function ProductList({items}: ProductListProps) {
+function ProductList({items}: ProductListProps) {
   return (
     <HStack flexWrap="wrap">
       {items?.map((item, index) => (
@@ -28,3 +28,5 @@ export default function ProductList({items}: ProductListProps) {
     </HStack>
   );
 }
+
+export default React.memo(ProductList);

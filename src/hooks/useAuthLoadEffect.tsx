@@ -1,10 +1,11 @@
 import {useEffect, useState} from 'react';
-import {useUserState} from '@src/contexts/UserContext';
+
 import authStorage from '@src/Utils/authStorage';
 import logOutStatus from '@src/Utils/logOutStatus';
+import {useUserStore} from '@src/Store/userStore';
 
 export default function useAuthLoadEffect() {
-  const [, setUser] = useUserState();
+  const {setUser} = useUserStore();
 
   useEffect(() => {
     const fn = async () => {

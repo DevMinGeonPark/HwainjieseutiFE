@@ -3,8 +3,6 @@ import React, {useEffect, useState} from 'react';
 import {Box, Center, Image, Pressable} from 'native-base';
 import {ItemList} from '@Types/MainDataTypes';
 import Price from '@src/Atomic/ProductCard/Price';
-import {useUserState} from '@src/contexts/UserContext';
-import SplashScreen from 'react-native-splash-screen';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
@@ -13,14 +11,14 @@ import Circles from '@src/Atomic/ProductCard/Circles';
 import {FontHeading} from '@src/Atomic/FontHeading';
 import ToDetailButton from '@src/Atomic/ProductCard/ToDetailButton';
 import {NameSelector} from '@src/Utils/NameSelector';
-import {useLoginCheck} from '@src/hooks/useLoginCheck';
 import {Alert} from 'react-native';
-import {hasUserProperties} from '@src/Types/ContentTypes';
+import {useUserStore} from '@src/Store/userStore';
+import SplashScreen from 'react-native-splash-screen';
 
-export default function ProductCard(data: ItemList) {
+function ProductCard(data: ItemList) {
   const [color, setColor] = useState<string[]>();
   const [isPressed, setIsPressed] = useState<boolean>(false);
-  const [user] = useUserState();
+  const {hasUser} = useUserStore();
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
   const routeName = useRoute().name;
   const width = useWindowDimensions().width;
@@ -45,7 +43,7 @@ export default function ProductCard(data: ItemList) {
       }}
       onPress={() => {
         // ios 이거나 로그인이 되어있으면
-        if (Platform.OS === 'ios' || hasUserProperties(user)) {
+        if (Platform.OS === 'ios' || hasUser()) {
           navigation.navigate('Detail', {
             name: NameSelector(data.MenuVar),
             MenuType: data.MenuType,
@@ -87,7 +85,7 @@ export default function ProductCard(data: ItemList) {
             <FontHeading fontSize={14}>{data.ItemName}</FontHeading>
           </Center>
           <Circles color={color || []} size={15} onCirclePress={() => {}} />
-          {hasUserProperties(user) && (
+          {hasUser() && (
             <Price
               ItemChargeNormal={data?.ItemChargeNormal}
               ItemChargeSales={data?.ItemChargeSales}
@@ -100,3 +98,5 @@ export default function ProductCard(data: ItemList) {
     </Pressable>
   );
 }
+
+export default ProductCard;

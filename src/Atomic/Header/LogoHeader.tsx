@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {Images} from '@assets/imgs/Images';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {StackScreenProps} from '@Types/NavigationTypes';
@@ -9,7 +9,7 @@ import {DrawerNavigationProp} from '@react-navigation/drawer';
 import {DrawerScreenProps} from '@Types/NavigationTypes';
 import {useDrawerState} from '@src/contexts/DrawerStateContext';
 
-export default function LogoHeader() {
+function LogoHeader() {
   const stackNavigation =
     useNavigation<StackNavigationProp<StackScreenProps>>();
   const drawerNavigation =
@@ -43,3 +43,5 @@ export default function LogoHeader() {
     </Center>
   );
 }
+
+export default memo(LogoHeader);

@@ -10,12 +10,13 @@ import EmailInput from '@src/Atomic/WriteQnA/EmailInput';
 import PhoneInput from '@src/Atomic/WriteQnA/PhoneInput';
 import TitleInput from '@src/Atomic/WriteQnA/TitleInput';
 import {ParamProps} from '@src/Types/WriteQnATypes';
-import {useUserState} from '@src/contexts/UserContext';
+
 import useWriteQnA from '@src/hooks/queryHooks/useWriteQnA';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {WriteQnAParamsProps} from '@Types/NavigationTypes';
+import {useUserStore} from '@src/Store/userStore';
 
 const WriteQnA = () => {
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
@@ -31,7 +32,7 @@ const WriteQnA = () => {
   const [content, setContent] = React.useState<string>(
     routeParams.Content || '',
   );
-  const [user] = useUserState();
+  const {user} = useUserStore();
   // Validation
   const [isValidEmail, setIsValidEmail] = React.useState(true);
   const [isValidPhone, setIsValidPhone] = React.useState(true);

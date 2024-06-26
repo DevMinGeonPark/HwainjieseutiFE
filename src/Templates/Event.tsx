@@ -4,8 +4,8 @@ import withCommontLayout from './withCommontLayout';
 import {Box} from 'native-base';
 import {Alert, ActivityIndicator} from 'react-native';
 
-import {useUserState} from '@src/contexts/UserContext';
 import {useRoute} from '@react-navigation/native';
+import {useUserStore} from '@src/Store/userStore';
 
 const Event = () => {
   const [webViewKey, setWebViewKey] = useState<number>(0);
@@ -16,9 +16,11 @@ const Event = () => {
     ? routeParams.url
     : 'https://kt-online.shop/event.php';
 
-  console.log('url:', url);
+  const {user} = useUserStore();
 
-  const [user] = useUserState();
+  const preUrl = `${url}?loginid=${user?.UserId}&app_page=1`;
+
+  console.log('preUrl', preUrl);
 
   const [height, setHeight] = useState(0);
 
@@ -97,7 +99,7 @@ const Event = () => {
           ref={webViewRef} // WebView를 사용하기 위한 ref
           key={webViewKey} // WebView를 초기화하기 위한 키값
           source={{
-            uri: `${url}?loginid=${user.UserId}&app_page=1`,
+            uri: preUrl,
           }}
           style={{
             height: height || 2000,
@@ -108,7 +110,7 @@ const Event = () => {
           onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
           javaScriptEnabled={true} // 자바스크립트 허용
           sharedCookiesEnabled={true} // 쿠키허용
-          cacheEnabled={false} // 캐시허용
+          cacheEnabled={true} // 캐시허용
           injectedJavaScript={injectedJavaScriptOnLoad}
           onMessage={handleOnMessage} // 웹뷰에서 postMessage를 통해 메시지를 받습니다.
           scalesPageToFit={false} // webView zoomIn disable

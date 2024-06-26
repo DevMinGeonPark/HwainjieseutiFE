@@ -29,4 +29,7 @@ export const Images = {
   Product: {
     NoImage: require('@assets/imgs/product/NoImage.png'),
   },
+  Update: {
+    AppIcon: require('@assets/imgs/update/AppIcon.png'),
+  },
 };

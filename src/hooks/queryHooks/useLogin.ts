@@ -2,7 +2,6 @@ import {login} from '@src/API/auth';
 import {useMutation} from 'react-query';
 import useAlert from '../useAlert';
 import useLog from '../useLog';
-import {useUserState} from '@src/contexts/UserContext';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {useNavigation} from '@react-navigation/native';
@@ -12,6 +11,9 @@ import {DrawerScreenProps} from '@Types/NavigationTypes';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
 import logOutStatus from '@src/Utils/logOutStatus';
 
+import {useUserStore} from '@src/Store/userStore';
+import useMemberInfoData from './useMemberInfoData';
+
 interface LoginData {
   id: string;
   loginType: string;
@@ -20,26 +22,33 @@ interface LoginData {
 export default function useLogin({id, loginType}: LoginData) {
   const stackNavigation =
     useNavigation<StackNavigationProp<StackScreenProps>>();
-  const drawerNavigation =
-    useNavigation<DrawerNavigationProp<DrawerScreenProps>>();
+  // const drawerNavigation =
+  //   useNavigation<DrawerNavigationProp<DrawerScreenProps>>();
+
+  const {refetch} = useMemberInfoData({
+    KTShopID: id || '',
+  });
 
   const alert = useAlert();
   const log = useLog('root');
-  const [, setUser] = useUserState();
-  const toast = useToast();
+
+  const {setUser} = useUserStore();
+
+  // const toast = useToast();
 
   const mutation = useMutation(login, {
     onSuccess: data => {
-      // if (data.Status.includes('A')) {
+      log.info('onSuccess:');
       if (data.Status === 'A10' || data.Status === 'A50') {
-        loginType === 'drawer'
-          ? drawerNavigation.goBack()
-          : stackNavigation.pop();
+        log.info('로그인 성공 정보:', JSON.stringify(data, null, 2));
+        log.info('setLogin 시작');
 
-        log.info('로그인 성공');
-        log.info('로그인 정보:', JSON.stringify(data, null, 2));
-        toast.show({title: '로그인 성공'});
         setUser({UserId: id, UserNm: data.UserNm, Point: 0});
+        log.info('setLogin 완료 & refetch 시작');
+        stackNavigation.navigate('Main');
+        // loginType === 'drawer'
+        //   ? drawerNavigation.goBack()
+        //   : stackNavigation.navigate('Main');
         authStorage.set({UserId: id, UserNm: data.UserNm, Point: 0});
         logOutStatus.set({lastLoginDate: new Date().toISOString()});
       } else {
@@ -47,7 +56,7 @@ export default function useLogin({id, loginType}: LoginData) {
         throw new Error(data.ErrMsg); //onError로 헨들링
       }
     },
-    onError: (error: AuthError) => {
+    onError: (error: {message: string}) => {
       const handle = error.message;
       log.error(`로그인 실패 [${handle}]`);
       if (handle === '로그인 정보 없음') {
@@ -78,6 +87,3 @@ export default function useLogin({id, loginType}: LoginData) {
   });
   return mutation;
 }
-type AuthError = {
-  message: string;
-};

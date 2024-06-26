@@ -19,10 +19,10 @@ const logOutStatus = {
       return null;
     }
   },
-  set(data: Status) {
+  async set(data: Status) {
     return EncryptedStorage.setItem(key, JSON.stringify(data));
   },
-  clear() {
+  async clear() {
     return EncryptedStorage.removeItem(key);
   },
 };

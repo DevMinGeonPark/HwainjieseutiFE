@@ -1,26 +1,30 @@
-import React, {useCallback} from 'react';
+import React, {memo} from 'react';
 import AdCopy from '@Atomic/AdCopy';
 import LogoHeader from '@src/Atomic/Header/LogoHeader';
 import SideBarButton from '@src/Atomic/Header/SideBarButton';
 import NavigationBar from '@src/Modules/NavigationBar';
 import UserInfo from './UserInfo';
 import {HStack, Box} from 'native-base';
-import {useUserState} from '@src/contexts/UserContext';
-import {useLoginCheck} from '@src/hooks/useLoginCheck';
-import {hasUserProperties} from '@src/Types/ContentTypes';
+import {useHeaderStore} from '@Store/headerStore';
+import {useUserStore} from '@src/Store/userStore';
 
-export default function Header() {
-  const [user] = useUserState();
+function Header() {
+  const {user, hasUser} = useUserStore();
+  const {isHeaderVisible} = useHeaderStore();
+
+  // console.log('header 리로딩');
 
   return (
     <Box>
-      <AdCopy />
-      <LogoHeader />
+      {isHeaderVisible && <AdCopy />}
+      {isHeaderVisible && <LogoHeader />}
       <HStack borderBottomWidth={1} borderTopWidth={1} borderColor="#CCC">
         <SideBarButton />
         <NavigationBar />
       </HStack>
-      {hasUserProperties(user) && <UserInfo user={user} />}
+      {isHeaderVisible && hasUser() && <UserInfo user={user} />}
     </Box>
   );
 }
+
+export default Header;

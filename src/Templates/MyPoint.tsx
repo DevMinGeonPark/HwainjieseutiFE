@@ -2,15 +2,15 @@ import React, {useEffect} from 'react';
 import {Box, Button, HStack, Spacer} from 'native-base';
 import PanelItem from '@src/Atomic/PanelItem';
 import withCommontLayout from './withCommontLayout';
-import {useUserState} from '@src/contexts/UserContext';
 import usePointDetailData from '@src/hooks/queryHooks/usePointDetailData';
 import TableBorad from '@src/Modules/MyPoint/TableBorad';
 import {useFocusEffect} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useToast} from 'native-base';
+import {useUserStore} from '@src/Store/userStore';
 
 const MyPoint = () => {
-  const [user] = useUserState();
+  const {user} = useUserStore();
   const {data, refetch, isLoading} = usePointDetailData({
     KTShopID: user?.UserId || '',
   });

@@ -10,7 +10,7 @@ import InstallmentButtons from '../Modules/Detail/InstallmentButtons';
 import PlanSelector from '@src/Modules/Detail/PlanSelector';
 import KTDiscountButtons from '@src/Modules/Detail/KTDiscountButtons';
 import getPlanDesc from '@src/API/Detail/getPlanDesc';
-import {useUserState} from '@src/contexts/UserContext';
+
 import ProductPiece from '@src/Modules/Detail/ProductPiece';
 import ShareModal from '@src/Modules/Detail/ShareModal';
 import {FontText} from '@src/Atomic/FontText';
@@ -21,11 +21,11 @@ import RateTypeUI from '@src/Modules/Detail/RateTypeUI';
 import useItemInfoData from '@src/hooks/queryHooks/useItemInfoData';
 import {DetailScreenProps} from '@src/Types/NavigationTypes';
 import RateCalculator from '@src/Modules/Detail/RateCalculator';
-import {useFixBarState} from '@src/contexts/FixBarStateContext';
 
 import {FlatListContext} from '@src/contexts/FlatListContext';
-import {hasUserProperties} from '@src/Types/ContentTypes';
 import InfoTab from '@src/Modules/Detail/InfoTab';
+import {useUserStore} from '@src/Store/userStore';
+import useFixBarStore from '@src/Store/fixBarStore';
 
 const Detail = () => {
   const [plan, setPlan] = useState<string>('212121');
@@ -33,13 +33,13 @@ const Detail = () => {
   const [supType, setSupType] = useState<string>('Machine');
   const [installment, setInstallment] = useState<string>('24');
   const [ktDiscount, setKtDiscount] = useState<string>('Y');
-  const [user] = useUserState();
+  const {user, hasUser} = useUserStore();
 
   const {flatListRef} = useContext(FlatListContext);
 
   const width = useWindowDimensions().width - 20;
   const routeParams = useRoute().params as DetailScreenProps;
-  const [, setFixbarProps] = useFixBarState();
+  const {setFixBarProps} = useFixBarStore();
 
   const {data} = useItemInfoData({
     ItemCode: routeParams.it_id,
@@ -56,6 +56,8 @@ const Detail = () => {
       getPlanDesc(data.RateCode, plan).then(desc => setPlanDesc(desc));
     }
   }, [plan, data]);
+
+  console.log(data);
 
   return (
     <Box>
@@ -108,7 +110,7 @@ const Detail = () => {
           {data?.RevMethod?.[0]?.ClickComment || 'ClickComment unavailable'}
         </FontText>
       </RateTypeUI>
-      {hasUserProperties(user) && (
+      {hasUser() && (
         <RateTypeUI heading="KT공식몰 추가할인">
           <KTDiscountButtons
             KTDiscount={data?.KTDiscount || []}

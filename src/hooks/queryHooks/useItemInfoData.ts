@@ -3,12 +3,12 @@ import useLog from '../useLog';
 import {ItemDetail, ParamProps} from '@src/Types/DetailTypes';
 import {Platform} from 'react-native';
 import {getItemInfo} from '@src/API/Detail/getItemInfo';
-import {useUserState} from '@src/contexts/UserContext';
+import {useUserStore} from '@src/Store/userStore';
 
 export default function useItemInfoData(params: ParamProps) {
   const log = useLog('data');
 
-  const [user] = useUserState();
+  const {user} = useUserStore();
 
   const query = useQuery(
     ['getItemInfoData', params],

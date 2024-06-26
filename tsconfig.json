@@ -22,7 +22,8 @@
       "@hooks/*": ["./src/hooks/*"],
       "@Utils/*": ["./src/Utils/*"],
       "@Types/*": ["src/Types/*"],
-      "@API/*": ["./src/API/*"]
+      "@API/*": ["./src/API/*"],
+      "@Store/*": ["./src/Store/*"]
     }
   },
   "exclude": [

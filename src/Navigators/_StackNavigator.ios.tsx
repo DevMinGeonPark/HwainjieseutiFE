@@ -1,0 +1,148 @@
+import React from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
+import Main from '../Templates/_Main.ios';
+import Login from '@src/Templates/Login';
+import {StackScreenProps} from '@Types/NavigationTypes';
+import useAuthLoadEffect from '@src/hooks/useAuthLoadEffect';
+import InternetPlusTV from '@src/Templates/InternetPlusTV';
+import Products from '@src/Templates/Products';
+import Event from '@src/Templates/Event';
+import MyPage from '@src/Templates/MyPage';
+import Confirm from '@src/Templates/Confirm';
+import CustomerInquiry from '@src/Templates/QnAMain';
+import MyPoint from '@src/Templates/MyPoint';
+import PrivacyCheck from '@src/Templates/PrivacyCheck';
+import SearchResult from '@src/Templates/SearchResult';
+import WriteQnA from '@src/Templates/WriteQnA';
+import QnADetail from '@src/Templates/QnADetail';
+import FindUser from '@src/Templates/FindUser';
+import WebRegister from '@src/Templates/WebRegister';
+
+import DetailAndroid from '@src/Templates/Detail.android';
+import DetailIOS from '@src/Templates/Detail.ios';
+import {Platform, Pressable, StyleSheet, Text, View} from 'react-native';
+import Header from '@src/Modules/Header';
+// import WebTest from '@src/Templates/WebTest';
+// import Detail from '@src/Templates/Detail.ios';
+
+// Detail 분기 처리
+const Detail = Platform.select({
+  ios: DetailIOS,
+  android: DetailAndroid,
+  default: DetailAndroid, //default is android
+});
+
+const Stack = createStackNavigator<StackScreenProps>();
+
+function StackNavigator() {
+  // Login Check
+  useAuthLoadEffect();
+  return (
+    <Stack.Navigator>
+      {/* <Stack.Screen name="Main" component={Main} /> */}
+      <Stack.Screen
+        name="Main"
+        component={Main}
+        options={{
+          headerShown: false,
+        }}
+      />
+      {/* AuthPages */}
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{
+          headerShown: false,
+        }}
+      />
+      {/* SubPages */}
+      <Stack.Screen
+        name="Samsung"
+        component={Products}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Apple"
+        component={Products}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Etc"
+        component={Products}
+        options={{
+          headerShown: false,
+        }}
+      />
+      {/* Detaisls */}
+      <Stack.Screen
+        name="Detail"
+        component={Detail}
+        options={{
+          headerShown: false,
+        }}
+      />
+      {/* Internet */}
+      <Stack.Screen
+        name="InternetPlusTV"
+        component={InternetPlusTV}
+        options={{headerShown: false}}
+      />
+      {/* Events */}
+      <Stack.Screen
+        name="Event"
+        component={Event}
+        options={{headerShown: false}}
+      />
+      {/* SideBar Pages */}
+      <Stack.Screen
+        name="MyPoint"
+        component={MyPoint}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="MyPage"
+        component={MyPage}
+        options={{headerShown: false}}
+      />
+      {/* Confirm & Register From */}
+      <Stack.Screen
+        name="Confirm"
+        component={Confirm}
+        options={{headerShown: false}}
+      />
+
+      <Stack.Screen
+        name="WebRegister"
+        component={WebRegister}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="QnAMain"
+        component={CustomerInquiry}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="QnADetail"
+        component={QnADetail}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="WriteQnA"
+        component={WriteQnA}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="SearchResult"
+        component={SearchResult}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen name="FindUser" component={FindUser} />
+    </Stack.Navigator>
+  );
+}
+
+export {StackNavigator};

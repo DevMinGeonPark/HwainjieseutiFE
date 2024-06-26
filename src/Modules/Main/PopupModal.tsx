@@ -8,20 +8,24 @@ import AutoHeightImage from 'react-native-auto-height-image';
 import {Alert, Text, useWindowDimensions} from 'react-native';
 import usePopupModal from '@src/hooks/queryHooks/usePopupModal';
 import Carousel from 'react-native-reanimated-carousel';
-import {useUserState} from '@src/contexts/UserContext';
-import {hasUserProperties} from '@src/Types/ContentTypes';
+import {useUserStore} from '@src/Store/userStore';
+import {GongContent} from '@src/Utils/processGongContent';
 
 interface PopupModalProps {
   isOpen: boolean;
   onClose: () => void;
+  data: GongContent[];
+  handleUri: (url: string) => void;
 }
 
-export default function PopupModal({isOpen, onClose}: PopupModalProps) {
+export default function PopupModal({
+  isOpen,
+  onClose,
+  data,
+  handleUri,
+}: PopupModalProps) {
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
   const width = useWindowDimensions().width;
-
-  const {data} = usePopupModal();
-  const [user] = useUserState();
 
   const [height, setHeight] = useState<number>(0);
 
@@ -44,16 +48,7 @@ export default function PopupModal({isOpen, onClose}: PopupModalProps) {
                 key={index}
                 onPress={() => {
                   onClose();
-                  if (hasUserProperties(user)) {
-                    console.log(item.GongLinkUrl);
-                    navigation.navigate('Event', {
-                      url: item.GongLinkUrl,
-                    });
-                  } else {
-                    Alert.alert('로그인이 필요합니다.', '', [
-                      {text: 'OK', onPress: () => navigation.navigate('Login')},
-                    ]);
-                  }
+                  handleUri(item.GongLinkUrl);
                 }}>
                 <AutoHeightImage
                   onHeightChange={height => {

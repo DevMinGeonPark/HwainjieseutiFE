@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, memo} from 'react';
 import {
   Box,
   VStack,
@@ -16,31 +16,28 @@ import {useNavigation} from '@react-navigation/native';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {StackNavigationProp} from '@react-navigation/stack';
 import useMemberInfoData from '@src/hooks/queryHooks/useMemberInfoData';
+import useLog from '@src/hooks/useLog';
 
-export default function LoginForm() {
+function LoginForm() {
   const [id, setID] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
 
-  const {mutate: login, isLoading: loginLoading} = useLogin({
+  const {mutate: login} = useLogin({
     id: id,
     loginType: 'login',
   });
 
-  const {refetch} = useMemberInfoData({
-    KTShopID: id || '',
-  });
+  const log = useLog('root');
 
   const onPressLogin = () => {
-    if (loginLoading) return;
-
-    if (!id || !password) {
-      Alert.alert('Error', '아이디와 비밀번호를 모두 입력해주세요.');
-      return;
-    }
-
-    login({id, password});
-    refetch();
+    // if (!id || !password) {
+    //   Alert.alert('Error', '아이디와 비밀번호를 모두 입력해주세요.');
+    // } else {
+    // login({id, password});
+    login({id: 'web366', password: '123456'});
+    // navigation.navigate('Main');
+    // }
   };
 
   return (
@@ -92,3 +89,5 @@ export default function LoginForm() {
     </Box>
   );
 }
+
+export default LoginForm;

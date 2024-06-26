@@ -8,6 +8,7 @@ import {useNavigation} from '@react-navigation/native';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Alert} from 'react-native';
+import Layout from '@src/Modules/Layout';
 
 interface FindUserData {
   error: string;
@@ -47,7 +48,7 @@ const FindUser = () => {
   };
 
   return (
-    <Box>
+    <Layout>
       <PanelItem
         title="Find PW"
         icon="file-text"
@@ -93,8 +94,9 @@ const FindUser = () => {
           비밀번호 찾기
         </Button>
       </VStack>
-    </Box>
+    </Layout>
   );
 };
 
-export default withCommontLayout(FindUser);
+// export default withCommontLayout(FindUser);
+export default FindUser;

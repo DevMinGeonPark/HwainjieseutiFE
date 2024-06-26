@@ -14,6 +14,8 @@ export async function login(params: LoginParams) {
     KTShopPW: encrypt(params.password),
   };
 
+  console.log(data);
+
   const res = await client.post('login.php', data);
 
   return res.data;

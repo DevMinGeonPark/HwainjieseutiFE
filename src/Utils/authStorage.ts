@@ -16,10 +16,10 @@ const authStorage = {
       return null;
     }
   },
-  set(data: User) {
+  async set(data: User) {
     return EncryptedStorage.setItem(key, JSON.stringify(data));
   },
-  clear() {
+  async clear() {
     return EncryptedStorage.removeItem(key);
   },
 };

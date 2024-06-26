@@ -1,10 +1,10 @@
 import React from 'react';
 import {AlertDialog, Button, Input} from 'native-base';
 import useDeleteMember from '@src/hooks/queryHooks/useDeleteMember';
-import {useUserState} from '@src/contexts/UserContext';
 import {FontText} from '@src/Atomic/FontText';
 import {encrypt} from '@src/Utils/Encrypt';
 import authStorage from '@src/Utils/authStorage';
+import {useUserStore} from '@src/Store/userStore';
 
 interface AlertModalProps {
   isOpen: boolean;
@@ -13,7 +13,7 @@ interface AlertModalProps {
 
 export default function AlertModal({isOpen, setIsOpen}: AlertModalProps) {
   const onClose = () => setIsOpen(false);
-  const [user, setUser] = useUserState();
+  const {user, setUser} = useUserStore();
   const deleteMember = useDeleteMember();
   const cancelRef = React.useRef(null);
   const [password, setPassword] = React.useState('');

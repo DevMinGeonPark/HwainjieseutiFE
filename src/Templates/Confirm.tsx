@@ -5,15 +5,15 @@ import {Box, Button, Center, HStack, Input} from 'native-base';
 import {FontText} from '@src/Atomic/FontText';
 import {FontHeading} from '@src/Atomic/FontHeading';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {useUserState} from '@src/contexts/UserContext';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {useNavigation} from '@react-navigation/native';
 import useConfirmPW from '@hooks/queryHooks/useConfirmPW';
 import {encrypt} from '@src/Utils/Encrypt';
+import {useUserStore} from '@src/Store/userStore';
 
 const Confirm = () => {
-  const [user] = useUserState();
+  const {user} = useUserStore();
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
   const confirmPassword = useConfirmPW();
   const [password, setPassword] = React.useState<string>('');

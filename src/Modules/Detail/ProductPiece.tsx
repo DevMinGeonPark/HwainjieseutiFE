@@ -54,4 +54,4 @@ const ProductPiece = ({MenuType, MenuVar}: ProductPieceProps) => {
   );
 };
 
-export default React.memo(ProductPiece);
+export default ProductPiece;

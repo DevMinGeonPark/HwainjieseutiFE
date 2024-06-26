@@ -1,13 +1,12 @@
 import {Box, Button, VStack} from 'native-base';
 import React, {useEffect} from 'react';
 import MenuItem from '@src/Atomic/Drawer/MenuItem';
-import {useUserState} from '@src/contexts/UserContext';
+
 import authStorage from '@src/Utils/authStorage';
 import {useToast} from 'native-base';
 import DividerTitle from '@src/Atomic/Navigator/DividerTitle';
 import DrawerInfo from '@src/Modules/MenuDrawer/DrawerInfo';
 import DrawerLoginFrom from '@src/Modules/MenuDrawer/DrawerLoginFrom';
-import {useLoginCheck} from '@src/hooks/useLoginCheck';
 import useMemberInfoData from '@src/hooks/queryHooks/useMemberInfoData';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {PointSave} from '@src/API/MyPoint/PointSave';
@@ -16,10 +15,10 @@ import MenuItemModule from '@src/Modules/MenuDrawer/MenuItemModule';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackScreenProps} from '@Types/NavigationTypes';
-import {hasUserProperties} from '@src/Types/ContentTypes';
+import {useUserStore} from '@src/Store/userStore';
 
 export default function MenuDrawer(props: any) {
-  const [user, setUser] = useUserState();
+  const {user, setUser, hasUser} = useUserStore();
   const Toast = useToast();
 
   const {data, refetch} = useMemberInfoData({
@@ -43,15 +42,15 @@ export default function MenuDrawer(props: any) {
   }, [user]);
 
   const logOut = async () => {
-    if (user) {
+    if (hasUser()) {
+      navigation.navigate('Main');
+      Toast.show({title: '로그아웃이 완료되었습니다.'});
       await authStorage.clear();
       await setUser(null);
-      Toast.show({title: '로그아웃이 완료되었습니다.'});
-      navigation.navigate('Main');
     }
   };
 
-  if (!hasUserProperties(user))
+  if (!hasUser())
     return (
       <Box safeArea m={5}>
         <DrawerLoginFrom />

@@ -89,10 +89,9 @@ android {
         applicationId "com.finegst.mshop"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 18 //android update시 변경 (이전 17 // 5월)
-        versionName "6.0.0" //codepush 변경부분 (이번 5.0.15 // 5월)
+        versionCode 19 //android update시 변경 (이전 18 // 6월 // 코드푸시 상태 o)
+        versionName "6.0.1" //codepush 변경부분 (이번 5.0.16 // 6월 // 코드푸시 상태 o)
         multiDexEnabled true // 추가 (line:140)
-
     }
     signingConfigs {
         debug {
@@ -118,10 +117,17 @@ android {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
             //  debuggable true //error 체크
+            shrinkResources true // 필요없는 리소스 제거
             signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
+    }
+    packagingOptions {
+        exclude 'drawable-xhdpi/node_modules_reactnavigation_*'
+        exclude 'drawable-xxhdpi/node_modules_reactnavigation_*'
+        exclude 'drawable-hdpi/node_modules_reactnavigation_*'
+        exclude 'drawable-mdpi/node_modules_reactnavigation_*'
     }
 }
 

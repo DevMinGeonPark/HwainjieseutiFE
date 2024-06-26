@@ -1,18 +1,16 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {memo} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {StackScreenProps} from '@Types/NavigationTypes';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {FontText} from './FontText';
 import {Box, HStack, Pressable} from 'native-base';
 import {FontHeading} from './FontHeading';
-import {useLoginCheck} from '@src/hooks/useLoginCheck';
-import {useUserState} from '@src/contexts/UserContext';
-import {hasUserProperties} from '@src/Types/ContentTypes';
+import {useUserStore} from '@src/Store/userStore';
 
-export default function AdCopy() {
+function AdCopy() {
   const navigation = useNavigation<StackNavigationProp<StackScreenProps>>();
-  const [user] = useUserState();
+  const {hasUser} = useUserStore();
 
   return (
     <HStack
@@ -26,9 +24,9 @@ export default function AdCopy() {
           회원 전용 App
         </FontHeading>
       </HStack>
-      {!hasUserProperties(user) && (
+      {!hasUser() && (
         <HStack>
-          <Pressable onPress={() => navigation.navigate('Login')}>
+          <Pressable onPress={() => navigation.push('Login')}>
             <FontText>로그인</FontText>
           </Pressable>
           <FontText> | </FontText>
@@ -43,3 +41,4 @@ export default function AdCopy() {
     </HStack>
   );
 }
+export default memo(AdCopy);

@@ -1,12 +1,11 @@
 import React, {useRef, useMemo} from 'react';
 import Header from '@src/Modules/Header';
 import Footer from '@src/Modules/Footer';
-import {Box, View} from 'native-base';
+import {Box} from 'native-base';
 import FixBar from '@src/Modules/Detail/FixBar';
-import {NativeScrollEvent, NativeSyntheticEvent, FlatList} from 'react-native';
+import {FlatList} from 'react-native';
 import {FixBarContextProvider} from '@src/contexts/FixBarStateContext';
-import {useLoginCheck} from '@src/hooks/useLoginCheck';
-import {FlatListContext, FlatListInstance} from '@src/contexts/FlatListContext';
+import {FlatListContext} from '@src/contexts/FlatListContext';
 
 import GoCustomerCenter from '@src/Atomic/Main/GoCustomerCenter';
 

@@ -13,11 +13,10 @@ import NonLineLabel from '@src/Atomic/Detail/NonLineLabel';
 import RateBox from '@src/Atomic/Detail/RateBox';
 import {MachineCalResType, ChargeCalResType} from '@Types/RateCalculatorTypes';
 import {FontHeading} from '@src/Atomic/FontHeading';
-import {useFixBarState} from '@src/contexts/FixBarStateContext';
 import useRateData from '@src/hooks/queryHooks/useRateData';
 import {FontText} from '@src/Atomic/FontText';
-import {useUserState} from '@src/contexts/UserContext';
-import {hasUserProperties} from '@src/Types/ContentTypes';
+import {useUserStore} from '@src/Store/userStore';
+import useFixBarStore from '@src/Store/fixBarStore';
 
 interface RateCalculatorProps extends ParamProps {
   OrderPage: string;
@@ -26,20 +25,20 @@ interface RateCalculatorProps extends ParamProps {
 export default function RateCalculator(Params: RateCalculatorProps) {
   const {data, status} = useRateData(Params);
 
-  const [, setFixbarProps] = useFixBarState();
+  const {setFixBarProps} = useFixBarStore();
 
-  const [user] = useUserState();
+  const {hasUser} = useUserStore();
 
   useEffect(() => {
     if (status === 'success') {
-      setFixbarProps({
+      setFixBarProps({
         ChgContractMonthChg: data?.ChgContractMonthChg,
         ChgContractMonthRate: data?.ChgContractMonthRate,
         ChgContractMonthTotal: data?.ChgContractMonthTotal,
         OrderPage: Params?.OrderPage,
       });
     }
-  }, [status, data, setFixbarProps]);
+  }, [status, data]);
   return (
     <>
       <Center borderBottomColor={'#DDD'} borderBottomWidth={1}>
@@ -72,7 +71,7 @@ export default function RateCalculator(Params: RateCalculatorProps) {
       )}
       {data?.ChgKTmalldiscount !== undefined &&
         Params?.KTDiscount !== 'N' &&
-        hasUserProperties(user) && (
+        hasUser() && (
           <BoxLabel
             label="KT공식몰 추가할인"
             Rate={data?.ChgKTmalldiscount || 0}
@@ -80,7 +79,7 @@ export default function RateCalculator(Params: RateCalculatorProps) {
             fontWeight="bold"
           />
         )}
-      {data?.ChgMyPoint !== undefined && hasUserProperties(user) && (
+      {data?.ChgMyPoint !== undefined && hasUser() && (
         <BoxLabel
           label="마이포인트"
           Rate={data?.ChgMyPoint || 0}

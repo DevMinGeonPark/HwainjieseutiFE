@@ -3,21 +3,21 @@ import {Box, Button, Center, HStack, Link, VStack} from 'native-base';
 import {FontText} from '@src/Atomic/FontText';
 import {Linking, useWindowDimensions} from 'react-native';
 import FixBarLabel from '@src/Atomic/Detail/FixBarLabel';
-import {useFixBarState} from '@src/contexts/FixBarStateContext';
 import {NumberPreprocesser} from '@src/Utils/NumberPreprocesser';
+import useFixBarStore from '@src/Store/fixBarStore';
 
 export default function FixBar() {
   const width = useWindowDimensions().width;
-  const [fixbarProps] = useFixBarState();
+  const {fixBarProps} = useFixBarStore();
 
   return (
-    <Box p={4} bg="black">
+    <Box p={4} bg="black" position="absolute" bottom={0} right={0} left={0}>
       <Center>
         <HStack space={4} alignItems="center">
           <FixBarLabel
             Title="월 할부금"
             Rate={NumberPreprocesser(
-              fixbarProps?.ChgContractMonthChg?.toString() || '0',
+              fixBarProps?.ChgContractMonthChg?.toString() || '0',
             )}
           />
           <FontText fontSize={14} color={'white'}>
@@ -26,7 +26,7 @@ export default function FixBar() {
           <FixBarLabel
             Title="월 통신요금"
             Rate={NumberPreprocesser(
-              fixbarProps?.ChgContractMonthRate?.toString() || '0',
+              fixBarProps?.ChgContractMonthRate?.toString() || '0',
             )}
           />
           <FontText fontSize={14} color={'white'}>
@@ -38,7 +38,7 @@ export default function FixBar() {
             </FontText>
             <FontText fontSize={15} fontWeight="bold" color={'white'}>
               {NumberPreprocesser(
-                fixbarProps?.ChgContractMonthTotal?.toString() || '0',
+                fixBarProps?.ChgContractMonthTotal?.toString() || '0',
               )}{' '}
               원
             </FontText>
@@ -53,7 +53,7 @@ export default function FixBar() {
           bg="#5ddfde"
           _text={{fontSize: 18, color: 'black', fontWeight: 'bold'}}
           flex={1}
-          onPress={() => Linking.openURL(fixbarProps?.OrderPage || '')}>
+          onPress={() => Linking.openURL(fixBarProps?.OrderPage || '')}>
           주문하기
         </Button>
         <Button
